@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Comprehensive form controls, states, validation, grouping, and accessibility patterns in tty.css.">
+  <title>Forms · tty.css</title>
+  <link rel="stylesheet" href="../../tty.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script defer src="../assets/docs.js"></script>
+</head>
+<body class="docs-page">
+  <a class="sr-only" href="#content">Skip to content</a>
+  <header class="docs-topbar">
+    <nav aria-label="Main navigation">
+      <ul><li><a href="../"><strong>▰ tty.css</strong></a></li><li><small>main</small></li></ul>
+      <ul><li><a href="./" aria-current="page">Docs</a></li><li><a href="../examples/">Examples</a></li><li><a href="../../tty.css" download>Download</a></li><li><button type="button" class="outline" data-theme-toggle>Theme: light</button></li></ul>
+    </nav>
+  </header>
+  <main class="docs-shell">
+    <aside class="docs-sidebar">
+      <nav aria-label="Documentation">
+        <p class="docs-nav-title">Getting started</p>
+        <ul><li><a href="./">Quick start</a></li><li><a href="themes.html">Themes</a></li></ul>
+        <p class="docs-nav-title">Layout</p>
+        <ul><li><a href="layout.html">Landmarks, containers &amp; grid</a></li></ul>
+        <p class="docs-nav-title">Content</p>
+        <ul><li><a href="typography.html">Typography</a></li><li><a href="buttons-links.html">Buttons &amp; links</a></li><li><a href="tables-code.html">Tables &amp; code</a></li></ul>
+        <p class="docs-nav-title">Forms</p>
+        <ul><li><a href="forms.html" aria-current="page">Form elements</a></li></ul>
+        <p class="docs-nav-title">Components</p>
+        <ul><li><a href="cards.html">Cards</a></li><li><a href="navigation.html">Navigation</a></li><li><a href="components.html">Native components</a></li></ul>
+        <p class="docs-nav-title">Customize</p>
+        <ul><li><a href="customization.html">CSS variables</a></li><li><a href="accessibility.html">Accessibility</a></li><li><a href="pico-comparison.html">Pico comparison</a></li></ul>
+      </nav>
+    </aside>
+
+    <div class="docs-content" id="content">
+      <header>
+        <p>Forms</p>
+        <h1>Form elements</h1>
+        <p>tty.css styles semantic, browser-native controls without replacing their built-in behavior. Use explicit labels, appropriate input types, and native validation before adding application JavaScript.</p>
+      </header>
+
+      <section id="basics">
+        <h2>Form basics</h2>
+        <p>Associate each control with a visible <code>label</code>. A matching <code>for</code> and <code>id</code> keeps the label clickable and gives the control an accessible name. Use help text with <code>aria-describedby</code>; placeholders are examples, not labels.</p>
+        <div class="docs-preview">
+          <form>
+            <label for="project-name">Project name</label>
+            <input id="project-name" name="project" type="text" placeholder="search-production" aria-describedby="project-help">
+            <small id="project-help">Use a unique deployment name.</small>
+
+            <label for="project-region">Region</label>
+            <select id="project-region" name="region">
+              <option value="">Choose a region</option>
+              <option value="us-east">US East</option>
+              <option value="eu-central">EU Central</option>
+            </select>
+
+            <label for="project-notes">Deployment notes</label>
+            <textarea id="project-notes" name="notes" rows="4" placeholder="Optional context for operators"></textarea>
+          </form>
+        </div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;form&gt;
+  &lt;label for="project-name"&gt;Project name&lt;/label&gt;
+  &lt;input id="project-name" name="project" type="text" placeholder="search-production" aria-describedby="project-help"&gt;
+  &lt;small id="project-help"&gt;Use a unique deployment name.&lt;/small&gt;
+
+  &lt;label for="project-region"&gt;Region&lt;/label&gt;
+  &lt;select id="project-region" name="region"&gt;
+    &lt;option value=""&gt;Choose a region&lt;/option&gt;
+    &lt;option value="us-east"&gt;US East&lt;/option&gt;
+    &lt;option value="eu-central"&gt;EU Central&lt;/option&gt;
+  &lt;/select&gt;
+
+  &lt;label for="project-notes"&gt;Deployment notes&lt;/label&gt;
+  &lt;textarea id="project-notes" name="notes" rows="4" placeholder="Optional context for operators"&gt;&lt;/textarea&gt;
+&lt;/form&gt;</code></pre></div>
+      </section>
+
+      <section id="states">
+        <h2>Common states</h2>
+        <p>Browsers submit enabled controls, including read-only controls. Disabled controls are not editable, focusable, or submitted. Use <code>readonly</code> when a value still belongs in the submission and <code>disabled</code> when the control is unavailable.</p>
+        <div class="docs-preview">
+          <div class="grid">
+            <div>
+              <label for="state-default">Default</label>
+              <input id="state-default" name="default" type="text" value="Editable value">
+            </div>
+            <div>
+              <label for="state-placeholder">Placeholder</label>
+              <input id="state-placeholder" name="placeholder" type="text" placeholder="Enter a value">
+            </div>
+            <div>
+              <label for="state-readonly">Read-only</label>
+              <input id="state-readonly" name="readonly" type="text" value="Submitted value" readonly>
+            </div>
+            <div>
+              <label for="state-disabled">Disabled</label>
+              <input id="state-disabled" name="disabled" type="text" value="Unavailable value" disabled>
+            </div>
+          </div>
+        </div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;div class="grid"&gt;
+  &lt;div&gt;
+    &lt;label for="state-default"&gt;Default&lt;/label&gt;
+    &lt;input id="state-default" name="default" type="text" value="Editable value"&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label for="state-placeholder"&gt;Placeholder&lt;/label&gt;
+    &lt;input id="state-placeholder" name="placeholder" type="text" placeholder="Enter a value"&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label for="state-readonly"&gt;Read-only&lt;/label&gt;
+    &lt;input id="state-readonly" name="readonly" type="text" value="Submitted value" readonly&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label for="state-disabled"&gt;Disabled&lt;/label&gt;
+    &lt;input id="state-disabled" name="disabled" type="text" value="Unavailable value" disabled&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+      </section>
+
+      <section id="textual-inputs">
+        <h2>Textual input types</h2>
+        <p>Choose the type that describes the expected data. Browsers may provide specialized keyboards, autofill, parsing, and constraint validation for <code>email</code>, <code>password</code>, <code>tel</code>, <code>url</code>, and <code>number</code>. These hints improve entry but do not replace server-side validation.</p>
+        <div class="docs-preview">
+          <div class="grid">
+            <div>
+              <label for="input-text">Text</label>
+              <input id="input-text" name="display-name" type="text" autocomplete="name" value="Ada Operator">
+            </div>
+            <div>
+              <label for="input-email">Email</label>
+              <input id="input-email" name="email" type="email" autocomplete="email" placeholder="ops@example.com">
+            </div>
+            <div>
+              <label for="input-password">Password</label>
+              <input id="input-password" name="password" type="password" autocomplete="current-password" value="terminal-passphrase">
+            </div>
+            <div>
+              <label for="input-tel">Telephone</label>
+              <input id="input-tel" name="telephone" type="tel" autocomplete="tel" placeholder="+353 1 555 0100">
+            </div>
+            <div>
+              <label for="input-url">URL</label>
+              <input id="input-url" name="endpoint" type="url" inputmode="url" placeholder="https://api.example.com">
+            </div>
+            <div>
+              <label for="input-number">Replica count</label>
+              <input id="input-number" name="replicas" type="number" min="1" max="12" step="1" value="3">
+            </div>
+          </div>
+        </div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;div class="grid"&gt;
+  &lt;div&gt;
+    &lt;label for="input-text"&gt;Text&lt;/label&gt;
+    &lt;input id="input-text" name="display-name" type="text" autocomplete="name" value="Ada Operator"&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label for="input-email"&gt;Email&lt;/label&gt;
+    &lt;input id="input-email" name="email" type="email" autocomplete="email" placeholder="ops@example.com"&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label for="input-password"&gt;Password&lt;/label&gt;
+    &lt;input id="input-password" name="password" type="password" autocomplete="current-password" value="terminal-passphrase"&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label for="input-tel"&gt;Telephone&lt;/label&gt;
+    &lt;input id="input-tel" name="telephone" type="tel" autocomplete="tel" placeholder="+353 1 555 0100"&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label for="input-url"&gt;URL&lt;/label&gt;
+    &lt;input id="input-url" name="endpoint" type="url" inputmode="url" placeholder="https://api.example.com"&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label for="input-number"&gt;Replica count&lt;/label&gt;
+    &lt;input id="input-number" name="replicas" type="number" min="1" max="12" step="1" value="3"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+      </section>
+
+      <section id="search">
+        <h2>Search</h2>
+        <p>A standalone <code>type="search"</code> control receives the search icon and keeps its browser-native clear behavior where available. Use a labelled <code>form role="search"</code> for a search landmark. To create the joined control, the field and action must be direct children of the element with <code>role="search"</code>; an intervening wrapper breaks the joined-child styling.</p>
+        <h3>Standalone</h3>
+        <div class="docs-preview">
+          <label for="standalone-search">Search documentation</label>
+          <input id="standalone-search" name="documentation-query" type="search" placeholder="Forms, tables, navigation">
+        </div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;label for="standalone-search"&gt;Search documentation&lt;/label&gt;
+&lt;input id="standalone-search" name="documentation-query" type="search" placeholder="Forms, tables, navigation"&gt;</code></pre></div>
+
+        <h3>Joined search</h3>
+        <div class="docs-preview">
+          <form role="search" aria-label="Namespace search">
+            <input name="namespace-query" type="search" placeholder="Search namespaces" aria-label="Search namespaces">
+            <button type="submit">Search</button>
+          </form>
+        </div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;form role="search" aria-label="Namespace search"&gt;
+  &lt;input name="namespace-query" type="search" placeholder="Search namespaces" aria-label="Search namespaces"&gt;
+  &lt;button type="submit"&gt;Search&lt;/button&gt;
+&lt;/form&gt;</code></pre></div>
+      </section>
+
+      <section id="date-time">
+        <h2>Date and time</h2>
+        <p>Date and time controls retain the browser’s native picker, keyboard behavior, localized display, and validation. Submitted values use standardized machine-readable formats. <code>datetime-local</code> represents local wall-clock time and carries no time-zone offset.</p>
+        <p>Picker UI and support vary by browser and operating system; unsupported types degrade to text inputs. The browser may position or omit its own picker indicator differently, and Firefox intentionally keeps its native presentation.</p>
+        <div class="docs-preview">
+          <div class="grid">
+            <div>
+              <label for="schedule-date">Date</label>
+              <input id="schedule-date" name="date" type="date" value="2026-08-31">
+            </div>
+            <div>
+              <label for="schedule-datetime">Date and time</label>
+              <input id="schedule-datetime" name="datetime" type="datetime-local" value="2026-08-31T14:30">
+            </div>
+            <div>
+              <label for="schedule-month">Month</label>
+              <input id="schedule-month" name="month" type="month" value="2026-08">
+            </div>
+            <div>
+              <label for="schedule-week">Week</label>
+              <input id="schedule-week" name="week" type="week" value="2026-W36">
+            </div>
+            <div>
+              <label for="schedule-time">Time</label>
+              <input id="schedule-time" name="time" type="time" value="14:30">
+            </div>
+          </div>
+        </div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;div class="grid"&gt;
+  &lt;div&gt;
+    &lt;label for="schedule-date"&gt;Date&lt;/label&gt;
+    &lt;input id="schedule-date" name="date" type="date" value="2026-08-31"&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label for="schedule-datetime"&gt;Date and time&lt;/label&gt;
+    &lt;input id="schedule-datetime" name="datetime" type="datetime-local" value="2026-08-31T14:30"&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label for="schedule-month"&gt;Month&lt;/label&gt;
+    &lt;input id="schedule-month" name="month" type="month" value="2026-08"&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label for="schedule-week"&gt;Week&lt;/label&gt;
+    &lt;input id="schedule-week" name="week" type="week" value="2026-W36"&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label for="schedule-time"&gt;Time&lt;/label&gt;
+    &lt;input id="schedule-time" name="time" type="time" value="14:30"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+      </section>
+
+      <section id="choices">
+        <h2>Checkboxes, radios, and switches</h2>
+        <p>Checkboxes represent independent choices. Radios share a <code>name</code> so only one option can be selected. A checkbox with <code>role="switch"</code> exposes an on/off switch while preserving native checkbox form behavior.</p>
+        <div class="docs-preview">
+          <div class="grid">
+            <fieldset>
+              <legend>Index options</legend>
+              <label><input name="full-text" type="checkbox" checked> Build full-text index</label>
+              <label><input name="analytics" type="checkbox"> Enable analytics</label>
+            </fieldset>
+            <fieldset>
+              <legend>Visibility</legend>
+              <label><input name="visibility" type="radio" value="private" checked> Private</label>
+              <label><input name="visibility" type="radio" value="public"> Public</label>
+            </fieldset>
+            <fieldset>
+              <legend>Runtime features</legend>
+              <label><input name="autoscaling" type="checkbox" role="switch" checked> Autoscaling</label>
+              <label><input name="maintenance" type="checkbox" role="switch"> Maintenance mode</label>
+            </fieldset>
+          </div>
+        </div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;div class="grid"&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Index options&lt;/legend&gt;
+    &lt;label&gt;&lt;input name="full-text" type="checkbox" checked&gt; Build full-text index&lt;/label&gt;
+    &lt;label&gt;&lt;input name="analytics" type="checkbox"&gt; Enable analytics&lt;/label&gt;
+  &lt;/fieldset&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Visibility&lt;/legend&gt;
+    &lt;label&gt;&lt;input name="visibility" type="radio" value="private" checked&gt; Private&lt;/label&gt;
+    &lt;label&gt;&lt;input name="visibility" type="radio" value="public"&gt; Public&lt;/label&gt;
+  &lt;/fieldset&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Runtime features&lt;/legend&gt;
+    &lt;label&gt;&lt;input name="autoscaling" type="checkbox" role="switch" checked&gt; Autoscaling&lt;/label&gt;
+    &lt;label&gt;&lt;input name="maintenance" type="checkbox" role="switch"&gt; Maintenance mode&lt;/label&gt;
+  &lt;/fieldset&gt;
+&lt;/div&gt;</code></pre></div>
+
+        <h3>Indeterminate checkbox</h3>
+        <p><code>indeterminate</code> is a JavaScript property, not an HTML attribute, and it affects presentation rather than the submitted checked value. Set it after the checkbox exists in the DOM and update it when child selections change.</p>
+        <div class="docs-preview">
+<label><input id="select-services" name="select-services" type="checkbox"> Select all services</label>
+<script>
+  document.getElementById("select-services").indeterminate = true;
+</script>
+        </div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;label&gt;&lt;input id="select-services" name="select-services" type="checkbox"&gt; Select all services&lt;/label&gt;
+&lt;script&gt;
+  document.getElementById("select-services").indeterminate = true;
+&lt;/script&gt;</code></pre></div>
+      </section>
+
+      <section id="special-controls">
+        <h2>Range, file, and color</h2>
+        <p>These controls keep browser-native interaction and accessibility while tty.css styles the exposed parts. Their internal widgets, dialogs, selected-file text, and color pickers differ across browsers and operating systems. Always provide a label; add visible output when users need the range’s exact value.</p>
+        <div class="docs-preview">
+          <label for="replica-range">Replica target: <output for="replica-range">4</output></label>
+          <input id="replica-range" name="replica-target" type="range" min="1" max="8" step="1" value="4" oninput="this.previousElementSibling.querySelector('output').value = this.value">
+
+          <label for="schema-file">Schema file</label>
+          <input id="schema-file" name="schema" type="file" accept=".json,application/json">
+
+          <label for="label-color">Label color</label>
+          <input id="label-color" name="label-color" type="color" value="#ff9d46">
+        </div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;label for="replica-range"&gt;Replica target: &lt;output for="replica-range"&gt;4&lt;/output&gt;&lt;/label&gt;
+&lt;input id="replica-range" name="replica-target" type="range" min="1" max="8" step="1" value="4" oninput="this.previousElementSibling.querySelector('output').value = this.value"&gt;
+
+&lt;label for="schema-file"&gt;Schema file&lt;/label&gt;
+&lt;input id="schema-file" name="schema" type="file" accept=".json,application/json"&gt;
+
+&lt;label for="label-color"&gt;Label color&lt;/label&gt;
+&lt;input id="label-color" name="label-color" type="color" value="#ff9d46"&gt;</code></pre></div>
+      </section>
+
+      <section id="validation">
+        <h2>Validation</h2>
+        <p>Set <code>aria-invalid="true"</code> only when a field is known to be invalid and connect its message with <code>aria-describedby</code>. ARIA defines <code>aria-invalid="false"</code> as explicitly valid; there is no <code>aria-valid</code> attribute. ARIA communicates state but does not perform validation or prevent submission.</p>
+        <div class="docs-preview">
+          <form>
+            <div class="grid">
+              <div>
+                <label for="valid-email">Verified email</label>
+                <input id="valid-email" name="valid-email" type="email" value="ops@example.com" aria-invalid="false" aria-describedby="valid-email-message">
+                <small id="valid-email-message">Email address verified.</small>
+              </div>
+              <div>
+                <label for="invalid-email">Email with an error</label>
+                <input id="invalid-email" name="invalid-email" type="email" value="ops.example.com" aria-invalid="true" aria-describedby="invalid-email-message">
+                <small id="invalid-email-message">Enter an address containing @.</small>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;form&gt;
+  &lt;div class="grid"&gt;
+    &lt;div&gt;
+      &lt;label for="valid-email"&gt;Verified email&lt;/label&gt;
+      &lt;input id="valid-email" name="valid-email" type="email" value="ops@example.com" aria-invalid="false" aria-describedby="valid-email-message"&gt;
+      &lt;small id="valid-email-message"&gt;Email address verified.&lt;/small&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;label for="invalid-email"&gt;Email with an error&lt;/label&gt;
+      &lt;input id="invalid-email" name="invalid-email" type="email" value="ops.example.com" aria-invalid="true" aria-describedby="invalid-email-message"&gt;
+      &lt;small id="invalid-email-message"&gt;Enter an address containing @.&lt;/small&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/form&gt;</code></pre></div>
+
+        <h3>Browser validation and <code>:user-invalid</code></h3>
+        <p>tty.css also styles <code>:user-invalid</code>. The pseudo-class follows native constraint validation after the browser considers the user to have interacted with the field, often after a submission attempt. Exact timing and validation messages vary by browser. Try submitting this empty required field.</p>
+        <div class="docs-preview">
+          <form>
+            <label for="required-cluster">Cluster name</label>
+            <input id="required-cluster" name="cluster" type="text" required minlength="3" aria-describedby="cluster-requirements">
+            <small id="cluster-requirements">Enter at least three characters.</small>
+            <button type="submit">Validate</button>
+          </form>
+        </div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;form&gt;
+  &lt;label for="required-cluster"&gt;Cluster name&lt;/label&gt;
+  &lt;input id="required-cluster" name="cluster" type="text" required minlength="3" aria-describedby="cluster-requirements"&gt;
+  &lt;small id="cluster-requirements"&gt;Enter at least three characters.&lt;/small&gt;
+  &lt;button type="submit"&gt;Validate&lt;/button&gt;
+&lt;/form&gt;</code></pre></div>
+      </section>
+
+      <section id="fieldsets">
+        <h2>Fieldsets and legends</h2>
+        <p>Use <code>fieldset</code> and <code>legend</code> to name a related set of controls. A disabled fieldset disables its descendant controls except descendants of its first legend. A read-only fieldset does not exist in HTML; apply <code>readonly</code> to each supported control instead.</p>
+        <div class="docs-preview">
+          <div class="grid">
+            <fieldset>
+              <legend>Deployment identity</legend>
+              <label for="deployment-id">Deployment ID</label>
+              <input id="deployment-id" name="deployment-id" type="text" value="dep_01J8M4" readonly>
+              <label for="deployment-owner">Owner</label>
+              <input id="deployment-owner" name="deployment-owner" type="text" value="Platform team" readonly>
+            </fieldset>
+            <fieldset disabled>
+              <legend>Unavailable environment</legend>
+              <label for="disabled-environment">Environment</label>
+              <select id="disabled-environment" name="environment">
+                <option value="production">Production</option>
+              </select>
+              <label><input name="protect-environment" type="checkbox" checked> Protect environment</label>
+            </fieldset>
+          </div>
+        </div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;div class="grid"&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Deployment identity&lt;/legend&gt;
+    &lt;label for="deployment-id"&gt;Deployment ID&lt;/label&gt;
+    &lt;input id="deployment-id" name="deployment-id" type="text" value="dep_01J8M4" readonly&gt;
+    &lt;label for="deployment-owner"&gt;Owner&lt;/label&gt;
+    &lt;input id="deployment-owner" name="deployment-owner" type="text" value="Platform team" readonly&gt;
+  &lt;/fieldset&gt;
+  &lt;fieldset disabled&gt;
+    &lt;legend&gt;Unavailable environment&lt;/legend&gt;
+    &lt;label for="disabled-environment"&gt;Environment&lt;/label&gt;
+    &lt;select id="disabled-environment" name="environment"&gt;
+      &lt;option value="production"&gt;Production&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;label&gt;&lt;input name="protect-environment" type="checkbox" checked&gt; Protect environment&lt;/label&gt;
+  &lt;/fieldset&gt;
+&lt;/div&gt;</code></pre></div>
+      </section>
+
+      <section id="fieldset-details">
+        <h2>Disclosure rows in a fieldset</h2>
+        <p>Place <code>details</code> directly inside a <code>fieldset</code> to create divided disclosure rows. Native <code>summary</code> elements remain keyboard-operable and communicate their expanded state without JavaScript. The direct-child relationship is required for this fieldset-specific presentation.</p>
+        <div class="docs-preview">
+          <fieldset>
+            <legend>Advanced deployment settings</legend>
+            <details open>
+              <summary>Health checks</summary>
+              <label for="health-path">HTTP path</label>
+              <input id="health-path" name="health-path" type="text" value="/healthz">
+            </details>
+            <details>
+              <summary>Shutdown behavior</summary>
+              <label for="grace-period">Grace period in seconds</label>
+              <input id="grace-period" name="grace-period" type="number" min="0" max="300" value="30">
+            </details>
+          </fieldset>
+        </div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;fieldset&gt;
+  &lt;legend&gt;Advanced deployment settings&lt;/legend&gt;
+  &lt;details open&gt;
+    &lt;summary&gt;Health checks&lt;/summary&gt;
+    &lt;label for="health-path"&gt;HTTP path&lt;/label&gt;
+    &lt;input id="health-path" name="health-path" type="text" value="/healthz"&gt;
+  &lt;/details&gt;
+  &lt;details&gt;
+    &lt;summary&gt;Shutdown behavior&lt;/summary&gt;
+    &lt;label for="grace-period"&gt;Grace period in seconds&lt;/label&gt;
+    &lt;input id="grace-period" name="grace-period" type="number" min="0" max="300" value="30"&gt;
+  &lt;/details&gt;
+&lt;/fieldset&gt;</code></pre></div>
+      </section>
+
+      <section id="groups">
+        <h2>Control groups</h2>
+        <p><code>.group</code> is a spaced visual action layout that adds no accessibility semantics and stacks on narrow screens. Use it when nearby actions do not need a group announced. <code>role="group"</code> creates a connected semantic control group with collapsed borders and no button shadows; it stacks as a connected vertical group on narrow screens. Give a semantic group an accessible name with <code>aria-labelledby</code> or <code>aria-label</code>. Both layouts act on their direct children.</p>
+        <h3>Visual <code>.group</code></h3>
+        <div class="docs-preview">
+          <div class="group">
+            <button type="button">Deploy</button>
+            <button type="button" class="secondary">Save draft</button>
+            <button type="button" class="outline">Cancel</button>
+          </div>
+        </div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;div class="group"&gt;
+  &lt;button type="button"&gt;Deploy&lt;/button&gt;
+  &lt;button type="button" class="secondary"&gt;Save draft&lt;/button&gt;
+  &lt;button type="button" class="outline"&gt;Cancel&lt;/button&gt;
+&lt;/div&gt;</code></pre></div>
+
+        <h3>Semantic <code>role="group"</code></h3>
+        <div class="docs-preview">
+          <p id="log-window-label">Log window</p>
+          <div role="group" aria-labelledby="log-window-label">
+            <button type="button" aria-pressed="true">15 minutes</button>
+            <button type="button" aria-pressed="false" class="secondary">1 hour</button>
+            <button type="button" aria-pressed="false" class="secondary">24 hours</button>
+          </div>
+        </div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;p id="log-window-label"&gt;Log window&lt;/p&gt;
+&lt;div role="group" aria-labelledby="log-window-label"&gt;
+  &lt;button type="button" aria-pressed="true"&gt;15 minutes&lt;/button&gt;
+  &lt;button type="button" aria-pressed="false" class="secondary"&gt;1 hour&lt;/button&gt;
+  &lt;button type="button" aria-pressed="false" class="secondary"&gt;24 hours&lt;/button&gt;
+&lt;/div&gt;</code></pre></div>
+      </section>
+
+      <nav class="docs-pager" aria-label="Documentation pagination"><a href="tables-code.html">← Tables &amp; code</a><a href="cards.html">Cards →</a></nav>
+    </div>
+
+    <aside class="docs-toc">
+      <nav aria-label="Table of contents">
+        <p class="docs-nav-title">On this page</p>
+        <ul>
+          <li><a href="#basics">Form basics</a></li>
+          <li><a href="#states">States</a></li>
+          <li><a href="#textual-inputs">Textual inputs</a></li>
+          <li><a href="#search">Search</a></li>
+          <li><a href="#date-time">Date &amp; time</a></li>
+          <li><a href="#choices">Choices</a></li>
+          <li><a href="#special-controls">Special controls</a></li>
+          <li><a href="#validation">Validation</a></li>
+          <li><a href="#fieldsets">Fieldsets</a></li>
+          <li><a href="#fieldset-details">Disclosure rows</a></li>
+          <li><a href="#groups">Groups</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </main>
+  <footer><small>tty.css — semantic HTML with sharp edges.</small></footer>
+</body>
+</html>

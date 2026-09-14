@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Build semantic responsive layouts with tty.css landmarks, containers, grids, and composition classes.">
+    <title>Layout · tty.css</title>
+    <link rel="stylesheet" href="../../tty.css">
+    <link rel="stylesheet" href="../assets/docs.css">
+    <script defer src="../assets/docs.js"></script>
+  </head>
+  <body class="docs-page">
+    <a class="sr-only" href="#content">Skip to content</a>
+
+    <header class="docs-topbar">
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="../"><strong>▰ tty.css</strong></a></li>
+          <li><small>main</small></li>
+        </ul>
+        <ul>
+          <li><a href="./" aria-current="page">Docs</a></li>
+          <li><a href="../examples/">Examples</a></li>
+          <li><a href="../../tty.css" download>Download</a></li>
+          <li><button type="button" class="outline" data-theme-toggle aria-label="Current theme: light. Change theme">Theme: light</button></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="docs-shell">
+      <aside class="docs-sidebar">
+        <nav aria-label="Documentation navigation">
+          <p class="docs-nav-title">Getting started</p>
+          <ul>
+            <li><a href="./">Quick start</a></li>
+            <li><a href="themes.html">Themes</a></li>
+          </ul>
+          <p class="docs-nav-title">Layout</p>
+          <ul><li><a href="layout.html" aria-current="page">Landmarks, containers &amp; grid</a></li></ul>
+          <p class="docs-nav-title">Content</p>
+          <ul>
+            <li><a href="typography.html">Typography</a></li>
+            <li><a href="buttons-links.html">Buttons &amp; links</a></li>
+            <li><a href="tables-code.html">Tables &amp; code</a></li>
+          </ul>
+          <p class="docs-nav-title">Forms</p>
+          <ul><li><a href="forms.html">Form elements</a></li></ul>
+          <p class="docs-nav-title">Components</p>
+          <ul>
+            <li><a href="cards.html">Cards</a></li>
+            <li><a href="navigation.html">Navigation</a></li>
+            <li><a href="components.html">Native components</a></li>
+          </ul>
+          <p class="docs-nav-title">Customize</p>
+          <ul>
+            <li><a href="customization.html">CSS variables</a></li>
+            <li><a href="accessibility.html">Accessibility</a></li>
+            <li><a href="pico-comparison.html">Pico comparison</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <div class="docs-content" id="content">
+        <header>
+          <p>Layout</p>
+          <h1>Landmarks, containers &amp; grid</h1>
+          <p>Begin with document landmarks, then use a small composition layer where semantic HTML alone does not describe the layout.</p>
+        </header>
+
+        <section id="landmarks">
+          <h2>Document landmarks</h2>
+          <p>Direct <code>body</code> children <code>header</code>, <code>main</code>, and <code>footer</code> share a centered viewport. Its width is the smaller of the available width minus 2rem and <code>--tty-container</code>, which defaults to 72rem. Each landmark also receives its own vertical spacing, and the footer gets a top border.</p>
+          <div class="code-example">
+            <button type="button" class="secondary" data-copy aria-label="Copy document landmark example">Copy</button>
+            <pre><code>&lt;body&gt;
+  &lt;header&gt;
+    &lt;nav aria-label="Primary navigation"&gt;
+      &lt;a href="/"&gt;Console&lt;/a&gt;
+      &lt;a href="/status"&gt;Status&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+  &lt;main&gt;
+    &lt;h1&gt;Deployment console&lt;/h1&gt;
+    &lt;p&gt;Choose a service to continue.&lt;/p&gt;
+  &lt;/main&gt;
+  &lt;footer&gt;&lt;small&gt;Console version 1.0&lt;/small&gt;&lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+          </div>
+        </section>
+
+        <section id="container">
+          <h2>Container</h2>
+          <p>Use <code>.container</code> when a non-landmark element needs the same centered 72rem maximum viewport. It sets width and inline margins; it does not add padding, a surface, or a border.</p>
+          <div class="docs-preview">
+            <div class="container"><mark>Shared container width</mark></div>
+          </div>
+          <div class="code-example">
+            <button type="button" class="secondary" data-copy aria-label="Copy container example">Copy</button>
+            <pre><code>&lt;div class="container"&gt;&lt;mark&gt;Shared container width&lt;/mark&gt;&lt;/div&gt;</code></pre>
+          </div>
+        </section>
+
+        <section id="grid">
+          <h2>Responsive grid</h2>
+          <p><code>.grid</code> creates equal, auto-fitting columns with a 1.5rem gap. Each column is at least 17rem when space permits and collapses to the available width on smaller screens.</p>
+          <div class="docs-preview">
+            <div class="grid">
+              <article><strong>Node 01</strong><p>Healthy</p></article>
+              <article><strong>Node 02</strong><p>Healthy</p></article>
+              <article><strong>Node 03</strong><p>Deploying</p></article>
+            </div>
+          </div>
+          <div class="code-example">
+            <button type="button" class="secondary" data-copy aria-label="Copy responsive grid example">Copy</button>
+            <pre><code>&lt;div class="grid"&gt;
+  &lt;article&gt;&lt;strong&gt;Node 01&lt;/strong&gt;&lt;p&gt;Healthy&lt;/p&gt;&lt;/article&gt;
+  &lt;article&gt;&lt;strong&gt;Node 02&lt;/strong&gt;&lt;p&gt;Healthy&lt;/p&gt;&lt;/article&gt;
+  &lt;article&gt;&lt;strong&gt;Node 03&lt;/strong&gt;&lt;p&gt;Deploying&lt;/p&gt;&lt;/article&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </section>
+
+        <section id="overflow">
+          <h2>Overflow regions</h2>
+          <p><code>.overflow-auto</code> contains content that is wider than its parent. When the child is a table, tty.css also reserves room for the dotted offset treatment. Make a scroll region keyboard-focusable and label it when users may need to scroll without a pointer.</p>
+          <div class="docs-preview">
+            <div class="overflow-auto" tabindex="0" role="region" aria-label="Deployment history">
+              <table>
+                <thead><tr><th scope="col">Deployment</th><th scope="col">Environment</th><th scope="col">Revision</th><th scope="col">Status</th></tr></thead>
+                <tbody><tr><td>api-2026-08-31</td><td>Production Europe</td><td>8f4c2a1</td><td>Successful</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="code-example">
+            <button type="button" class="secondary" data-copy aria-label="Copy overflow region example">Copy</button>
+            <pre><code>&lt;div class="overflow-auto" tabindex="0" role="region" aria-label="Deployment history"&gt;
+  &lt;table&gt;
+    &lt;thead&gt;&lt;tr&gt;&lt;th scope="col"&gt;Deployment&lt;/th&gt;&lt;th scope="col"&gt;Environment&lt;/th&gt;&lt;th scope="col"&gt;Revision&lt;/th&gt;&lt;th scope="col"&gt;Status&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+    &lt;tbody&gt;&lt;tr&gt;&lt;td&gt;api-2026-08-31&lt;/td&gt;&lt;td&gt;Production Europe&lt;/td&gt;&lt;td&gt;8f4c2a1&lt;/td&gt;&lt;td&gt;Successful&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </section>
+
+        <section id="widths">
+          <h2>Focused content widths</h2>
+          <h3>Narrow</h3>
+          <p><code>.narrow</code> centers content at a maximum width of 32rem. It is useful for compact forms, prompts, and single-purpose panels.</p>
+          <div class="docs-preview">
+            <article class="narrow"><h3>Confirm deployment</h3><p>Deploy revision 8f4c2a1 to production?</p></article>
+          </div>
+          <div class="code-example">
+            <button type="button" class="secondary" data-copy aria-label="Copy narrow layout example">Copy</button>
+            <pre><code>&lt;article class="narrow"&gt;&lt;h3&gt;Confirm deployment&lt;/h3&gt;&lt;p&gt;Deploy revision 8f4c2a1 to production?&lt;/p&gt;&lt;/article&gt;</code></pre>
+          </div>
+
+          <h3>Reading</h3>
+          <p><code>.reading</code> centers long-form content at a maximum width of 56rem. On an article it also opens the header treatment, restores display headings, removes paragraph line-length caps, and simplifies to an unframed layout below 44rem.</p>
+          <div class="docs-preview">
+            <article class="reading">
+              <header><h1>Incident report</h1><small>Updated 31 August 2026</small></header>
+              <p>The service recovered after the queue drained. This report records the sequence of events and the follow-up work.</p>
+            </article>
+          </div>
+          <div class="code-example">
+            <button type="button" class="secondary" data-copy aria-label="Copy reading layout example">Copy</button>
+            <pre><code>&lt;article class="reading"&gt;
+  &lt;header&gt;&lt;h1&gt;Incident report&lt;/h1&gt;&lt;small&gt;Updated 31 August 2026&lt;/small&gt;&lt;/header&gt;
+  &lt;p&gt;The service recovered after the queue drained. This report records the sequence of events and the follow-up work.&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+          </div>
+        </section>
+
+        <section id="terminal">
+          <h2>Terminal treatment</h2>
+          <p><code>.terminal</code> establishes positioning and adds the same dotted offset treatment used by framed components. It does not supply its own border, padding, or background, so pair it with content that already provides the desired frame.</p>
+          <div class="docs-preview">
+            <div class="terminal"><pre><code>$ tty deploy --production
+Deployment queued.</code></pre></div>
+          </div>
+          <div class="code-example">
+            <button type="button" class="secondary" data-copy aria-label="Copy terminal treatment example">Copy</button>
+            <pre><code>&lt;div class="terminal"&gt;&lt;pre&gt;&lt;code&gt;$ tty deploy --production
+Deployment queued.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</code></pre>
+          </div>
+        </section>
+
+        <section id="groups">
+          <h2>Groups</h2>
+          <p><code>.group</code> lays out separate actions as a spaced flex row, preserving each button's normal shadow. It stacks below 44rem; add <code>.inline</code> when a compact group should remain on one line and spread its items apart. <code>[role="group"]</code> presents connected semantic controls with collapsed adjacent borders and no individual button shadows; it requires an accessible name from <code>aria-label</code> or <code>aria-labelledby</code>. Below 44rem, the connected controls stack vertically and remain joined.</p>
+          <div class="docs-preview">
+            <div class="group">
+              <button type="button">Preview</button>
+              <button type="button" class="secondary">Cancel</button>
+            </div>
+            <p class="group inline"><span>Compact option</span><a href="#groups">Change</a></p>
+            <div role="group" aria-label="Deployment actions">
+              <button type="button">Deploy</button>
+              <button type="button" class="contrast">Rollback</button>
+            </div>
+          </div>
+          <div class="code-example">
+            <button type="button" class="secondary" data-copy aria-label="Copy group layout examples">Copy</button>
+            <pre><code>&lt;div class="group"&gt;
+  &lt;button type="button"&gt;Preview&lt;/button&gt;
+  &lt;button type="button" class="secondary"&gt;Cancel&lt;/button&gt;
+&lt;/div&gt;
+ &lt;p class="group inline"&gt;&lt;span&gt;Compact option&lt;/span&gt;&lt;a href="#"&gt;Change&lt;/a&gt;&lt;/p&gt;
+ &lt;div role="group" aria-label="Deployment actions"&gt;
+  &lt;button type="button"&gt;Deploy&lt;/button&gt;
+  &lt;button type="button" class="contrast"&gt;Rollback&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </section>
+
+        <nav class="docs-pager" aria-label="Documentation page navigation">
+          <a href="themes.html">← Themes</a>
+          <a href="typography.html">Typography →</a>
+        </nav>
+      </div>
+
+      <aside class="docs-toc">
+        <nav aria-label="Layout table of contents">
+          <p class="docs-nav-title">On this page</p>
+          <ul>
+            <li><a href="#landmarks">Landmarks</a></li>
+            <li><a href="#container">Container</a></li>
+            <li><a href="#grid">Grid</a></li>
+            <li><a href="#overflow">Overflow</a></li>
+            <li><a href="#widths">Content widths</a></li>
+            <li><a href="#terminal">Terminal</a></li>
+            <li><a href="#groups">Groups</a></li>
+          </ul>
+        </nav>
+      </aside>
+    </main>
+
+    <footer><small>tty.css — semantic HTML with sharp edges.</small></footer>
+  </body>
+</html>

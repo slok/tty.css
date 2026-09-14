@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Sign in to fictional Relay Console.">
+  <title>Sign in · Relay Console</title>
+  <link rel="stylesheet" href="../../tty.css">
+</head>
+<body>
+  <a class="sr-only" href="#login">Skip to login</a>
+  <header>
+    <nav aria-label="Primary navigation">
+      <ul><li><a href="./"><strong>◆ relay</strong></a></li></ul>
+      <ul><li><a href="../reference/">Help</a></li><li><a href="status.html">Status</a></li></ul>
+    </nav>
+  </header>
+  <main id="login" class="narrow">
+    <section>
+      <article>
+        <header class="legend"><h1>Sign in</h1></header>
+        <p>Continue to Relay Console to manage deployments and API keys.</p>
+        <form action="#login">
+          <label for="email">Work email</label>
+          <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@company.com">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" required minlength="8" autocomplete="current-password">
+          <div class="grid">
+            <label><input type="checkbox" name="remember"> Keep me signed in</label>
+            <a href="mailto:support@example.com?subject=Password%20recovery">Forgot password?</a>
+          </div>
+          <button type="submit">Sign in →</button>
+        </form>
+        <hr>
+        <p class="group">
+          <a href="https://github.com/login" role="button" class="secondary">Continue with GitHub</a>
+          <a href="https://accounts.google.com/" role="button" class="secondary">Continue with Google</a>
+        </p>
+        <footer>New to Relay? <a href="mailto:sales@example.com?subject=Create%20a%20Relay%20account">Create an account</a></footer>
+      </article>
+      <details>
+        <summary>Security and privacy</summary>
+        <p>Relay supports passkeys, SSO, enforced MFA, and audit logs. We never sell or use account data for advertising.</p>
+      </details>
+    </section>
+  </main>
+  <footer>
+    <nav aria-label="Footer navigation">
+      <ul><li><small>© 2026 Relay Systems</small></li></ul>
+      <ul><li><a href="./">Examples</a></li><li><a href="../reference/">tty.css docs</a></li></ul>
+    </nav>
+  </footer>
+</body>
+</html>
