@@ -11,19 +11,17 @@ warm orange, hard borders, and offset shadows.
 - Low-specificity selectors
 - Focused customization through CSS variables
 
-Open `index.html` to see every supported element.
+The framework is the repository-root [`tty.css`](tty.css). It imports no fonts,
+assets, or JavaScript and requires no build step.
 
 ## Install
 
-Copy `tty.css` into your project and link it from the document head:
+Download [`tty.css`](tty.css), keep it with your application, and link it from
+the document head:
 
 ```html
 <link rel="stylesheet" href="tty.css" />
 ```
-
-tty.css imports JetBrains Mono and Space Grotesk from Google Fonts. Remove the
-first `@import` rule if you prefer to avoid a network font dependency; the
-fallback stacks work without it.
 
 ## Start with semantic HTML
 
@@ -88,14 +86,18 @@ tty.css directly styles:
 - Links, blockquotes, figures, images, and horizontal rules
 - `code`, `kbd`, `samp`, and `pre`
 - Navigation
+- Breadcrumb navigation and disclosure dropdowns
 - Buttons and links with `role="button"`
 - Forms, fieldsets, labels, validation, and common input types
 - Checkboxes, radios, switches, ranges, files, and colors
 - Tables
 - Articles
 - `details` and `summary`
+- Dropdown menus built with `details.dropdown`
+- Loading indicators through `aria-busy="true"`
+- CSS tooltips through `data-tooltip`
 - `progress` and `meter`
-- Native dialogs
+- Native dialogs, including structured `dialog > article` modals
 
 tty.css styles dialogs but does not open or close them. Use the native dialog
 API in application code when interactive behavior is needed:
@@ -140,10 +142,12 @@ Keep the heading directly inside the article when it belongs inside the card:
 </article>
 ```
 
-The heading level remains semantic. tty.css gives headings inside card headers
-a consistent component-title size, whether the document hierarchy calls for an
-`h2`, `h3`, or `h4`. For form groups, use the native `fieldset` and `legend`
-elements instead of the `.legend` class.
+The heading level remains semantic. tty.css gives direct card headings and
+headings inside card headers a compact component-title size, whether the
+document hierarchy calls for an `h2`, `h3`, or `h4`. For form groups, use the
+native `fieldset` and `legend` elements instead of the `.legend` class. Direct
+`details` children become compact grouped rows inside a `fieldset`; standalone
+disclosures retain their own frame.
 
 ## Classes
 
@@ -153,15 +157,26 @@ The class layer is intentionally small.
 
 | Class | Purpose |
 | --- | --- |
-| `.container` | Centered element using `--term-container` |
+| `.container` | Centered element using `--tty-container` |
+| `.narrow` | Centered element capped at 32rem for focused flows |
+| `.reading` | Centered 56rem long-form article with readable typography |
 | `.grid` | Responsive auto-fitting grid |
-| `.group` | Horizontal control or button group; stacks on small screens |
+| `.group` | Spaced actions in a horizontal row; stacks on small screens |
+| `.group.inline` | Keeps a group on one line and spreads its items apart |
 | `.overflow-auto` | Scroll container for wide tables or content |
 | `.legend` | Places a direct article header title over the card border |
+| `.dropdown` | Turns a native `details` element into an overlay menu |
+| `.breadcrumb` | Formats a labelled navigation path with separators |
+| `.striped` | Adds alternating rows to a table |
+| `.hoverable` | Highlights table rows on pointer hover |
+| `.bordered` | Adds vertical table cell rules |
+| `.compact` | Reduces table cell padding and type size |
+| `html.modal-is-open` | Prevents document scrolling while a modal is open |
 | `.terminal` | Dithered offset background treatment |
 | `.sr-only` | Visually hidden accessible text |
 
-`role="group"` receives the same layout as `.group`.
+`role="group"` creates connected controls with joined borders. On small
+screens, the controls stack vertically while preserving those joined borders.
 
 ### Button variants
 
@@ -176,6 +191,14 @@ Apply these to `button`, supported button inputs, or links with
 <a href="/docs" role="button">Read docs</a>
 ```
 
+Normal links support the same emphasis language without becoming buttons:
+
+```html
+<a href="/docs">Primary link</a>
+<a href="/docs" class="secondary">Secondary link</a>
+<a href="/docs" class="contrast">Contrast link</a>
+```
+
 ## Form states
 
 Use native attributes whenever possible:
@@ -187,6 +210,9 @@ Use native attributes whenever possible:
 <input aria-invalid="true" aria-describedby="email-error" />
 <small id="email-error">Enter a valid email.</small>
 
+<input aria-invalid="false" aria-describedby="email-success" />
+<small id="email-success">Email verified.</small>
+
 <label>
   <input type="checkbox" role="switch" />
   Enable indexing
@@ -196,33 +222,96 @@ Use native attributes whenever possible:
 Supported state attributes include `disabled`, `readonly`, `required`,
 `aria-invalid`, `aria-disabled`, and `aria-current`.
 
+ARIA does not define an `aria-valid` attribute. Use `aria-invalid="false"` to
+mark a field as explicitly valid.
+
+## Search
+
+Use the native search input for its icon and browser clear behavior. Add
+`role="search"` to join a search input and action while exposing a search
+landmark:
+
+```html
+<input type="search" name="search" placeholder="Search" aria-label="Search" />
+
+<form role="search">
+  <input
+    type="search"
+    name="query"
+    placeholder="Search namespaces"
+    aria-label="Search namespaces"
+  />
+  <button type="submit">Search</button>
+</form>
+```
+
+## Specialized inputs
+
+Date and time controls keep their native platform pickers while receiving
+terminal calendar and clock icons, tabular numerals, and theme support:
+
+```html
+<input type="date" />
+<input type="datetime-local" />
+<input type="month" />
+<input type="week" />
+<input type="time" />
+```
+
+The icon tokens are `--tty-icon-date`, `--tty-icon-datetime`, and
+`--tty-icon-time`. Search uses `--tty-icon-search`.
+
+## Loading and tooltips
+
+Use semantic busy state for inline content, blocks, and buttons:
+
+```html
+<span aria-busy="true">Indexing documents…</span>
+<button aria-busy="true" disabled>Deploying…</button>
+```
+
+`aria-busy` communicates that an update is in progress; it does not disable a
+control. Add the native `disabled` attribute while a button must not be
+activated, then remove both attributes when the operation completes.
+
+Tooltips support top, right, bottom, and left placement:
+
+```html
+<button data-tooltip="Runs the deployment">Deploy</button>
+<a href="/help" data-tooltip="Read the guide" data-placement="bottom">Help</a>
+```
+
+Tooltip content should remain supplementary; essential instructions must also
+be present in regular document content.
+
 ## Customize
 
 Override variables after loading tty.css:
 
 ```css
 :root {
-  --term-font: "IBM Plex Mono", monospace;
-  --term-font-display: "IBM Plex Sans", sans-serif;
-  --term-bg: #fffdf5;
-  --term-surface: #ffffff;
-  --term-fg: #172554;
-  --term-fg-muted: #526174;
-  --term-border: #cbd5e1;
-  --term-border-strong: #172554;
-  --term-accent: #fde047;
-  --term-accent-hover: #facc15;
-  --term-accent-fg: #422006;
-  --term-focus: #c2410c;
-  --term-container: 80rem;
-  --term-reading-width: 72ch;
-  --term-space: 1rem;
-  --term-radius: 0;
-  --term-border-width: 1px;
-  --term-frame-width: 2px;
-  --term-shadow-x: 0.5rem;
-  --term-shadow-y: 0.5rem;
-  --term-control-height: 2.75rem;
+  --tty-font: "IBM Plex Mono", monospace;
+  --tty-font-display: "IBM Plex Sans", sans-serif;
+  --tty-bg: #fffdf5;
+  --tty-surface: #ffffff;
+  --tty-fg: #172554;
+  --tty-fg-muted: #526174;
+  --tty-border: #cbd5e1;
+  --tty-border-strong: #172554;
+  --tty-accent: #fde047;
+  --tty-accent-hover: #facc15;
+  --tty-accent-fg: #422006;
+  --tty-link: #b45309;
+  --tty-link-hover: #9a3412;
+  --tty-focus: #c2410c;
+  --tty-container: 80rem;
+  --tty-reading-width: 72ch;
+  --tty-radius: 0;
+  --tty-border-width: 1px;
+  --tty-frame-width: 2px;
+  --tty-shadow-x: 0.5rem;
+  --tty-shadow-y: 0.5rem;
+  --tty-control-height: 2.5rem;
 }
 ```
 
@@ -230,9 +319,9 @@ Dark-theme values can be customized separately:
 
 ```css
 :root[data-theme="dark"] {
-  --term-bg: #09090b;
-  --term-surface: #18181b;
-  --term-accent: #a3e635;
+  --tty-bg: #09090b;
+  --tty-surface: #18181b;
+  --tty-accent: #a3e635;
 }
 ```
 
@@ -248,7 +337,7 @@ article {
 }
 
 button.danger {
-  background: var(--term-danger);
+  background: var(--tty-danger);
   color: white;
 }
 ```
@@ -266,9 +355,15 @@ philosophy:
 Core content and controls remain usable if a newer decorative feature such as
 `color-mix()` is unavailable.
 
+RTL layouts are out of scope and are not guaranteed.
+
 ## Accessibility
 
 tty.css includes visible `:focus-visible` outlines, reduced-motion handling,
 touch-sized controls, dark color-scheme support, and print styles. The
 application remains responsible for valid landmarks, labels, alternative text,
 dialog behavior, and meaningful ARIA attributes.
+
+## License
+
+[MIT](LICENSE) © slok
