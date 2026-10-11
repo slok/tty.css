@@ -55,7 +55,15 @@ logic embedded directly in the page:
 
 ## Install
 
-Download the repository-root [`tty.css`](tty.css), keep it locally, and link it
+Use jsDelivr for automatic minification and compression:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/slok/tty.css@main/tty.min.css" />
+```
+
+`@main` follows the latest main branch; pin a release tag or commit for production.
+
+Alternatively, download the repository-root [`tty.css`](tty.css), keep it locally, and link it
 from the document head:
 
 ```html

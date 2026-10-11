@@ -68,8 +68,14 @@
         </header>
 
         <section id="install">
-          <h2>Install locally</h2>
-          <p>Download the repository-root <a href="../../tty.css" download><code>tty.css</code></a>, keep it with your project, and serve it locally.</p>
+          <h2>Install</h2>
+          <p>Use jsDelivr for automatic minification and compression.</p>
+          <div class="code-example">
+            <button type="button" class="secondary" data-copy aria-label="Copy CDN stylesheet link">Copy</button>
+            <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/slok/tty.css@main/tty.min.css"&gt;</code></pre>
+          </div>
+          <p><code>@main</code> follows the latest main branch; pin a release tag or commit for production.</p>
+          <p>Alternatively, download the repository-root <a href="../../tty.css" download><code>tty.css</code></a>, keep it with your project, and serve it locally.</p>
           <div class="code-example">
             <button type="button" class="secondary" data-copy aria-label="Copy stylesheet link">Copy</button>
             <pre><code>&lt;link rel="stylesheet" href="tty.css"&gt;</code></pre>
@@ -131,7 +137,7 @@
         <nav aria-label="Quick start table of contents">
           <p class="docs-nav-title">On this page</p>
           <ul>
-            <li><a href="#install">Install locally</a></li>
+            <li><a href="#install">Install</a></li>
             <li><a href="#template">Semantic HTML</a></li>
             <li><a href="#preview">What you get</a></li>
           </ul>
