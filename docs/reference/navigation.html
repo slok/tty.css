@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Navigation bars, current links, breadcrumbs, dropdown variants, and actions in tty.css.">
+  <title>Navigation · tty.css</title>
+  <link rel="stylesheet" href="../../tty.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script defer src="../assets/docs.js"></script>
+</head>
+<body class="docs-page">
+  <a class="sr-only" href="#content">Skip to content</a>
+  <header class="docs-topbar"><nav aria-label="Main navigation"><ul><li><a href="../"><strong>▰ tty.css</strong></a></li><li><small>main</small></li></ul><ul><li><a href="./" aria-current="page">Docs</a></li><li><a href="../examples/">Examples</a></li><li><a href="../../tty.css" download>Download</a></li><li><button type="button" class="outline" data-theme-toggle>Theme: light</button></li></ul></nav></header>
+  <main class="docs-shell">
+    <aside class="docs-sidebar"><nav aria-label="Documentation sidebar"><p class="docs-nav-title">Getting started</p><ul><li><a href="./">Quick start</a></li><li><a href="themes.html">Themes</a></li></ul><p class="docs-nav-title">Layout</p><ul><li><a href="layout.html">Landmarks, containers &amp; grid</a></li></ul><p class="docs-nav-title">Content</p><ul><li><a href="typography.html">Typography</a></li><li><a href="buttons-links.html">Buttons &amp; links</a></li><li><a href="tables-code.html">Tables &amp; code</a></li></ul><p class="docs-nav-title">Forms</p><ul><li><a href="forms.html">Form elements</a></li></ul><p class="docs-nav-title">Components</p><ul><li><a href="cards.html">Cards</a></li><li><a href="navigation.html" aria-current="page">Navigation</a></li><li><a href="components.html">Native components</a></li></ul><p class="docs-nav-title">Customize</p><ul><li><a href="customization.html">CSS variables</a></li><li><a href="accessibility.html">Accessibility</a></li><li><a href="pico-comparison.html">Pico comparison</a></li></ul></nav></aside>
+    <div class="docs-content" id="content">
+      <header><p>Components</p><h1>Navigation</h1><p>Navigation uses semantic lists of destinations, wraps on narrow screens, and can include native disclosure dropdowns or clearly separated actions.</p></header>
+      <section id="basic">
+        <h2>Basic navigation</h2>
+        <p>Use one or more lists inside a labelled <code>nav</code>. A label distinguishes this landmark from other navigation regions; <code>aria-current="page"</code> identifies and emphasizes the current destination.</p>
+        <div class="docs-preview"><nav aria-label="Console navigation"><ul><li><a href="#basic"><strong>Console</strong></a></li></ul><ul><li><a href="#basic" aria-current="page">Overview</a></li><li><a href="#breadcrumbs">Queries</a></li><li><a href="#actions">Settings</a></li></ul></nav></div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;nav aria-label="Console navigation"&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="#basic"&gt;&lt;strong&gt;Console&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="#basic" aria-current="page"&gt;Overview&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#breadcrumbs"&gt;Queries&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#actions"&gt;Settings&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre></div>
+      </section>
+      <section id="breadcrumbs">
+        <h2>Breadcrumbs</h2>
+        <p>Breadcrumb styling has two equivalent entry points: add <code>.breadcrumb</code>, or use the exact label <code>aria-label="breadcrumb"</code>. Use an ordered path in source order and put <code>aria-current="page"</code> on the final item. tty.css draws dashed separators without adding spoken characters.</p>
+        <div class="docs-preview"><div class="grid"><nav class="breadcrumb" aria-label="Breadcrumb"><ul><li><a href="#breadcrumbs">Home</a></li><li><a href="#breadcrumbs">Namespaces</a></li><li aria-current="page">search-production</li></ul></nav><nav aria-label="breadcrumb"><ul><li><a href="#breadcrumbs">Home</a></li><li><a href="#breadcrumbs">Settings</a></li><li aria-current="page">API keys</li></ul></nav></div></div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;div class="grid"&gt;
+  &lt;nav class="breadcrumb" aria-label="Breadcrumb"&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="#breadcrumbs"&gt;Home&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#breadcrumbs"&gt;Namespaces&lt;/a&gt;&lt;/li&gt;
+      &lt;li aria-current="page"&gt;search-production&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+  &lt;nav aria-label="breadcrumb"&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="#breadcrumbs"&gt;Home&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#breadcrumbs"&gt;Settings&lt;/a&gt;&lt;/li&gt;
+      &lt;li aria-current="page"&gt;API keys&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+&lt;/div&gt;</code></pre></div>
+      </section>
+      <section id="link-dropdown">
+        <h2>Link dropdown</h2>
+        <p><code>details.dropdown</code> is a select-like disclosure. Outside navigation it fills the available width; its direct list opens as an overlay. Links remain ordinary destinations.</p>
+        <div class="docs-preview"><details class="dropdown"><summary>Choose documentation</summary><ul><li><a href="#link-dropdown">Quick start</a></li><li><a href="#link-dropdown">Components</a></li><li><a href="#link-dropdown">Accessibility</a></li></ul></details></div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;details class="dropdown"&gt;
+  &lt;summary&gt;Choose documentation&lt;/summary&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="#link-dropdown"&gt;Quick start&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#link-dropdown"&gt;Components&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#link-dropdown"&gt;Accessibility&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/details&gt;</code></pre></div>
+      </section>
+      <section id="checkbox-dropdown">
+        <h2>Checkbox dropdown</h2>
+        <p>Menu rows may contain labelled checkboxes for multiple independent choices. Give each control a useful name; clicking a checkbox does not need to close the native disclosure.</p>
+        <div class="docs-preview"><details class="dropdown"><summary>Select services</summary><ul><li><label><input type="checkbox" name="services" value="search" checked> Search</label></li><li><label><input type="checkbox" name="services" value="storage"> Storage</label></li><li><label><input type="checkbox" name="services" value="events"> Events</label></li></ul></details></div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;details class="dropdown"&gt;
+  &lt;summary&gt;Select services&lt;/summary&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;label&gt;&lt;input type="checkbox" name="services" value="search" checked&gt; Search&lt;/label&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;label&gt;&lt;input type="checkbox" name="services" value="storage"&gt; Storage&lt;/label&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;label&gt;&lt;input type="checkbox" name="services" value="events"&gt; Events&lt;/label&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/details&gt;</code></pre></div>
+      </section>
+      <section id="button-dropdown">
+        <h2>Button dropdown and alignment</h2>
+        <p>Direct buttons are styled as full-width action rows. Add <code>.align-right</code> to the dropdown to physically anchor the overlay to the right.</p>
+        <div class="docs-preview"><details class="dropdown align-right"><summary>Workspace actions</summary><ul><li><button type="button">Create workspace</button></li><li><button type="button">Import settings</button></li><li><button type="button">Sign out</button></li></ul></details></div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;details class="dropdown align-right"&gt;
+  &lt;summary&gt;Workspace actions&lt;/summary&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;button type="button"&gt;Create workspace&lt;/button&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;button type="button"&gt;Import settings&lt;/button&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;button type="button"&gt;Sign out&lt;/button&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/details&gt;</code></pre></div>
+      </section>
+      <section id="dropdown-variants">
+        <h2>Dropdown button variants</h2>
+        <p>Add <code>role="button"</code> to a dropdown summary for button presentation. The default, <code>.secondary</code>, <code>.contrast</code>, and <code>.outline</code> variants are supported here. The native summary remains the disclosure control.</p>
+        <div class="docs-preview"><div class="grid"><details class="dropdown"><summary role="button">Primary</summary><ul><li><a href="#dropdown-variants">Profile</a></li></ul></details><details class="dropdown"><summary role="button" class="secondary">Secondary</summary><ul><li><a href="#dropdown-variants">Profile</a></li></ul></details><details class="dropdown"><summary role="button" class="contrast">Contrast</summary><ul><li><a href="#dropdown-variants">Profile</a></li></ul></details><details class="dropdown"><summary role="button" class="outline">Outline</summary><ul><li><a href="#dropdown-variants">Profile</a></li></ul></details></div></div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;div class="grid"&gt;
+  &lt;details class="dropdown"&gt;
+    &lt;summary role="button"&gt;Primary&lt;/summary&gt;
+    &lt;ul&gt;&lt;li&gt;&lt;a href="#dropdown-variants"&gt;Profile&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+  &lt;/details&gt;
+  &lt;details class="dropdown"&gt;
+    &lt;summary role="button" class="secondary"&gt;Secondary&lt;/summary&gt;
+    &lt;ul&gt;&lt;li&gt;&lt;a href="#dropdown-variants"&gt;Profile&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+  &lt;/details&gt;
+  &lt;details class="dropdown"&gt;
+    &lt;summary role="button" class="contrast"&gt;Contrast&lt;/summary&gt;
+    &lt;ul&gt;&lt;li&gt;&lt;a href="#dropdown-variants"&gt;Profile&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+  &lt;/details&gt;
+  &lt;details class="dropdown"&gt;
+    &lt;summary role="button" class="outline"&gt;Outline&lt;/summary&gt;
+    &lt;ul&gt;&lt;li&gt;&lt;a href="#dropdown-variants"&gt;Profile&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+  &lt;/details&gt;
+&lt;/div&gt;</code></pre></div>
+      </section>
+      <section id="validation">
+        <h2>Validation states</h2>
+        <p>Put <code>aria-invalid="true"</code> or <code>aria-invalid="false"</code> on the summary for invalid and explicitly valid borders. Connect explanatory text with <code>aria-describedby</code>; there is no <code>aria-valid</code> attribute.</p>
+        <div class="docs-preview"><div class="grid"><div><details class="dropdown"><summary aria-invalid="false" aria-describedby="region-valid">Region: US East</summary><ul><li><a href="#validation">US East</a></li><li><a href="#validation">EU Central</a></li></ul></details><small id="region-valid">Region is available.</small></div><div><details class="dropdown"><summary aria-invalid="true" aria-describedby="region-error">Choose a region</summary><ul><li><a href="#validation">US East</a></li><li><a href="#validation">EU Central</a></li></ul></details><small id="region-error">A deployment region is required.</small></div></div></div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;div class="grid"&gt;
+  &lt;div&gt;
+    &lt;details class="dropdown"&gt;
+      &lt;summary aria-invalid="false" aria-describedby="region-valid"&gt;Region: US East&lt;/summary&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#validation"&gt;US East&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#validation"&gt;EU Central&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/details&gt;
+    &lt;small id="region-valid"&gt;Region is available.&lt;/small&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;details class="dropdown"&gt;
+      &lt;summary aria-invalid="true" aria-describedby="region-error"&gt;Choose a region&lt;/summary&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#validation"&gt;US East&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#validation"&gt;EU Central&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/details&gt;
+    &lt;small id="region-error"&gt;A deployment region is required.&lt;/small&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+      </section>
+      <section id="nav-dropdown">
+        <h2>Dropdown inside navigation</h2>
+        <p>Inside a <code>nav</code>, a plain dropdown summary becomes compact and the disclosure no longer fills the row. Keep the navigation landmark labelled.</p>
+        <div class="docs-preview"><nav aria-label="Project navigation"><ul><li><a href="#nav-dropdown" aria-current="page">Dashboard</a></li><li><a href="#nav-dropdown">Activity</a></li></ul><ul><li><details class="dropdown align-right"><summary>Project: Atlas</summary><ul><li><a href="#nav-dropdown">Atlas</a></li><li><a href="#nav-dropdown">Beacon</a></li></ul></details></li></ul></nav></div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;nav aria-label="Project navigation"&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="#nav-dropdown" aria-current="page"&gt;Dashboard&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#nav-dropdown"&gt;Activity&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;ul&gt;
+    &lt;li&gt;
+      &lt;details class="dropdown align-right"&gt;
+        &lt;summary&gt;Project: Atlas&lt;/summary&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href="#nav-dropdown"&gt;Atlas&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="#nav-dropdown"&gt;Beacon&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/details&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre></div>
+      </section>
+      <section id="actions">
+        <h2>Navigation actions</h2>
+        <p>Buttons may appear in navigation when they perform an action. Destinations remain links, and every button should declare its type.</p>
+        <div class="docs-preview"><nav aria-label="Deployment navigation"><ul><li><a href="#actions" aria-current="page">Deployments</a></li><li><a href="#actions">Logs</a></li></ul><ul><li><button type="button" class="secondary">Refresh</button></li><li><button type="button">New deployment</button></li></ul></nav></div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;nav aria-label="Deployment navigation"&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="#actions" aria-current="page"&gt;Deployments&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#actions"&gt;Logs&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;button type="button" class="secondary"&gt;Refresh&lt;/button&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;button type="button"&gt;New deployment&lt;/button&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre></div>
+      </section>
+      <section id="behavior">
+        <h2>Native and application behavior</h2>
+        <p>The browser makes <code>details</code> and <code>summary</code> operable by keyboard and pointer, exposes expanded state, and toggles the disclosure without JavaScript. These are disclosure lists, not ARIA menus, so do not add <code>role="menu"</code> or menu keyboard behavior to otherwise native markup.</p>
+        <p>tty.css only provides presentation. Application code is responsible for updating a choice summary, closing after selection when appropriate, closing on outside interaction or Escape if required, running button actions, and keeping validation messages and state synchronized. Preserve native link navigation and checkbox behavior when enhancing a dropdown.</p>
+      </section>
+      <nav class="docs-pager" aria-label="Documentation pagination"><a href="cards.html">&larr; Cards</a><a href="components.html">Native components &rarr;</a></nav>
+    </div>
+    <aside class="docs-toc"><nav aria-label="Table of contents"><p class="docs-nav-title">On this page</p><ul><li><a href="#basic">Basic navigation</a></li><li><a href="#breadcrumbs">Breadcrumbs</a></li><li><a href="#link-dropdown">Link dropdown</a></li><li><a href="#checkbox-dropdown">Checkbox dropdown</a></li><li><a href="#button-dropdown">Button dropdown</a></li><li><a href="#dropdown-variants">Button variants</a></li><li><a href="#validation">Validation</a></li><li><a href="#nav-dropdown">Navigation dropdown</a></li><li><a href="#actions">Actions</a></li><li><a href="#behavior">Behavior</a></li></ul></nav></aside>
+  </main>
+  <footer><small>tty.css — semantic HTML with sharp edges.</small></footer>
+</body>
+</html>

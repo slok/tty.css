@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Accessibility responsibilities, user preferences, and browser requirements for tty.css.">
+  <title>Accessibility · tty.css</title>
+  <link rel="stylesheet" href="../../tty.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script defer src="../assets/docs.js"></script>
+</head>
+<body class="docs-page">
+  <a class="sr-only" href="#content">Skip to content</a>
+  <header class="docs-topbar">
+    <nav aria-label="Main navigation"><ul><li><a href="../"><strong>▰ tty.css</strong></a></li><li><small>main</small></li></ul><ul><li><a href="./" aria-current="page">Docs</a></li><li><a href="../examples/">Examples</a></li><li><a href="../../tty.css" download>Download</a></li><li><button type="button" class="outline" data-theme-toggle>Theme: light</button></li></ul></nav>
+  </header>
+  <main class="docs-shell">
+    <aside class="docs-sidebar">
+      <nav aria-label="Documentation"><p class="docs-nav-title">Getting started</p><ul><li><a href="./">Quick start</a></li><li><a href="themes.html">Themes</a></li></ul><p class="docs-nav-title">Layout</p><ul><li><a href="layout.html">Landmarks, containers &amp; grid</a></li></ul><p class="docs-nav-title">Content</p><ul><li><a href="typography.html">Typography</a></li><li><a href="buttons-links.html">Buttons &amp; links</a></li><li><a href="tables-code.html">Tables &amp; code</a></li></ul><p class="docs-nav-title">Forms</p><ul><li><a href="forms.html">Form elements</a></li></ul><p class="docs-nav-title">Components</p><ul><li><a href="cards.html">Cards</a></li><li><a href="navigation.html">Navigation</a></li><li><a href="components.html">Native components</a></li></ul><p class="docs-nav-title">Customize</p><ul><li><a href="customization.html">CSS variables</a></li><li><a href="accessibility.html" aria-current="page">Accessibility</a></li><li><a href="pico-comparison.html">Pico comparison</a></li></ul></nav>
+    </aside>
+    <div class="docs-content" id="content">
+      <header><p>Customize</p><h1>Accessibility</h1><p>tty.css provides visible focus, preference-aware presentation, and native-first styles. It cannot supply meaning, names, state management, or testing for an application.</p></header>
+
+      <section id="semantics">
+        <h2>Semantics first</h2>
+        <ul><li>Use landmarks such as <code>header</code>, <code>nav</code>, <code>main</code>, and <code>footer</code>, with one clear page heading and a logical heading order.</li><li>Use links for destinations and buttons for actions. Do not add a button role to a non-interactive element when a native button works.</li><li>Give every form control an accessible name, normally with <code>label</code>. Group related choices with <code>fieldset</code> and <code>legend</code>; connect help and errors with <code>aria-describedby</code>.</li><li>Use native state and validation attributes before ARIA. ARIA communicates behavior but does not implement it.</li><li>Write useful image alternatives, captions, table headers, link text, and status messages based on the content's purpose.</li></ul>
+        <div class="docs-preview"><form><fieldset><legend>Notification channel</legend><label><input type="radio" name="channel" value="email" checked> Email</label><label><input type="radio" name="channel" value="sms"> SMS</label></fieldset><label for="notification-address">Destination</label><input id="notification-address" name="destination" aria-describedby="notification-help"><small id="notification-help">Use an address the on-call team monitors.</small><button type="submit">Save settings</button></form></div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;form&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Notification channel&lt;/legend&gt;
+    &lt;label&gt;&lt;input type="radio" name="channel" value="email" checked&gt; Email&lt;/label&gt;
+    &lt;label&gt;&lt;input type="radio" name="channel" value="sms"&gt; SMS&lt;/label&gt;
+  &lt;/fieldset&gt;
+  &lt;label for="notification-address"&gt;Destination&lt;/label&gt;
+  &lt;input id="notification-address" name="destination" aria-describedby="notification-help"&gt;
+  &lt;small id="notification-help"&gt;Use an address the on-call team monitors.&lt;/small&gt;
+  &lt;button type="submit"&gt;Save settings&lt;/button&gt;
+&lt;/form&gt;</code></pre></div>
+      </section>
+
+      <section id="keyboard">
+        <h2>Keyboard and focus</h2>
+        <p>Native links, controls, disclosures, and dialogs retain their browser keyboard behavior. tty.css adds a <code>:focus-visible</code> outline to interactive elements and explicit <code>tabindex</code> targets.</p>
+        <div class="docs-preview"><p><a href="#keyboard">Focusable link</a></p><button type="button">Focusable button</button></div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;p&gt;&lt;a href="#keyboard"&gt;Focusable link&lt;/a&gt;&lt;/p&gt;
+&lt;button type="button"&gt;Focusable button&lt;/button&gt;</code></pre></div>
+        <p>Keep DOM order aligned with the visual reading order. Do not use positive <code>tabindex</code>, remove outlines without an equivalent replacement, or make a scroll container keyboard-focusable without an accessible name. Test all actions with <kbd>Tab</kbd>, <kbd>Shift</kbd>+<kbd>Tab</kbd>, <kbd>Enter</kbd>, <kbd>Space</kbd>, arrow keys where native controls use them, and <kbd>Esc</kbd> for modal dialogs.</p>
+      </section>
+
+      <section id="skip-link">
+        <h2>Visually hidden text and skip links</h2>
+        <p><code>.sr-only</code> visually hides text while keeping it available to assistive technology. A focused <code>.sr-only</code> element becomes visible, which makes the class suitable for a skip link. The target must exist and should begin the page's primary content.</p>
+        <div class="docs-preview"><a class="sr-only" href="#skip-link-target">Skip preview navigation</a><nav aria-label="Preview navigation"><ul><li><a href="#skip-link">Overview</a></li><li><a href="#skip-link-target">Settings</a></li></ul></nav><div id="skip-link-target" tabindex="-1"><strong>Preview content</strong></div></div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;a class="sr-only" href="#skip-link-target"&gt;Skip preview navigation&lt;/a&gt;
+&lt;nav aria-label="Preview navigation"&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="#skip-link"&gt;Overview&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#skip-link-target"&gt;Settings&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;div id="skip-link-target" tabindex="-1"&gt;&lt;strong&gt;Preview content&lt;/strong&gt;&lt;/div&gt;</code></pre></div>
+        <p>Do not use <code>.sr-only</code> to hide focusable controls that must remain permanently invisible. Use <code>hidden</code> or remove unavailable content from the interaction model instead.</p>
+      </section>
+
+      <section id="motion">
+        <h2>Reduced motion</h2>
+        <p>Under <code>prefers-reduced-motion: reduce</code>, tty.css disables smooth scrolling, reduces transitions and animations to <code>0.01ms</code>, and limits animations to one iteration. This includes the busy spinner. Application animation, canvas, video, and third-party widgets remain the application's responsibility; remove non-essential movement and provide controls for essential motion.</p>
+      </section>
+
+      <section id="forced-colors">
+        <h2>Forced colors</h2>
+        <p>In <code>forced-colors: active</code>, custom checkboxes, radios, switches, ranges, progress bars, and meters return to native appearance. Date and time controls restore their native picker indicator. Test Windows High Contrast because application overrides, icons, generated content, and status colors may still lose meaning. Never communicate state by color alone.</p>
+      </section>
+
+      <section id="print">
+        <h2>Print</h2>
+        <p>The print stylesheet switches the core canvas, text, and border tokens to black on white, removes decorative frame shadows, underlines links, and avoids breaking articles, fieldsets, and dialogs when possible. Applications should still hide irrelevant navigation and controls, reveal useful link destinations when needed, and verify pagination and data tables in print preview.</p>
+      </section>
+
+      <section id="browser">
+        <h2>Browser requirements</h2>
+        <p>tty.css targets current evergreen browsers rather than a transpiled compatibility matrix. Its presentation relies on modern CSS including <code>:where()</code>, <code>:has()</code>, <code>color-mix()</code>, logical properties, individual transform properties, and native <code>dialog</code>. Older browsers may keep usable semantic HTML while losing layout or decoration, but that fallback is not guaranteed.</p>
+        <p>Test the browsers and assistive-technology combinations required by your product. Pay particular attention to native date and time controls, form validation, dialog focus, meter rendering, forced colors, printing, and mobile viewport behavior because these vary by engine and platform.</p>
+      </section>
+
+      <section id="responsibility">
+        <h2>Application responsibilities</h2>
+        <ul><li>Manage dynamic names, descriptions, expanded or selected state, busy announcements, errors, and focus after updates.</li><li>Implement dialog opening, closing, initial focus, destructive-action confirmation, and focus restoration. See <a href="components.html#dialogs">dialog behavior</a>.</li><li>Meet text and non-text contrast requirements after changing tokens; tty.css cannot validate custom color combinations.</li><li>Support reflow and text zoom without clipping at 200% and 400%, and do not disable browser zoom.</li><li>Provide captions, transcripts, alternatives, timeout controls, authentication accommodations, and error recovery where the product requires them.</li><li>Test complete tasks with keyboard-only use, screen readers, zoom, reduced motion, forced colors, touch, and print. Automated checks are useful but not sufficient.</li></ul>
+        <blockquote><p>A CSS framework cannot make incorrect HTML or incomplete interaction accessible. Treat tty.css as presentation, not an accessibility conformance claim.</p></blockquote>
+      </section>
+
+      <nav class="docs-pager" aria-label="Documentation pages"><a href="customization.html">← Customization</a><a href="pico-comparison.html">Pico comparison →</a></nav>
+    </div>
+    <aside class="docs-toc"><nav aria-label="On this page"><p class="docs-nav-title">On this page</p><ul><li><a href="#semantics">Semantics</a></li><li><a href="#keyboard">Keyboard</a></li><li><a href="#skip-link">Skip links</a></li><li><a href="#motion">Reduced motion</a></li><li><a href="#forced-colors">Forced colors</a></li><li><a href="#print">Print</a></li><li><a href="#browser">Browsers</a></li><li><a href="#responsibility">Responsibilities</a></li></ul></nav></aside>
+  </main>
+  <footer><small>tty.css — semantic HTML with sharp edges.</small></footer>
+</body>
+</html>

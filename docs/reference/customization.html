@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Authoritative tty.css design tokens, font policy, icons, shapes, and override guidance.">
+  <title>Customization · tty.css</title>
+  <link rel="stylesheet" href="../../tty.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script defer src="../assets/docs.js"></script>
+</head>
+<body class="docs-page">
+  <a class="sr-only" href="#content">Skip to content</a>
+  <header class="docs-topbar">
+    <nav aria-label="Main navigation"><ul><li><a href="../"><strong>▰ tty.css</strong></a></li><li><small>main</small></li></ul><ul><li><a href="./" aria-current="page">Docs</a></li><li><a href="../examples/">Examples</a></li><li><a href="../../tty.css" download>Download</a></li><li><button type="button" class="outline" data-theme-toggle>Theme: light</button></li></ul></nav>
+  </header>
+  <main class="docs-shell">
+    <aside class="docs-sidebar">
+      <nav aria-label="Documentation"><p class="docs-nav-title">Getting started</p><ul><li><a href="./">Quick start</a></li><li><a href="themes.html">Themes</a></li></ul><p class="docs-nav-title">Layout</p><ul><li><a href="layout.html">Landmarks, containers &amp; grid</a></li></ul><p class="docs-nav-title">Content</p><ul><li><a href="typography.html">Typography</a></li><li><a href="buttons-links.html">Buttons &amp; links</a></li><li><a href="tables-code.html">Tables &amp; code</a></li></ul><p class="docs-nav-title">Forms</p><ul><li><a href="forms.html">Form elements</a></li></ul><p class="docs-nav-title">Components</p><ul><li><a href="cards.html">Cards</a></li><li><a href="navigation.html">Navigation</a></li><li><a href="components.html">Native components</a></li></ul><p class="docs-nav-title">Customize</p><ul><li><a href="customization.html" aria-current="page">CSS variables</a></li><li><a href="accessibility.html">Accessibility</a></li><li><a href="pico-comparison.html">Pico comparison</a></li></ul></nav>
+    </aside>
+    <div class="docs-content" id="content">
+      <header><p>Customize</p><h1>CSS variables</h1><p>Load tty.css first, then override its effective custom properties. The tables below reflect the variables actually consumed by the current stylesheet.</p></header>
+
+      <section id="themes">
+        <h2>Scope and themes</h2>
+        <p>Base values live on <code>:root</code>. Explicit dark values live on <code>:root[data-theme="dark"]</code>; automatic dark values apply to <code>:root[data-theme="auto"]</code> inside <code>prefers-color-scheme: dark</code>. Override each active selector you support. tty.css does not currently implement local, subtree themes.</p>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>:root {
+  --tty-accent: #ffd166;
+  --tty-accent-hover: #ffc233;
+  --tty-accent-fg: #2b1800;
+}
+
+:root[data-theme="dark"] {
+  --tty-accent: #ffe08a;
+  --tty-accent-hover: #ffeaad;
+  --tty-accent-fg: #241400;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="auto"] {
+    --tty-accent: #ffe08a;
+    --tty-accent-hover: #ffeaad;
+    --tty-accent-fg: #241400;
+  }
+}</code></pre></div>
+        <p>Recheck text, focus, control, selection, and status contrast in every theme after changing colors. See <a href="themes.html">theme selection</a> and <a href="accessibility.html">accessibility responsibilities</a>.</p>
+      </section>
+
+      <section id="colors">
+        <h2>Color tokens</h2>
+        <div class="overflow-auto" tabindex="0" aria-label="Color token defaults"><table><thead><tr><th scope="col">Token</th><th scope="col">Light default</th><th scope="col">Dark and auto-dark default</th><th scope="col">Used for</th></tr></thead><tbody>
+          <tr><th scope="row"><code>--tty-bg</code></th><td><code>#f9fafc</code></td><td><code>#0b1220</code></td><td>Page canvas and contrast-button text</td></tr>
+          <tr><th scope="row"><code>--tty-surface</code></th><td><code>#ffffff</code></td><td><code>#111b2e</code></td><td>Controls, fieldsets, dialogs, and menus</td></tr>
+          <tr><th scope="row"><code>--tty-surface-muted</code></th><td><code>#f1f5f9</code></td><td><code>#18243a</code></td><td>Secondary surfaces, headers, and inline code</td></tr>
+          <tr><th scope="row"><code>--tty-fg</code></th><td><code>#0f172a</code></td><td><code>#f8fafc</code></td><td>Primary text and contrast controls</td></tr>
+          <tr><th scope="row"><code>--tty-fg-muted</code></th><td><code>#526174</code></td><td><code>#aab7c8</code></td><td>Secondary text and control icon strokes</td></tr>
+          <tr><th scope="row"><code>--tty-border</code></th><td><code>#cbd5e1</code></td><td><code>#40506a</code></td><td>Quiet dividers and control borders</td></tr>
+          <tr><th scope="row"><code>--tty-border-strong</code></th><td><code>#0f172a</code></td><td><code>#f8fafc</code></td><td>Frames, tracks, and decorative dot shadows</td></tr>
+          <tr><th scope="row"><code>--tty-accent</code></th><td><code>#ffb66e</code></td><td><code>#ffb66e</code></td><td>Primary controls, marks, and selected checks</td></tr>
+          <tr><th scope="row"><code>--tty-accent-hover</code></th><td><code>#ff9d46</code></td><td><code>#ffc98f</code></td><td>Hovered controls and active indicators</td></tr>
+          <tr><th scope="row"><code>--tty-accent-fg</code></th><td><code>#461b05</code></td><td><code>#351404</code></td><td>Text and marks on accent backgrounds</td></tr>
+          <tr><th scope="row"><code>--tty-link</code></th><td><code>#b45309</code></td><td><code>#fdba74</code></td><td>Links</td></tr>
+          <tr><th scope="row"><code>--tty-link-hover</code></th><td><code>#9a3412</code></td><td><code>#ffb66e</code></td><td>Hovered primary links</td></tr>
+          <tr><th scope="row"><code>--tty-selection</code></th><td><code>#fed7aa</code></td><td><code>#9a3412</code></td><td>Selected-text background</td></tr>
+          <tr><th scope="row"><code>--tty-selection-fg</code></th><td><code>#7c2d12</code></td><td><code>#fff7ed</code></td><td>Selected text</td></tr>
+          <tr><th scope="row"><code>--tty-success</code></th><td><code>#15803d</code></td><td><code>#4ade80</code></td><td>Valid states and optimum meters</td></tr>
+          <tr><th scope="row"><code>--tty-warning</code></th><td><code>#b45309</code></td><td><code>#fbbf24</code></td><td>Suboptimum meters</td></tr>
+          <tr><th scope="row"><code>--tty-danger</code></th><td><code>#c83232</code></td><td><code>#fb7185</code></td><td>Invalid states, deletion, and poor meters</td></tr>
+          <tr><th scope="row"><code>--tty-code-bg</code></th><td><code>#0f172a</code></td><td><code>#050914</code></td><td>Code blocks and tooltip bubbles</td></tr>
+          <tr><th scope="row"><code>--tty-code-fg</code></th><td><code>#f8fafc</code></td><td><code>#f8fafc</code></td><td>Code-block and tooltip text</td></tr>
+          <tr><th scope="row"><code>--tty-focus</code></th><td><code>#ea580c</code></td><td><code>#fdba74</code></td><td>General focus outlines and interactive emphasis</td></tr>
+          <tr><th scope="row"><code>--tty-control-focus</code></th><td><code>#334155</code></td><td><code>#cbd5e1</code></td><td>Input focus border and outline</td></tr>
+          <tr><th scope="row"><code>--tty-control-shadow</code></th><td><code>#64748b</code></td><td><code>#40506a</code></td><td>Button and form-control offset shadows</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section id="typography">
+        <h2>Typography and font policy</h2>
+        <div class="overflow-auto" tabindex="0" aria-label="Typography token defaults"><table><thead><tr><th scope="col">Token</th><th scope="col">Default</th><th scope="col">Used for</th></tr></thead><tbody>
+          <tr><th scope="row"><code>--tty-font</code></th><td><code>"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace</code></td><td>Body, controls, code, and component headings</td></tr>
+          <tr><th scope="row"><code>--tty-font-display</code></th><td><code>var(--tty-font)</code></td><td>Page headings and reading-layout headings</td></tr>
+          <tr><th scope="row"><code>--tty-reading-width</code></th><td><code>72ch</code></td><td>Maximum width of paragraphs and other reading text</td></tr>
+        </tbody></table></div>
+        <p>tty.css names JetBrains Mono first but does not load fonts. It uses JetBrains Mono only when already installed and otherwise follows the system monospace fallback stack.</p>
+        <p>Override both font tokens when body and display text should differ. Supply complete fallback stacks, verify all required weights, and test control sizing, code, wrapping, and layout in fallback fonts. A <code>ch</code>-based reading width changes with the selected font.</p>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>:root {
+  --tty-font: "IBM Plex Mono", ui-monospace, monospace;
+  --tty-font-display: "IBM Plex Sans", system-ui, sans-serif;
+  --tty-reading-width: 68ch;
+}</code></pre></div>
+      </section>
+
+      <section id="shape">
+        <h2>Layout and shape tokens</h2>
+        <div class="overflow-auto" tabindex="0" aria-label="Layout and shape token defaults"><table><thead><tr><th scope="col">Token</th><th scope="col">Default</th><th scope="col">Used for</th></tr></thead><tbody>
+          <tr><th scope="row"><code>--tty-container</code></th><td><code>72rem</code></td><td>Body landmark and <code>.container</code> maximum width</td></tr>
+          <tr><th scope="row"><code>--tty-radius</code></th><td><code>0.2rem</code></td><td>General controls, frames, code, menus, and dialogs</td></tr>
+          <tr><th scope="row"><code>--tty-border-width</code></th><td><code>1px</code></td><td>Quiet borders, dividers, and tooltip borders</td></tr>
+          <tr><th scope="row"><code>--tty-frame-width</code></th><td><code>2px</code></td><td>Strong component frames and custom controls</td></tr>
+          <tr><th scope="row"><code>--tty-shadow-x</code></th><td><code>0.5rem</code></td><td>Horizontal decorative frame shadow</td></tr>
+          <tr><th scope="row"><code>--tty-shadow-y</code></th><td><code>0.5rem</code></td><td>Vertical decorative frame shadow</td></tr>
+          <tr><th scope="row"><code>--tty-control-shadow-size</code></th><td><code>0.125rem</code></td><td>Button and form-control shadow offset</td></tr>
+          <tr><th scope="row"><code>--tty-control-height</code></th><td><code>2.5rem</code></td><td>Minimum height of buttons and single-line controls</td></tr>
+        </tbody></table></div>
+        <p>Changing a dimension can affect many components at once. Keep border widths non-negative, preserve usable target sizes, and check narrow layouts before shipping.</p>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>:root {
+  --tty-container: 80rem;
+  --tty-radius: 0;
+  --tty-frame-width: 2px;
+  --tty-shadow-x: 0.35rem;
+  --tty-shadow-y: 0.35rem;
+  --tty-control-shadow-size: 0.1rem;
+  --tty-control-height: 2.75rem;
+}</code></pre></div>
+        <blockquote><p><code>--tty-space</code> is not defined or consumed by the current stylesheet. It is not part of the effective customization API, and overriding it has no effect; use ordinary application spacing rules instead.</p></blockquote>
+      </section>
+
+      <section id="icons">
+        <h2>Icon tokens</h2>
+        <div class="overflow-auto" tabindex="0" aria-label="Icon token defaults"><table><thead><tr><th scope="col">Token</th><th scope="col">Default</th><th scope="col">Used for</th></tr></thead><tbody>
+          <tr><th scope="row"><code>--tty-icon-search</code></th><td>Embedded 16×16 SVG data URL</td><td>Search inputs</td></tr>
+          <tr><th scope="row"><code>--tty-icon-date</code></th><td>Embedded 16×16 SVG data URL</td><td>Date, month, and week inputs</td></tr>
+          <tr><th scope="row"><code>--tty-icon-time</code></th><td>Embedded 16×16 SVG data URL</td><td>Time inputs</td></tr>
+          <tr><th scope="row"><code>--tty-icon-datetime</code></th><td>Embedded 16×16 SVG data URL</td><td>Local date-time inputs</td></tr>
+        </tbody></table></div>
+        <p>These icons are decorative CSS backgrounds; control labels provide meaning. Override them with a CSS <code>url()</code>, including a percent-encoded data URL if embedding SVG. Match the 16×16 view box and test light, dark, and disabled states. Firefox and forced-colors mode intentionally use native picker presentation for date and time controls.</p>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>:root {
+  --tty-icon-search: url("/assets/search.svg");
+  --tty-icon-date: url("/assets/calendar.svg");
+  --tty-icon-time: url("/assets/clock.svg");
+  --tty-icon-datetime: url("/assets/date-time.svg");
+}</code></pre></div>
+      </section>
+
+      <section id="overrides">
+        <h2>Low-specificity overrides</h2>
+        <p>Most framework selectors use <code>:where()</code>, so an application class normally wins without <code>!important</code>. Load overrides after tty.css and target the smallest stable application hook. Some structural selectors and composition classes have normal specificity, so inspect the actual rule when an override does not win.</p>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>.billing-card {
+  border-style: dashed;
+}
+
+button.danger {
+  background: var(--tty-danger);
+  color: var(--tty-surface);
+}
+
+.settings-form input {
+  border-radius: 0;
+}</code></pre></div>
+        <p>Avoid overriding generated internals such as browser-specific range and meter pseudo-elements unless your product owns the resulting cross-browser test matrix.</p>
+      </section>
+
+      <nav class="docs-pager" aria-label="Documentation pages"><a href="components.html">← Components</a><a href="accessibility.html">Accessibility →</a></nav>
+    </div>
+    <aside class="docs-toc"><nav aria-label="On this page"><p class="docs-nav-title">On this page</p><ul><li><a href="#themes">Scope &amp; themes</a></li><li><a href="#colors">Colors</a></li><li><a href="#typography">Typography</a></li><li><a href="#shape">Layout &amp; shape</a></li><li><a href="#icons">Icons</a></li><li><a href="#overrides">Overrides</a></li></ul></nav></aside>
+  </main>
+  <footer><small>tty.css — semantic HTML with sharp edges.</small></footer>
+</body>
+</html>

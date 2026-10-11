@@ -4,6 +4,8 @@ A small, class-light CSS framework for semantic HTML. Its visual language is
 inspired by technical and terminal interfaces: monospace text, deep navy,
 warm orange, hard borders, and offset shadows.
 
+Inspired by Pico CSS + turbopuffer.
+
 - One CSS file
 - No JavaScript
 - Light, dark, and automatic themes
@@ -11,13 +13,50 @@ warm orange, hard borders, and offset shadows.
 - Low-specificity selectors
 - Focused customization through CSS variables
 
-The framework is the repository-root [`tty.css`](tty.css). It imports no fonts,
-assets, or JavaScript and requires no build step.
+Visit the [project site](https://slok.github.io/tty.css/docs/), open
+`docs/index.html` locally, browse `docs/reference/` for the complete reference,
+or visit `docs/examples/` for realistic pages.
+
+## Project site
+
+The repository is also a build-free static site:
+
+| Path | Contents |
+| --- | --- |
+| `docs/index.html` | GitHub Pages landing page and quick install |
+| `docs/reference/` | Grouped guides and element reference |
+| `docs/examples/` | Six complete pages built with tty.css |
+| `docs/assets/docs.css` | Documentation-site layout only |
+| `docs/assets/docs.js` | Documentation theme and copy controls only |
+| `tty.css` | Canonical framework source and local distribution file |
+
+The framework itself is only the repository-root `tty.css`; it imports no fonts,
+assets, or JavaScript. The documentation and examples use that local stylesheet
+at runtime, with documentation-only assets where needed. The three interactive
+examples additionally load Alpine.js for application behavior, not styling.
+
+See [`docs/reference/pico-comparison.html`](docs/reference/pico-comparison.html)
+for the current feature comparison and remaining gaps with Pico CSS.
+
+### Examples
+
+Three examples use plain semantic HTML with no JavaScript:
+
+- Product landing page
+- Authentication flow
+- Service status page
+
+Three progressively interactive examples use Alpine.js 3.16.3 with application
+logic embedded directly in the page:
+
+- SaaS dashboard
+- Search console
+- Persistent task board
 
 ## Install
 
-Download [`tty.css`](tty.css), keep it with your application, and link it from
-the document head:
+Download the repository-root [`tty.css`](tty.css), keep it locally, and link it
+from the document head:
 
 ```html
 <link rel="stylesheet" href="tty.css" />

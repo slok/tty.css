@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Use headings, inline semantics, lists, quotations, sample output, and responsive media with tty.css.">
+    <title>Typography · tty.css</title>
+    <link rel="stylesheet" href="../../tty.css">
+    <link rel="stylesheet" href="../assets/docs.css">
+    <script defer src="../assets/docs.js"></script>
+  </head>
+  <body class="docs-page">
+    <a class="sr-only" href="#content">Skip to content</a>
+
+    <header class="docs-topbar">
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="../"><strong>▰ tty.css</strong></a></li>
+          <li><small>main</small></li>
+        </ul>
+        <ul>
+          <li><a href="./" aria-current="page">Docs</a></li>
+          <li><a href="../examples/">Examples</a></li>
+          <li><a href="../../tty.css" download>Download</a></li>
+          <li><button type="button" class="outline" data-theme-toggle aria-label="Current theme: light. Change theme">Theme: light</button></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="docs-shell">
+      <aside class="docs-sidebar">
+        <nav aria-label="Documentation navigation">
+          <p class="docs-nav-title">Getting started</p>
+          <ul>
+            <li><a href="./">Quick start</a></li>
+            <li><a href="themes.html">Themes</a></li>
+          </ul>
+          <p class="docs-nav-title">Layout</p>
+          <ul><li><a href="layout.html">Landmarks, containers &amp; grid</a></li></ul>
+          <p class="docs-nav-title">Content</p>
+          <ul>
+            <li><a href="typography.html" aria-current="page">Typography</a></li>
+            <li><a href="buttons-links.html">Buttons &amp; links</a></li>
+            <li><a href="tables-code.html">Tables &amp; code</a></li>
+          </ul>
+          <p class="docs-nav-title">Forms</p>
+          <ul><li><a href="forms.html">Form elements</a></li></ul>
+          <p class="docs-nav-title">Components</p>
+          <ul>
+            <li><a href="cards.html">Cards</a></li>
+            <li><a href="navigation.html">Navigation</a></li>
+            <li><a href="components.html">Native components</a></li>
+          </ul>
+          <p class="docs-nav-title">Customize</p>
+          <ul>
+            <li><a href="customization.html">CSS variables</a></li>
+            <li><a href="accessibility.html">Accessibility</a></li>
+            <li><a href="pico-comparison.html">Pico comparison</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <div class="docs-content" id="content">
+        <header>
+          <p>Content</p>
+          <h1>Typography</h1>
+          <p>tty.css styles semantic text directly. Headings use the configurable display font, while body copy and technical text use the terminal font stack.</p>
+        </header>
+
+        <section id="headings">
+          <h2>Headings</h2>
+          <p>All six heading levels are bold and tightly spaced. Levels one and two use <code>--tty-font-display</code>; level four uses small caps; levels five and six are uppercase. Choose levels for document hierarchy rather than appearance.</p>
+          <div class="docs-preview">
+            <h1>Heading one</h1>
+            <h2>Heading two</h2>
+            <h3>Heading three</h3>
+            <h4>Heading four</h4>
+            <h5>Heading five</h5>
+            <h6>Heading six</h6>
+          </div>
+          <div class="code-example">
+            <button type="button" class="secondary" data-copy aria-label="Copy heading examples">Copy</button>
+            <pre><code>&lt;h1&gt;Heading one&lt;/h1&gt;
+&lt;h2&gt;Heading two&lt;/h2&gt;
+&lt;h3&gt;Heading three&lt;/h3&gt;
+&lt;h4&gt;Heading four&lt;/h4&gt;
+&lt;h5&gt;Heading five&lt;/h5&gt;
+&lt;h6&gt;Heading six&lt;/h6&gt;</code></pre>
+          </div>
+        </section>
+
+        <section id="inline">
+          <h2>Inline semantics</h2>
+          <p>Use native elements to communicate meaning. tty.css gives important, highlighted, inserted, deleted, abbreviated, and technical text distinct treatments while preserving their semantics.</p>
+          <div class="docs-preview">
+            <p><strong>Critical</strong> output can include <em>emphasis</em>, <mark>highlighting</mark>, <ins>inserted text</ins>, <del>removed text</del>, <abbr title="Application Programming Interface">API</abbr>, <code>inline code</code>, <kbd>Control</kbd> + <kbd>K</kbd>, and <small>supporting details</small>.</p>
+          </div>
+          <div class="code-example">
+            <button type="button" class="secondary" data-copy aria-label="Copy inline semantic examples">Copy</button>
+            <pre><code>&lt;p&gt;&lt;strong&gt;Critical&lt;/strong&gt; output can include &lt;em&gt;emphasis&lt;/em&gt;, &lt;mark&gt;highlighting&lt;/mark&gt;, &lt;ins&gt;inserted text&lt;/ins&gt;, &lt;del&gt;removed text&lt;/del&gt;, &lt;abbr title="Application Programming Interface"&gt;API&lt;/abbr&gt;, &lt;code&gt;inline code&lt;/code&gt;, &lt;kbd&gt;Control&lt;/kbd&gt; + &lt;kbd&gt;K&lt;/kbd&gt;, and &lt;small&gt;supporting details&lt;/small&gt;.&lt;/p&gt;</code></pre>
+          </div>
+        </section>
+
+        <section id="lists">
+          <h2>Lists</h2>
+          <p>Unordered and ordered lists retain familiar markers and compact item spacing. Description terms are bold, while descriptions use the muted foreground color.</p>
+          <div class="docs-preview">
+            <div class="grid">
+              <article>
+                <h3>Unordered</h3>
+                <ul><li>Semantic</li><li>Responsive</li><li>Class-light</li></ul>
+              </article>
+              <article>
+                <h3>Ordered</h3>
+                <ol><li>Link CSS</li><li>Write HTML</li><li>Ship</li></ol>
+              </article>
+              <article>
+                <h3>Descriptions</h3>
+                <dl><dt>Light</dt><dd>The default palette.</dd><dt>Auto</dt><dd>Follows the system preference.</dd></dl>
+              </article>
+            </div>
+          </div>
+          <div class="code-example">
+            <button type="button" class="secondary" data-copy aria-label="Copy list examples">Copy</button>
+            <pre><code>&lt;div class="grid"&gt;
+  &lt;article&gt;
+    &lt;h3&gt;Unordered&lt;/h3&gt;
+    &lt;ul&gt;&lt;li&gt;Semantic&lt;/li&gt;&lt;li&gt;Responsive&lt;/li&gt;&lt;li&gt;Class-light&lt;/li&gt;&lt;/ul&gt;
+  &lt;/article&gt;
+  &lt;article&gt;
+    &lt;h3&gt;Ordered&lt;/h3&gt;
+    &lt;ol&gt;&lt;li&gt;Link CSS&lt;/li&gt;&lt;li&gt;Write HTML&lt;/li&gt;&lt;li&gt;Ship&lt;/li&gt;&lt;/ol&gt;
+  &lt;/article&gt;
+  &lt;article&gt;
+    &lt;h3&gt;Descriptions&lt;/h3&gt;
+    &lt;dl&gt;&lt;dt&gt;Light&lt;/dt&gt;&lt;dd&gt;The default palette.&lt;/dd&gt;&lt;dt&gt;Auto&lt;/dt&gt;&lt;dd&gt;Follows the system preference.&lt;/dd&gt;&lt;/dl&gt;
+  &lt;/article&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </section>
+
+        <section id="blockquote">
+          <h2>Blockquotes</h2>
+          <p>Blockquotes use a muted surface and an accent border. A nested footer provides a compact, muted attribution.</p>
+          <div class="docs-preview">
+            <blockquote>
+              <p>Simplicity means putting every rule to work.</p>
+              <footer>Notes from the terminal</footer>
+            </blockquote>
+          </div>
+          <div class="code-example">
+            <button type="button" class="secondary" data-copy aria-label="Copy blockquote example">Copy</button>
+            <pre><code>&lt;blockquote&gt;
+  &lt;p&gt;Simplicity means putting every rule to work.&lt;/p&gt;
+  &lt;footer&gt;Notes from the terminal&lt;/footer&gt;
+&lt;/blockquote&gt;</code></pre>
+          </div>
+        </section>
+
+        <section id="rule">
+          <h2>Horizontal rules</h2>
+          <p>Use <code>&lt;hr&gt;</code> for a thematic break. tty.css renders it as a strong dashed terminal divider with generous vertical space.</p>
+          <div class="docs-preview">
+            <p>End of process output.</p>
+            <hr>
+            <p>Next command starts here.</p>
+          </div>
+          <div class="code-example">
+            <button type="button" class="secondary" data-copy aria-label="Copy horizontal rule example">Copy</button>
+            <pre><code>&lt;p&gt;End of process output.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Next command starts here.&lt;/p&gt;</code></pre>
+          </div>
+        </section>
+
+        <section id="sample">
+          <h2>Sample output</h2>
+          <p><code>&lt;samp&gt;</code> identifies output from a program. Like inline code and keyboard input, it uses the terminal font on a bordered muted surface.</p>
+          <div class="docs-preview">
+            <p>Process result: <samp>Deployment queued.</samp></p>
+          </div>
+          <div class="code-example">
+            <button type="button" class="secondary" data-copy aria-label="Copy sample output example">Copy</button>
+            <pre><code>&lt;p&gt;Process result: &lt;samp&gt;Deployment queued.&lt;/samp&gt;&lt;/p&gt;</code></pre>
+          </div>
+        </section>
+
+        <section id="media">
+          <h2>Figures and media</h2>
+          <p>Images, SVGs, videos, and canvases are block-level, keep their intrinsic aspect ratio, and never exceed their parent width. A <code>figure</code> fits its content up to the available width, and <code>figcaption</code> provides smaller muted context.</p>
+          <div class="docs-preview">
+            <figure>
+              <svg viewBox="0 0 480 160" role="img" aria-labelledby="chart-title chart-desc">
+                <title id="chart-title">Deployment activity</title>
+                <desc id="chart-desc">A rising line across four deployment points.</desc>
+                <rect width="480" height="160" fill="#0f172a"></rect>
+                <polyline points="24,128 160,104 296,112 456,36" fill="none" stroke="#ffb66e" stroke-width="8"></polyline>
+              </svg>
+              <figcaption>Four successful deployments during the current window.</figcaption>
+            </figure>
+          </div>
+          <div class="code-example">
+            <button type="button" class="secondary" data-copy aria-label="Copy responsive figure example">Copy</button>
+            <pre><code>&lt;figure&gt;
+  &lt;svg viewBox="0 0 480 160" role="img" aria-labelledby="chart-title chart-desc"&gt;
+    &lt;title id="chart-title"&gt;Deployment activity&lt;/title&gt;
+    &lt;desc id="chart-desc"&gt;A rising line across four deployment points.&lt;/desc&gt;
+    &lt;rect width="480" height="160" fill="#0f172a"&gt;&lt;/rect&gt;
+    &lt;polyline points="24,128 160,104 296,112 456,36" fill="none" stroke="#ffb66e" stroke-width="8"&gt;&lt;/polyline&gt;
+  &lt;/svg&gt;
+  &lt;figcaption&gt;Four successful deployments during the current window.&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+          </div>
+        </section>
+
+        <nav class="docs-pager" aria-label="Documentation page navigation">
+          <a href="layout.html">← Layout</a>
+          <a href="buttons-links.html">Buttons &amp; links →</a>
+        </nav>
+      </div>
+
+      <aside class="docs-toc">
+        <nav aria-label="Typography table of contents">
+          <p class="docs-nav-title">On this page</p>
+          <ul>
+            <li><a href="#headings">Headings</a></li>
+            <li><a href="#inline">Inline semantics</a></li>
+            <li><a href="#lists">Lists</a></li>
+            <li><a href="#blockquote">Blockquotes</a></li>
+            <li><a href="#rule">Horizontal rules</a></li>
+            <li><a href="#sample">Sample output</a></li>
+            <li><a href="#media">Figures and media</a></li>
+          </ul>
+        </nav>
+      </aside>
+    </main>
+
+    <footer><small>tty.css — semantic HTML with sharp edges.</small></footer>
+  </body>
+</html>
