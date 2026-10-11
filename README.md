@@ -4,6 +4,8 @@ A small, class-light CSS framework for semantic HTML. Its visual language is
 inspired by technical and terminal interfaces: monospace text, deep navy,
 warm orange, hard borders, and offset shadows.
 
+Inspired by Pico CSS + turbopuffer.
+
 - One CSS file
 - No JavaScript
 - Light, dark, and automatic themes
