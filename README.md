@@ -25,7 +25,7 @@ The repository is also a build-free static site:
 | --- | --- |
 | `docs/index.html` | GitHub Pages landing page and quick install |
 | `docs/reference/` | Grouped guides and element reference |
-| `docs/examples/` | Six complete pages and a color-palette example built with tty.css |
+| `docs/examples/` | Six general examples and three color-palette examples built with tty.css |
 | `docs/assets/docs.css` | Documentation-site layout only |
 | `docs/assets/docs.js` | Documentation theme and copy controls only |
 | `tty.css` | Canonical framework source and local distribution file |
@@ -53,9 +53,13 @@ logic embedded directly in the page:
 - Search console
 - Persistent task board
 
-A separate [forest color-palette example](docs/examples/color-theme.html) shows
-variable-only customization in light, dark, and automatic modes. See the
-[color customization guide](docs/reference/customization.html#custom-colors).
+Three variable-only palettes demonstrate light, dark, and automatic modes:
+[Forest (hex)](docs/examples/color-theme.html),
+[Ocean (OKLCH)](docs/examples/ocean-theme.html), and
+[Plum (OKLCH)](docs/examples/plum-theme.html). Load their CSS after tty.css.
+The [Colors guide](docs/reference/colors.html) explains palette design, OKLCH,
+safe fallbacks, and contrast checks; the
+[CSS variables reference](docs/reference/customization.html#colors) lists all color tokens.
 
 ## Install
 

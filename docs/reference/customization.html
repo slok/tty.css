@@ -16,7 +16,7 @@
   </header>
   <main class="docs-shell">
     <aside class="docs-sidebar">
-      <nav aria-label="Documentation"><p class="docs-nav-title">Getting started</p><ul><li><a href="./">Quick start</a></li><li><a href="themes.html">Themes</a></li></ul><p class="docs-nav-title">Layout</p><ul><li><a href="layout.html">Landmarks, containers &amp; grid</a></li></ul><p class="docs-nav-title">Content</p><ul><li><a href="typography.html">Typography</a></li><li><a href="buttons-links.html">Buttons &amp; links</a></li><li><a href="tables-code.html">Tables &amp; code</a></li></ul><p class="docs-nav-title">Forms</p><ul><li><a href="forms.html">Form elements</a></li></ul><p class="docs-nav-title">Components</p><ul><li><a href="cards.html">Cards</a></li><li><a href="navigation.html">Navigation</a></li><li><a href="components.html">Native components</a></li></ul><p class="docs-nav-title">Customize</p><ul><li><a href="customization.html" aria-current="page">CSS variables</a></li><li><a href="accessibility.html">Accessibility</a></li><li><a href="pico-comparison.html">Pico comparison</a></li></ul></nav>
+      <nav aria-label="Documentation"><p class="docs-nav-title">Getting started</p><ul><li><a href="./">Quick start</a></li><li><a href="themes.html">Themes</a></li></ul><p class="docs-nav-title">Layout</p><ul><li><a href="layout.html">Landmarks, containers &amp; grid</a></li></ul><p class="docs-nav-title">Content</p><ul><li><a href="typography.html">Typography</a></li><li><a href="buttons-links.html">Buttons &amp; links</a></li><li><a href="tables-code.html">Tables &amp; code</a></li></ul><p class="docs-nav-title">Forms</p><ul><li><a href="forms.html">Form elements</a></li></ul><p class="docs-nav-title">Components</p><ul><li><a href="cards.html">Cards</a></li><li><a href="navigation.html">Navigation</a></li><li><a href="components.html">Native components</a></li></ul><p class="docs-nav-title">Customize</p><ul><li><a href="colors.html">Colors</a></li><li><a href="customization.html" aria-current="page">CSS variables</a></li><li><a href="accessibility.html">Accessibility</a></li><li><a href="pico-comparison.html">Pico comparison</a></li></ul></nav>
     </aside>
     <div class="docs-content" id="content">
       <header><p>Customize</p><h1>CSS variables</h1><p>Load tty.css first, then override its effective custom properties. The tables below reflect the variables actually consumed by the current stylesheet.</p></header>
@@ -48,42 +48,7 @@
 
       <section id="custom-colors">
         <h2>Create a color palette</h2>
-        <p>A theme can be a separate CSS file containing only variable overrides. Load it after tty.css: existing components pick up the new colors without new classes or component selectors.</p>
-        <div class="code-example"><button class="secondary" type="button" data-copy aria-label="Copy palette stylesheet setup">Copy</button><pre><code>&lt;link rel="stylesheet" href="tty.css"&gt;
-&lt;link rel="stylesheet" href="forest-theme.css"&gt;</code></pre></div>
-        <p>Start with related color pairs. Set the accent background, its hover color, and its foreground together; use separate link colors that remain readable on the page background.</p>
-        <div class="code-example"><button class="secondary" type="button" data-copy aria-label="Copy forest accent palette">Copy</button><pre><code>/* forest-theme.css: light defaults */
-:root {
-  --tty-accent: #bbf7d0;
-  --tty-accent-hover: #86efac;
-  --tty-accent-fg: #14351f;
-  --tty-link: #166534;
-  --tty-link-hover: #14532d;
-  --tty-focus: #15803d;
-}
-
-:root[data-theme="dark"] {
-  --tty-accent: #86efac;
-  --tty-accent-hover: #bbf7d0;
-  --tty-accent-fg: #14351f;
-  --tty-link: #86efac;
-  --tty-link-hover: #bbf7d0;
-  --tty-focus: #86efac;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root[data-theme="auto"] {
-    --tty-accent: #86efac;
-    --tty-accent-hover: #bbf7d0;
-    --tty-accent-fg: #14351f;
-    --tty-link: #86efac;
-    --tty-link-hover: #bbf7d0;
-    --tty-focus: #86efac;
-  }
-}</code></pre></div>
-        <p>For a full palette, also coordinate canvas and surface backgrounds, primary and muted text, borders, selection, code, and control focus and shadows. Unspecified variables retain the framework defaults. Input icons are embedded SVG images: customize their <a href="#icons">icon tokens</a> separately if needed.</p>
-        <p><a href="../examples/color-theme.html" role="button">Preview the forest palette</a> <a href="../examples/forest-theme.css" download>Download palette CSS</a></p>
-        <p>The live example uses the same HTML and framework styles in all three modes. Its separate stylesheet includes the wider palette and print overrides. Check normal and hovered text contrast, keyboard focus, validation states, and narrow layouts in both light and dark modes before shipping.</p>
+        <p>The practical tutorial now lives in the <a href="colors.html">Colors guide</a>: variable-only hex and OKLCH palettes, light/dark/auto overrides, safe fallbacks, and contrast checks. The complete token tables remain below.</p>
       </section>
 
       <section id="colors">
