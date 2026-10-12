@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A forest palette for tty.css using only CSS custom properties, with light, dark, and automatic modes.">
+    <title>Forest color theme · tty.css</title>
+    <link rel="stylesheet" href="../../tty.css">
+    <link rel="stylesheet" href="forest-theme.css">
+    <script defer src="../assets/docs.js"></script>
+  </head>
+  <body>
+    <a class="sr-only" href="#content">Skip to content</a>
+    <header>
+      <nav aria-label="Main navigation">
+        <ul><li><a href="./"><strong>▰ tty.css examples</strong></a></li></ul>
+        <ul><li><button type="button" class="outline" data-theme-toggle>Theme: light</button></li></ul>
+      </nav>
+    </header>
+    <main id="content">
+      <section>
+        <h1>Same HTML. Different palette.</h1>
+        <p>This forest theme changes only <code>--tty-*</code> color variables. Buttons, cards, links, and inputs use the unchanged framework styles.</p>
+        <p>Cycle the theme button to compare light, dark, and automatic mode. The palette itself needs no JavaScript; the button only changes <code>data-theme</code>.</p>
+      </section>
+      <section class="grid" aria-label="Themed components">
+        <article>
+          <header><h2>Forest workspace</h2></header>
+          <p>Page colors, the header band, and the dotted frame shadow all come from shared variables.</p>
+          <p><mark>Variable-based styling</mark> keeps the visual language consistent.</p>
+          <p><a href="../reference/customization.html#custom-colors">Read the color customization guide</a></p>
+          <footer><div class="group"><button type="button">Primary preview</button><button type="button" class="secondary">Secondary preview</button></div></footer>
+        </article>
+        <article>
+          <header><h2>Native controls</h2></header>
+          <label for="workspace">Workspace name</label>
+          <input id="workspace" value="forest-lab" autocomplete="off">
+          <label for="region">Region</label>
+          <select id="region"><option>Europe</option><option>North America</option></select>
+          <label><input type="checkbox" checked> Enable daily backups</label>
+          <p><small>Tab through the controls to inspect focus colors.</small></p>
+          <div class="group"><button type="button" class="outline">Outline preview</button><button type="button" class="contrast">Contrast preview</button></div>
+        </article>
+      </section>
+      <section>
+        <h2>Two stylesheets, no component overrides</h2>
+        <pre><code>&lt;link rel="stylesheet" href="tty.css"&gt;
+&lt;link rel="stylesheet" href="forest-theme.css"&gt;</code></pre>
+        <p><a href="forest-theme.css">View palette CSS</a> · <a href="forest-theme.css" download>Download palette</a> · <a href="color-theme.html" download>Download HTML</a></p>
+        <p>Success, warning, and danger colors keep tty.css defaults. Embedded input icons have their own image tokens; changing text colors does not recolor those SVGs.</p>
+      </section>
+    </main>
+    <footer><small>Example-only palette. No changes to tty.css or its cascade.</small></footer>
+  </body>
+</html>
