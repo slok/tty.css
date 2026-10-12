@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Create variable-only tty.css color palettes with hex or OKLCH, safe fallbacks, and light, dark, and automatic modes.">
+  <title>Colors · tty.css</title>
+  <link rel="stylesheet" href="../../tty.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script defer src="../assets/docs.js"></script>
+</head>
+<body class="docs-page">
+  <a class="sr-only" href="#content">Skip to content</a>
+  <header class="docs-topbar">
+    <nav aria-label="Main navigation"><ul><li><a href="../"><strong>▰ tty.css</strong></a></li><li><small>main</small></li></ul><ul><li><a href="./" aria-current="page">Docs</a></li><li><a href="../examples/">Examples</a></li><li><a href="../../tty.css" download>Download</a></li><li><button type="button" class="outline" data-theme-toggle>Theme: light</button></li></ul></nav>
+  </header>
+  <main class="docs-shell">
+    <aside class="docs-sidebar">
+      <nav aria-label="Documentation"><p class="docs-nav-title">Getting started</p><ul><li><a href="./">Quick start</a></li><li><a href="themes.html">Themes</a></li></ul><p class="docs-nav-title">Layout</p><ul><li><a href="layout.html">Landmarks, containers &amp; grid</a></li></ul><p class="docs-nav-title">Content</p><ul><li><a href="typography.html">Typography</a></li><li><a href="buttons-links.html">Buttons &amp; links</a></li><li><a href="tables-code.html">Tables &amp; code</a></li></ul><p class="docs-nav-title">Forms</p><ul><li><a href="forms.html">Form elements</a></li></ul><p class="docs-nav-title">Components</p><ul><li><a href="cards.html">Cards</a></li><li><a href="navigation.html">Navigation</a></li><li><a href="components.html">Native components</a></li></ul><p class="docs-nav-title">Customize</p><ul><li><a href="colors.html" aria-current="page">Colors</a></li><li><a href="customization.html">CSS variables</a></li><li><a href="accessibility.html">Accessibility</a></li><li><a href="pico-comparison.html">Pico comparison</a></li></ul></nav>
+    </aside>
+    <div class="docs-content" id="content">
+      <header><p>Customize</p><h1>Colors</h1><p>Keep the HTML and components; change their palette with a separate, variable-only stylesheet. Hex and OKLCH both work with the existing tty.css color tokens.</p></header>
+
+      <section id="setup">
+        <h2>Load a palette after tty.css</h2>
+        <div class="code-example"><button class="secondary" type="button" data-copy aria-label="Copy palette stylesheet setup">Copy</button><pre><code>&lt;link rel="stylesheet" href="tty.css"&gt;
+&lt;link rel="stylesheet" href="forest-theme.css"&gt;</code></pre></div>
+        <p>No component selectors or new classes are needed. Unspecified tokens retain the framework defaults. Find the complete <a href="customization.html#colors">color token table</a> in CSS variables, and use <a href="themes.html">Themes</a> to choose a mode rather than a palette.</p>
+      </section>
+
+      <section id="hex">
+        <h2>Start with hex: Forest</h2>
+        <p>Set the accent background, hover background, and foreground together. Links need their own readable colors on the page background. This small Forest excerpt covers light, explicit dark, and automatic dark:</p>
+        <div class="code-example"><button class="secondary" type="button" data-copy aria-label="Copy Forest palette excerpt">Copy</button><pre><code>/* forest-theme.css: light defaults, including auto-light */
+:root {
+  --tty-accent: #bbf7d0;
+  --tty-accent-hover: #86efac;
+  --tty-accent-fg: #14351f;
+  --tty-link: #166534;
+  --tty-link-hover: #14532d;
+  --tty-focus: #15803d;
+}
+
+:root[data-theme="dark"] {
+  --tty-accent: #86efac;
+  --tty-accent-hover: #bbf7d0;
+  --tty-accent-fg: #14351f;
+  --tty-link: #86efac;
+  --tty-link-hover: #bbf7d0;
+  --tty-focus: #86efac;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="auto"] {
+    --tty-accent: #86efac;
+    --tty-accent-hover: #bbf7d0;
+    --tty-accent-fg: #14351f;
+    --tty-link: #86efac;
+    --tty-link-hover: #bbf7d0;
+    --tty-focus: #86efac;
+  }
+}</code></pre></div>
+        <p>Override every active root selector you support; tty.css does not implement local subtree themes. Select modes with <code>&lt;html data-theme="light"&gt;</code>, <code>&lt;html data-theme="dark"&gt;</code>, or <code>&lt;html data-theme="auto"&gt;</code>. Omitting the attribute also uses light.</p>
+        <p><a href="../examples/color-theme.html" role="button">Preview Forest</a> <a href="../examples/forest-theme.css" download>Download Forest CSS</a></p>
+        <p>The full stylesheet also coordinates canvas, surfaces, text, borders, selection, code, control focus and shadows, plus print overrides. Embedded SVG input icons use separate <a href="customization.html#icons">icon tokens</a>.</p>
+      </section>
+
+      <section id="oklch">
+        <h2>Build related colors with OKLCH</h2>
+        <p><code>oklch(L C H)</code> separates lightness, chroma, and hue:</p>
+        <ul><li><strong>L</strong>: perceptual lightness, from <code>0</code> (black) to <code>1</code> (white), also written as <code>0%</code> to <code>100%</code>.</li><li><strong>C</strong>: chroma, or color intensity. <code>0</code> is neutral; higher values are more colorful, with the usable range depending on lightness, hue, and display gamut.</li><li><strong>H</strong>: hue angle around the color wheel, from <code>0</code> to <code>360</code> degrees.</li></ul>
+        <p>Holding L steady while changing H gives more predictable, approximately similar perceived brightness than changing an RGB or HSL hue. It does <strong>not</strong> preserve exact contrast or automatically choose accessible foregrounds.</p>
+        <p>The Ocean and Plum examples share application-owned <code>--palette-hue</code> and <code>--palette-chroma</code> knobs. These are helpers defined by the example stylesheets, <strong>not tty.css framework API</strong>. They feed the existing <code>--tty-*</code> tokens:</p>
+        <div class="code-example"><button class="secondary" type="button" data-copy aria-label="Copy OKLCH palette excerpt">Copy</button><pre><code>/* Load after tty.css. Keep framework defaults without OKLCH support. */
+@supports (color: oklch(0.5 0.1 250)) {
+  :root {
+    --palette-hue: 250;
+    --palette-chroma: 0.08;
+    --tty-accent: oklch(0.85 var(--palette-chroma) var(--palette-hue));
+    --tty-accent-hover: oklch(0.80 var(--palette-chroma) var(--palette-hue));
+    --tty-accent-fg: oklch(0.24 0.03 var(--palette-hue));
+    --tty-link: oklch(0.40 var(--palette-chroma) var(--palette-hue));
+  }
+
+  :root[data-theme="dark"] {
+    --tty-accent: oklch(0.80 var(--palette-chroma) var(--palette-hue));
+    --tty-accent-hover: oklch(0.85 var(--palette-chroma) var(--palette-hue));
+    --tty-accent-fg: oklch(0.24 0.03 var(--palette-hue));
+    --tty-link: oklch(0.80 var(--palette-chroma) var(--palette-hue));
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root[data-theme="auto"] {
+      --tty-accent: oklch(0.80 var(--palette-chroma) var(--palette-hue));
+      --tty-accent-hover: oklch(0.85 var(--palette-chroma) var(--palette-hue));
+      --tty-accent-fg: oklch(0.24 0.03 var(--palette-hue));
+      --tty-link: oklch(0.80 var(--palette-chroma) var(--palette-hue));
+    }
+  }
+}</code></pre></div>
+        <p>This is an excerpt, not a full palette. The downloadable examples also coordinate hover links, focus, surfaces, and other color roles. Ocean uses hue <code>245</code>; Plum uses <code>315</code>, with the same chroma and lightness values. Instead of handpicking each shade again, change one parameter:</p>
+        <div class="code-example"><button class="secondary" type="button" data-copy aria-label="Copy palette hue override">Copy</button><pre><code>/* Application CSS loaded after ocean-theme.css */
+:root {
+  --palette-hue: 315;
+}</code></pre></div>
+        <p>The neutral surfaces use lower chroma than accents, and dark mode changes the lightness values rather than just inverting colors. Inspect and retest the resulting palette whenever you adjust these parameters.</p>
+        <p><a href="../examples/ocean-theme.html">Preview Ocean</a> · <a href="../examples/ocean-theme.css" download>Download Ocean CSS</a><br><a href="../examples/plum-theme.html">Preview Plum</a> · <a href="../examples/plum-theme.css" download>Download Plum CSS</a></p>
+      </section>
+
+      <section id="fallbacks">
+        <h2>Gamut and safe fallbacks</h2>
+        <p>Some OKLCH combinations lie outside a display's color gamut. Browsers gamut-map them to representable colors, which can alter the intended appearance. Prefer modest chroma, inspect on sRGB displays, and recheck contrast after hue or chroma changes.</p>
+        <p>Guard the <strong>token overrides</strong> with <code>@supports (color: oklch(0.5 0.1 250))</code>, as above. Unsupported browsers then keep tty.css defaults. For a branded fallback, put hex overrides for each supported light/dark/auto selector before that guarded block.</p>
+        <p>Do not rely on duplicate declarations such as <code>--tty-link: #166534; --tty-link: oklch(...);</code> for fallback. Custom properties accept arbitrary token streams, so an unsupported color function can win the cascade and only become invalid when consumed by <code>color: var(--tty-link)</code>. The earlier hex declaration is not restored then. Testing a custom-property declaration itself is not a useful color-support check.</p>
+      </section>
+
+      <section id="testing">
+        <h2>Check the whole palette</h2>
+        <p>Test light, dark, and both system preferences in auto mode. Measure normal and hovered text contrast, including muted text, selections, code, and accent-button labels. Check visible keyboard focus, control boundaries, disabled and validation states, print output, and narrow layouts. Keep status meaning independent of hue. See <a href="accessibility.html">accessibility responsibilities</a>.</p>
+      </section>
+      <nav class="docs-pager" aria-label="Documentation pages"><a href="themes.html">← Themes</a><a href="customization.html">CSS variables →</a></nav>
+    </div>
+    <aside class="docs-toc"><nav aria-label="On this page"><p class="docs-nav-title">On this page</p><ul><li><a href="#setup">Load a palette</a></li><li><a href="#hex">Hex: Forest</a></li><li><a href="#oklch">OKLCH</a></li><li><a href="#fallbacks">Gamut &amp; fallbacks</a></li><li><a href="#testing">Testing</a></li></ul></nav></aside>
+  </main>
+  <footer><small>tty.css — semantic HTML with sharp edges.</small></footer>
+</body>
+</html>

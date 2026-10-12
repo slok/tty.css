@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An Ocean OKLCH palette for tty.css, sharing hue and chroma across light, dark, and automatic modes.">
+  <title>Ocean OKLCH theme · tty.css</title>
+  <link rel="stylesheet" href="../../tty.css">
+  <link rel="stylesheet" href="ocean-theme.css">
+  <script defer src="../assets/docs.js"></script>
+</head>
+<body>
+  <a class="sr-only" href="#content">Skip to content</a>
+  <header><nav aria-label="Main navigation"><ul><li><a href="./"><strong>▰ tty.css examples</strong></a></li></ul><ul><li><button type="button" class="outline" data-theme-toggle>Theme: light</button></li></ul></nav></header>
+  <main id="content">
+    <section>
+      <h1>Ocean: one hue, related shades.</h1>
+      <p>This palette uses OKLCH and two application-owned parameters: <code>--palette-hue: 245</code> and <code>--palette-chroma: 0.1</code>. Existing tty.css variables derive their colors from those parameters and mode-specific lightness values.</p>
+      <p>Compare <a href="plum-theme.html">Plum</a>: the same tonal structure with a different hue. Cycle the theme button to inspect light, dark, and automatic mode.</p>
+    </section>
+    <section class="grid" aria-label="Themed components">
+      <article>
+        <header><h2>Ocean workspace</h2></header>
+        <p>Canvas, header bands, frames, and text share a hue with restrained chroma. Accents use a stronger chroma.</p>
+        <p><mark>Shared hue, separate lightness</mark> makes related shades easier to maintain.</p>
+        <p><a href="../reference/colors.html">Read the Colors guide</a></p>
+        <footer><div class="group"><button type="button">Primary preview</button><button type="button" class="secondary">Secondary preview</button></div></footer>
+      </article>
+      <article>
+        <header><h2>Native controls</h2></header>
+        <label for="workspace">Workspace name</label><input id="workspace" value="ocean-lab" autocomplete="off">
+        <label for="region">Region</label><select id="region"><option>Europe</option><option>North America</option></select>
+        <label><input type="checkbox" checked> Enable daily backups</label>
+        <p><small>Tab through the controls to inspect focus colors.</small></p>
+        <div class="group"><button type="button" class="outline">Outline preview</button><button type="button" class="contrast">Contrast preview</button></div>
+      </article>
+    </section>
+    <section>
+      <h2>Try a different hue</h2>
+      <pre><code>/* Application CSS loaded after ocean-theme.css */
+:root {
+  --palette-hue: 315;
+}</code></pre>
+      <p>These parameters belong to the example, not the framework API. Changing hue does not guarantee contrast or keep every color inside your display's gamut: recheck the resulting palette.</p>
+      <p><a href="ocean-theme.css">View palette CSS</a> · <a href="ocean-theme.css" download>Download palette</a> · <a href="ocean-theme.html" download>Download HTML</a></p>
+      <p>The stylesheet guards OKLCH overrides with <code>@supports</code>; unsupported browsers retain tty.css colors. Status colors and embedded input icons keep framework defaults.</p>
+    </section>
+  </main>
+  <footer><small>Example-only palette. No component overrides, build step, or framework changes.</small></footer>
+</body>
+</html>
