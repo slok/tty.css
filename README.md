@@ -57,8 +57,10 @@ Three variable-only palettes demonstrate light, dark, and automatic modes:
 [Forest (hex)](docs/examples/color-theme.html),
 [Ocean (OKLCH)](docs/examples/ocean-theme.html), and
 [Plum (OKLCH)](docs/examples/plum-theme.html). Load their CSS after tty.css.
+Forest overrides semantic tokens directly; Ocean and Plum use the framework's
+four public accent/neutral hue and chroma parameters.
 The [Colors guide](docs/reference/colors.html) explains palette design, OKLCH,
-safe fallbacks, and contrast checks; the
+gamut mapping, and contrast checks; the
 [CSS variables reference](docs/reference/customization.html#colors) lists all color tokens.
 
 ## Install
@@ -341,7 +343,34 @@ be present in regular document content.
 
 ## Customize
 
-Override variables after loading tty.css:
+Load overrides after tty.css. For a related palette in all modes, use the four
+public parameters (defaults: accent hue `65`, chroma `0.125`; neutral hue `260`,
+chroma `0.025`):
+
+```css
+:root {
+  --tty-accent-hue: 245;
+  --tty-accent-chroma: 0.1;
+  --tty-neutral-hue: 245;
+  --tty-neutral-chroma: 0.025;
+}
+```
+
+Accent parameters drive buttons, links, general focus, and selection; neutral
+parameters independently drive surfaces, text, borders, code, control focus, and
+shadows. Light/dark/auto select internal lightness and chroma factors; `--_tty-*`
+internals are not public API. Status colors remain independent hex values, and
+SVG icon image tokens are unchanged.
+
+OKLCH support is required; generated roles have no hex fallback or support guard.
+Existing direct semantic token overrides remain compatible, can use any CSS
+color format supported by the target browsers, and can be mixed with parameters.
+Neither parameter nor direct OKLCH overrides need support guards. Recheck contrast in every
+mode; hue and chroma do not guarantee accessible arbitrary palettes. See the
+[Colors guide](docs/reference/colors.html) and
+[exact role formulas](docs/reference/customization.html#color-formulas).
+
+For exact semantic colors, or font and shape changes, override variables:
 
 ```css
 :root {
@@ -370,7 +399,8 @@ Override variables after loading tty.css:
 }
 ```
 
-Dark-theme values can be customized separately:
+Direct color overrides must match active theme selector specificity. Dark-theme
+values can be customized separately:
 
 ```css
 :root[data-theme="dark"] {
@@ -379,6 +409,10 @@ Dark-theme values can be customized separately:
   --tty-accent: #a3e635;
 }
 ```
+
+For automatic dark, repeat the dark overrides on `:root[data-theme="auto"]`
+inside `@media (prefers-color-scheme: dark)`. Parameter overrides alone need no
+such repetition.
 
 ## Override styles
 
@@ -399,16 +433,18 @@ button.danger {
 
 ## Browser support
 
-The compatibility target follows Pico CSS v2's Browserslist `defaults`
-philosophy:
+OKLCH is required: Chrome/Edge 111+, Firefox 113+, and Safari 15.4+ are the
+minimum versions for palette support, not a guarantee of all framework features.
+The modern support target is the intersection of browsers supporting the CSS
+features tty.css uses and Pico CSS v2's Browserslist `defaults` philosophy:
 
 - Browsers with more than 0.5% global usage
 - The last two versions of major browsers
 - Firefox ESR
 - Browsers that are not officially dead
 
-Core content and controls remain usable if a newer decorative feature such as
-`color-mix()` is unavailable.
+Some decorative `color-mix()` effects have simpler fallbacks, but browsers without
+OKLCH are unsupported and have no framework color fallback.
 
 RTL layouts are out of scope and are not guaranteed.
 

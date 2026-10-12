@@ -65,14 +65,16 @@
         <header>
           <p>Getting started</p>
           <h1>Themes</h1>
-          <p>Light is the default. Select dark explicitly or let the operating-system preference choose between the two palettes.</p>
+          <p>Light is the default. Select dark explicitly or let the operating-system preference choose the palette's light or dark mode.</p>
         </header>
 
         <section id="behavior">
           <h2>Theme behavior</h2>
           <p>Without a <code>data-theme</code> attribute, the <code>:root</code> light palette applies. The dark palette applies only to <code>data-theme="dark"</code>. Automatic mode starts from the light palette and switches to dark inside <code>prefers-color-scheme: dark</code>.</p>
           <p>Each mode also sets the browser-facing <code>color-scheme</code> property, so compatible native controls use the corresponding light or dark appearance.</p>
-          <p>To change the palettes rather than select a mode, see the <a href="colors.html">Colors guide</a> for hex and OKLCH palettes, safe fallbacks, and contrast checks.</p>
+          <p>tty.css requires OKLCH and derives semantic color roles from four public parameters: <code>--tty-accent-hue</code> (65), <code>--tty-accent-chroma</code> (0.125), <code>--tty-neutral-hue</code> (260), and <code>--tty-neutral-chroma</code> (0.025). A parameter override on <code>:root</code> applies across modes. Light and dark select internal lightness values and neutral chroma factors; auto selects those same factors according to the system preference. The internal <code>--_tty-*</code> values are not public API.</p>
+          <p>Generated roles have no support guard or hex fallback. Status success/warning/danger colors remain independent hex values per mode, print styles retain hex colors, and SVG icon image tokens are unchanged. Direct semantic token overrides still work when loaded after tty.css with the matching root/theme selectors and may use any CSS color format supported by your target browsers.</p>
+          <p>To change the palette rather than select a mode, see the <a href="colors.html">Colors guide</a> for parameter overrides, direct hex or OKLCH tokens, mixed palettes, gamut mapping, and contrast checks. Changing hue or chroma does not guarantee accessible colors.</p>
         </section>
 
         <section id="light">
