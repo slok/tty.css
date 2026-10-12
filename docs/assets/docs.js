@@ -8,10 +8,9 @@
     // Storage can be unavailable on local files or in restricted contexts.
   }
 
-  if (storedTheme) root.dataset.theme = storedTheme;
-
   const themeButton = document.querySelector("[data-theme-toggle]");
   const themes = ["light", "dark", "auto"];
+  if (themes.includes(storedTheme)) root.dataset.theme = storedTheme;
 
   function updateThemeLabel() {
     if (!themeButton) return;
@@ -19,6 +18,7 @@
     themeButton.textContent = `Theme: ${theme}`;
     themeButton.setAttribute("aria-label", `Current theme: ${theme}. Change theme`);
   }
+  window.addEventListener("tty-palette-restored", updateThemeLabel);
 
   themeButton?.addEventListener("click", () => {
     const current = root.dataset.theme || "light";

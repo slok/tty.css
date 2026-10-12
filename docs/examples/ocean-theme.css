@@ -1,7 +1,0 @@
-/* Load after tty.css; the framework handles modes and OKLCH fallback. */
-:root {
-  --tty-accent-hue: 245;
-  --tty-accent-chroma: 0.1;
-  --tty-neutral-hue: 245;
-  --tty-neutral-chroma: 0.025;
-}

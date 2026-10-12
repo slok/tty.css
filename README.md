@@ -7,7 +7,7 @@ warm orange, hard borders, and offset shadows.
 Inspired by Pico CSS + turbopuffer.
 
 - One CSS file
-- No JavaScript
+- No JavaScript required
 - Light, dark, and automatic themes
 - Responsive native elements
 - Low-specificity selectors
@@ -25,9 +25,10 @@ The repository is also a build-free static site:
 | --- | --- |
 | `docs/index.html` | GitHub Pages landing page and quick install |
 | `docs/reference/` | Grouped guides and element reference |
-| `docs/examples/` | Six general examples and three color-palette examples built with tty.css |
+| `docs/examples/` | Six general examples and a Monokai palette example |
 | `docs/assets/docs.css` | Documentation-site layout only |
 | `docs/assets/docs.js` | Documentation theme and copy controls only |
+| `docs/assets/palette-settings.js` | Docs-only saved palette preference across the site |
 | `tty.css` | Canonical framework source and local distribution file |
 
 The framework itself is only the repository-root `tty.css`; it imports no fonts,
@@ -40,11 +41,14 @@ for the current feature comparison and remaining gaps with Pico CSS.
 
 ### Examples
 
-Three examples use plain semantic HTML with no JavaScript:
+Three examples use plain semantic HTML with no application JavaScript:
 
 - Product landing page
 - Authentication flow
 - Service status page
+
+A docs-only preference script applies the saved palette to these previews;
+native behavior and tty.css need no JavaScript.
 
 Three progressively interactive examples use Alpine.js 3.16.3 with application
 logic embedded directly in the page:
@@ -53,15 +57,10 @@ logic embedded directly in the page:
 - Search console
 - Persistent task board
 
-Three variable-only palettes demonstrate light, dark, and automatic modes:
-[Forest (hex)](docs/examples/color-theme.html),
-[Ocean (OKLCH)](docs/examples/ocean-theme.html), and
-[Plum (OKLCH)](docs/examples/plum-theme.html). Load their CSS after tty.css.
-Forest overrides semantic tokens directly; Ocean and Plum use the framework's
-four public accent/neutral hue and chroma parameters.
-The [Colors guide](docs/reference/colors.html) explains palette design, OKLCH,
-gamut mapping, and contrast checks; the
-[CSS variables reference](docs/reference/customization.html#colors) lists all color tokens.
+Use the [palette playground](docs/reference/colors.html#playground) for generated
+palettes, or [Monokai](docs/examples/color-theme.html) for full color overrides.
+Monokai adapts the classic dark palette for UI contrast and includes a light
+companion; it keeps its own colors regardless of the saved playground palette.
 
 ## Install
 
@@ -343,51 +342,19 @@ be present in regular document content.
 
 ## Customize
 
-Load overrides after tty.css. For a related palette in all modes, use the four
-public parameters (defaults: accent hue `65`, chroma `0.125`; neutral hue `260`,
-chroma `0.025`):
-
-```css
-:root {
-  --tty-accent-hue: 245;
-  --tty-accent-chroma: 0.1;
-  --tty-neutral-hue: 245;
-  --tty-neutral-chroma: 0.025;
-}
-```
-
-Accent parameters drive buttons, links, general focus, and selection; neutral
-parameters independently drive surfaces, text, borders, code, control focus, and
-shadows. Light/dark/auto select internal lightness and chroma factors; `--_tty-*`
-internals are not public API. Status colors remain independent hex values, and
-SVG icon image tokens are unchanged.
-
-OKLCH support is required; generated roles have no hex fallback or support guard.
-Existing direct semantic token overrides remain compatible, can use any CSS
-color format supported by the target browsers, and can be mixed with parameters.
-Neither parameter nor direct OKLCH overrides need support guards. Recheck contrast in every
-mode; hue and chroma do not guarantee accessible arbitrary palettes. See the
+Load overrides after tty.css. Use the
+[palette playground](docs/reference/colors.html#playground) to generate palette
+CSS, or the [Monokai example](docs/examples/color-theme.html) for a full direct
+color-token override. Check contrast in every mode; see the
 [Colors guide](docs/reference/colors.html) and
-[exact role formulas](docs/reference/customization.html#color-formulas).
+[CSS variables reference](docs/reference/customization.html) for details.
 
-For exact semantic colors, or font and shape changes, override variables:
+Fonts, layout, and shape also use custom properties:
 
 ```css
 :root {
   --tty-font: "IBM Plex Mono", monospace;
   --tty-font-display: "IBM Plex Sans", sans-serif;
-  --tty-bg: #fffdf5;
-  --tty-surface: #ffffff;
-  --tty-fg: #172554;
-  --tty-fg-muted: #526174;
-  --tty-border: #cbd5e1;
-  --tty-border-strong: #172554;
-  --tty-accent: #fde047;
-  --tty-accent-hover: #facc15;
-  --tty-accent-fg: #422006;
-  --tty-link: #b45309;
-  --tty-link-hover: #9a3412;
-  --tty-focus: #c2410c;
   --tty-container: 80rem;
   --tty-reading-width: 72ch;
   --tty-radius: 0;
@@ -398,21 +365,6 @@ For exact semantic colors, or font and shape changes, override variables:
   --tty-control-height: 2.5rem;
 }
 ```
-
-Direct color overrides must match active theme selector specificity. Dark-theme
-values can be customized separately:
-
-```css
-:root[data-theme="dark"] {
-  --tty-bg: #09090b;
-  --tty-surface: #18181b;
-  --tty-accent: #a3e635;
-}
-```
-
-For automatic dark, repeat the dark overrides on `:root[data-theme="auto"]`
-inside `@media (prefers-color-scheme: dark)`. Parameter overrides alone need no
-such repetition.
 
 ## Override styles
 

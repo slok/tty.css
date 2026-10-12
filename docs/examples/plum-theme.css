@@ -1,7 +1,0 @@
-/* Same framework palette as Ocean, with different accent and neutral hues. */
-:root {
-  --tty-accent-hue: 315;
-  --tty-accent-chroma: 0.1;
-  --tty-neutral-hue: 315;
-  --tty-neutral-chroma: 0.025;
-}

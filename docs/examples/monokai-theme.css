@@ -1,0 +1,98 @@
+/* Full semantic color override: Monokai, adapted for UI contrast, plus a light companion.
+   This palette intentionally ignores the docs' saved hue/chroma parameters. */
+:root {
+  --tty-bg: #fafaf5;
+  --tty-surface: #fffef8;
+  --tty-surface-muted: #eeeee5;
+  --tty-fg: #272822;
+  --tty-fg-muted: #575a4a;
+  --tty-border: #858779;
+  --tty-border-strong: #272822;
+  --tty-accent: #a6e22e;
+  --tty-accent-hover: #95d31f;
+  --tty-accent-fg: #272822;
+  --tty-link: #036778;
+  --tty-link-hover: #005564;
+  --tty-selection: #e6db74;
+  --tty-selection-fg: #272822;
+  --tty-success: #427c0e;
+  --tty-warning: #805a0f;
+  --tty-danger: #b0154e;
+  --tty-code-bg: #272822;
+  --tty-code-fg: #f8f8f2;
+  --tty-focus: #8b1559;
+  --tty-control-focus: #036778;
+  --tty-control-shadow: #75715e;
+}
+
+:root[data-theme="dark"] {
+  --tty-bg: #272822;
+  --tty-surface: #30312b;
+  --tty-surface-muted: #3e3d32;
+  --tty-fg: #f8f8f2;
+  --tty-fg-muted: #a6a89a;
+  --tty-border: #858779;
+  --tty-border-strong: #f8f8f2;
+  --tty-accent: #a6e22e;
+  --tty-accent-hover: #b6ec4e;
+  --tty-accent-fg: #272822;
+  --tty-link: #66d9ef;
+  --tty-link-hover: #a1e9f5;
+  --tty-selection: #49483e;
+  --tty-selection-fg: #f8f8f2;
+  --tty-success: #a6e22e;
+  --tty-warning: #e6db74;
+  --tty-danger: #ff5c93;
+  --tty-code-bg: #1e1f1c;
+  --tty-code-fg: #f8f8f2;
+  --tty-focus: #ae81ff;
+  --tty-control-focus: #66d9ef;
+  --tty-control-shadow: #75715e;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="auto"] {
+    --tty-bg: #272822;
+    --tty-surface: #30312b;
+    --tty-surface-muted: #3e3d32;
+    --tty-fg: #f8f8f2;
+    --tty-fg-muted: #a6a89a;
+    --tty-border: #858779;
+    --tty-border-strong: #f8f8f2;
+    --tty-accent: #a6e22e;
+    --tty-accent-hover: #b6ec4e;
+    --tty-accent-fg: #272822;
+    --tty-link: #66d9ef;
+    --tty-link-hover: #a1e9f5;
+    --tty-selection: #49483e;
+    --tty-selection-fg: #f8f8f2;
+    --tty-success: #a6e22e;
+    --tty-warning: #e6db74;
+    --tty-danger: #ff5c93;
+    --tty-code-bg: #1e1f1c;
+    --tty-code-fg: #f8f8f2;
+    --tty-focus: #ae81ff;
+    --tty-control-focus: #66d9ef;
+    --tty-control-shadow: #75715e;
+  }
+}
+
+@media print {
+  :root:root {
+    color-scheme: light;
+    --tty-bg: #fff;
+    --tty-surface: #fff;
+    --tty-surface-muted: #fff;
+    --tty-fg: #000;
+    --tty-fg-muted: #333;
+    --tty-border: #777;
+    --tty-border-strong: #000;
+    --tty-link: #000;
+    --tty-link-hover: #000;
+    --tty-success: #427c0e;
+    --tty-warning: #805a0f;
+    --tty-danger: #b0154e;
+    --tty-code-bg: #fff;
+    --tty-code-fg: #000;
+  }
+}

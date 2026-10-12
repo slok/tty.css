@@ -1,12 +1,13 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A forest palette for tty.css using only CSS custom properties, with light, dark, and automatic modes.">
-    <title>Forest color theme · tty.css</title>
+    <meta name="description" content="A full Monokai color override for tty.css, adapted for UI contrast, with a light companion palette.">
+    <title>Monokai color theme · tty.css</title>
     <link rel="stylesheet" href="../../tty.css">
-    <link rel="stylesheet" href="forest-theme.css">
+    <link rel="stylesheet" href="monokai-theme.css">
+    <script src="../assets/palette-settings.js"></script>
     <script defer src="../assets/docs.js"></script>
   </head>
   <body>
@@ -14,19 +15,19 @@
     <header>
       <nav aria-label="Main navigation">
         <ul><li><a href="./"><strong>▰ tty.css examples</strong></a></li></ul>
-        <ul><li><button type="button" class="outline" data-theme-toggle>Theme: light</button></li></ul>
+        <ul><li><button type="button" class="outline" data-theme-toggle>Theme: dark</button></li></ul>
       </nav>
     </header>
     <main id="content">
       <section>
-        <h1>Same HTML. Different palette.</h1>
-        <p>This forest theme directly overrides semantic <code>--tty-*</code> color tokens for full palette control, rather than using the framework's hue and chroma parameters. Buttons, cards, links, and inputs use the unchanged framework styles.</p>
-        <p>Cycle the theme button to compare light, dark, and automatic mode. The palette itself needs no JavaScript; the button only changes <code>data-theme</code>.</p>
-        <p>This example uses hex colors and explicit light, dark, automatic, and print overrides. Compare the parameter-based OKLCH palettes: <a href="ocean-theme.html">Ocean</a> and <a href="plum-theme.html">Plum</a>, where tty.css handles those modes.</p>
+        <h1>Monokai. Beyond one accent.</h1>
+        <p>Warm charcoal, green actions, cyan links, and pink errors. All semantic color tokens are overridden; saved docs palettes do not recolor this example.</p>
+        <p>Dark mode adapts classic Monokai for UI contrast; light mode is a companion palette. Cycle the theme button to compare modes.</p>
+        <p>For a parameter-generated palette instead, use the <a href="../reference/colors.html#playground">palette playground</a>.</p>
       </section>
       <section class="grid" aria-label="Themed components">
         <article>
-          <header><h2>Forest workspace</h2></header>
+          <header><h2>Monokai workspace</h2></header>
           <p>Page colors, the header band, and the dotted frame shadow all come from shared variables.</p>
           <p><mark>Variable-based styling</mark> keeps the visual language consistent.</p>
           <p><a href="../reference/colors.html">Read the Colors guide</a></p>
@@ -35,7 +36,7 @@
         <article>
           <header><h2>Native controls</h2></header>
           <label for="workspace">Workspace name</label>
-          <input id="workspace" value="forest-lab" autocomplete="off">
+          <input id="workspace" value="monokai-lab" autocomplete="off">
           <label for="region">Region</label>
           <select id="region"><option>Europe</option><option>North America</option></select>
           <label><input type="checkbox" checked> Enable daily backups</label>
@@ -43,26 +44,24 @@
           <div class="group"><button type="button" class="outline">Outline preview</button><button type="button" class="contrast">Contrast preview</button></div>
         </article>
       </section>
+      <section class="grid" aria-label="Monokai status colors">
+        <div>
+          <label for="valid-name">Valid name</label>
+          <input id="valid-name" value="monokai-lab" aria-invalid="false" aria-describedby="name-success">
+          <small id="name-success">Workspace name is available.</small>
+        </div>
+        <div>
+          <label for="invalid-name">Invalid name</label>
+          <input id="invalid-name" value="already-taken" aria-invalid="true" aria-describedby="name-error">
+          <small id="name-error">Choose a different workspace name.</small>
+        </div>
+      </section>
       <section>
         <h2>Two stylesheets, no component overrides</h2>
         <pre><code>&lt;link rel="stylesheet" href="tty.css"&gt;
-&lt;link rel="stylesheet" href="forest-theme.css"&gt;</code></pre>
-        <p><a href="forest-theme.css">View palette CSS</a> · <a href="forest-theme.css" download>Download palette</a> · <a href="color-theme.html" download>Download HTML</a></p>
-        <p>Success, warning, and danger colors keep tty.css defaults. Embedded input icons have their own image tokens; changing text colors does not recolor those SVGs.</p>
-      </section>
-      <section>
-        <h2>Mix parameters and direct overrides</h2>
-        <p>For a new theme, load this CSS after tty.css instead of the full Forest palette. Let the framework derive brand colors, then pin an individual token on the active theme selectors:</p>
-        <pre><code>:root {
-  --tty-accent-hue: 145;
-}
-
-:root,
-:root[data-theme="dark"],
-:root[data-theme="auto"] {
-  --tty-accent: #86efac;
-}</code></pre>
-        <p>The direct <code>--tty-accent</code> override wins; other brand tokens still follow <code>--tty-accent-hue</code>. Surfaces keep the default neutral palette unless you also set <code>--tty-neutral-hue</code>. Check contrast in each mode when mixing derived and custom colors. This snippet is not applied to the Forest preview.</p>
+&lt;link rel="stylesheet" href="monokai-theme.css"&gt;</code></pre>
+        <p><a href="monokai-theme.css">View palette CSS</a> · <a href="monokai-theme.css" download>Download palette</a> · <a href="color-theme.html" download>Download HTML</a></p>
+        <p>Status colors are overridden too. Embedded input icons remain separate image tokens.</p>
       </section>
     </main>
     <footer><small>Example-only palette. No changes to tty.css or its cascade.</small></footer>
