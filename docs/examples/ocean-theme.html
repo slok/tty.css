@@ -15,7 +15,7 @@
   <main id="content">
     <section>
       <h1>Ocean: one hue, related shades.</h1>
-      <p>This palette uses OKLCH and two application-owned parameters: <code>--palette-hue: 245</code> and <code>--palette-chroma: 0.1</code>. Existing tty.css variables derive their colors from those parameters and mode-specific lightness values.</p>
+      <p>This palette sets framework parameters: <code>--tty-accent-hue: 245</code>, <code>--tty-accent-chroma: 0.1</code>, <code>--tty-neutral-hue: 245</code>, and <code>--tty-neutral-chroma: 0.025</code>. tty.css derives its semantic color tokens in OKLCH for light, dark, and automatic modes.</p>
       <p>Compare <a href="plum-theme.html">Plum</a>: the same tonal structure with a different hue. Cycle the theme button to inspect light, dark, and automatic mode.</p>
     </section>
     <section class="grid" aria-label="Themed components">
@@ -39,11 +39,11 @@
       <h2>Try a different hue</h2>
       <pre><code>/* Application CSS loaded after ocean-theme.css */
 :root {
-  --palette-hue: 315;
+  --tty-accent-hue: 315;
 }</code></pre>
-      <p>These parameters belong to the example, not the framework API. Changing hue does not guarantee contrast or keep every color inside your display's gamut: recheck the resulting palette.</p>
+      <p>Changing <code>--tty-accent-hue</code> changes brand colors only. Optionally set <code>--tty-neutral-hue: 315</code> too to tint surfaces, text, and borders. Changing hue does not guarantee contrast or keep every color inside your display's gamut: recheck the resulting palette.</p>
       <p><a href="ocean-theme.css">View palette CSS</a> · <a href="ocean-theme.css" download>Download palette</a> · <a href="ocean-theme.html" download>Download HTML</a></p>
-      <p>The stylesheet guards OKLCH overrides with <code>@supports</code>; unsupported browsers retain tty.css colors. Status colors and embedded input icons keep framework defaults.</p>
+      <p>tty.css handles mode changes and print styles; this parameter-only stylesheet needs no per-mode overrides. OKLCH is required. Status colors and embedded input icons keep framework defaults.</p>
     </section>
   </main>
   <footer><small>Example-only palette. No component overrides, build step, or framework changes.</small></footer>

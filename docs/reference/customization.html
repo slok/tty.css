@@ -23,7 +23,7 @@
 
       <section id="themes">
         <h2>Scope and themes</h2>
-        <p>Base values live on <code>:root</code>. Explicit dark values live on <code>:root[data-theme="dark"]</code>; automatic dark values apply to <code>:root[data-theme="auto"]</code> inside <code>prefers-color-scheme: dark</code>. Override each active selector you support. tty.css does not currently implement local, subtree themes.</p>
+        <p>Palette parameters live on <code>:root</code> and a root override applies across modes. For direct semantic color overrides, match each active selector you support: <code>:root</code> for light, <code>:root[data-theme="dark"]</code> for explicit dark, and <code>:root[data-theme="auto"]</code> inside <code>prefers-color-scheme: dark</code> for automatic dark. tty.css does not currently implement local, subtree themes.</p>
         <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>:root {
   --tty-accent: #ffd166;
   --tty-accent-hover: #ffc233;
@@ -48,35 +48,57 @@
 
       <section id="custom-colors">
         <h2>Create a color palette</h2>
-        <p>The practical tutorial now lives in the <a href="colors.html">Colors guide</a>: variable-only hex and OKLCH palettes, light/dark/auto overrides, safe fallbacks, and contrast checks. The complete token tables remain below.</p>
+        <p>The practical tutorial now lives in the <a href="colors.html">Colors guide</a>: variable-only hex and OKLCH palettes, light/dark/auto overrides, gamut mapping, and contrast checks. The complete token tables remain below.</p>
       </section>
 
       <section id="colors">
         <h2>Color tokens</h2>
-        <div class="overflow-auto" tabindex="0" aria-label="Color token defaults"><table><thead><tr><th scope="col">Token</th><th scope="col">Light default</th><th scope="col">Dark and auto-dark default</th><th scope="col">Used for</th></tr></thead><tbody>
-          <tr><th scope="row"><code>--tty-bg</code></th><td><code>#f9fafc</code></td><td><code>#0b1220</code></td><td>Page canvas and contrast-button text</td></tr>
-          <tr><th scope="row"><code>--tty-surface</code></th><td><code>#ffffff</code></td><td><code>#111b2e</code></td><td>Controls, fieldsets, dialogs, and menus</td></tr>
-          <tr><th scope="row"><code>--tty-surface-muted</code></th><td><code>#f1f5f9</code></td><td><code>#18243a</code></td><td>Secondary surfaces, headers, and inline code</td></tr>
-          <tr><th scope="row"><code>--tty-fg</code></th><td><code>#0f172a</code></td><td><code>#f8fafc</code></td><td>Primary text and contrast controls</td></tr>
-          <tr><th scope="row"><code>--tty-fg-muted</code></th><td><code>#526174</code></td><td><code>#aab7c8</code></td><td>Secondary text and control icon strokes</td></tr>
-          <tr><th scope="row"><code>--tty-border</code></th><td><code>#cbd5e1</code></td><td><code>#40506a</code></td><td>Quiet dividers and control borders</td></tr>
-          <tr><th scope="row"><code>--tty-border-strong</code></th><td><code>#0f172a</code></td><td><code>#f8fafc</code></td><td>Frames, tracks, and decorative dot shadows</td></tr>
-          <tr><th scope="row"><code>--tty-accent</code></th><td><code>#ffb66e</code></td><td><code>#ffb66e</code></td><td>Primary controls, marks, and selected checks</td></tr>
-          <tr><th scope="row"><code>--tty-accent-hover</code></th><td><code>#ff9d46</code></td><td><code>#ffc98f</code></td><td>Hovered controls and active indicators</td></tr>
-          <tr><th scope="row"><code>--tty-accent-fg</code></th><td><code>#461b05</code></td><td><code>#351404</code></td><td>Text and marks on accent backgrounds</td></tr>
-          <tr><th scope="row"><code>--tty-link</code></th><td><code>#b45309</code></td><td><code>#fdba74</code></td><td>Links</td></tr>
-          <tr><th scope="row"><code>--tty-link-hover</code></th><td><code>#9a3412</code></td><td><code>#ffb66e</code></td><td>Hovered primary links</td></tr>
-          <tr><th scope="row"><code>--tty-selection</code></th><td><code>#fed7aa</code></td><td><code>#9a3412</code></td><td>Selected-text background</td></tr>
-          <tr><th scope="row"><code>--tty-selection-fg</code></th><td><code>#7c2d12</code></td><td><code>#fff7ed</code></td><td>Selected text</td></tr>
+        <p>tty.css requires OKLCH. The 19 generated semantic roles use the <a href="#color-formulas">parameter-derived formulas below</a>, with no support guard or hex fallback. Direct semantic overrides may use any CSS color format supported by your target browsers. Status tokens remain independent mode-specific hex colors:</p>
+        <div class="overflow-auto" tabindex="0" aria-label="Status color defaults"><table><thead><tr><th scope="col">Token</th><th scope="col">Light default</th><th scope="col">Dark and auto-dark default</th><th scope="col">Used for</th></tr></thead><tbody>
           <tr><th scope="row"><code>--tty-success</code></th><td><code>#15803d</code></td><td><code>#4ade80</code></td><td>Valid states and optimum meters</td></tr>
           <tr><th scope="row"><code>--tty-warning</code></th><td><code>#b45309</code></td><td><code>#fbbf24</code></td><td>Suboptimum meters</td></tr>
           <tr><th scope="row"><code>--tty-danger</code></th><td><code>#c83232</code></td><td><code>#fb7185</code></td><td>Invalid states, deletion, and poor meters</td></tr>
-          <tr><th scope="row"><code>--tty-code-bg</code></th><td><code>#0f172a</code></td><td><code>#050914</code></td><td>Code blocks and tooltip bubbles</td></tr>
-          <tr><th scope="row"><code>--tty-code-fg</code></th><td><code>#f8fafc</code></td><td><code>#f8fafc</code></td><td>Code-block and tooltip text</td></tr>
-          <tr><th scope="row"><code>--tty-focus</code></th><td><code>#ea580c</code></td><td><code>#fdba74</code></td><td>General focus outlines and interactive emphasis</td></tr>
-          <tr><th scope="row"><code>--tty-control-focus</code></th><td><code>#334155</code></td><td><code>#cbd5e1</code></td><td>Input focus border and outline</td></tr>
-          <tr><th scope="row"><code>--tty-control-shadow</code></th><td><code>#64748b</code></td><td><code>#40506a</code></td><td>Button and form-control offset shadows</td></tr>
         </tbody></table></div>
+      </section>
+
+      <section id="palette-parameters">
+        <h2>Public palette parameters</h2>
+        <p>These defaults apply across all modes. Override them on <code>:root</code> after tty.css; no support guard is needed. Direct semantic token overrides remain supported and can be mixed with parameters.</p>
+        <div class="overflow-auto" tabindex="0" aria-label="Palette parameter defaults"><table><thead><tr><th scope="col">Parameter</th><th scope="col">Default (all modes)</th><th scope="col">Role mapping</th></tr></thead><tbody>
+          <tr><th scope="row"><code>--tty-accent-hue</code></th><td><code>65</code></td><td>Hue of accents, links, general focus, and selection</td></tr>
+          <tr><th scope="row"><code>--tty-accent-chroma</code></th><td><code>0.125</code></td><td>Chroma of those accent roles, with role-specific factors</td></tr>
+          <tr><th scope="row"><code>--tty-neutral-hue</code></th><td><code>260</code></td><td>Hue of canvas, surfaces, text, borders, code, control focus, and shadows</td></tr>
+          <tr><th scope="row"><code>--tty-neutral-chroma</code></th><td><code>0.025</code></td><td>Chroma of those neutral roles, with role/mode-specific factors</td></tr>
+        </tbody></table></div>
+        <p>Status colors and SVG icon images are independent of these parameters. Arbitrary hue/chroma choices are not guaranteed accessible; test each mode and state. See the <a href="colors.html">Colors guide</a> for parameter-only, direct, and mixed palettes.</p>
+      </section>
+
+      <section id="color-formulas">
+        <h2>Effective OKLCH role formulas</h2>
+        <p>Every row evaluates to <code>oklch(L C H)</code>. Here <strong>A</strong> means <code>var(--tty-accent-chroma)</code>, <strong>N</strong> means <code>var(--tty-neutral-chroma)</code>, and hue is the corresponding public hue parameter. Multiplication denotes <code>calc()</code>. These describe the implementation, not additional public knobs.</p>
+        <p>Light (including an omitted theme attribute) uses the light column. Explicit dark uses the dark column. Auto uses light unless <code>prefers-color-scheme: dark</code> matches, when it uses dark. Modes select internal <code>--_tty-*</code> lightness values and neutral chroma factors; those internal values are not public API.</p>
+        <div class="overflow-auto" tabindex="0" aria-label="Effective OKLCH color formulas"><table><thead><tr><th scope="col">Semantic token</th><th scope="col">L light / dark</th><th scope="col">C light / dark</th><th scope="col">H parameter</th></tr></thead><tbody>
+          <tr><th scope="row"><code>--tty-bg</code></th><td>98.5% / 18%</td><td>N × 0.2 / N × 1.2</td><td>neutral hue</td></tr>
+          <tr><th scope="row"><code>--tty-surface</code></th><td>100% / 23%</td><td>N × 0 / N × 1.2</td><td>neutral hue</td></tr>
+          <tr><th scope="row"><code>--tty-surface-muted</code></th><td>96.5% / 27%</td><td>N × 0.4 / N × 1.6</td><td>neutral hue</td></tr>
+          <tr><th scope="row"><code>--tty-fg</code></th><td>21% / 98%</td><td>N × 1.6 / N × 0.2</td><td>neutral hue</td></tr>
+          <tr><th scope="row"><code>--tty-fg-muted</code></th><td>48% / 78%</td><td>N / N</td><td>neutral hue</td></tr>
+          <tr><th scope="row"><code>--tty-border</code></th><td>85% / 43%</td><td>N / N</td><td>neutral hue</td></tr>
+          <tr><th scope="row"><code>--tty-border-strong</code></th><td>21% / 98%</td><td>N × 1.6 / N × 0.2</td><td>neutral hue</td></tr>
+          <tr><th scope="row"><code>--tty-accent</code></th><td>83% / 83%</td><td>A / A</td><td>accent hue</td></tr>
+          <tr><th scope="row"><code>--tty-accent-hover</code></th><td>78% / 88%</td><td>A / A</td><td>accent hue</td></tr>
+          <tr><th scope="row"><code>--tty-accent-fg</code></th><td>27% / 23%</td><td>A × 0.32 / A × 0.32</td><td>accent hue</td></tr>
+          <tr><th scope="row"><code>--tty-link</code></th><td>47% / 85%</td><td>A / A</td><td>accent hue</td></tr>
+          <tr><th scope="row"><code>--tty-link-hover</code></th><td>40% / 80%</td><td>A / A</td><td>accent hue</td></tr>
+          <tr><th scope="row"><code>--tty-selection</code></th><td>90% / 40%</td><td>A × 0.6 / A × 0.6</td><td>accent hue</td></tr>
+          <tr><th scope="row"><code>--tty-selection-fg</code></th><td>35% / 97%</td><td>A × 0.32 / A × 0.32</td><td>accent hue</td></tr>
+          <tr><th scope="row"><code>--tty-code-bg</code></th><td>21% / 13%</td><td>N × 1.6 / N × 1.6</td><td>neutral hue</td></tr>
+          <tr><th scope="row"><code>--tty-code-fg</code></th><td>98% / 98%</td><td>N × 0.2 / N × 0.2</td><td>neutral hue</td></tr>
+          <tr><th scope="row"><code>--tty-focus</code></th><td>56% / 85%</td><td>A / A</td><td>accent hue</td></tr>
+          <tr><th scope="row"><code>--tty-control-focus</code></th><td>37% / 85%</td><td>N / N</td><td>neutral hue</td></tr>
+          <tr><th scope="row"><code>--tty-control-shadow</code></th><td>55% / 43%</td><td>N / N</td><td>neutral hue</td></tr>
+        </tbody></table></div>
+        <p><code>--tty-success</code>, <code>--tty-warning</code>, and <code>--tty-danger</code> have no derived formula: use their mode-specific hex defaults in the color table above.</p>
       </section>
 
       <section id="typography">
@@ -128,7 +150,7 @@
           <tr><th scope="row"><code>--tty-icon-time</code></th><td>Embedded 16×16 SVG data URL</td><td>Time inputs</td></tr>
           <tr><th scope="row"><code>--tty-icon-datetime</code></th><td>Embedded 16×16 SVG data URL</td><td>Local date-time inputs</td></tr>
         </tbody></table></div>
-        <p>These icons are decorative CSS backgrounds; control labels provide meaning. Override them with a CSS <code>url()</code>, including a percent-encoded data URL if embedding SVG. Match the 16×16 view box and test light, dark, and disabled states. Firefox and forced-colors mode intentionally use native picker presentation for date and time controls.</p>
+        <p>These icons are decorative CSS backgrounds; control labels provide meaning. Their SVG strokes remain fixed at <code>#526174</code> in light and <code>#aab7c8</code> in dark/auto-dark; changing palette parameters or <code>--tty-fg-muted</code> does not recolor the images. Override them with a CSS <code>url()</code>, including a percent-encoded data URL if embedding SVG. Match the 16×16 view box and test light, dark, and disabled states. Firefox and forced-colors mode intentionally use native picker presentation for date and time controls.</p>
         <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>:root {
   --tty-icon-search: url("/assets/search.svg");
   --tty-icon-date: url("/assets/calendar.svg");
@@ -157,7 +179,7 @@ button.danger {
 
       <nav class="docs-pager" aria-label="Documentation pages"><a href="components.html">← Components</a><a href="accessibility.html">Accessibility →</a></nav>
     </div>
-    <aside class="docs-toc"><nav aria-label="On this page"><p class="docs-nav-title">On this page</p><ul><li><a href="#themes">Scope &amp; themes</a></li><li><a href="#custom-colors">Create a palette</a></li><li><a href="#colors">Colors</a></li><li><a href="#typography">Typography</a></li><li><a href="#shape">Layout &amp; shape</a></li><li><a href="#icons">Icons</a></li><li><a href="#overrides">Overrides</a></li></ul></nav></aside>
+    <aside class="docs-toc"><nav aria-label="On this page"><p class="docs-nav-title">On this page</p><ul><li><a href="#themes">Scope &amp; themes</a></li><li><a href="#custom-colors">Create a palette</a></li><li><a href="#colors">Color tokens</a></li><li><a href="#palette-parameters">Palette parameters</a></li><li><a href="#color-formulas">OKLCH formulas</a></li><li><a href="#typography">Typography</a></li><li><a href="#shape">Layout &amp; shape</a></li><li><a href="#icons">Icons</a></li><li><a href="#overrides">Overrides</a></li></ul></nav></aside>
   </main>
   <footer><small>tty.css — semantic HTML with sharp edges.</small></footer>
 </body>

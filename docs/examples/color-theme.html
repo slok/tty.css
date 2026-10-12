@@ -20,9 +20,9 @@
     <main id="content">
       <section>
         <h1>Same HTML. Different palette.</h1>
-        <p>This forest theme changes only <code>--tty-*</code> color variables. Buttons, cards, links, and inputs use the unchanged framework styles.</p>
+        <p>This forest theme directly overrides semantic <code>--tty-*</code> color tokens for full palette control, rather than using the framework's hue and chroma parameters. Buttons, cards, links, and inputs use the unchanged framework styles.</p>
         <p>Cycle the theme button to compare light, dark, and automatic mode. The palette itself needs no JavaScript; the button only changes <code>data-theme</code>.</p>
-        <p>This example uses hex colors. Compare the OKLCH palettes: <a href="ocean-theme.html">Ocean</a> and <a href="plum-theme.html">Plum</a>.</p>
+        <p>This example uses hex colors and explicit light, dark, automatic, and print overrides. Compare the parameter-based OKLCH palettes: <a href="ocean-theme.html">Ocean</a> and <a href="plum-theme.html">Plum</a>, where tty.css handles those modes.</p>
       </section>
       <section class="grid" aria-label="Themed components">
         <article>
@@ -49,6 +49,20 @@
 &lt;link rel="stylesheet" href="forest-theme.css"&gt;</code></pre>
         <p><a href="forest-theme.css">View palette CSS</a> · <a href="forest-theme.css" download>Download palette</a> · <a href="color-theme.html" download>Download HTML</a></p>
         <p>Success, warning, and danger colors keep tty.css defaults. Embedded input icons have their own image tokens; changing text colors does not recolor those SVGs.</p>
+      </section>
+      <section>
+        <h2>Mix parameters and direct overrides</h2>
+        <p>For a new theme, load this CSS after tty.css instead of the full Forest palette. Let the framework derive brand colors, then pin an individual token on the active theme selectors:</p>
+        <pre><code>:root {
+  --tty-accent-hue: 145;
+}
+
+:root,
+:root[data-theme="dark"],
+:root[data-theme="auto"] {
+  --tty-accent: #86efac;
+}</code></pre>
+        <p>The direct <code>--tty-accent</code> override wins; other brand tokens still follow <code>--tty-accent-hue</code>. Surfaces keep the default neutral palette unless you also set <code>--tty-neutral-hue</code>. Check contrast in each mode when mixing derived and custom colors. This snippet is not applied to the Forest preview.</p>
       </section>
     </main>
     <footer><small>Example-only palette. No changes to tty.css or its cascade.</small></footer>
