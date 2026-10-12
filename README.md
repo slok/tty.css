@@ -25,7 +25,7 @@ The repository is also a build-free static site:
 | --- | --- |
 | `docs/index.html` | GitHub Pages landing page and quick install |
 | `docs/reference/` | Grouped guides and element reference |
-| `docs/examples/` | Six complete pages built with tty.css |
+| `docs/examples/` | Six complete pages and a color-palette example built with tty.css |
 | `docs/assets/docs.css` | Documentation-site layout only |
 | `docs/assets/docs.js` | Documentation theme and copy controls only |
 | `tty.css` | Canonical framework source and local distribution file |
@@ -52,6 +52,10 @@ logic embedded directly in the page:
 - SaaS dashboard
 - Search console
 - Persistent task board
+
+A separate [forest color-palette example](docs/examples/color-theme.html) shows
+variable-only customization in light, dark, and automatic modes. See the
+[color customization guide](docs/reference/customization.html#custom-colors).
 
 ## Install
 

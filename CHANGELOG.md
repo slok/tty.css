@@ -15,6 +15,7 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - Loading indicators, tooltips, progress bars, and meters.
 - Accessibility, print, forced-colors, and reduced-motion styles.
 - A build-free documentation site with reference guides and complete examples.
+- A variable-only forest palette example and color customization guide covering light, dark, and automatic modes.
 
 ### Changed
 

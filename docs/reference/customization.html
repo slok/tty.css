@@ -46,6 +46,46 @@
         <p>Recheck text, focus, control, selection, and status contrast in every theme after changing colors. See <a href="themes.html">theme selection</a> and <a href="accessibility.html">accessibility responsibilities</a>.</p>
       </section>
 
+      <section id="custom-colors">
+        <h2>Create a color palette</h2>
+        <p>A theme can be a separate CSS file containing only variable overrides. Load it after tty.css: existing components pick up the new colors without new classes or component selectors.</p>
+        <div class="code-example"><button class="secondary" type="button" data-copy aria-label="Copy palette stylesheet setup">Copy</button><pre><code>&lt;link rel="stylesheet" href="tty.css"&gt;
+&lt;link rel="stylesheet" href="forest-theme.css"&gt;</code></pre></div>
+        <p>Start with related color pairs. Set the accent background, its hover color, and its foreground together; use separate link colors that remain readable on the page background.</p>
+        <div class="code-example"><button class="secondary" type="button" data-copy aria-label="Copy forest accent palette">Copy</button><pre><code>/* forest-theme.css: light defaults */
+:root {
+  --tty-accent: #bbf7d0;
+  --tty-accent-hover: #86efac;
+  --tty-accent-fg: #14351f;
+  --tty-link: #166534;
+  --tty-link-hover: #14532d;
+  --tty-focus: #15803d;
+}
+
+:root[data-theme="dark"] {
+  --tty-accent: #86efac;
+  --tty-accent-hover: #bbf7d0;
+  --tty-accent-fg: #14351f;
+  --tty-link: #86efac;
+  --tty-link-hover: #bbf7d0;
+  --tty-focus: #86efac;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="auto"] {
+    --tty-accent: #86efac;
+    --tty-accent-hover: #bbf7d0;
+    --tty-accent-fg: #14351f;
+    --tty-link: #86efac;
+    --tty-link-hover: #bbf7d0;
+    --tty-focus: #86efac;
+  }
+}</code></pre></div>
+        <p>For a full palette, also coordinate canvas and surface backgrounds, primary and muted text, borders, selection, code, and control focus and shadows. Unspecified variables retain the framework defaults. Input icons are embedded SVG images: customize their <a href="#icons">icon tokens</a> separately if needed.</p>
+        <p><a href="../examples/color-theme.html" role="button">Preview the forest palette</a> <a href="../examples/forest-theme.css" download>Download palette CSS</a></p>
+        <p>The live example uses the same HTML and framework styles in all three modes. Its separate stylesheet includes the wider palette and print overrides. Check normal and hovered text contrast, keyboard focus, validation states, and narrow layouts in both light and dark modes before shipping.</p>
+      </section>
+
       <section id="colors">
         <h2>Color tokens</h2>
         <div class="overflow-auto" tabindex="0" aria-label="Color token defaults"><table><thead><tr><th scope="col">Token</th><th scope="col">Light default</th><th scope="col">Dark and auto-dark default</th><th scope="col">Used for</th></tr></thead><tbody>
@@ -152,7 +192,7 @@ button.danger {
 
       <nav class="docs-pager" aria-label="Documentation pages"><a href="components.html">← Components</a><a href="accessibility.html">Accessibility →</a></nav>
     </div>
-    <aside class="docs-toc"><nav aria-label="On this page"><p class="docs-nav-title">On this page</p><ul><li><a href="#themes">Scope &amp; themes</a></li><li><a href="#colors">Colors</a></li><li><a href="#typography">Typography</a></li><li><a href="#shape">Layout &amp; shape</a></li><li><a href="#icons">Icons</a></li><li><a href="#overrides">Overrides</a></li></ul></nav></aside>
+    <aside class="docs-toc"><nav aria-label="On this page"><p class="docs-nav-title">On this page</p><ul><li><a href="#themes">Scope &amp; themes</a></li><li><a href="#custom-colors">Create a palette</a></li><li><a href="#colors">Colors</a></li><li><a href="#typography">Typography</a></li><li><a href="#shape">Layout &amp; shape</a></li><li><a href="#icons">Icons</a></li><li><a href="#overrides">Overrides</a></li></ul></nav></aside>
   </main>
   <footer><small>tty.css — semantic HTML with sharp edges.</small></footer>
 </body>
