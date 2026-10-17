@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Tabs styling with no-library and Alpine.js examples in tty.css.">
+  <title>Tabs · tty.css</title>
+  <link rel="stylesheet" href="../../tty.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script src="../assets/palette-settings.js"></script>
+  <script defer src="../assets/docs.js"></script>
+  <script defer src="../assets/tabs.js"></script>
+  <script defer src="../assets/tabs-alpine.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.16.3/dist/cdn.min.js"></script>
+</head>
+<body class="docs-page">
+  <a class="sr-only" href="#content">Skip to content</a>
+  <header class="docs-topbar"><nav aria-label="Main navigation"><ul><li><a href="../"><strong>▰ tty.css</strong></a></li><li><small>main</small></li></ul><ul><li><a href="./" aria-current="page">Docs</a></li><li><a href="../examples/">Examples</a></li><li><a href="../../tty.css" download>Download</a></li><li><button type="button" class="outline" data-theme-toggle>Theme: light</button></li></ul></nav></header>
+  <main class="docs-shell">
+    <aside class="docs-sidebar"><nav aria-label="Documentation sidebar"><p class="docs-nav-title">Getting started</p><ul><li><a href="./">Quick start</a></li><li><a href="themes.html">Themes</a></li></ul><p class="docs-nav-title">Layout</p><ul><li><a href="layout.html">Landmarks, containers &amp; grid</a></li></ul><p class="docs-nav-title">Content</p><ul><li><a href="typography.html">Typography</a></li><li><a href="buttons-links.html">Buttons &amp; links</a></li><li><a href="tables-code.html">Tables &amp; code</a></li></ul><p class="docs-nav-title">Forms</p><ul><li><a href="forms.html">Form elements</a></li></ul><p class="docs-nav-title">Components</p><ul><li><a href="cards.html">Cards</a></li><li><a href="navigation.html">Navigation</a></li><li><a href="tabs.html" aria-current="page">Tabs</a></li><li><a href="components.html">Native components</a></li></ul><p class="docs-nav-title">Customize</p><ul><li><a href="colors.html">Colors</a></li><li><a href="customization.html">CSS variables</a></li><li><a href="accessibility.html">Accessibility</a></li><li><a href="pico-comparison.html">Pico comparison</a></li></ul></nav></aside>
+    <div class="docs-content" id="content">
+      <header><p>Components</p><h1>Tabs</h1><p>tty.css styles horizontal tabs and panels. Your application supplies the interaction.</p></header>
+      <section id="usage">
+        <h2>Usage</h2>
+        <p>Use <code>.tabs</code> with a direct child <code>role="tablist"</code> and sibling <code>role="tabpanel"</code> elements. Connect unique tab and panel IDs with <code>aria-controls</code> and <code>aria-labelledby</code>; application JavaScript updates <code>aria-selected</code>, <code>tabindex</code>, and native <code>hidden</code>.</p>
+      </section>
+      <section id="examples">
+        <h2>Examples</h2>
+        <p>Copy the markup under Code and download its <a href="../assets/tabs.js">No lib</a> or <a href="../assets/tabs-alpine.js">Alpine.js</a> helper. These scripts and the <code>data-tabs</code> hook are example code, not part of tty.css.</p>
+        <div class="tabs" data-tabs>
+          <div role="tablist" aria-label="Implementation">
+            <button type="button" role="tab" id="example-vanilla-tab" aria-controls="example-vanilla-panel" aria-selected="true" tabindex="0">No lib</button>
+            <button type="button" role="tab" id="example-alpine-tab" aria-controls="example-alpine-panel" aria-selected="false" tabindex="-1">Alpine.js</button>
+          </div>
+          <section role="tabpanel" id="example-vanilla-panel" aria-labelledby="example-vanilla-tab" tabindex="0">
+            <div class="tabs" data-tabs>
+              <div role="tablist" aria-label="No-library query performance">
+                <button type="button" role="tab" id="vanilla-vector-tab" aria-controls="vanilla-vector-panel" aria-selected="true" tabindex="0">Vector Perf</button>
+                <button type="button" role="tab" id="vanilla-text-tab" aria-controls="vanilla-text-panel" aria-selected="false" tabindex="-1">Full-Text Perf</button>
+              </div>
+              <section role="tabpanel" id="vanilla-vector-panel" aria-labelledby="vanilla-vector-tab" tabindex="0"><p>Vector search: median latency <strong>18 ms</strong>, recall <strong>98.4%</strong>.</p></section>
+              <section role="tabpanel" id="vanilla-text-panel" aria-labelledby="vanilla-text-tab" tabindex="0" hidden><p>Full-text search: median latency <strong>9 ms</strong>, throughput <strong>640 queries/s</strong>.</p></section>
+            </div>
+            <details><summary>Code</summary>
+              <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;script defer src="../assets/tabs.js"&gt;&lt;/script&gt;
+&lt;div class="tabs" data-tabs&gt;
+  &lt;div role="tablist" aria-label="Query performance"&gt;
+    &lt;button type="button" role="tab" id="perf-vector-tab" aria-controls="perf-vector-panel" aria-selected="true" tabindex="0"&gt;Vector Perf&lt;/button&gt;
+    &lt;button type="button" role="tab" id="perf-text-tab" aria-controls="perf-text-panel" aria-selected="false" tabindex="-1"&gt;Full-Text Perf&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;section role="tabpanel" id="perf-vector-panel" aria-labelledby="perf-vector-tab" tabindex="0"&gt;
+    &lt;p&gt;Vector search: median latency 18 ms, recall 98.4%.&lt;/p&gt;
+  &lt;/section&gt;
+  &lt;section role="tabpanel" id="perf-text-panel" aria-labelledby="perf-text-tab" tabindex="0" hidden&gt;
+    &lt;p&gt;Full-text search: median latency 9 ms, throughput 640 queries/s.&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/div&gt;</code></pre></div>
+            </details>
+          </section>
+          <section role="tabpanel" id="example-alpine-panel" aria-labelledby="example-alpine-tab" tabindex="0" hidden>
+            <div class="tabs" x-data="exampleTabs">
+              <div role="tablist" aria-label="Alpine query performance" @keydown="moveTab($event)" @focusout="if (!$el.contains($event.relatedTarget)) tabStop = activeTab">
+                <button type="button" role="tab" id="alpine-vector-tab" aria-controls="alpine-vector-panel" aria-selected="true" :aria-selected="activeTab === 0" tabindex="0" :tabindex="tabStop === 0 ? 0 : -1" @focus="focusTab(0, $el)" @click="activateTab(0, $el)">Vector Perf</button>
+                <button type="button" role="tab" id="alpine-text-tab" aria-controls="alpine-text-panel" aria-selected="false" :aria-selected="activeTab === 1" tabindex="-1" :tabindex="tabStop === 1 ? 0 : -1" @focus="focusTab(1, $el)" @click="activateTab(1, $el)">Full-Text Perf</button>
+              </div>
+              <section role="tabpanel" id="alpine-vector-panel" aria-labelledby="alpine-vector-tab" tabindex="0" :hidden="activeTab !== 0"><p>Vector search: median latency <strong>18 ms</strong>, recall <strong>98.4%</strong>.</p></section>
+              <section role="tabpanel" id="alpine-text-panel" aria-labelledby="alpine-text-tab" tabindex="0" hidden :hidden="activeTab !== 1"><p>Full-text search: median latency <strong>9 ms</strong>, throughput <strong>640 queries/s</strong>.</p></section>
+            </div>
+            <details><summary>Code</summary>
+              <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;!-- Keep this order: register the component before Alpine starts. --&gt;
+&lt;script defer src="../assets/tabs-alpine.js"&gt;&lt;/script&gt;
+&lt;script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.16.3/dist/cdn.min.js"&gt;&lt;/script&gt;
+&lt;div class="tabs" x-data="exampleTabs"&gt;
+  &lt;div role="tablist" aria-label="Query performance" @keydown="moveTab($event)" @focusout="if (!$el.contains($event.relatedTarget)) tabStop = activeTab"&gt;
+    &lt;button type="button" role="tab" id="alpine-vector-tab" aria-controls="alpine-vector-panel" aria-selected="true" :aria-selected="activeTab === 0" tabindex="0" :tabindex="tabStop === 0 ? 0 : -1" @focus="focusTab(0, $el)" @click="activateTab(0, $el)"&gt;Vector Perf&lt;/button&gt;
+    &lt;button type="button" role="tab" id="alpine-text-tab" aria-controls="alpine-text-panel" aria-selected="false" :aria-selected="activeTab === 1" tabindex="-1" :tabindex="tabStop === 1 ? 0 : -1" @focus="focusTab(1, $el)" @click="activateTab(1, $el)"&gt;Full-Text Perf&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;section role="tabpanel" id="alpine-vector-panel" aria-labelledby="alpine-vector-tab" tabindex="0" :hidden="activeTab !== 0"&gt;
+    &lt;p&gt;Vector search: median latency 18 ms, recall 98.4%.&lt;/p&gt;
+  &lt;/section&gt;
+  &lt;section role="tabpanel" id="alpine-text-panel" aria-labelledby="alpine-text-tab" tabindex="0" hidden :hidden="activeTab !== 1"&gt;
+    &lt;p&gt;Full-text search: median latency 9 ms, throughput 640 queries/s.&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/div&gt;</code></pre></div>
+            </details>
+          </section>
+        </div>
+        <p><kbd>←</kbd>/<kbd>→</kbd> and <kbd>Home</kbd>/<kbd>End</kbd> move focus without selecting; <kbd>Enter</kbd>/<kbd>Space</kbd> activate. <kbd>Tab</kbd> leaves the strip; returning enters at the selected tab. See <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/tab_role">MDN</a>, the <a href="https://www.w3.org/WAI/ARIA/apg/patterns/tabs/">APG tabs pattern</a>, and the <a href="../examples/dashboard.html">dashboard example</a>.</p>
+      </section>
+      <nav class="docs-pager" aria-label="Documentation pagination"><a href="navigation.html">&larr; Navigation</a><a href="components.html">Native components &rarr;</a></nav>
+    </div>
+    <aside class="docs-toc"><nav aria-label="Table of contents"><p class="docs-nav-title">On this page</p><ul><li><a href="#usage">Usage</a></li><li><a href="#examples">Examples</a></li></ul></nav></aside>
+  </main>
+  <footer><small>tty.css — semantic HTML with sharp edges.</small></footer>
+</body>
+</html>

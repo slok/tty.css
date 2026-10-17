@@ -9,6 +9,7 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 ### Added
 
+- Class-light ARIA tabs with connected frames, dithered panel shadows, theme support, a keyboard-accessible documentation demo, and an Alpine dashboard example. Tab behavior remains application-owned; tty.css ships no JavaScript.
 - Light, dark, and automatic themes with CSS custom properties.
 - Responsive forms, tables, navigation, cards, dialogs, dropdowns, and utilities.
 - Connected semantic control groups and spaced action groups.

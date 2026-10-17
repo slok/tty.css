@@ -1131,6 +1131,98 @@ h4 {
   font-size: 0.8rem;
 }
 
+/* Tabs: application code owns selection, visibility, and keyboard behavior. */
+:where(.tabs) {
+  min-width: 0;
+  margin-bottom: 1.5rem;
+}
+
+:where(.tabs > [role="tablist"]) {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 0;
+  max-width: 100%;
+  margin: 0 0 calc(-1 * var(--tty-frame-width));
+  padding: 0;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  scrollbar-width: none;
+}
+
+:where(.tabs > [role="tablist"])::-webkit-scrollbar {
+  display: none;
+}
+
+:where(.tabs > [role="tablist"] > [role="tab"]) {
+  flex: 0 0 auto;
+  min-height: var(--tty-control-height);
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border: var(--tty-frame-width) solid var(--tty-border-strong);
+  border-radius: 0;
+  background: var(--tty-surface-muted);
+  box-shadow: none;
+  color: var(--tty-fg);
+  font: 600 0.875rem/1.4 var(--tty-font);
+  text-decoration: none;
+  white-space: nowrap;
+  translate: none;
+}
+
+:where(.tabs > [role="tablist"] > [role="tab"] + [role="tab"]) {
+  margin-inline-start: calc(-1 * var(--tty-frame-width));
+}
+
+:where(.tabs > [role="tablist"] > [role="tab"]:not(:disabled, [aria-disabled="true"])):hover {
+  background: color-mix(in srgb, var(--tty-surface-muted) 88%, var(--tty-fg));
+  color: var(--tty-fg);
+}
+
+:where(.tabs > [role="tablist"] > [role="tab"][aria-selected="true"]),
+:where(.tabs > [role="tablist"] > [role="tab"][aria-selected="true"]):hover {
+  padding-bottom: calc(0.75rem + var(--tty-frame-width));
+  border-bottom-width: 0;
+  background: var(--tty-bg);
+  color: var(--tty-fg);
+}
+
+:where(.tabs > [role="tablist"] > [role="tab"]):active {
+  box-shadow: none;
+  translate: none;
+}
+
+:where(.tabs > [role="tablist"] > [role="tab"]):focus-visible {
+  position: relative;
+  z-index: 1;
+  outline-offset: -0.4rem;
+}
+
+:where(.tabs > [role="tablist"] > [role="tab"]):disabled,
+:where(.tabs > [role="tablist"] > [role="tab"][aria-disabled="true"]) {
+  color: var(--tty-fg-muted);
+  cursor: not-allowed;
+  opacity: 1;
+  background: var(--tty-surface-muted);
+}
+
+:where(.tabs > [role="tabpanel"][hidden]) {
+  display: none;
+}
+
+:where(.tabs > [role="tabpanel"] > :last-child) {
+  margin-bottom: 0;
+}
+
+:where(.tabs > [role="tabpanel"] > footer) {
+  margin: 1.25rem -1.25rem -1.25rem;
+  padding: 0.8rem 1.25rem;
+  background: var(--tty-surface-muted);
+  color: var(--tty-fg-muted);
+}
+
 /* Components */
 :where(article) {
   margin: 0 0 1.5rem;
@@ -1720,6 +1812,17 @@ article > :where(header) > :where(h1, h2, h3, h4, h5, h6) {
   margin-bottom: 0;
 }
 
+/* Keep panel framing consistent for div, section, and article panels. */
+:where(.tabs > [role="tabpanel"]) {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  padding: 1.25rem;
+  border: var(--tty-frame-width) solid var(--tty-border-strong);
+  border-radius: 0;
+  background: var(--tty-bg);
+}
+
 /* Small composition layer */
 .grid {
   display: grid;
@@ -1784,7 +1887,7 @@ article.reading h2 {
   position: relative;
 }
 
-:where(article, fieldset, dialog, .terminal)::after {
+:where(article, fieldset, dialog, .terminal, .tabs > [role="tabpanel"])::after {
   position: absolute;
   z-index: 0;
   top: var(--tty-shadow-y);
@@ -1981,11 +2084,11 @@ article.reading h2 {
     --tty-link-hover: #000;
   }
 
-  :where(article, fieldset, dialog) {
+  :where(article, fieldset, dialog, .tabs > [role="tabpanel"]) {
     break-inside: avoid;
   }
 
-  :where(article, fieldset, dialog, .terminal)::after {
+  :where(article, fieldset, dialog, .terminal, .tabs > [role="tabpanel"])::after {
     display: none;
   }
 
