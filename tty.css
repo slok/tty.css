@@ -281,6 +281,11 @@ h4 {
   padding-left: 1.5rem;
 }
 
+:where(ul.plain, ol.plain) {
+  padding-left: 0;
+  list-style: none;
+}
+
 :where(li) {
   margin-block: 0.25rem;
 }
@@ -357,24 +362,24 @@ h4 {
   color: var(--tty-link-hover);
 }
 
-:where(a:not([role="button"]).primary) {
+:where(a:not([role="button"], .button).primary) {
   color: var(--tty-link);
 }
 
-:where(a:not([role="button"]).secondary) {
+:where(a:not([role="button"], .button).secondary) {
   color: var(--tty-fg-muted);
 }
 
-:where(a:not([role="button"]).contrast) {
+:where(a:not([role="button"], .button).contrast) {
   color: var(--tty-fg);
 }
 
-:where(a:not([role="button"]).primary:hover) {
+:where(a:not([role="button"], .button).primary:hover) {
   color: var(--tty-link-hover);
 }
 
-:where(a:not([role="button"]).secondary:hover,
-  a:not([role="button"]).contrast:hover) {
+:where(a:not([role="button"], .button).secondary:hover,
+  a:not([role="button"], .button).contrast:hover) {
   color: var(--tty-focus);
 }
 
@@ -468,6 +473,30 @@ h4 {
   white-space: nowrap;
 }
 
+/* Menu indicators are separate from ordinary text-link underlines. Reserve
+   their space so hover and current-page states never move surrounding items. */
+:where(nav:not(.breadcrumb, [aria-label="breadcrumb"], aside nav) > ul > li > a:not([role="button"], .button)) {
+  display: inline-block;
+  padding: 0.35rem 0.5rem;
+  border-bottom: var(--tty-frame-width) solid transparent;
+  font-weight: inherit;
+  text-decoration: none;
+}
+
+:where(nav:not(.breadcrumb, [aria-label="breadcrumb"], aside nav) > ul > li > a:not([role="button"], .button):hover) {
+  border-bottom-color: var(--tty-fg-muted);
+  border-bottom-color: color-mix(in oklch, currentColor 45%, transparent);
+}
+
+:where(nav:not(.breadcrumb, [aria-label="breadcrumb"], aside nav) > ul > li > a:not([role="button"], .button)[aria-current="page"]) {
+  border-bottom-color: currentColor;
+}
+
+:where(nav:not(.breadcrumb, [aria-label="breadcrumb"], aside nav) > ul > li > a:not([role="button"], .button, .primary, .secondary, .contrast)),
+:where(nav:not(.breadcrumb, [aria-label="breadcrumb"], aside nav) > ul > li > a:not([role="button"], .button, .primary, .secondary, .contrast):hover) {
+  color: inherit;
+}
+
 :where(nav.breadcrumb, nav[aria-label="breadcrumb"]) {
   justify-content: flex-start;
 }
@@ -487,7 +516,7 @@ h4 {
 
 /* Buttons */
 :where(button, input[type="submit"], input[type="button"], input[type="reset"],
-  a[role="button"]) {
+  a:is([role="button"], .button)) {
   display: inline-flex;
   min-height: var(--tty-control-height);
   align-items: center;
@@ -511,56 +540,56 @@ h4 {
 }
 
 :where(button, input[type="submit"], input[type="button"], input[type="reset"],
-  a[role="button"]):hover {
+  a:is([role="button"], .button)):hover {
   background: var(--tty-accent-hover);
   color: var(--tty-accent-fg);
 }
 
 :where(button, input[type="submit"], input[type="button"], input[type="reset"],
-  a[role="button"]):active {
+  a:is([role="button"], .button)):active {
   box-shadow: none;
   translate: var(--tty-control-shadow-size) var(--tty-control-shadow-size);
 }
 
 :where(button, input[type="submit"], input[type="button"], input[type="reset"],
-  a[role="button"]).secondary {
+  a:is([role="button"], .button)).secondary {
   background: var(--tty-surface-muted);
   color: var(--tty-fg);
 }
 
 :where(button, input[type="submit"], input[type="button"], input[type="reset"],
-  a[role="button"]).secondary:hover {
+  a:is([role="button"], .button)).secondary:hover {
   background: color-mix(in srgb, var(--tty-surface-muted) 88%, var(--tty-fg));
   color: var(--tty-fg);
 }
 
 :where(button, input[type="submit"], input[type="button"], input[type="reset"],
-  a[role="button"]).contrast {
+  a:is([role="button"], .button)).contrast {
   background: var(--tty-fg);
   color: var(--tty-bg);
 }
 
 :where(button, input[type="submit"], input[type="button"], input[type="reset"],
-  a[role="button"]).contrast:hover {
+  a:is([role="button"], .button)).contrast:hover {
   background: var(--tty-fg-muted);
   color: var(--tty-bg);
 }
 
 :where(button, input[type="submit"], input[type="button"], input[type="reset"],
-  a[role="button"]).outline {
+  a:is([role="button"], .button)).outline {
   background: transparent;
   box-shadow: none;
   color: var(--tty-fg);
 }
 
 :where(button, input[type="submit"], input[type="button"], input[type="reset"],
-  a[role="button"]).outline:hover {
+  a:is([role="button"], .button)).outline:hover {
   background: var(--tty-surface-muted);
   color: var(--tty-fg);
 }
 
 :where(button, input[type="submit"], input[type="button"], input[type="reset"]):disabled,
-:where(a[role="button"][aria-disabled="true"]) {
+:where(a:is([role="button"], .button)[aria-disabled="true"]) {
   box-shadow: none;
   cursor: not-allowed;
   opacity: 0.5;
@@ -594,7 +623,7 @@ h4 {
 }
 
 :where(button, input[type="submit"], input[type="button"], input[type="reset"],
-  a[role="button"])[aria-busy="true"] {
+  a:is([role="button"], .button))[aria-busy="true"] {
   cursor: wait;
 }
 
@@ -952,9 +981,18 @@ h4 {
   color: var(--tty-success);
 }
 
-:where(form small) {
+:where(form small[id]:not(label small),
+  form :is(input, select, textarea, label, [role="group"], [role="search"], details.dropdown) + small:not(label small)) {
   display: block;
-  margin: -0.7rem 0 1rem;
+  margin: 0 0 1rem;
+}
+
+:where(form :is(input, select, textarea) + small:not(label small)) {
+  margin-top: -0.7rem;
+}
+
+:where(output) {
+  font-variant-numeric: tabular-nums;
 }
 
 :where(.group) {
@@ -982,38 +1020,38 @@ h4 {
   margin-bottom: 1rem;
 }
 
-:where([role="group"] > :is(button, input, select, textarea, a[role="button"])) {
+:where([role="group"] > :is(button, input, select, textarea, a[role="button"], a.button)) {
   position: relative;
   margin: 0;
   border-radius: 0;
 }
 
 :where([role="group"] > :is(button, input[type="submit"], input[type="button"],
-  input[type="reset"], a[role="button"])) {
+  input[type="reset"], a[role="button"], a.button)) {
   box-shadow: none;
 }
 
-:where([role="group"] > :is(button, input, select, textarea, a[role="button"]) +
-  :is(button, input, select, textarea, a[role="button"])) {
+:where([role="group"] > :is(button, input, select, textarea, a[role="button"], a.button) +
+  :is(button, input, select, textarea, a[role="button"], a.button)) {
   margin-left: calc(-1 * var(--tty-border-width));
 }
 
-:where([role="group"] > :is(button, input, select, textarea, a[role="button"]):first-child) {
+:where([role="group"] > :is(button, input, select, textarea, a[role="button"], a.button):first-child) {
   border-top-left-radius: var(--tty-radius);
   border-bottom-left-radius: var(--tty-radius);
 }
 
-:where([role="group"] > :is(button, input, select, textarea, a[role="button"]):last-child) {
+:where([role="group"] > :is(button, input, select, textarea, a[role="button"], a.button):last-child) {
   border-top-right-radius: var(--tty-radius);
   border-bottom-right-radius: var(--tty-radius);
 }
 
-:where([role="group"] > :is(button, input, select, textarea, a[role="button"]):focus-visible) {
+:where([role="group"] > :is(button, input, select, textarea, a[role="button"], a.button):focus-visible) {
   z-index: 2;
 }
 
 :where([role="group"] > :is(button, input[type="submit"], input[type="button"],
-  input[type="reset"], a[role="button"]):active) {
+  input[type="reset"], a[role="button"], a.button):active) {
   translate: none;
 }
 
@@ -1036,7 +1074,8 @@ h4 {
   [role="search"] > input[type="submit"],
   [role="search"] > input[type="button"],
   [role="search"] > input[type="reset"],
-  [role="search"] > [role="button"]) {
+  [role="search"] > [role="button"],
+  [role="search"] > a.button) {
   width: auto;
   flex: 0 0 auto;
 }
@@ -1238,7 +1277,8 @@ h4 {
   font-size: 0.9rem;
 }
 
-article > :where(h1, h2) {
+article > :where(h1, h2),
+article > :where(div) > :where(h1, h2) {
   font-family: var(--tty-font);
   font-size: 1rem;
   font-variant-caps: normal;
@@ -1247,7 +1287,8 @@ article > :where(h1, h2) {
   text-transform: none;
 }
 
-article > :where(h3, h4, h5, h6) {
+article > :where(h3, h4, h5, h6),
+article > :where(div) > :where(h3, h4, h5, h6) {
   font-family: var(--tty-font);
   font-size: 0.875rem;
   font-variant-caps: normal;
@@ -1368,6 +1409,11 @@ article > :where(header) > :where(h1, h2, h3, h4, h5, h6) {
   margin-bottom: 0.65rem;
   padding-bottom: 0;
   border-bottom: 0;
+}
+
+:where(details.plain:not(.dropdown)) {
+  border: 0;
+  background: transparent;
 }
 
 /* Select-like disclosure menu. Opening works without JavaScript. */
@@ -1823,7 +1869,7 @@ article > :where(header) > :where(h1, h2, h3, h4, h5, h6) {
 /* Small composition layer */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--tty-grid-min, 17rem)), 1fr));
   gap: 1.5rem;
 }
 
@@ -2069,23 +2115,23 @@ article.reading h2 {
     flex-direction: column;
   }
 
-  :where([role="group"] > :is(button, input, select, textarea, a[role="button"])) {
+  :where([role="group"] > :is(button, input, select, textarea, a[role="button"], a.button)) {
     width: 100%;
     margin-left: 0;
     border-radius: 0;
   }
 
-  :where([role="group"] > :is(button, input, select, textarea, a[role="button"]) +
-    :is(button, input, select, textarea, a[role="button"])) {
+  :where([role="group"] > :is(button, input, select, textarea, a[role="button"], a.button) +
+    :is(button, input, select, textarea, a[role="button"], a.button)) {
     margin-top: calc(-1 * var(--tty-border-width));
   }
 
-  :where([role="group"] > :is(button, input, select, textarea, a[role="button"]):first-child) {
+  :where([role="group"] > :is(button, input, select, textarea, a[role="button"], a.button):first-child) {
     border-top-left-radius: var(--tty-radius);
     border-top-right-radius: var(--tty-radius);
   }
 
-  :where([role="group"] > :is(button, input, select, textarea, a[role="button"]):last-child) {
+  :where([role="group"] > :is(button, input, select, textarea, a[role="button"], a.button):last-child) {
     border-bottom-right-radius: var(--tty-radius);
     border-bottom-left-radius: var(--tty-radius);
   }
@@ -2107,6 +2153,20 @@ article.reading h2 {
 }
 
 @media (forced-colors: active) {
+  /* Transparent borders become visible in forced colors. Match the canvas
+     until an indicator is needed, using system colors for its states. */
+  :where(nav:not(.breadcrumb, [aria-label="breadcrumb"], aside nav) > ul > li > a:not([role="button"], .button)) {
+    border-bottom-color: Canvas;
+  }
+
+  :where(nav:not(.breadcrumb, [aria-label="breadcrumb"], aside nav) > ul > li > a:not([role="button"], .button):hover) {
+    border-bottom-color: GrayText;
+  }
+
+  :where(nav:not(.breadcrumb, [aria-label="breadcrumb"], aside nav) > ul > li > a:not([role="button"], .button)[aria-current="page"]) {
+    border-bottom-color: LinkText;
+  }
+
   :where(article, fieldset, dialog, .terminal, .tabs > [role="tabpanel"],
     .overflow-auto > table)::after {
     display: none;

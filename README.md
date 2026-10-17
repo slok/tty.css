@@ -25,7 +25,7 @@ The repository is also a build-free static site:
 | --- | --- |
 | `docs/index.html` | GitHub Pages landing page and quick install |
 | `docs/reference/` | Grouped guides and element reference |
-| `docs/examples/` | Six general examples and a Monokai palette example |
+| `docs/examples/` | Seven general examples and a Monokai palette example |
 | `docs/assets/docs.css` | Documentation-site layout only |
 | `docs/assets/docs.js` | Documentation theme and copy controls only |
 | `docs/assets/tabs.js` | Docs-only ARIA tabs example controller; not part of tty.css |
@@ -35,8 +35,9 @@ The repository is also a build-free static site:
 
 The framework itself is only the repository-root `tty.css`; it imports no fonts,
 assets, or JavaScript. The documentation and examples use that local stylesheet
-at runtime, with documentation-only assets where needed. The three interactive
-examples additionally load Alpine.js for application behavior, not styling.
+at runtime, with documentation-only assets where needed. Three interactive
+examples load Alpine.js for application behavior, not styling; the pricing
+example uses a small vanilla JavaScript estimator with no application library.
 
 See [`docs/reference/pico-comparison.html`](docs/reference/pico-comparison.html)
 for the current feature comparison and remaining gaps with Pico CSS.
@@ -51,6 +52,12 @@ Three examples use plain semantic HTML with no application JavaScript:
 
 A docs-only preference script applies the saved palette to these previews;
 native behavior and tty.css need no JavaScript.
+
+One example adds vanilla JavaScript without an application library:
+
+- [OrbitDB pricing](docs/examples/pricing.html): native pricing cards and FAQ,
+  with a small usage estimator ([HTML source](docs/examples/pricing.html),
+  [JavaScript source](docs/examples/pricing.js)).
 
 Three progressively interactive examples use Alpine.js 3.16.3 with application
 logic embedded directly in the page:
@@ -145,7 +152,7 @@ tty.css directly styles:
 - `code`, `kbd`, `samp`, and `pre`
 - Navigation
 - Breadcrumb navigation and disclosure dropdowns
-- Buttons and links with `role="button"`
+- Buttons and button-styled links (`a.button`, or legacy `a[role="button"]`)
 - Forms, fieldsets, labels, validation, and common input types
 - Checkboxes, radios, switches, ranges, files, and colors
 - Tables
@@ -164,6 +171,17 @@ API in application code when interactive behavior is needed:
 ```js
 document.querySelector("dialog").showModal();
 ```
+
+## Navigation links
+
+Top-level menu links outside `aside` inherit color and weight without text underlines;
+explicit `.primary`, `.secondary`, and `.contrast` link colors are preserved. They use
+inline-block layout, `0.35rem 0.5rem` padding, and a transparent
+`--tty-frame-width` bottom border to reserve space. Hover reveals a 45%
+current-color border; `aria-current="page"` keeps it solid, even on hover.
+The global keyboard focus outline is unchanged. Button-styled links, breadcrumb
+links, dropdown items, and navigation inside `aside` are excluded. See the
+[Navigation reference](docs/reference/navigation.html) for markup and examples.
 
 ## Tabs
 
@@ -205,7 +223,8 @@ top border:
 </article>
 ```
 
-Keep the heading directly inside the article when it belongs inside the card:
+Keep the heading directly inside the article, or inside one plain `div` wrapper,
+when it belongs inside the card:
 
 ```html
 <article>
@@ -214,9 +233,11 @@ Keep the heading directly inside the article when it belongs inside the card:
 </article>
 ```
 
-The heading level remains semantic. tty.css gives direct card headings and
-headings inside card headers a compact component-title size, whether the
-document hierarchy calls for an `h2`, `h3`, or `h4`. For form groups, use the
+The heading level remains semantic. Direct card headings and
+`article > div > h1` through `h6` share the same sizing: `h1`/`h2` use the larger
+card-title style and `h3`–`h6` the smaller style. This extends through only one
+plain `div`, not arbitrary descendants; nested articles retain their own context.
+Headings inside card headers use a compact component-title size. For form groups, use the
 native `fieldset` and `legend` elements instead of the `.legend` class. Direct
 `details` children become compact grouped rows inside a `fieldset`; standalone
 disclosures retain their own frame.
@@ -232,15 +253,17 @@ The class layer is intentionally small.
 | `.container` | Centered element using `--tty-container` |
 | `.narrow` | Centered element capped at 32rem for focused flows |
 | `.reading` | Centered 56rem long-form article with readable typography |
-| `.grid` | Responsive auto-fitting grid |
+| `.grid` | Responsive auto-fitting grid; `--tty-grid-min` defaults to `17rem` |
 | `.group` | Spaced actions in a horizontal row; stacks on small screens |
 | `.group.inline` | Keeps a group on one line and spreads its items apart |
 | `.overflow-auto` | Scroll container for wide tables or content |
 | `.legend` | Places a direct article header title over the card border |
+| `a.button` | Button presentation for a navigating link, preserving native link semantics |
 | `.double-border` | Double-line frame at 3× `--tty-frame-width` |
 | `.strong-shadow` | Dense SVG-mask shadow, full opacity by default, with unchanged offsets |
 | `.muted` | Muted surface background |
 | `.flat` | No decorative shadow; border remains |
+| `.plain` | Removes list markers/padding or opts a non-dropdown disclosure into a borderless, transparent surface |
 | `.tabs` | Connected ARIA tab row and framed panels; behavior supplied by application code |
 | `.dropdown` | Turns a native `details` element into an overlay menu |
 | `.breadcrumb` | Formats a labelled navigation path with separators |
@@ -264,21 +287,43 @@ Use `<details class="dropdown"><summary>Choose</summary><ul>…</ul></details>`
 for dropdowns. The list scrolls; no wrapper is needed. Dropdown and tooltip overlays
 are shadowless and do not support frame treatments.
 
+Use `.plain` on `ul` or `ol` to remove markers and padding while preserving
+margins. Add `role="list"` to these lists to preserve list semantics in
+Safari/VoiceOver when markers are removed. On `details:not(.dropdown)` it removes
+the border and background but retains padding and the chevron; ordinary disclosures
+keep their default frame.
+
+```html
+<ul class="plain" role="list"><li>All systems operational</li></ul>
+<details class="plain">
+  <summary>Deployment notes</summary>
+  <p>No downtime required.</p>
+</details>
+<div class="grid" style="--tty-grid-min: 14rem">
+  <article><h3>Primary</h3><p>Healthy</p></article>
+  <article><h3>Replica</h3><p>Healthy</p></article>
+</div>
+```
+
 `role="group"` creates connected controls with joined borders. On small
 screens, the controls stack vertically while preserving those joined borders.
 
 ### Button variants
 
-Apply these to `button`, supported button inputs, or links with
-`role="button"`:
+Apply these to `button`, supported button inputs, or `a.button` (legacy
+`a[role="button"]` remains supported):
 
 ```html
 <button>Primary</button>
 <button class="secondary">Secondary</button>
 <button class="contrast">Contrast</button>
 <button class="outline">Outline</button>
-<a href="/docs" role="button">Read docs</a>
+<a href="/docs" class="button">Read docs</a>
 ```
+
+Use `button` for actions and `a.button` for navigation. Unlike `role="button"`,
+`.button` preserves link semantics and native link keyboard behavior; CSS does
+not implement button keyboard behavior for legacy role-based links.
 
 Normal links support the same emphasis language without becoming buttons:
 
@@ -313,6 +358,17 @@ Supported state attributes include `disabled`, `readonly`, `required`,
 
 ARIA does not define an `aria-valid` attribute. Use `aria-invalid="false"` to
 mark a field as explicitly valid.
+
+Inside a form, helper `small` text after controls, wrapping labels, connected
+groups, search forms, and dropdowns remains muted and block-level. Only `small`
+immediately after an `input`, `select`, or `textarea` outside a label receives a
+negative top margin; text inside labels is not pulled upward. Native `output`
+uses tabular numerals without imposing alignment:
+
+```html
+<label for="total">Estimated total</label>
+<output id="total" name="total">42.00</output>
+```
 
 ## Search
 

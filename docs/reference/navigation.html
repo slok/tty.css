@@ -20,6 +20,8 @@
       <section id="basic">
         <h2>Basic navigation</h2>
         <p>Use one or more lists inside a labelled <code>nav</code>. A label distinguishes this landmark from other navigation regions; <code>aria-current="page"</code> identifies and emphasizes the current destination.</p>
+        <p>Top-level menu links outside <code>aside</code> inherit color and weight, preserve explicit <code>.primary</code>, <code>.secondary</code>, and <code>.contrast</code> colors, have no text underline, and use inline-block layout with <code>0.35rem 0.5rem</code> padding. A transparent <code>--tty-frame-width</code> bottom border reserves space: hover shows a 45% current-color border, while <code>aria-current="page"</code> keeps a solid current-color border, including on hover. The global keyboard focus outline is unchanged.</p>
+        <p>This applies to links directly inside <code>nav &gt; ul &gt; li</code>, except in breadcrumbs or anywhere inside <code>aside</code>. Button-styled links (<code>a.button</code> and legacy <code>a[role="button"]</code>) and dropdown items retain their own styling. Sidebar navigation needs no site override to opt out of this indicator.</p>
         <div class="docs-preview"><nav aria-label="Console navigation"><ul><li><a href="#basic"><strong>Console</strong></a></li></ul><ul><li><a href="#basic" aria-current="page">Overview</a></li><li><a href="#breadcrumbs">Queries</a></li><li><a href="#actions">Settings</a></li></ul></nav></div>
         <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;nav aria-label="Console navigation"&gt;
   &lt;ul&gt;

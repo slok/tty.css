@@ -122,6 +122,7 @@
         <h2>Layout and shape tokens</h2>
         <div class="overflow-auto" tabindex="0" aria-label="Layout and shape token defaults"><table><thead><tr><th scope="col">Token</th><th scope="col">Default</th><th scope="col">Used for</th></tr></thead><tbody>
           <tr><th scope="row"><code>--tty-container</code></th><td><code>72rem</code></td><td>Body landmark and <code>.container</code> maximum width</td></tr>
+          <tr><th scope="row"><code>--tty-grid-min</code></th><td><code>17rem</code></td><td>Minimum auto-fitting <code>.grid</code> column width, capped by available width</td></tr>
           <tr><th scope="row"><code>--tty-radius</code></th><td><code>0.2rem</code></td><td>General controls, code, menus, and disclosures; joined search controls retain pill-shaped ends</td></tr>
           <tr><th scope="row"><code>--tty-frame-radius</code></th><td><code>0</code></td><td>Article, fieldset, dialog, and exposed tab-frame corners, independent of controls. Joined tab edges stay square.</td></tr>
           <tr><th scope="row"><code>--tty-border-width</code></th><td><code>1px</code></td><td>Quiet borders, dividers, and tooltip borders</td></tr>
@@ -136,6 +137,11 @@
           <tr><th scope="row"><code>--tty-control-height</code></th><td><code>2.5rem</code></td><td>Minimum height of buttons and single-line controls</td></tr>
         </tbody></table></div>
         <p>Changing a dimension can affect many components at once. Keep border widths non-negative, preserve usable target sizes, and check narrow layouts before shipping.</p>
+        <p>Set <code>--tty-grid-min</code> on an individual grid for a local override; see the <a href="layout.html#grid">live grid example</a>.</p>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;div class="grid" style="--tty-grid-min: 14rem"&gt;
+  &lt;article&gt;&lt;h3&gt;Primary&lt;/h3&gt;&lt;p&gt;Healthy&lt;/p&gt;&lt;/article&gt;
+  &lt;article&gt;&lt;h3&gt;Replica&lt;/h3&gt;&lt;p&gt;Healthy&lt;/p&gt;&lt;/article&gt;
+&lt;/div&gt;</code></pre></div>
         <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>:root {
   --tty-container: 80rem;
   --tty-radius: 0;

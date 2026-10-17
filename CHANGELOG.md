@@ -9,6 +9,10 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 ### Added
 
+- `.plain` for markerless, unpadded lists (margins preserved) and opt-in borderless, transparent non-dropdown disclosures (padding and chevron preserved); ordinary disclosure defaults are unchanged.
+- `a.button` for button-styled navigation with native link semantics; existing `a[role="button"]` styling remains supported.
+- `--tty-grid-min` (default `17rem`) controls `.grid` minimum column width, with local overrides.
+- An OrbitDB pricing example with native `.button` links, aligned plan cards, a vanilla JavaScript usage estimator, and native FAQ disclosures. Named subtotals have live announcements disabled; one polite live total updates on changes and form reset. The product landing page links to matching plans and the estimator.
 - Composable `.double-border`, `.strong-shadow`, `.muted`, and `.flat` visual frame treatments for articles, fieldsets, dialogs, and tabs, with live documentation examples.
 - Public frame-shadow overrides: `--tty-shadow-color`, `--tty-shadow-opacity`, `--tty-shadow-pattern`, and `--tty-shadow-pattern-size`, honored with `.strong-shadow` as well as default frames.
 - Class-light ARIA tabs with connected frames, dithered panel shadows, theme support, a keyboard-accessible documentation demo, and an Alpine dashboard example. Tab behavior remains application-owned; tty.css ships no JavaScript.
@@ -25,6 +29,9 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 ### Changed
 
+- Top-level menu links outside `aside` inherit color and weight without text underlines, preserving explicit `.primary`, `.secondary`, and `.contrast` colors, with inline-block layout, `0.35rem 0.5rem` padding, and a reserved `--tty-frame-width` bottom border. Hover uses 45% current color; `aria-current="page"` stays solid current color, including on hover. Global keyboard focus outlines are unchanged. Button-styled links, breadcrumb links, dropdown items, and navigation inside `aside` are excluded without site overrides.
+- Card-heading sizing also applies through one plain `div` wrapper; nested articles retain their own context.
+- Form helpers retain muted block styling after controls, wrapping labels, connected groups, search forms, and dropdowns. Negative top spacing applies only immediately after an input, select, or textarea outside labels; nested label text is not pulled upward. `output` uses tabular numerals without imposed alignment.
 - Text inputs, selects, and textareas use a thin, flush focus edge instead of a detached outline; other controls retain their existing focus indicators.
 - Decorative shadows share a 4×4px Standard SVG mask with two staggered rectangular marks at 0.6 opacity across articles, fieldsets, tabs, table wrappers, and dialogs; `.strong-shadow` uses the inverse Dense mask at full opacity. The same public mask tokens apply to these frames. Color and pattern scale are independent of the existing offsets; `3px 3px` tiles provide Fine texture without a new class. Small solid control shadows, radio states, and validation treatments remain intentional.
 - Frame treatments on `.overflow-auto` table wrappers affect the table frame and its shadow. Dropdown and tooltip overlays are shadowless and do not support frame treatments; dropdown lists remain direct children of `details`, with no wrapper needed.

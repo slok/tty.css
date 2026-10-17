@@ -38,15 +38,15 @@
       </section>
       <section id="hosts">
         <h2>Supported hosts</h2>
-        <p>Button styling applies to native <code>button</code>, submit/button/reset inputs, and links with <code>role="button"</code>. It does not apply to arbitrary elements with that role. Prefer <code>button</code> for actions and use the link form only for navigation styled as a call to action.</p>
-        <div class="docs-preview"><form action="#hosts"><div class="group"><button type="button">Button</button><input type="submit" value="Submit"><input type="button" value="Input button" class="secondary"><input type="reset" value="Reset" class="outline"><a href="#hosts" role="button" class="contrast">Button link</a></div></form></div>
+        <p>Button styling applies to native <code>button</code>, submit/button/reset inputs, and <code>a.button</code>. Legacy <code>a[role="button"]</code> remains supported; arbitrary elements with that role are not styled. Use <code>button</code> for actions and <code>a.button</code> for navigation: the class preserves native link semantics and keyboard behavior. <code>role="button"</code> announces a button instead, but CSS does not add button keyboard behavior.</p>
+        <div class="docs-preview"><form action="#hosts"><div class="group"><button type="button">Button</button><input type="submit" value="Submit"><input type="button" value="Input button" class="secondary"><input type="reset" value="Reset" class="outline"><a href="navigation.html" class="button contrast">Navigation guide</a></div></form></div>
         <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;form action="#hosts"&gt;
   &lt;div class="group"&gt;
     &lt;button type="button"&gt;Button&lt;/button&gt;
     &lt;input type="submit" value="Submit"&gt;
     &lt;input type="button" value="Input button" class="secondary"&gt;
     &lt;input type="reset" value="Reset" class="outline"&gt;
-    &lt;a href="#hosts" role="button" class="contrast"&gt;Button link&lt;/a&gt;
+    &lt;a href="navigation.html" class="button contrast"&gt;Navigation guide&lt;/a&gt;
   &lt;/div&gt;
 &lt;/form&gt;</code></pre></div>
       </section>
@@ -62,7 +62,7 @@
       </section>
       <section id="disabled">
         <h2>Disabled states</h2>
-        <p>Use the native <code>disabled</code> attribute for buttons and button inputs. Links have no disabled state: tty.css visually suppresses <code>a[role="button"][aria-disabled="true"]</code>, but <code>aria-disabled</code> alone does not prevent activation. Remove <code>href</code> and block application handlers, or omit the unavailable link entirely.</p>
+        <p>Use the native <code>disabled</code> attribute for buttons and button inputs. Links have no native disabled state: tty.css visually suppresses <code>a.button[aria-disabled="true"]</code> and legacy <code>a[role="button"][aria-disabled="true"]</code>, but <code>aria-disabled</code> alone does not prevent activation. Remove <code>href</code> and block application handlers, or omit the unavailable link entirely.</p>
         <div class="docs-preview"><div class="group"><button type="button" disabled>Disabled button</button><input type="submit" value="Disabled submit" disabled><a role="button" aria-disabled="true">Unavailable destination</a></div></div>
         <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;div class="group"&gt;
   &lt;button type="button" disabled&gt;Disabled button&lt;/button&gt;

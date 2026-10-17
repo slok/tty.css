@@ -46,6 +46,7 @@
       <section id="basics">
         <h2>Form basics</h2>
         <p>Associate each control with a visible <code>label</code>. A matching <code>for</code> and <code>id</code> keeps the label clickable and gives the control an accessible name. Use help text with <code>aria-describedby</code>; placeholders are examples, not labels.</p>
+        <p>Form helper <code>small</code> text stays muted and block-level after controls, wrapping labels, connected groups, search forms, and dropdowns. A negative top margin brings it closer only when it immediately follows an <code>input</code>, <code>select</code>, or <code>textarea</code> outside a label. Text nested inside labels is not pulled upward; helpers after wrappers keep their normal spacing.</p>
         <div class="docs-preview">
           <form>
             <label for="project-name">Project name</label>
@@ -315,6 +316,7 @@
       <section id="special-controls">
         <h2>Range, file, and color</h2>
         <p>These controls keep browser-native interaction and accessibility while tty.css styles the exposed parts. Their internal widgets, dialogs, selected-file text, and color pickers differ across browsers and operating systems. Always provide a label; add visible output when users need the range’s exact value.</p>
+        <p>Native <code>output</code> uses tabular numerals by default, without imposing text alignment. Application code updates its value, as in the range example below.</p>
         <div class="docs-preview">
           <label for="replica-range">Replica target: <output for="replica-range">4</output></label>
           <input id="replica-range" name="replica-target" type="range" min="1" max="8" step="1" value="4" oninput="this.previousElementSibling.querySelector('output').value = this.value">

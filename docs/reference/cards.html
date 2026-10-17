@@ -18,8 +18,9 @@
     <div class="docs-content" id="content">
       <header><p>Components</p><h1>Cards</h1><p>A semantic <code>article</code> is the card primitive. Its direct title, header, and footer children select the visual structure without changing the document meaning.</p></header>
       <section id="titles">
-        <h2>Direct article titles</h2>
+        <h2>Article titles</h2>
         <p>A heading directly inside an article stays within the card body. Direct <code>h1</code> and <code>h2</code> titles share the larger article-title style; direct <code>h3</code> through <code>h6</code> share the smaller style. Choose the level from the page outline, not its appearance.</p>
+        <p>The same sizing applies through one plain <code>div</code> wrapper (<code>article &gt; div &gt; h1</code> through <code>h6</code>), not arbitrary descendants. Nested articles retain their own heading context.</p>
         <div class="docs-preview"><div class="grid"><article><h2>Deployment summary</h2><p>A level-two title introduces this standalone article.</p></article><article><h3>Replica health</h3><p>A lower-level title introduces a card within the current section.</p></article></div></div>
         <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;div class="grid"&gt;
   &lt;article&gt;
@@ -31,6 +32,13 @@
     &lt;p&gt;A lower-level title introduces a card within the current section.&lt;/p&gt;
   &lt;/article&gt;
 &lt;/div&gt;</code></pre></div>
+        <div class="docs-preview"><article><div><h3>Replica health</h3><p>One wrapper groups the card content.</p></div></article></div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;article&gt;
+  &lt;div&gt;
+    &lt;h3&gt;Replica health&lt;/h3&gt;
+    &lt;p&gt;One wrapper groups the card content.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code></pre></div>
       </section>
       <section id="frame-treatments">
         <h2>Frame treatments</h2>

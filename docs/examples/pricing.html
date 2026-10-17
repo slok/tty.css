@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Fictional OrbitDB pricing: three plans, a working usage estimator, and answers to common billing questions. Built with tty.css.">
+  <title>Pricing · OrbitDB</title>
+  <link rel="stylesheet" href="../../tty.css">
+  <script src="../assets/palette-settings.js"></script>
+  <script src="pricing.js" defer></script>
+  <style>
+    /* Example-only composition. Borders, textures, controls, and colors are tty.css. */
+    body > header { width: 100%; background: var(--tty-fg); color: var(--tty-bg); }
+    body > header a:not(.button), body > header strong { color: inherit; }
+    body > main { padding-top: 2rem; }
+    #plans { margin-top: 0; }
+    .plans > article { display: grid; grid-template-rows: auto auto minmax(7rem, auto) minmax(15rem, auto) minmax(10rem, auto) auto; margin: 0; }
+    .plans li { display: flex; justify-content: space-between; gap: 0.5rem; }
+    .plan-action { align-items: end; flex-wrap: wrap; }
+    .plan-action p { margin: 0; margin-inline-start: auto; text-align: right; line-height: 1.3; }
+    .plan-action small { display: block; }
+    .plan-action a { flex: 1; }
+    .usage-row { display: grid; grid-template-columns: 11rem 1fr 7rem; align-items: center; gap: 1.5rem; margin-block: 1.5rem; }
+    .usage-row label, .usage-row input { margin: 0; }
+    .usage-row small { display: block; }
+    .usage-row output, .estimate output { text-align: right; }
+    .estimate { border-top: var(--tty-border-width) solid var(--tty-border); padding-top: 1rem; }
+    body > footer .grid { --tty-grid-min: 14rem; }
+    @supports (grid-template-rows: subgrid) {
+      .plans { grid-template-rows: auto auto minmax(7rem, auto) minmax(15rem, auto) minmax(10rem, auto) auto; row-gap: 0; }
+      .plans > article { grid-template-rows: subgrid; grid-row: span 6; row-gap: 0; }
+    }
+    @media (max-width: 60rem) {
+      .plans { grid-template-columns: 1fr; grid-template-rows: none; row-gap: 1.5rem; }
+      .plans > article { grid-template-rows: none; grid-row: auto; gap: 1rem; }
+      .plans ul { margin-bottom: 0; }
+    }
+    @media (max-width: 40rem) {
+      .usage-row { grid-template-columns: 1fr auto; gap: 0.5rem; }
+      .usage-row > div { grid-row: 2; grid-column: 1 / -1; }
+    }
+  </style>
+</head>
+<body>
+  <a class="sr-only" href="#content">Skip to content</a>
+  <header>
+    <nav class="container" aria-label="Main navigation">
+      <ul><li><a href="product-landing.html"><strong>◉ orbitdb</strong></a></li></ul>
+      <ul>
+        <li><a href="product-landing.html#features">Platform</a></li>
+        <li><a href="#plans" aria-current="page">Pricing</a></li>
+        <li><a href="#calculator">Estimate</a></li>
+        <li><a href="#questions">Questions</a></li>
+        <li><a href="#get-started" class="button">Try OrbitDB</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main id="content">
+    <h1 class="sr-only">OrbitDB pricing</h1>
+    <section id="plans" aria-label="Plans">
+      <div class="grid plans">
+        <article aria-labelledby="sandbox-title">
+          <h2 id="sandbox-title">◌ sandbox</h2>
+          <p>Every search feature, on every plan.</p>
+          <div><h3>Infrastructure</h3><ul class="plain" role="list"><li>Shared regional cluster</li></ul></div>
+          <div><h3>Access &amp; governance</h3><ul class="plain" role="list"><li>Encrypted storage</li><li>Scoped API credentials</li></ul></div>
+          <div><h3>Team support</h3><ul class="plain" role="list"><li>Developer forum</li><li>Asynchronous email help</li></ul></div>
+          <div class="group inline plan-action"><a href="#get-started" class="button">Start building</a><p>$24/month<small>usage floor</small></p></div>
+        </article>
+        <article class="double-border muted" aria-labelledby="studio-title">
+          <h2 id="studio-title">◈ studio</h2>
+          <p>Every search feature, on every plan.</p>
+          <div><h3>Infrastructure</h3><ul class="plain" role="list"><li>Shared regional cluster</li><li>Priority query capacity</li></ul></div>
+          <div><h3>Access &amp; governance</h3><ul class="plain" role="list"><li>Encrypted storage</li><li>Scoped API credentials</li><li>Workspace sign-in policies</li><li>Change history</li><li>Event export <small>$48/mo</small></li><li>Network access rules</li></ul></div>
+          <div><h3>Team support</h3><ul class="plain" role="list"><li>Developer forum</li><li>Private engineering channel</li><li>Response window <small>Weekdays</small></li></ul></div>
+          <div class="group inline plan-action"><a href="#get-started" class="button secondary">Open a workspace</a><p>$180/month<small>usage floor</small></p></div>
+        </article>
+        <article class="double-border strong-shadow muted" aria-labelledby="dedicated-title">
+          <h2 id="dedicated-title">▣ dedicated</h2>
+          <p>Every search feature, on every plan.</p>
+          <div><h3>Infrastructure</h3><ul class="plain" role="list"><li>Isolated regional cluster</li><li>Reserved query capacity</li><li>Your cloud account, if preferred</li></ul></div>
+          <div><h3>Access &amp; governance</h3><ul class="plain" role="list"><li>Encrypted storage</li><li>Scoped API credentials</li><li>Workspace sign-in policies</li><li>Change history</li><li>Event export included</li><li>Network access rules</li><li>Private service endpoints</li><li>Customer-controlled keys</li></ul></div>
+          <div><h3>Team support</h3><ul class="plain" role="list"><li>Named technical partner</li><li>Private engineering channel</li><li>Response window <small>Always on</small></li><li>Availability target <small>99.95%</small></li></ul></div>
+          <div class="group inline plan-action"><a href="#get-started" class="button secondary">Discuss a project</a><p>From $2,400<small>per month</small></p></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="calculator" aria-label="Usage estimator">
+      <form id="usage-form">
+        <fieldset>
+          <legend>Usage estimator</legend>
+          <p><small>Illustrative monthly pricing. Decimal GB; no replication or index overhead. Not a quote.</small></p>
+          <div class="grid">
+            <div><label for="dimensions">Embedding width</label><select id="dimensions" name="dimensions"><option value="384">384 values</option><option value="768" selected>768 values</option><option value="1536">1,536 values</option><option value="3072">3,072 values</option></select></div>
+            <div><label for="metadata">Metadata per record</label><select id="metadata" name="metadata"><option value="0">No metadata</option><option value="256" selected>256 bytes</option><option value="1024">1 KB</option><option value="4096">4 KB</option></select></div>
+            <div><label for="plan">Workspace plan</label><select id="plan" name="plan"><option value="sandbox">Sandbox</option><option value="studio">Studio</option><option value="dedicated">Dedicated</option></select></div>
+          </div>
+          <div class="usage-row">
+            <label for="records">Stored records<small>$0.28 / GB-month</small></label>
+            <div><small id="records-value">2,000,000 records</small><input id="records" name="records" type="range" min="1" max="100" value="20" aria-describedby="records-value"></div>
+            <output id="storage-cost" for="records dimensions metadata" aria-label="Monthly storage subtotal" aria-live="off">$1.86</output>
+          </div>
+          <div class="usage-row">
+            <label for="writes">Monthly writes<small>$1.60 / GB ingested</small></label>
+            <div><small id="writes-value">1,000,000 records</small><input id="writes" name="writes" type="range" min="0" max="100" value="10" aria-describedby="writes-value"></div>
+            <output id="write-cost" for="writes dimensions metadata" aria-label="Monthly writes subtotal" aria-live="off">$5.32</output>
+          </div>
+          <div class="usage-row">
+            <label for="queries">Monthly searches<small>$0.80 / million requests</small></label>
+            <div><small id="queries-value">2,000,000 requests</small><input id="queries" name="queries" type="range" min="0" max="100" value="20" aria-describedby="queries-value"></div>
+            <output id="query-cost" for="queries" aria-label="Monthly searches subtotal" aria-live="off">$1.60</output>
+          </div>
+          <div class="usage-row">
+            <label for="collections">Collections<small>First 100 included; $0.10 each after</small></label>
+            <div><small id="collections-value">10 collections</small><input id="collections" name="collections" type="range" min="1" max="200" value="10" aria-describedby="collections-value"></div>
+            <output id="collection-cost" for="collections" aria-label="Monthly collections subtotal" aria-live="off">Included</output>
+          </div>
+          <div class="group inline estimate"><span>Estimated monthly bill<br><small id="minimum-note">Includes the $24 sandbox usage floor.</small></span><output id="total-cost" for="dimensions metadata plan records writes queries collections" aria-label="Estimated monthly bill" aria-live="polite" aria-atomic="true">$24.00/month</output></div>
+          <noscript><p>The estimate above uses the initial values. Enable JavaScript to recalculate as you change the controls.</p></noscript>
+        </fieldset>
+      </form>
+    </section>
+
+    <section id="questions" aria-label="Billing questions">
+      <article>
+        <header class="legend"><h2>Good to know</h2></header>
+        <details class="plain"><summary>How does the monthly usage floor work?</summary><p>Your usage counts toward the plan's minimum. A sandbox workspace with $18 of metered activity pays $24, not $42.</p></details>
+        <details class="plain"><summary>Can I change plans as my project grows?</summary><p>Yes. Shared workspaces can move between sandbox and studio at the next billing boundary. Dedicated capacity is scheduled with your technical partner.</p></details>
+        <details class="plain"><summary>What is a billable record?</summary><p>A record consists of a float32 embedding and its metadata. This example counts four bytes per embedding value plus the metadata size you select.</p></details>
+        <details class="plain"><summary>Will an idle collection keep generating charges?</summary><p>Stored data continues to accrue storage charges. There is no query charge when you are not searching, and no write charge when you are not sending records.</p></details>
+        <details class="plain"><summary>Are development and production features different?</summary><p>The retrieval API is the same on every plan. Higher tiers add operational controls, reserved capacity, and closer engineering support.</p></details>
+        <details class="plain"><summary>What happens after the included collection allowance?</summary><p>The first 100 collections have no separate fee. Additional collections cost $0.10 each per month in this illustrative model.</p></details>
+        <details class="plain"><summary>Does the estimator include data transfer?</summary><p>No. The simplified estimator shows storage, ingestion, search requests, and collection fees. Network transfer and optional services would be listed separately in a real quote.</p></details>
+        <details class="plain"><summary>How are dedicated workspaces priced?</summary><p>This example applies a 25% premium to metered usage and a $2,400 monthly floor for reserved infrastructure and operational support.</p></details>
+        <details class="plain"><summary>Can I bring an existing search index?</summary><p>You can stream records into a new collection, validate relevance, and switch traffic when you are ready. Keep the previous system running during the transition.</p></details>
+        <details class="plain"><summary>Where can I try the product?</summary><p>OrbitDB is fictional. The links below lead to a local sample onboarding form and the tty.css documentation, not a real service.</p></details>
+      </article>
+    </section>
+  </main>
+  <footer id="get-started">
+    <div class="grid">
+      <div><strong>◉ orbitdb</strong><p><small>A fictional search platform.<br>A real tty.css example.</small></p></div>
+      <div><strong>Explore</strong><ul class="plain" role="list"><li><a href="product-landing.html">Product overview</a></li><li><a href="product-landing.html#signup">Sample onboarding</a></li></ul></div>
+      <div><strong>Build your own</strong><ul class="plain" role="list"><li><a href="../reference/">Framework reference</a></li><li><a href="./">More examples</a></li><li><a href="pricing.html" download>Download HTML</a> · <a href="pricing.js" download>JS</a></li></ul></div>
+      <div><strong>About this page</strong><p><small>Original demo content; layout inspired by turbopuffer's pricing page. Native controls, framework styling, and a small vanilla JavaScript estimator.</small></p></div>
+    </div>
+  </footer>
+</body>
+</html>
