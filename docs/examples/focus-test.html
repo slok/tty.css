@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Focus comparison · tty.css</title>
+  <link rel="stylesheet" href="../../tty.css">
+  <style>
+    main { max-width: 68rem; margin: 2rem auto; padding: 1rem; }
+    .comparison { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 2rem; }
+    .current :is(input, select, textarea):focus-visible,
+    .current .preview-focus {
+      border-color: var(--tty-control-focus);
+      outline: 0.18rem solid var(--tty-control-focus);
+      outline-offset: 0.18rem;
+    }
+    /* Test only: a continuous edge, no layout shift and no detached ring. */
+    .flush :is(input, select, textarea):focus-visible,
+    .flush .preview-focus {
+      border-color: var(--tty-control-focus);
+      outline: 1px solid var(--tty-control-focus);
+      outline-offset: 0;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Input focus comparison</h1>
+    <p>The first input in each column always shows its focus treatment. Tab through the other controls to test real keyboard focus. The flush edge is now the framework default; the old treatment is reproduced here for comparison.</p>
+    <button type="button" id="theme">Switch theme</button>
+    <div class="comparison">
+      <article class="current">
+        <h2>Current: detached outline</h2>
+        <label for="current-preview">Focus preview</label>
+        <input id="current-preview" class="preview-focus" type="email" placeholder="you@example.com">
+        <label for="current-email">Email</label>
+        <input id="current-email" type="email" autocomplete="off">
+        <label for="current-select">Region</label>
+        <select id="current-select"><option>US East</option><option>EU Central</option></select>
+        <label for="current-notes">Notes</label>
+        <textarea id="current-notes"></textarea>
+      </article>
+      <article class="flush">
+        <h2>Test: flush edge</h2>
+        <label for="flush-preview">Focus preview</label>
+        <input id="flush-preview" class="preview-focus" type="email" placeholder="you@example.com">
+        <label for="flush-email">Email</label>
+        <input id="flush-email" type="email" autocomplete="off">
+        <label for="flush-select">Region</label>
+        <select id="flush-select"><option>US East</option><option>EU Central</option></select>
+        <label for="flush-notes">Notes</label>
+        <textarea id="flush-notes"></textarea>
+      </article>
+    </div>
+  </main>
+  <script>
+    document.querySelector('#theme').addEventListener('click', () => {
+      const root = document.documentElement;
+      const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+      root.dataset.theme = dark ? 'light' : 'dark';
+    });
+  </script>
+</body>
+</html>

@@ -27,7 +27,8 @@
       <section id="examples">
         <h2>Examples</h2>
         <p>Copy the markup under Code and download its <a href="../assets/tabs.js">No lib</a> or <a href="../assets/tabs-alpine.js">Alpine.js</a> helper. These scripts and the <code>data-tabs</code> hook are example code, not part of tty.css.</p>
-        <div class="tabs" data-tabs>
+        <p>The outer example switcher uses <code>.tabs.flat</code> to reduce nested shadows; the inner demos keep their default frames.</p>
+        <div class="tabs flat" data-tabs>
           <div role="tablist" aria-label="Implementation">
             <button type="button" role="tab" id="example-vanilla-tab" aria-controls="example-vanilla-panel" aria-selected="true" tabindex="0">No lib</button>
             <button type="button" role="tab" id="example-alpine-tab" aria-controls="example-alpine-panel" aria-selected="false" tabindex="-1">Alpine.js</button>
@@ -87,9 +88,17 @@
         </div>
         <p><kbd>←</kbd>/<kbd>→</kbd> and <kbd>Home</kbd>/<kbd>End</kbd> move focus without selecting; <kbd>Enter</kbd>/<kbd>Space</kbd> activate. <kbd>Tab</kbd> leaves the strip; returning enters at the selected tab. See <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/tab_role">MDN</a>, the <a href="https://www.w3.org/WAI/ARIA/apg/patterns/tabs/">APG tabs pattern</a>, and the <a href="../examples/dashboard.html">dashboard example</a>.</p>
       </section>
+      <section id="frame-treatments">
+        <h2>Frame treatments</h2>
+        <p>Put <a href="cards.html#frame-treatments">frame classes</a> on <code>.tabs</code> to coordinate the tab strip and panel. Set <code>--tty-frame-radius</code> to round exposed corners; joined edges stay square. These change appearance, not interaction.</p>
+        <div class="docs-preview"><div class="tabs double-border muted strong-shadow" data-tabs><div role="tablist" aria-label="Contact team"><button type="button" role="tab" id="contact-sales-tab" aria-controls="contact-sales-panel" aria-selected="true" tabindex="0">Sales</button><button type="button" role="tab" id="contact-support-tab" aria-controls="contact-support-panel" aria-selected="false" tabindex="-1">Support</button></div><section role="tabpanel" id="contact-sales-panel" aria-labelledby="contact-sales-tab" tabindex="0"><p>Find the right plan for your team.</p></section><section role="tabpanel" id="contact-support-panel" aria-labelledby="contact-support-tab" tabindex="0" hidden><p>Get help with your deployment.</p></section></div></div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;div class="tabs double-border muted strong-shadow" data-tabs&gt;
+  &lt;!-- Keep the same connected tablist and panel markup shown above. --&gt;
+&lt;/div&gt;</code></pre></div>
+      </section>
       <nav class="docs-pager" aria-label="Documentation pagination"><a href="navigation.html">&larr; Navigation</a><a href="components.html">Native components &rarr;</a></nav>
     </div>
-    <aside class="docs-toc"><nav aria-label="Table of contents"><p class="docs-nav-title">On this page</p><ul><li><a href="#usage">Usage</a></li><li><a href="#examples">Examples</a></li></ul></nav></aside>
+    <aside class="docs-toc"><nav aria-label="Table of contents"><p class="docs-nav-title">On this page</p><ul><li><a href="#usage">Usage</a></li><li><a href="#examples">Examples</a></li><li><a href="#frame-treatments">Frame treatments</a></li></ul></nav></aside>
   </main>
   <footer><small>tty.css — semantic HTML with sharp edges.</small></footer>
 </body>

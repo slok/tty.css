@@ -13,10 +13,13 @@
   --tty-container: 72rem;
   --tty-reading-width: 72ch;
   --tty-radius: 0.2rem;
+  --tty-frame-radius: 0;
   --tty-border-width: 1px;
   --tty-frame-width: 2px;
   --tty-shadow-x: 0.5rem;
   --tty-shadow-y: 0.5rem;
+  --_tty-shadow-standard-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath d='M0 0h1v1.5H0zM2 2h1v1.5H2z'/%3E%3C/svg%3E");
+  --_tty-shadow-dense-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill-rule='evenodd' d='M0 0h4v4H0zM0 0h1v1.5H0zM2 2h1v1.5H2z'/%3E%3C/svg%3E");
   --tty-control-shadow-size: 0.125rem;
   --tty-control-height: 2.5rem;
   --tty-icon-search: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23526174' stroke-width='2' stroke-linecap='square'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-4-4'/%3E%3C/svg%3E");
@@ -605,7 +608,7 @@ h4 {
   margin: 0 0 1.5rem;
   padding: 1.25rem;
   border: var(--tty-frame-width) solid var(--tty-border-strong);
-  border-radius: var(--tty-radius);
+  border-radius: var(--tty-frame-radius);
   background: var(--tty-surface);
 }
 
@@ -705,6 +708,12 @@ h4 {
 :where(input:not([type="submit"], [type="button"], [type="reset"]), select, textarea):focus-visible {
   border-color: var(--tty-control-focus);
   outline-color: var(--tty-control-focus);
+}
+
+:where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"],
+  [type="file"], [type="submit"], [type="button"], [type="reset"]), select, textarea):focus-visible {
+  outline-width: 1px;
+  outline-offset: 0;
 }
 
 :where(input:not([type="submit"], [type="button"], [type="reset"]), select, textarea):disabled {
@@ -1066,22 +1075,16 @@ h4 {
 :where(.overflow-auto:has(> table)) {
   padding-right: var(--tty-shadow-x);
   padding-bottom: var(--tty-shadow-y);
-  background-image: radial-gradient(
-      circle,
-      var(--tty-border-strong) 0.75px,
-      transparent 0.9px
-    ),
-    radial-gradient(
-      circle,
-      var(--tty-border-strong) 0.75px,
-      transparent 0.9px
-    );
-  background-position: 0 0, 3px 3px;
-  background-size: 6px 6px;
 }
 
 :where(.overflow-auto > table) {
+  position: relative;
   margin-bottom: 0;
+}
+
+:where(.overflow-auto.flat:has(> table)) {
+  padding-right: 0;
+  padding-bottom: 0;
 }
 
 :where(table) {
@@ -1133,6 +1136,8 @@ h4 {
 
 /* Tabs: application code owns selection, visibility, and keyboard behavior. */
 :where(.tabs) {
+  --_tty-tabs-frame-width: var(--tty-frame-width);
+  --_tty-tabs-bg: var(--tty-bg);
   min-width: 0;
   margin-bottom: 1.5rem;
 }
@@ -1145,7 +1150,7 @@ h4 {
   justify-content: flex-start;
   gap: 0;
   max-width: 100%;
-  margin: 0 0 calc(-1 * var(--tty-frame-width));
+  margin: 0 0 calc(-1 * var(--_tty-tabs-frame-width));
   padding: 0;
   overflow-x: auto;
   flex-wrap: nowrap;
@@ -1161,8 +1166,8 @@ h4 {
   min-height: var(--tty-control-height);
   margin: 0;
   padding: 0.75rem 1rem;
-  border: var(--tty-frame-width) solid var(--tty-border-strong);
-  border-radius: 0;
+  border: var(--_tty-tabs-frame-width) solid var(--tty-border-strong);
+  border-radius: var(--tty-frame-radius) var(--tty-frame-radius) 0 0;
   background: var(--tty-surface-muted);
   box-shadow: none;
   color: var(--tty-fg);
@@ -1173,7 +1178,7 @@ h4 {
 }
 
 :where(.tabs > [role="tablist"] > [role="tab"] + [role="tab"]) {
-  margin-inline-start: calc(-1 * var(--tty-frame-width));
+  margin-inline-start: calc(-1 * var(--_tty-tabs-frame-width));
 }
 
 :where(.tabs > [role="tablist"] > [role="tab"]:not(:disabled, [aria-disabled="true"])):hover {
@@ -1183,9 +1188,9 @@ h4 {
 
 :where(.tabs > [role="tablist"] > [role="tab"][aria-selected="true"]),
 :where(.tabs > [role="tablist"] > [role="tab"][aria-selected="true"]):hover {
-  padding-bottom: calc(0.75rem + var(--tty-frame-width));
+  padding-bottom: calc(0.75rem + var(--_tty-tabs-frame-width));
   border-bottom-width: 0;
-  background: var(--tty-bg);
+  background: var(--_tty-tabs-bg);
   color: var(--tty-fg);
 }
 
@@ -1228,7 +1233,7 @@ h4 {
   margin: 0 0 1.5rem;
   padding: 1.25rem;
   border: var(--tty-frame-width) solid var(--tty-border-strong);
-  border-radius: var(--tty-radius);
+  border-radius: var(--tty-frame-radius);
   background: var(--tty-bg);
   font-size: 0.9rem;
 }
@@ -1499,9 +1504,8 @@ article > :where(header) > :where(h1, h2, h3, h4, h5, h6) {
   margin: 0;
   padding: 0.35rem;
   border: var(--tty-frame-width) solid var(--tty-border-strong);
-  border-radius: var(--tty-radius);
+  border-radius: var(--tty-frame-radius);
   background: var(--tty-surface);
-  box-shadow: 0.25rem 0.25rem 0 var(--tty-border-strong);
   list-style: none;
   overflow-y: auto;
 }
@@ -1570,11 +1574,11 @@ article > :where(header) > :where(h1, h2, h3, h4, h5, h6) {
 }
 
 /* Tooltips */
-:where([data-tooltip]) {
+:where([data-tooltip]:not([aria-busy="true"], button[rel="prev"])) {
   position: relative;
 }
 
-:where([data-tooltip])::before {
+:where([data-tooltip]:not([aria-busy="true"], button[rel="prev"]))::before {
   position: absolute;
   z-index: 100;
   bottom: calc(100% + 0.6rem);
@@ -1583,9 +1587,8 @@ article > :where(header) > :where(h1, h2, h3, h4, h5, h6) {
   max-width: min(18rem, calc(100vw - 2rem));
   padding: 0.35rem 0.55rem;
   border: var(--tty-border-width) solid var(--tty-border-strong);
-  border-radius: var(--tty-radius);
+  border-radius: var(--tty-frame-radius);
   background: var(--tty-code-bg);
-  box-shadow: 0.14rem 0.14rem 0 var(--tty-border-strong);
   color: var(--tty-code-fg);
   content: attr(data-tooltip);
   font: 500 0.75rem/1.35 var(--tty-font);
@@ -1598,18 +1601,18 @@ article > :where(header) > :where(h1, h2, h3, h4, h5, h6) {
   transition: opacity 120ms ease, translate 120ms ease, visibility 120ms ease;
 }
 
-:where([data-tooltip]:hover, [data-tooltip]:focus-visible)::before {
+:where([data-tooltip]:is(:hover, :focus-visible):not([aria-busy="true"], button[rel="prev"]))::before {
   opacity: 1;
   translate: -50% 0;
   visibility: visible;
 }
 
-:where([data-tooltip][data-placement="bottom"])::before {
+:where([data-tooltip][data-placement="bottom"]:not([aria-busy="true"], button[rel="prev"]))::before {
   top: calc(100% + 0.6rem);
   bottom: auto;
 }
 
-:where([data-tooltip][data-placement="left"])::before {
+:where([data-tooltip][data-placement="left"]:not([aria-busy="true"], button[rel="prev"]))::before {
   top: 50%;
   right: calc(100% + 0.6rem);
   bottom: auto;
@@ -1617,20 +1620,18 @@ article > :where(header) > :where(h1, h2, h3, h4, h5, h6) {
   translate: 0.25rem -50%;
 }
 
-:where([data-tooltip][data-placement="left"]:hover,
-  [data-tooltip][data-placement="left"]:focus-visible)::before {
+:where([data-tooltip][data-placement="left"]:is(:hover, :focus-visible):not([aria-busy="true"], button[rel="prev"]))::before {
   translate: 0 -50%;
 }
 
-:where([data-tooltip][data-placement="right"])::before {
+:where([data-tooltip][data-placement="right"]:not([aria-busy="true"], button[rel="prev"]))::before {
   top: 50%;
   bottom: auto;
   left: calc(100% + 0.6rem);
   translate: -0.25rem -50%;
 }
 
-:where([data-tooltip][data-placement="right"]:hover,
-  [data-tooltip][data-placement="right"]:focus-visible)::before {
+:where([data-tooltip][data-placement="right"]:is(:hover, :focus-visible):not([aria-busy="true"], button[rel="prev"]))::before {
   translate: 0 -50%;
 }
 
@@ -1723,7 +1724,7 @@ article > :where(header) > :where(h1, h2, h3, h4, h5, h6) {
   margin: auto;
   padding: 1.5rem;
   border: var(--tty-frame-width) solid var(--tty-border-strong);
-  border-radius: var(--tty-radius);
+  border-radius: var(--tty-frame-radius);
   background: var(--tty-surface);
   color: var(--tty-fg);
 }
@@ -1735,10 +1736,6 @@ article > :where(header) > :where(h1, h2, h3, h4, h5, h6) {
   overflow: visible;
   border: 0;
   background: transparent;
-}
-
-:where(dialog:has(> article))::after {
-  display: none;
 }
 
 :where(dialog > article) {
@@ -1818,9 +1815,9 @@ article > :where(header) > :where(h1, h2, h3, h4, h5, h6) {
   min-width: 0;
   margin: 0;
   padding: 1.25rem;
-  border: var(--tty-frame-width) solid var(--tty-border-strong);
-  border-radius: 0;
-  background: var(--tty-bg);
+  border: var(--_tty-tabs-frame-width) solid var(--tty-border-strong);
+  border-radius: 0 0 var(--tty-frame-radius) var(--tty-frame-radius);
+  background: var(--_tty-tabs-bg);
 }
 
 /* Small composition layer */
@@ -1887,25 +1884,29 @@ article.reading h2 {
   position: relative;
 }
 
-:where(article, fieldset, dialog, .terminal, .tabs > [role="tabpanel"])::after {
+:where(article, fieldset, dialog, .terminal, .tabs > [role="tabpanel"],
+  .overflow-auto > table)::after {
+  background: var(--tty-shadow-color, var(--tty-border-strong));
+  -webkit-mask-image: var(--tty-shadow-pattern, var(--_tty-shadow-standard-pattern));
+  mask-image: var(--tty-shadow-pattern, var(--_tty-shadow-standard-pattern));
+  -webkit-mask-size: var(--tty-shadow-pattern-size, 4px 4px);
+  mask-size: var(--tty-shadow-pattern-size, 4px 4px);
+  -webkit-mask-repeat: repeat;
+  mask-repeat: repeat;
+  pointer-events: none;
+}
+
+:where(article, fieldset, dialog, .terminal, .tabs > [role="tabpanel"],
+  .overflow-auto > table)::after {
+  --_tty-shadow-frame-width: var(--tty-frame-width);
   position: absolute;
   z-index: 0;
-  top: var(--tty-shadow-y);
-  right: calc(-1 * var(--tty-shadow-x));
-  bottom: calc(-1 * var(--tty-shadow-y));
-  left: var(--tty-shadow-x);
-  background-image: radial-gradient(
-      circle,
-      var(--tty-border-strong) 0.75px,
-      transparent 0.9px
-    ),
-    radial-gradient(
-      circle,
-      var(--tty-border-strong) 0.75px,
-      transparent 0.9px
-    );
-  background-position: 0 0, 3px 3px;
-  background-size: 6px 6px;
+  /* Absolute positioning starts at the padding edge; include the frame so
+     the clipped texture begins outside the outer border, including doubles. */
+  top: calc(var(--tty-shadow-y) - var(--_tty-shadow-frame-width));
+  right: calc(-1 * (var(--tty-shadow-x) + var(--_tty-shadow-frame-width)));
+  bottom: calc(-1 * (var(--tty-shadow-y) + var(--_tty-shadow-frame-width)));
+  left: calc(var(--tty-shadow-x) - var(--_tty-shadow-frame-width));
   clip-path: polygon(
     calc(100% - var(--tty-shadow-x)) 0,
     100% 0,
@@ -1915,7 +1916,79 @@ article.reading h2 {
     calc(100% - var(--tty-shadow-x)) calc(100% - var(--tty-shadow-y))
   );
   content: "";
-  opacity: 0.6;
+  opacity: var(--tty-shadow-opacity, var(--_tty-shadow-opacity-default, 0.6));
+}
+
+:where(.terminal:not(article, fieldset, dialog), dialog:has(> article))::after {
+  --_tty-shadow-frame-width: 0px;
+}
+
+:where(.tabs > [role="tabpanel"])::after {
+  --_tty-shadow-frame-width: var(--_tty-tabs-frame-width);
+}
+
+/* Collapsed tables contribute half of the outer border to their containing box. */
+:where(.overflow-auto > table)::after {
+  --_tty-shadow-frame-width: calc(var(--tty-frame-width) / 2);
+}
+
+:where(article.double-border, fieldset.double-border,
+  dialog.double-border:not(:has(> article)), dialog.double-border > article)::after {
+  --_tty-shadow-frame-width: calc(3 * var(--tty-frame-width));
+}
+
+:where(.overflow-auto.double-border > table)::after {
+  --_tty-shadow-frame-width: calc(3 * var(--tty-frame-width) / 2);
+}
+
+/* Optional visual treatments. Target each frame, not its nested components. */
+:where(.tabs.double-border) {
+  --_tty-tabs-frame-width: calc(3 * var(--tty-frame-width));
+}
+
+:where(article.double-border, fieldset.double-border,
+  dialog.double-border:not(:has(> article)), dialog.double-border > article,
+  .overflow-auto.double-border > table, .overflow-auto.double-border > table > caption) {
+  border-width: calc(3 * var(--tty-frame-width));
+  border-style: double;
+}
+
+:where(.tabs.double-border > [role="tablist"] > [role="tab"],
+  .tabs.double-border > [role="tabpanel"]) {
+  border-style: double;
+}
+
+:where(article.muted, fieldset.muted, dialog.muted:not(:has(> article)),
+  dialog.muted > article, article.muted > header.legend,
+  dialog.muted > article > header.legend, .overflow-auto.muted > table) {
+  background: var(--tty-surface-muted);
+}
+
+:where(.tabs.muted) {
+  --_tty-tabs-bg: var(--tty-surface-muted);
+}
+
+:where(article.double-border > header.legend,
+  dialog.double-border > article > header.legend) {
+  margin-top: calc(-1.25rem - 0.7rem - 3 * var(--tty-frame-width));
+}
+
+:where(article.strong-shadow, fieldset.strong-shadow, dialog.strong-shadow,
+  dialog.strong-shadow > article, .tabs.strong-shadow > [role="tabpanel"],
+  .overflow-auto.strong-shadow > table)::after {
+  -webkit-mask-image: var(--tty-shadow-pattern, var(--_tty-shadow-dense-pattern));
+  mask-image: var(--tty-shadow-pattern, var(--_tty-shadow-dense-pattern));
+  --_tty-shadow-opacity-default: 1;
+}
+
+/* Draw outside a structured dialog's scrolling article, not inside its clip. */
+:where(dialog > article)::after {
+  display: none;
+}
+
+:where(article.flat, fieldset.flat, dialog.flat, dialog.flat > article,
+  .tabs.flat > [role="tabpanel"], .overflow-auto.flat > table)::after {
+  display: none;
 }
 
 .sr-only {
@@ -1955,8 +2028,7 @@ article.reading h2 {
     display: none;
   }
 
-  :where([data-tooltip][data-placement="left"],
-    [data-tooltip][data-placement="right"])::before {
+  :where([data-tooltip]:is([data-placement="left"], [data-placement="right"]):not([aria-busy="true"], button[rel="prev"]))::before {
     top: auto;
     right: auto;
     bottom: calc(100% + 0.6rem);
@@ -1964,10 +2036,7 @@ article.reading h2 {
     translate: -50% 0.25rem;
   }
 
-  :where([data-tooltip][data-placement="left"]:hover,
-    [data-tooltip][data-placement="left"]:focus-visible,
-    [data-tooltip][data-placement="right"]:hover,
-    [data-tooltip][data-placement="right"]:focus-visible)::before {
+  :where([data-tooltip]:is([data-placement="left"], [data-placement="right"]):is(:hover, :focus-visible):not([aria-busy="true"], button[rel="prev"]))::before {
     translate: -50% 0;
   }
 
@@ -2038,6 +2107,11 @@ article.reading h2 {
 }
 
 @media (forced-colors: active) {
+  :where(article, fieldset, dialog, .terminal, .tabs > [role="tabpanel"],
+    .overflow-auto > table)::after {
+    display: none;
+  }
+
   :where(input:is([type="date"], [type="datetime-local"], [type="month"],
     [type="week"], [type="time"])) {
     padding-inline-end: 0.65rem;
@@ -2088,7 +2162,12 @@ article.reading h2 {
     break-inside: avoid;
   }
 
-  :where(article, fieldset, dialog, .terminal, .tabs > [role="tabpanel"])::after {
+  :where(article, fieldset, dialog, .terminal, .tabs > [role="tabpanel"],
+    .overflow-auto > table)::after {
+    display: none;
+  }
+
+  :where([data-tooltip]:not([aria-busy="true"], button[rel="prev"]))::before {
     display: none;
   }
 
