@@ -101,7 +101,7 @@ from the document head:
   </head>
   <body>
     <header>
-      <nav aria-label="Primary navigation">
+      <nav class="menu" aria-label="Primary navigation">
         <ul><li><strong>Search console</strong></li></ul>
         <ul><li><a href="/login" role="button">Log in</a></li></ul>
       </nav>
@@ -174,14 +174,20 @@ document.querySelector("dialog").showModal();
 
 ## Navigation links
 
-Top-level menu links outside `aside` inherit color and weight without text underlines;
+Add `.menu` to `nav` to opt into indicators for its top-level plain links
+(`nav.menu > ul > li > a`). They inherit color and weight without text underlines;
 explicit `.primary`, `.secondary`, and `.contrast` link colors are preserved. They use
 inline-block layout, `0.35rem 0.5rem` padding, and a transparent
 `--tty-frame-width` bottom border to reserve space. Hover reveals a 45%
 current-color border; `aria-current="page"` keeps it solid, even on hover.
-The global keyboard focus outline is unchanged. Button-styled links, breadcrumb
-links, dropdown items, and navigation inside `aside` are excluded. See the
+The global keyboard focus outline is unchanged. Button-styled links (`a.button`
+and `a[role="button"]`) and dropdown items retain their own styling. Without
+`.menu`, navigation keeps its horizontal layout and ordinary link treatment.
+Breadcrumbs are independent: do not add `.menu` to them. See the
 [Navigation reference](docs/reference/navigation.html) for markup and examples.
+
+`.menu` is presentation on native navigation, not `role="menu"`; links keep
+normal Tab navigation with no JavaScript required.
 
 ## Tabs
 
@@ -223,8 +229,7 @@ top border:
 </article>
 ```
 
-Keep the heading directly inside the article, or inside one plain `div` wrapper,
-when it belongs inside the card:
+Keep the heading directly inside the article when it is a card title:
 
 ```html
 <article>
@@ -233,10 +238,10 @@ when it belongs inside the card:
 </article>
 ```
 
-The heading level remains semantic. Direct card headings and
-`article > div > h1` through `h6` share the same sizing: `h1`/`h2` use the larger
-card-title style and `h3`–`h6` the smaller style. This extends through only one
-plain `div`, not arbitrary descendants; nested articles retain their own context.
+The heading level remains semantic. Direct card headings use the larger
+card-title style for `h1`/`h2` and the smaller style for `h3`–`h6`.
+Headings inside content wrappers retain the ordinary heading hierarchy;
+nested articles retain their own context.
 Headings inside card headers use a compact component-title size. For form groups, use the
 native `fieldset` and `legend` elements instead of the `.legend` class. Direct
 `details` children become compact grouped rows inside a `fieldset`; standalone
@@ -266,7 +271,9 @@ The class layer is intentionally small.
 | `.plain` | Removes list markers/padding or opts a non-dropdown disclosure into a borderless, transparent surface |
 | `.tabs` | Connected ARIA tab row and framed panels; behavior supplied by application code |
 | `.dropdown` | Turns a native `details` element into an overlay menu |
+| `nav.menu` | Opt-in indicators for top-level plain navigation links |
 | `.breadcrumb` | Formats a labelled navigation path with separators |
+| `small.helper` | Explicit block helper text for wrapped or grouped controls |
 | `.striped` | Adds alternating rows to a table |
 | `.hoverable` | Highlights table rows on pointer hover |
 | `.bordered` | Adds vertical table cell rules |
@@ -359,11 +366,13 @@ Supported state attributes include `disabled`, `readonly`, `required`,
 ARIA does not define an `aria-valid` attribute. Use `aria-invalid="false"` to
 mark a field as explicitly valid.
 
-Inside a form, helper `small` text after controls, wrapping labels, connected
-groups, search forms, and dropdowns remains muted and block-level. Only `small`
-immediately after an `input`, `select`, or `textarea` outside a label receives a
-negative top margin; text inside labels is not pulled upward. Native `output`
-uses tabular numerals without imposing alignment:
+An immediately adjacent `small` after a text-like `input`, `select`, or
+`textarea` receives muted block helper styling and a negative top margin,
+regardless of ancestry. Inputs of type `checkbox`, `radio`, `range`, `hidden`,
+`button`, `submit`, and `reset` are excluded. Use `small.helper` for wrapped
+or grouped controls: it is muted, block-level, and uses `margin: 0 0 1rem`
+even immediately after a control. IDs and wrappers do not imply helper styling.
+Native `output` uses tabular numerals without imposing alignment:
 
 ```html
 <label for="total">Estimated total</label>

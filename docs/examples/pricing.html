@@ -15,6 +15,7 @@
     body > main { padding-top: 2rem; }
     #plans { margin-top: 0; }
     .plans > article { display: grid; grid-template-rows: auto auto minmax(7rem, auto) minmax(15rem, auto) minmax(10rem, auto) auto; margin: 0; }
+    .plans h3 { font-size: .875rem; line-height: 1.4; }
     .plans li { display: flex; justify-content: space-between; gap: 0.5rem; }
     .plan-action { align-items: end; flex-wrap: wrap; }
     .plan-action p { margin: 0; margin-inline-start: auto; text-align: right; line-height: 1.3; }
@@ -23,6 +24,7 @@
     .usage-row { display: grid; grid-template-columns: 11rem 1fr 7rem; align-items: center; gap: 1.5rem; margin-block: 1.5rem; }
     .usage-row label, .usage-row input { margin: 0; }
     .usage-row small { display: block; }
+    .usage-row > div > small { margin-bottom: 1rem; }
     .usage-row output, .estimate output { text-align: right; }
     .estimate { border-top: var(--tty-border-width) solid var(--tty-border); padding-top: 1rem; }
     body > footer .grid { --tty-grid-min: 14rem; }
@@ -44,7 +46,7 @@
 <body>
   <a class="sr-only" href="#content">Skip to content</a>
   <header>
-    <nav class="container" aria-label="Main navigation">
+    <nav class="container menu" aria-label="Main navigation">
       <ul><li><a href="product-landing.html"><strong>◉ orbitdb</strong></a></li></ul>
       <ul>
         <li><a href="product-landing.html#features">Platform</a></li>
@@ -116,7 +118,7 @@
             <div><small id="collections-value">10 collections</small><input id="collections" name="collections" type="range" min="1" max="200" value="10" aria-describedby="collections-value"></div>
             <output id="collection-cost" for="collections" aria-label="Monthly collections subtotal" aria-live="off">Included</output>
           </div>
-          <div class="group inline estimate"><span>Estimated monthly bill<br><small id="minimum-note">Includes the $24 sandbox usage floor.</small></span><output id="total-cost" for="dimensions metadata plan records writes queries collections" aria-label="Estimated monthly bill" aria-live="polite" aria-atomic="true">$24.00/month</output></div>
+          <div class="group inline estimate"><span>Estimated monthly bill<br><small class="helper" id="minimum-note">Includes the $24 sandbox usage floor.</small></span><output id="total-cost" for="dimensions metadata plan records writes queries collections" aria-label="Estimated monthly bill" aria-live="polite" aria-atomic="true">$24.00/month</output></div>
           <noscript><p>The estimate above uses the initial values. Enable JavaScript to recalculate as you change the controls.</p></noscript>
         </fieldset>
       </form>

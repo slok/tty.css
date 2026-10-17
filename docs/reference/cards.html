@@ -12,7 +12,7 @@
 </head>
 <body class="docs-page">
   <a class="sr-only" href="#content">Skip to content</a>
-  <header class="docs-topbar"><nav aria-label="Main navigation"><ul><li><a href="../"><strong>▰ tty.css</strong></a></li><li><small>main</small></li></ul><ul><li><a href="./" aria-current="page">Docs</a></li><li><a href="../examples/">Examples</a></li><li><a href="../../tty.css" download>Download</a></li><li><button type="button" class="outline" data-theme-toggle>Theme: light</button></li></ul></nav></header>
+  <header class="docs-topbar"><nav class="menu" aria-label="Main navigation"><ul><li><a href="../"><strong>▰ tty.css</strong></a></li><li><small>main</small></li></ul><ul><li><a href="./" aria-current="page">Docs</a></li><li><a href="../examples/">Examples</a></li><li><a href="../../tty.css" download>Download</a></li><li><button type="button" class="outline" data-theme-toggle>Theme: light</button></li></ul></nav></header>
   <main class="docs-shell">
     <aside class="docs-sidebar"><nav aria-label="Documentation sidebar"><p class="docs-nav-title">Getting started</p><ul><li><a href="./">Quick start</a></li><li><a href="themes.html">Themes</a></li></ul><p class="docs-nav-title">Layout</p><ul><li><a href="layout.html">Landmarks, containers &amp; grid</a></li></ul><p class="docs-nav-title">Content</p><ul><li><a href="typography.html">Typography</a></li><li><a href="buttons-links.html">Buttons &amp; links</a></li><li><a href="tables-code.html">Tables &amp; code</a></li></ul><p class="docs-nav-title">Forms</p><ul><li><a href="forms.html">Form elements</a></li></ul><p class="docs-nav-title">Components</p><ul><li><a href="cards.html" aria-current="page">Cards</a></li><li><a href="navigation.html">Navigation</a></li><li><a href="tabs.html">Tabs</a></li><li><a href="components.html">Native components</a></li></ul><p class="docs-nav-title">Customize</p><ul><li><a href="colors.html">Colors</a></li><li><a href="customization.html">CSS variables</a></li><li><a href="accessibility.html">Accessibility</a></li><li><a href="pico-comparison.html">Pico comparison</a></li></ul></nav></aside>
     <div class="docs-content" id="content">
@@ -20,7 +20,7 @@
       <section id="titles">
         <h2>Article titles</h2>
         <p>A heading directly inside an article stays within the card body. Direct <code>h1</code> and <code>h2</code> titles share the larger article-title style; direct <code>h3</code> through <code>h6</code> share the smaller style. Choose the level from the page outline, not its appearance.</p>
-        <p>The same sizing applies through one plain <code>div</code> wrapper (<code>article &gt; div &gt; h1</code> through <code>h6</code>), not arbitrary descendants. Nested articles retain their own heading context.</p>
+        <p>Only direct article titles and article-header titles receive compact component sizing. Headings inside content wrappers use the ordinary heading hierarchy. Nested articles retain their own heading context.</p>
         <div class="docs-preview"><div class="grid"><article><h2>Deployment summary</h2><p>A level-two title introduces this standalone article.</p></article><article><h3>Replica health</h3><p>A lower-level title introduces a card within the current section.</p></article></div></div>
         <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;div class="grid"&gt;
   &lt;article&gt;
@@ -32,12 +32,12 @@
     &lt;p&gt;A lower-level title introduces a card within the current section.&lt;/p&gt;
   &lt;/article&gt;
 &lt;/div&gt;</code></pre></div>
-        <div class="docs-preview"><article><div><h3>Replica health</h3><p>One wrapper groups the card content.</p></div></article></div>
+        <div class="docs-preview"><article><section><h3>Replica health</h3><p>A content section keeps the ordinary heading hierarchy.</p></section></article></div>
         <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;article&gt;
-  &lt;div&gt;
+  &lt;section&gt;
     &lt;h3&gt;Replica health&lt;/h3&gt;
-    &lt;p&gt;One wrapper groups the card content.&lt;/p&gt;
-  &lt;/div&gt;
+    &lt;p&gt;A content section keeps the ordinary heading hierarchy.&lt;/p&gt;
+  &lt;/section&gt;
 &lt;/article&gt;</code></pre></div>
       </section>
       <section id="frame-treatments">
