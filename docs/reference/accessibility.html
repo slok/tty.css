@@ -13,7 +13,7 @@
 <body class="docs-page">
   <a class="sr-only" href="#content">Skip to content</a>
   <header class="docs-topbar">
-    <nav aria-label="Main navigation"><ul><li><a href="../"><strong>▰ tty.css</strong></a></li><li><small>main</small></li></ul><ul><li><a href="./" aria-current="page">Docs</a></li><li><a href="../examples/">Examples</a></li><li><a href="../../tty.css" download>Download</a></li><li><button type="button" class="outline" data-theme-toggle>Theme: light</button></li></ul></nav>
+    <nav class="menu" aria-label="Main navigation"><ul><li><a href="../"><strong>▰ tty.css</strong></a></li><li><small>main</small></li></ul><ul><li><a href="./" aria-current="page">Docs</a></li><li><a href="../examples/">Examples</a></li><li><a href="../../tty.css" download>Download</a></li><li><button type="button" class="outline" data-theme-toggle>Theme: light</button></li></ul></nav>
   </header>
   <main class="docs-shell">
     <aside class="docs-sidebar">
@@ -52,9 +52,9 @@
       <section id="skip-link">
         <h2>Visually hidden text and skip links</h2>
         <p><code>.sr-only</code> visually hides text while keeping it available to assistive technology. A focused <code>.sr-only</code> element becomes visible, which makes the class suitable for a skip link. The target must exist and should begin the page's primary content.</p>
-        <div class="docs-preview"><a class="sr-only" href="#skip-link-target">Skip preview navigation</a><nav aria-label="Preview navigation"><ul><li><a href="#skip-link">Overview</a></li><li><a href="#skip-link-target">Settings</a></li></ul></nav><div id="skip-link-target" tabindex="-1"><strong>Preview content</strong></div></div>
+        <div class="docs-preview"><a class="sr-only" href="#skip-link-target">Skip preview navigation</a><nav class="menu" aria-label="Preview navigation"><ul><li><a href="#skip-link">Overview</a></li><li><a href="#skip-link-target">Settings</a></li></ul></nav><div id="skip-link-target" tabindex="-1"><strong>Preview content</strong></div></div>
         <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;a class="sr-only" href="#skip-link-target"&gt;Skip preview navigation&lt;/a&gt;
-&lt;nav aria-label="Preview navigation"&gt;
+&lt;nav class="menu" aria-label="Preview navigation"&gt;
   &lt;ul&gt;
     &lt;li&gt;&lt;a href="#skip-link"&gt;Overview&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href="#skip-link-target"&gt;Settings&lt;/a&gt;&lt;/li&gt;

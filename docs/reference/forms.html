@@ -13,7 +13,7 @@
 <body class="docs-page">
   <a class="sr-only" href="#content">Skip to content</a>
   <header class="docs-topbar">
-    <nav aria-label="Main navigation">
+    <nav class="menu" aria-label="Main navigation">
       <ul><li><a href="../"><strong>▰ tty.css</strong></a></li><li><small>main</small></li></ul>
       <ul><li><a href="./" aria-current="page">Docs</a></li><li><a href="../examples/">Examples</a></li><li><a href="../../tty.css" download>Download</a></li><li><button type="button" class="outline" data-theme-toggle>Theme: light</button></li></ul>
     </nav>
@@ -46,7 +46,7 @@
       <section id="basics">
         <h2>Form basics</h2>
         <p>Associate each control with a visible <code>label</code>. A matching <code>for</code> and <code>id</code> keeps the label clickable and gives the control an accessible name. Use help text with <code>aria-describedby</code>; placeholders are examples, not labels.</p>
-        <p>Form helper <code>small</code> text stays muted and block-level after controls, wrapping labels, connected groups, search forms, and dropdowns. A negative top margin brings it closer only when it immediately follows an <code>input</code>, <code>select</code>, or <code>textarea</code> outside a label. Text nested inside labels is not pulled upward; helpers after wrappers keep their normal spacing.</p>
+        <p>A <code>small</code> immediately after a text-like <code>input</code>, <code>select</code>, or <code>textarea</code> gets muted block helper styling and a negative top margin, regardless of ancestry. Input types <code>checkbox</code>, <code>radio</code>, <code>range</code>, <code>hidden</code>, <code>button</code>, <code>submit</code>, and <code>reset</code> are excluded. For wrapped or grouped controls, use <code>small.helper</code>: it uses <code>margin: 0 0 1rem</code>, even directly after a control. IDs and wrappers alone do not imply helpers.</p>
         <div class="docs-preview">
           <form>
             <label for="project-name">Project name</label>
@@ -79,6 +79,12 @@
   &lt;label for="project-notes"&gt;Deployment notes&lt;/label&gt;
   &lt;textarea id="project-notes" name="notes" rows="4" placeholder="Optional context for operators"&gt;&lt;/textarea&gt;
 &lt;/form&gt;</code></pre></div>
+        <div class="docs-preview">
+          <label>API token <input name="api-token" type="password" aria-describedby="token-help"></label>
+          <small class="helper" id="token-help">Keep this token private.</small>
+        </div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;label&gt;API token &lt;input name="api-token" type="password" aria-describedby="token-help"&gt;&lt;/label&gt;
+&lt;small class="helper" id="token-help"&gt;Keep this token private.&lt;/small&gt;</code></pre></div>
       </section>
 
       <section id="states">

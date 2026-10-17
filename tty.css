@@ -475,7 +475,7 @@ h4 {
 
 /* Menu indicators are separate from ordinary text-link underlines. Reserve
    their space so hover and current-page states never move surrounding items. */
-:where(nav:not(.breadcrumb, [aria-label="breadcrumb"], aside nav) > ul > li > a:not([role="button"], .button)) {
+:where(nav.menu > ul > li > a:not([role="button"], .button)) {
   display: inline-block;
   padding: 0.35rem 0.5rem;
   border-bottom: var(--tty-frame-width) solid transparent;
@@ -483,17 +483,17 @@ h4 {
   text-decoration: none;
 }
 
-:where(nav:not(.breadcrumb, [aria-label="breadcrumb"], aside nav) > ul > li > a:not([role="button"], .button):hover) {
+:where(nav.menu > ul > li > a:not([role="button"], .button):hover) {
   border-bottom-color: var(--tty-fg-muted);
   border-bottom-color: color-mix(in oklch, currentColor 45%, transparent);
 }
 
-:where(nav:not(.breadcrumb, [aria-label="breadcrumb"], aside nav) > ul > li > a:not([role="button"], .button)[aria-current="page"]) {
+:where(nav.menu > ul > li > a:not([role="button"], .button)[aria-current="page"]) {
   border-bottom-color: currentColor;
 }
 
-:where(nav:not(.breadcrumb, [aria-label="breadcrumb"], aside nav) > ul > li > a:not([role="button"], .button, .primary, .secondary, .contrast)),
-:where(nav:not(.breadcrumb, [aria-label="breadcrumb"], aside nav) > ul > li > a:not([role="button"], .button, .primary, .secondary, .contrast):hover) {
+:where(nav.menu > ul > li > a:not([role="button"], .button, .primary, .secondary, .contrast)),
+:where(nav.menu > ul > li > a:not([role="button"], .button, .primary, .secondary, .contrast):hover) {
   color: inherit;
 }
 
@@ -981,14 +981,15 @@ h4 {
   color: var(--tty-success);
 }
 
-:where(form small[id]:not(label small),
-  form :is(input, select, textarea, label, [role="group"], [role="search"], details.dropdown) + small:not(label small)) {
+:where(:is(input:not([type="checkbox"], [type="radio"], [type="range"],
+  [type="hidden"], [type="button"], [type="submit"], [type="reset"]), select, textarea) + small) {
   display: block;
-  margin: 0 0 1rem;
+  margin: -0.7rem 0 1rem;
 }
 
-:where(form :is(input, select, textarea) + small:not(label small)) {
-  margin-top: -0.7rem;
+:where(small.helper) {
+  display: block;
+  margin: 0 0 1rem;
 }
 
 :where(output) {
@@ -1277,8 +1278,7 @@ h4 {
   font-size: 0.9rem;
 }
 
-article > :where(h1, h2),
-article > :where(div) > :where(h1, h2) {
+article > :where(h1, h2) {
   font-family: var(--tty-font);
   font-size: 1rem;
   font-variant-caps: normal;
@@ -1287,8 +1287,7 @@ article > :where(div) > :where(h1, h2) {
   text-transform: none;
 }
 
-article > :where(h3, h4, h5, h6),
-article > :where(div) > :where(h3, h4, h5, h6) {
+article > :where(h3, h4, h5, h6) {
   font-family: var(--tty-font);
   font-size: 0.875rem;
   font-variant-caps: normal;
@@ -2155,15 +2154,15 @@ article.reading h2 {
 @media (forced-colors: active) {
   /* Transparent borders become visible in forced colors. Match the canvas
      until an indicator is needed, using system colors for its states. */
-  :where(nav:not(.breadcrumb, [aria-label="breadcrumb"], aside nav) > ul > li > a:not([role="button"], .button)) {
+  :where(nav.menu > ul > li > a:not([role="button"], .button)) {
     border-bottom-color: Canvas;
   }
 
-  :where(nav:not(.breadcrumb, [aria-label="breadcrumb"], aside nav) > ul > li > a:not([role="button"], .button):hover) {
+  :where(nav.menu > ul > li > a:not([role="button"], .button):hover) {
     border-bottom-color: GrayText;
   }
 
-  :where(nav:not(.breadcrumb, [aria-label="breadcrumb"], aside nav) > ul > li > a:not([role="button"], .button)[aria-current="page"]) {
+  :where(nav.menu > ul > li > a:not([role="button"], .button)[aria-current="page"]) {
     border-bottom-color: LinkText;
   }
 
