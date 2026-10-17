@@ -28,6 +28,8 @@ The repository is also a build-free static site:
 | `docs/examples/` | Six general examples and a Monokai palette example |
 | `docs/assets/docs.css` | Documentation-site layout only |
 | `docs/assets/docs.js` | Documentation theme and copy controls only |
+| `docs/assets/tabs.js` | Docs-only ARIA tabs example controller; not part of tty.css |
+| `docs/assets/tabs-alpine.js` | Docs-only Alpine.js tabs example controller |
 | `docs/assets/palette-settings.js` | Docs-only saved palette preference across the site |
 | `tty.css` | Canonical framework source and local distribution file |
 
@@ -154,6 +156,7 @@ tty.css directly styles:
 - CSS tooltips through `data-tooltip`
 - `progress` and `meter`
 - Native dialogs, including structured `dialog > article` modals
+- ARIA tabs with connected frames and application-managed behavior
 
 tty.css styles dialogs but does not open or close them. Use the native dialog
 API in application code when interactive behavior is needed:
@@ -161,6 +164,19 @@ API in application code when interactive behavior is needed:
 ```js
 document.querySelector("dialog").showModal();
 ```
+
+## Tabs
+
+Use one `.tabs` wrapper around a labelled `role="tablist"` and its sibling
+`role="tabpanel"` elements. Tab buttons use `role="tab"`, `aria-selected`,
+and `aria-controls`; panels use unique IDs and `aria-labelledby`.
+
+tty.css styles the selected state through `aria-selected="true"` and respects
+`hidden` on inactive panels. It does not switch tabs. Application JavaScript
+must synchronize selection, panel visibility, roving `tabindex`, and keyboard
+navigation. Use your preferred library or the JavaScript examples in the
+[Tabs reference](docs/reference/tabs.html). The
+[Alpine dashboard](docs/examples/dashboard.html) shows a library-based example.
 
 ## Card titles
 
@@ -221,6 +237,7 @@ The class layer is intentionally small.
 | `.group.inline` | Keeps a group on one line and spreads its items apart |
 | `.overflow-auto` | Scroll container for wide tables or content |
 | `.legend` | Places a direct article header title over the card border |
+| `.tabs` | Connected ARIA tab row and framed panels; behavior supplied by application code |
 | `.dropdown` | Turns a native `details` element into an overlay menu |
 | `.breadcrumb` | Formats a labelled navigation path with separators |
 | `.striped` | Adds alternating rows to a table |
