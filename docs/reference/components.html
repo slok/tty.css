@@ -24,8 +24,8 @@
 
       <section id="details">
         <h2>Details and disclosure</h2>
-        <p><code>details</code> and <code>summary</code> provide disclosure semantics, keyboard operation, and an exposed open state without JavaScript.</p>
-        <div class="docs-preview"><details open><summary>Why use a native disclosure?</summary><p>It works before application JavaScript loads.</p></details><details><summary>Can it contain rich content?</summary><p>Yes. Add paragraphs, lists, forms, or other appropriate content.</p></details></div>
+        <p><code>details</code> and <code>summary</code> provide disclosure semantics, keyboard operation, and an exposed open state without JavaScript. Ordinary disclosures keep their default frame. Add <code>.plain</code> to <code>details:not(.dropdown)</code> to opt into a borderless, transparent surface, including inside fieldsets, while retaining contextual padding and the chevron; dropdowns are unaffected.</p>
+        <div class="docs-preview"><details open><summary>Why use a native disclosure?</summary><p>It works before application JavaScript loads.</p></details><details><summary>Can it contain rich content?</summary><p>Yes. Add paragraphs, lists, forms, or other appropriate content.</p></details><details class="plain" open><summary>Need a quieter disclosure?</summary><p>Opt in with .plain; padding and the chevron remain.</p></details></div>
         <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;details open&gt;
   &lt;summary&gt;Why use a native disclosure?&lt;/summary&gt;
   &lt;p&gt;It works before application JavaScript loads.&lt;/p&gt;
@@ -33,6 +33,10 @@
 &lt;details&gt;
   &lt;summary&gt;Can it contain rich content?&lt;/summary&gt;
   &lt;p&gt;Yes. Add paragraphs, lists, forms, or other appropriate content.&lt;/p&gt;
+&lt;/details&gt;
+&lt;details class="plain" open&gt;
+  &lt;summary&gt;Need a quieter disclosure?&lt;/summary&gt;
+  &lt;p&gt;Opt in with .plain; padding and the chevron remain.&lt;/p&gt;
 &lt;/details&gt;</code></pre></div>
         <h3>Fieldset variant</h3>
         <p>Direct-child disclosures inside a <code>fieldset</code> become divided rows. Use this for related settings or questions; see the base <a href="forms.html#fieldsets">fieldset guidance</a>.</p>

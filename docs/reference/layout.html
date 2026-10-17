@@ -105,9 +105,9 @@
 
         <section id="grid">
           <h2>Responsive grid</h2>
-          <p><code>.grid</code> creates equal, auto-fitting columns with a 1.5rem gap. Each column is at least 17rem when space permits and collapses to the available width on smaller screens.</p>
+          <p><code>.grid</code> creates equal, auto-fitting columns with a 1.5rem gap. It uses <code>--tty-grid-min</code> as the minimum column width, defaulting to <code>17rem</code>, and collapses to the available width on smaller screens. Override the token locally, as this <code>14rem</code> example does, without changing other grids.</p>
           <div class="docs-preview">
-            <div class="grid">
+            <div class="grid" style="--tty-grid-min: 14rem">
               <article><strong>Node 01</strong><p>Healthy</p></article>
               <article><strong>Node 02</strong><p>Healthy</p></article>
               <article><strong>Node 03</strong><p>Deploying</p></article>
@@ -115,7 +115,7 @@
           </div>
           <div class="code-example">
             <button type="button" class="secondary" data-copy aria-label="Copy responsive grid example">Copy</button>
-            <pre><code>&lt;div class="grid"&gt;
+            <pre><code>&lt;div class="grid" style="--tty-grid-min: 14rem"&gt;
   &lt;article&gt;&lt;strong&gt;Node 01&lt;/strong&gt;&lt;p&gt;Healthy&lt;/p&gt;&lt;/article&gt;
   &lt;article&gt;&lt;strong&gt;Node 02&lt;/strong&gt;&lt;p&gt;Healthy&lt;/p&gt;&lt;/article&gt;
   &lt;article&gt;&lt;strong&gt;Node 03&lt;/strong&gt;&lt;p&gt;Deploying&lt;/p&gt;&lt;/article&gt;
