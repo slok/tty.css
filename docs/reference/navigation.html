@@ -55,7 +55,8 @@
       </section>
       <section id="link-dropdown">
         <h2>Link dropdown</h2>
-        <p><code>details.dropdown</code> is a select-like disclosure. Outside navigation it fills the available width; its direct list opens as an overlay. Links remain ordinary destinations.</p>
+        <p><code>details.dropdown</code> is a select-like disclosure. Outside navigation it fills the available width. Place a <code>ul</code> directly after the <code>summary</code>; no wrapper is needed. Links remain ordinary destinations.</p>
+        <p>The list scrolls at its maximum height. Dropdown overlays are shadowless and do not support frame treatments.</p>
         <div class="docs-preview"><details class="dropdown"><summary>Choose documentation</summary><ul><li><a href="#link-dropdown">Quick start</a></li><li><a href="#link-dropdown">Components</a></li><li><a href="#link-dropdown">Accessibility</a></li></ul></details></div>
         <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;details class="dropdown"&gt;
   &lt;summary&gt;Choose documentation&lt;/summary&gt;

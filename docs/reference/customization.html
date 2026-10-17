@@ -122,11 +122,16 @@
         <h2>Layout and shape tokens</h2>
         <div class="overflow-auto" tabindex="0" aria-label="Layout and shape token defaults"><table><thead><tr><th scope="col">Token</th><th scope="col">Default</th><th scope="col">Used for</th></tr></thead><tbody>
           <tr><th scope="row"><code>--tty-container</code></th><td><code>72rem</code></td><td>Body landmark and <code>.container</code> maximum width</td></tr>
-          <tr><th scope="row"><code>--tty-radius</code></th><td><code>0.2rem</code></td><td>General controls, frames, code, menus, and dialogs</td></tr>
+          <tr><th scope="row"><code>--tty-radius</code></th><td><code>0.2rem</code></td><td>General controls, code, menus, and disclosures; joined search controls retain pill-shaped ends</td></tr>
+          <tr><th scope="row"><code>--tty-frame-radius</code></th><td><code>0</code></td><td>Article, fieldset, dialog, and exposed tab-frame corners, independent of controls. Joined tab edges stay square.</td></tr>
           <tr><th scope="row"><code>--tty-border-width</code></th><td><code>1px</code></td><td>Quiet borders, dividers, and tooltip borders</td></tr>
           <tr><th scope="row"><code>--tty-frame-width</code></th><td><code>2px</code></td><td>Strong component frames and custom controls</td></tr>
           <tr><th scope="row"><code>--tty-shadow-x</code></th><td><code>0.5rem</code></td><td>Horizontal decorative frame shadow</td></tr>
           <tr><th scope="row"><code>--tty-shadow-y</code></th><td><code>0.5rem</code></td><td>Vertical decorative frame shadow</td></tr>
+          <tr><th scope="row"><code>--tty-shadow-color</code></th><td><code>var(--tty-border-strong)</code></td><td>Frame-shadow color, independent of mask shapes</td></tr>
+          <tr><th scope="row"><code>--tty-shadow-opacity</code></th><td><code>0.6</code>; <code>1</code> for <code>.strong-shadow</code></td><td>Frame-shadow opacity</td></tr>
+          <tr><th scope="row"><code>--tty-shadow-pattern</code></th><td>Embedded 4×4 SVG: Standard; inverse Dense for <code>.strong-shadow</code></td><td>Repeating SVG mask with two staggered rectangular marks</td></tr>
+          <tr><th scope="row"><code>--tty-shadow-pattern-size</code></th><td><code>4px 4px</code></td><td>Mask tile size, not offset; use <code>3px 3px</code> for Fine</td></tr>
           <tr><th scope="row"><code>--tty-control-shadow-size</code></th><td><code>0.125rem</code></td><td>Button and form-control shadow offset</td></tr>
           <tr><th scope="row"><code>--tty-control-height</code></th><td><code>2.5rem</code></td><td>Minimum height of buttons and single-line controls</td></tr>
         </tbody></table></div>
@@ -140,6 +145,9 @@
   --tty-control-shadow-size: 0.1rem;
   --tty-control-height: 2.75rem;
 }</code></pre></div>
+        <p>For a component-scoped adjustment, override <code>--tty-frame-width</code>, <code>--tty-shadow-x</code>, and <code>--tty-shadow-y</code> on an application class instead of <code>:root</code>. These also work with the optional <a href="cards.html#frame-treatments">frame treatments</a>; double borders use 3× the frame width, while strong shadows keep the configured offsets.</p>
+        <p>The four mask-shadow tokens are optional overrides, not required <code>:root</code> declarations. They are shared by articles, fieldsets, tabs, table wrappers, and dialogs. Their defaults resolve on each shadow pseudo-element so local border colors are respected, and explicit overrides also win on <code>.strong-shadow</code>. SVG masks supply shapes only; CSS supplies color. For a custom <code>--tty-shadow-pattern: url(...)</code>, the SVG alpha defines transparency. See <a href="cards.html#shadow-textures">texture examples</a>.</p>
+        <p>On <code>.overflow-auto</code> table wrappers, frame treatments style the table frame and its shadow within the wrapper padding. Dropdown and tooltip overlays are shadowless and do not support frame treatments; dropdown lists need no wrapper. Small solid control shadows, radio states, and validation treatments remain intentional.</p>
         <blockquote><p><code>--tty-space</code> is not defined or consumed by the current stylesheet. It is not part of the effective customization API, and overriding it has no effect; use ordinary application spacing rules instead.</p></blockquote>
       </section>
 

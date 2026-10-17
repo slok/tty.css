@@ -89,6 +89,7 @@
   &lt;button type="button" class="outline" data-tooltip="Shown to the left" data-placement="left"&gt;Left&lt;/button&gt;
   &lt;button type="button" class="contrast" data-tooltip="Shown to the right" data-placement="right"&gt;Right&lt;/button&gt;
 &lt;/p&gt;</code></pre></div>
+        <p>Tooltip overlays are shadowless and do not support frame treatments.</p>
         <p>The visual bubble is CSS generated content. It has no tooltip role, cannot be dismissed independently, is unavailable to touch-only interaction, and is not a reliable accessible description. Never put essential information in it. Keep the control's accessible name complete, and connect necessary help text with <code>aria-describedby</code>.</p>
         <div class="docs-preview"><button type="button" aria-describedby="deploy-help" data-tooltip="Starts deployment">Deploy</button><span class="sr-only" id="deploy-help">Starts deployment immediately and cannot be paused.</span></div>
         <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;button type="button" aria-describedby="deploy-help" data-tooltip="Starts deployment"&gt;Deploy&lt;/button&gt;
@@ -110,7 +111,7 @@
   &lt;/form&gt;
 &lt;/dialog&gt;</code></pre></div>
         <h3>Article dialog</h3>
-        <p>A direct child <code>article</code> enables the wider structured layout with a sticky header, scrolling body, and sticky action footer. The icon-only close button requires an accessible name.</p>
+        <p>A direct child <code>article</code> enables the wider structured layout with a sticky header, scrolling body, and sticky action footer. The dialog wrapper displays the default Standard SVG-mask shadow outside the scrolling article. Put frame treatments such as <code>.strong-shadow</code> or <code>.flat</code> on the dialog, not the article. The icon-only close button requires an accessible name.</p>
         <div class="docs-preview"><button type="button" data-dialog-open="article-dialog">Open article dialog</button><dialog id="article-dialog" aria-labelledby="article-dialog-title" aria-describedby="article-dialog-description"><article><header><button type="button" rel="prev" aria-label="Close dialog" data-dialog-close></button><h3 id="article-dialog-title">Delete namespace?</h3></header><p id="article-dialog-description">The namespace <code>search-production</code> and all stored documents will be permanently removed.</p><p>This operation cannot be undone. Export anything you need before continuing.</p><footer><button type="button" class="secondary" data-dialog-close>Cancel</button><button type="button" data-dialog-close>Confirm deletion</button></footer></article></dialog></div>
         <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;button type="button" data-dialog-open="article-dialog"&gt;Open article dialog&lt;/button&gt;
 &lt;dialog id="article-dialog" aria-labelledby="article-dialog-title" aria-describedby="article-dialog-description"&gt;

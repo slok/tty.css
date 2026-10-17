@@ -237,6 +237,10 @@ The class layer is intentionally small.
 | `.group.inline` | Keeps a group on one line and spreads its items apart |
 | `.overflow-auto` | Scroll container for wide tables or content |
 | `.legend` | Places a direct article header title over the card border |
+| `.double-border` | Double-line frame at 3× `--tty-frame-width` |
+| `.strong-shadow` | Dense SVG-mask shadow, full opacity by default, with unchanged offsets |
+| `.muted` | Muted surface background |
+| `.flat` | No decorative shadow; border remains |
 | `.tabs` | Connected ARIA tab row and framed panels; behavior supplied by application code |
 | `.dropdown` | Turns a native `details` element into an overlay menu |
 | `.breadcrumb` | Formats a labelled navigation path with separators |
@@ -247,6 +251,18 @@ The class layer is intentionally small.
 | `html.modal-is-open` | Prevents document scrolling while a modal is open |
 | `.terminal` | Dithered offset background treatment |
 | `.sr-only` | Visually hidden accessible text |
+
+Frame treatments compose independently on `article`, `fieldset`, `dialog`,
+`.tabs` (coordinating tabs and panels), and `.overflow-auto` table wrappers.
+Table-wrapper treatments affect the table frame and its shadow. For `dialog > article`, put them
+on the dialog; its direct article receives the frame, while the default Standard
+shadow remains outside the scrolling article. Nested frames stay unchanged unless
+given their own classes. These are visual classes, not ARIA roles.
+See [live frame examples](docs/reference/cards.html#frame-treatments).
+
+Use `<details class="dropdown"><summary>Choose</summary><ul>…</ul></details>`
+for dropdowns. The list scrolls; no wrapper is needed. Dropdown and tooltip overlays
+are shadowless and do not support frame treatments.
 
 `role="group"` creates connected controls with joined borders. On small
 screens, the controls stack vertically while preserving those joined borders.
@@ -374,7 +390,8 @@ Fonts, layout, and shape also use custom properties:
   --tty-font-display: "IBM Plex Sans", sans-serif;
   --tty-container: 80rem;
   --tty-reading-width: 72ch;
-  --tty-radius: 0;
+  --tty-radius: 0.2rem;
+  --tty-frame-radius: 0;
   --tty-border-width: 1px;
   --tty-frame-width: 2px;
   --tty-shadow-x: 0.5rem;
@@ -382,6 +399,18 @@ Fonts, layout, and shape also use custom properties:
   --tty-control-height: 2.5rem;
 }
 ```
+
+`--tty-frame-radius` controls articles, fieldsets, dialogs, and exposed tab-frame
+corners independently of control corners (`--tty-radius`). Joined tab edges stay square.
+
+Frame shadows use a Standard SVG mask by default; `.strong-shadow` selects Dense,
+and `.flat` removes the shadow. Override `--tty-shadow-color` (default
+`var(--tty-border-strong)`), `--tty-shadow-opacity` (`0.6`, or `1` for Dense),
+`--tty-shadow-pattern` (SVG mask), or `--tty-shadow-pattern-size` (`4px 4px`),
+including on `.strong-shadow`. Use `3px 3px` for Fine without changing the offset.
+The same tokens apply to articles, fieldsets, tabs, table wrappers, and dialogs.
+Small solid control shadows, radio states, and validation treatments remain intentional.
+See [shadow examples](docs/reference/cards.html#shadow-textures).
 
 ## Override styles
 
@@ -391,7 +420,7 @@ specificity. A plain selector in application CSS usually wins without
 
 ```css
 article {
-  box-shadow: none;
+  --tty-shadow-color: var(--tty-accent);
 }
 
 button.danger {

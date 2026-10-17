@@ -32,6 +32,37 @@
   &lt;/article&gt;
 &lt;/div&gt;</code></pre></div>
       </section>
+      <section id="frame-treatments">
+        <h2>Frame treatments</h2>
+        <p>Mix optional visual classes: <code>.double-border</code> uses a double line at 3× <code>--tty-frame-width</code>; <code>.strong-shadow</code> uses the Dense mask at full opacity by default, with the usual offsets; <code>.muted</code> uses the muted surface; <code>.flat</code> removes only the decorative shadow, keeping the border.</p>
+        <div class="docs-preview"><div class="grid"><article><h3>Launch</h3><p>Default frame.</p></article><article class="double-border"><h3>Scale</h3><p>Double border.</p></article><article class="strong-shadow"><h3>Enterprise</h3><p>Stronger shadow.</p></article><article class="double-border muted strong-shadow"><h3>Sales</h3><p>Three treatments combined.</p></article><article class="flat muted"><h3>Support</h3><p>Quiet surface, border intact.</p></article></div></div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;article class="double-border muted strong-shadow"&gt;
+  &lt;h3&gt;Sales&lt;/h3&gt;
+  &lt;p&gt;Find the right plan for your team.&lt;/p&gt;
+&lt;/article&gt;
+&lt;article class="flat muted"&gt;
+  &lt;h3&gt;Support&lt;/h3&gt;
+  &lt;p&gt;Help when you need it.&lt;/p&gt;
+&lt;/article&gt;</code></pre></div>
+        <p>These classes work independently on <code>article</code>, <code>fieldset</code>, <code>dialog</code>, and the <a href="tabs.html#frame-treatments"><code>.tabs</code> wrapper</a>. Defaults stay unchanged, including nested frames without their own classes. They are visual treatments, not ARIA roles. For <code>dialog &gt; article</code>, put classes on the dialog; its direct article receives the visual frame.</p>
+        <div class="docs-preview"><fieldset class="double-border muted"><legend>Support preferences</legend><label><input type="checkbox" name="support-updates"> Email service updates</label></fieldset><button type="button" data-dialog-open="frame-dialog">Preview Sales dialog</button></div>
+        <dialog id="frame-dialog" class="double-border muted strong-shadow" aria-labelledby="frame-dialog-title"><article><h3 id="frame-dialog-title">Talk to Sales</h3><p>Find the right plan for your team.</p><footer><button type="button" data-dialog-close>Close</button></footer></article></dialog>
+      </section>
+      <section id="shadow-textures">
+        <h2>Shadow textures</h2>
+        <p>Standard is the default: two staggered rectangular marks in a 4×4px SVG mask at 0.6 opacity. Fine scales the same mask to 3×3px; <code>.strong-shadow</code> selects its Dense inverse at full opacity. Pattern scale does not change the shadow offset.</p>
+        <div class="docs-preview"><div class="grid">
+          <article><h3>Standard</h3><p>Default 4×4px tile.</p></article>
+          <article style="--tty-shadow-pattern-size: 3px 3px"><h3>Fine</h3><p>Smaller tile, same offset.</p></article>
+          <article class="strong-shadow"><h3>Dense</h3><p>Transparent rectangular gaps.</p></article>
+          <article style="--tty-shadow-color: var(--tty-accent); --tty-shadow-opacity: .8"><h3>Custom color</h3><p>Accent color at 0.8 opacity.</p></article>
+        </div></div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;article style="--tty-shadow-pattern-size: 3px 3px;
+                --tty-shadow-color: var(--tty-accent); --tty-shadow-opacity: .8"&gt;
+  &lt;h3&gt;Custom shadow&lt;/h3&gt;
+&lt;/article&gt;</code></pre></div>
+        <p>SVG masks define shapes only; CSS controls color independently. All <a href="customization.html#shape">shadow tokens</a> also work on <code>.strong-shadow</code>; <code>.flat</code> still disables the shadow.</p>
+      </section>
       <section id="header">
         <h2>Header band</h2>
         <p>A direct <code>header</code> creates a full-width muted band. It may contain a heading and other genuinely introductory content; direct headings inside it receive a consistent card-title size.</p>
@@ -88,7 +119,7 @@
       </section>
       <nav class="docs-pager" aria-label="Documentation pagination"><a href="forms.html">&larr; Forms</a><a href="navigation.html">Navigation &rarr;</a></nav>
     </div>
-    <aside class="docs-toc"><nav aria-label="Table of contents"><p class="docs-nav-title">On this page</p><ul><li><a href="#titles">Direct titles</a></li><li><a href="#header">Header band</a></li><li><a href="#legend">Border title</a></li><li><a href="#footer">Footer</a></li><li><a href="#complete">Complete structure</a></li></ul></nav></aside>
+    <aside class="docs-toc"><nav aria-label="Table of contents"><p class="docs-nav-title">On this page</p><ul><li><a href="#titles">Direct titles</a></li><li><a href="#frame-treatments">Frame treatments</a></li><li><a href="#shadow-textures">Shadow textures</a></li><li><a href="#header">Header band</a></li><li><a href="#legend">Border title</a></li><li><a href="#footer">Footer</a></li><li><a href="#complete">Complete structure</a></li></ul></nav></aside>
   </main>
   <footer><small>tty.css — semantic HTML with sharp edges.</small></footer>
 </body>
