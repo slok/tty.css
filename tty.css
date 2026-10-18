@@ -1719,6 +1719,32 @@ article > :where(header) > :where(h1, h2, h3, h4, h5, h6) {
   );
 }
 
+/* Optional determinate progress texture; native semantics stay unchanged. */
+:where(progress.textured[value]) {
+  height: 1rem;
+  border: 0;
+  background: var(--tty-border);
+  box-shadow: none;
+}
+
+:where(progress.textured[value])::-webkit-progress-bar {
+  background: var(--tty-border);
+}
+
+:where(progress.textured[value])::-webkit-progress-value {
+  background: currentColor;
+  -webkit-mask-image: var(--tty-progress-pattern, var(--_tty-shadow-dense-pattern));
+  mask-image: var(--tty-progress-pattern, var(--_tty-shadow-dense-pattern));
+  -webkit-mask-size: var(--tty-progress-pattern-size, 4px 4px);
+  mask-size: var(--tty-progress-pattern-size, 4px 4px);
+}
+
+:where(progress.textured[value])::-moz-progress-bar {
+  background: currentColor;
+  mask-image: var(--tty-progress-pattern, var(--_tty-shadow-dense-pattern));
+  mask-size: var(--tty-progress-pattern-size, 4px 4px);
+}
+
 :where(meter)::-webkit-meter-bar {
   height: 100%;
   border: 0;
@@ -2152,6 +2178,25 @@ article.reading h2 {
 }
 
 @media (forced-colors: active) {
+  :where(progress.textured[value]) {
+    background: Canvas;
+  }
+
+  :where(progress.textured[value])::-webkit-progress-bar {
+    background: Canvas;
+  }
+
+  :where(progress.textured[value])::-webkit-progress-value {
+    background: Highlight;
+    -webkit-mask: none;
+    mask: none;
+  }
+
+  :where(progress.textured[value])::-moz-progress-bar {
+    background: Highlight;
+    mask: none;
+  }
+
   /* Transparent borders become visible in forced colors. Match the canvas
      until an indicator is needed, using system colors for its states. */
   :where(nav.menu > ul > li > a:not([role="button"], .button)) {
