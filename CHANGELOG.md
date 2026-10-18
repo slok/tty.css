@@ -13,6 +13,7 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 ### Added
 
+- Semantic `.notice` callouts with neutral, info, success, warning, and danger tones, composable `.outline` and `.strong` treatments, and an optional `--tty-notice-color` override; no JavaScript is required.
 - Optional `ol.timeline` styling for chronological lists, with a vertical line, square markers, and item spacing. Opt-in `.horizontal` and `.alternating` variants apply above a 44rem viewport and fall back to vertical on smaller screens. Native list semantics and author-defined content are preserved; no JavaScript is required.
 - Opt-in `.textured` on native `progress[value]` for a continuous Dense SVG-mask fill over a muted track, with CSS `color` customization and optional `--tty-progress-pattern` / `--tty-progress-pattern-size` overrides. Default progress, meters, and indeterminate styling are unchanged; no framework JavaScript is required.
 - `.plain` for markerless, unpadded lists (margins preserved) and opt-in borderless, transparent non-dropdown disclosures (padding and chevron preserved); ordinary disclosure defaults are unchanged.

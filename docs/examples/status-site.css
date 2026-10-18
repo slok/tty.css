@@ -12,11 +12,6 @@ footer.status-shell { margin-top: 3rem; padding-block: 1rem 2rem; border-top: 1p
 .status-intro { margin-block: 1rem 2rem; }
 .status-intro > p, .status-meta, .status-service-note { color: var(--tty-fg-muted); }
 .status-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1rem; font-size: 0.85rem; }
-.status-banner { padding: 1.25rem; margin-block: 1.5rem 2.5rem; border: 1px solid var(--tty-border); border-inline-start: 4px solid var(--tty-warning); background: color-mix(in srgb, var(--tty-warning) 8%, var(--tty-surface)); color: var(--tty-fg); }
-.status-banner h2 { margin: 0; font-size: 1.2rem; }
-.status-banner p { margin-block: 0.75rem 0; }
-.status-banner-ok { border-inline-start-color: var(--tty-success); background: color-mix(in srgb, var(--tty-success) 8%, var(--tty-surface)); }
-.status-banner-ok h2 { color: var(--tty-success); }
 .status-badge { display: inline-block; padding: 0.1rem 0.5rem; border: 1px solid currentColor; border-radius: 999px; font-size: 0.8rem; }
 .status-good { color: var(--tty-success); }
 .status-warning { color: var(--tty-warning); }

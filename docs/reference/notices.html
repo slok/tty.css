@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Semantic notices with theme-aware tones, outline and strong treatments, and accessible markup in tty.css.">
+  <title>Notices · tty.css</title>
+  <link rel="stylesheet" href="../../tty.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script src="../assets/palette-settings.js"></script>
+  <script defer src="../assets/docs.js"></script>
+</head>
+<body class="docs-page">
+  <a class="sr-only" href="#content">Skip to content</a>
+  <header class="docs-topbar">
+    <nav class="menu" aria-label="Main navigation"><ul><li><a href="../"><strong>▰ tty.css</strong></a></li><li><small>main</small></li></ul><ul><li><a href="./" aria-current="page">Docs</a></li><li><a href="../examples/">Examples</a></li><li><a href="../../tty.css" download>Download</a></li><li><button type="button" class="outline" data-theme-toggle>Theme: light</button></li></ul></nav>
+  </header>
+  <main class="docs-shell">
+    <aside class="docs-sidebar">
+      <nav aria-label="Documentation"><p class="docs-nav-title">Getting started</p><ul><li><a href="./">Quick start</a></li><li><a href="themes.html">Themes</a></li></ul><p class="docs-nav-title">Layout</p><ul><li><a href="layout.html">Landmarks, containers &amp; grid</a></li></ul><p class="docs-nav-title">Content</p><ul><li><a href="typography.html">Typography</a></li><li><a href="buttons-links.html">Buttons &amp; links</a></li><li><a href="tables-code.html">Tables &amp; code</a></li></ul><p class="docs-nav-title">Forms</p><ul><li><a href="forms.html">Form elements</a></li></ul><p class="docs-nav-title">Components</p><ul><li><a href="cards.html">Cards</a></li><li><a href="navigation.html">Navigation</a></li><li><a href="tabs.html">Tabs</a></li><li><a href="timelines.html">Timelines</a></li><li><a href="notices.html" aria-current="page">Notices</a></li><li><a href="components.html">Native components</a></li></ul><p class="docs-nav-title">Customize</p><ul><li><a href="colors.html">Colors</a></li><li><a href="customization.html">CSS variables</a></li><li><a href="accessibility.html">Accessibility</a></li><li><a href="pico-comparison.html">Pico comparison</a></li></ul></nav>
+    </aside>
+    <div class="docs-content" id="content">
+      <header><p>Components</p><h1>Notices</h1><p>Highlight contextual information with semantic HTML, theme-aware tones, and no framework JavaScript.</p></header>
+
+      <section id="usage">
+        <h2>Usage</h2>
+        <p>Add <code>.notice</code> to an <code>aside</code>, <code>div</code>, or <code>p</code>. Choose the element for its meaning: a named <code>aside</code> suits supplementary information; a <code>div</code> or <code>p</code> can stay in the main reading flow.</p>
+        <div class="docs-preview">
+          <aside class="notice" aria-labelledby="notice-title"><h3 id="notice-title">Deployment note</h3><p>Changes take effect after the next deployment.</p></aside>
+        </div>
+        <div class="code-example"><button type="button" class="secondary" data-copy aria-label="Copy notice example">Copy</button><pre><code>&lt;aside class="notice" aria-labelledby="notice-title"&gt;
+  &lt;h3 id="notice-title"&gt;Deployment note&lt;/h3&gt;
+  &lt;p&gt;Changes take effect after the next deployment.&lt;/p&gt;
+&lt;/aside&gt;</code></pre></div>
+        <p>Direct child headings use a compact <code>1rem</code> size without changing their semantic level. First and last child margins are trimmed; no inner wrapper or spacing class is needed.</p>
+      </section>
+
+      <section id="tones">
+        <h2>Tones</h2>
+        <p>The default is neutral. Add <code>.info</code>, <code>.success</code>, <code>.warning</code>, or <code>.danger</code> for a semantic tone. Color accents the frame and tint; text keeps the theme-aware foreground color.</p>
+        <div class="docs-preview">
+          <aside class="notice" aria-labelledby="tone-neutral"><h3 id="tone-neutral">Neutral</h3><p>Changes take effect after the next deployment.</p></aside>
+          <aside class="notice info" aria-labelledby="tone-info"><h3 id="tone-info">Information</h3><p>A new release is available for review.</p></aside>
+          <aside class="notice success" aria-labelledby="tone-success"><h3 id="tone-success">Success</h3><p>The deployment completed successfully.</p></aside>
+          <aside class="notice warning" aria-labelledby="tone-warning"><h3 id="tone-warning">Warning</h3><p>Maintenance starts in ten minutes. Save your work.</p></aside>
+          <aside class="notice danger" aria-labelledby="tone-danger"><h3 id="tone-danger">Danger</h3><p>The deployment failed. Review the logs before retrying.</p></aside>
+        </div>
+        <div class="code-example"><button type="button" class="secondary" data-copy aria-label="Copy notice tones">Copy</button><pre><code>&lt;p class="notice"&gt;Note: changes take effect after deployment.&lt;/p&gt;
+&lt;p class="notice info"&gt;Information: a new release is available.&lt;/p&gt;
+&lt;p class="notice success"&gt;Success: deployment completed.&lt;/p&gt;
+&lt;p class="notice warning"&gt;Warning: save your work before maintenance.&lt;/p&gt;
+&lt;p class="notice danger"&gt;Danger: deployment failed; review the logs.&lt;/p&gt;</code></pre></div>
+      </section>
+
+      <section id="treatments">
+        <h2>Treatments</h2>
+        <p>The default has a subtle 8% tint and a <code>4px</code> leading edge. <code>.outline</code> removes the tint and uses a uniform <code>1px</code> border. <code>.strong</code> uses a <code>2px</code> border and a solid <code>.25rem</code> offset shadow. Combine <code>.outline.strong</code> for the stronger frame without the tint.</p>
+        <div class="docs-preview">
+          <aside class="notice warning" aria-labelledby="treatment-default"><h3 id="treatment-default">Default</h3><p>Maintenance starts in ten minutes. Save your work.</p></aside>
+          <aside class="notice warning outline" aria-labelledby="treatment-outline"><h3 id="treatment-outline">Outline</h3><p>Maintenance starts in ten minutes. Save your work.</p></aside>
+          <aside class="notice warning strong" aria-labelledby="treatment-strong"><h3 id="treatment-strong">Strong</h3><p>Maintenance starts in ten minutes. Save your work.</p></aside>
+          <aside class="notice warning outline strong" aria-labelledby="treatment-combined"><h3 id="treatment-combined">Outline + strong</h3><p>Maintenance starts in ten minutes. Save your work.</p></aside>
+        </div>
+        <div class="code-example"><button type="button" class="secondary" data-copy aria-label="Copy notice treatments">Copy</button><pre><code>&lt;p class="notice warning"&gt;Warning: maintenance starts soon.&lt;/p&gt;
+&lt;p class="notice warning outline"&gt;Warning: maintenance starts soon.&lt;/p&gt;
+&lt;p class="notice warning strong"&gt;Warning: maintenance starts soon.&lt;/p&gt;
+&lt;p class="notice warning outline strong"&gt;Warning: maintenance starts soon.&lt;/p&gt;</code></pre></div>
+      </section>
+
+      <section id="customization">
+        <h2>Customization</h2>
+        <p>Set the optional <code>--tty-notice-color</code> to override any tone. When unset, neutral falls back to <code>--tty-fg-muted</code>; <code>.info</code> uses <code>--tty-accent-hover</code>, and the other tones use their corresponding <code>--tty-success</code>, <code>--tty-warning</code>, or <code>--tty-danger</code> token. The override is consumed with these fallbacks, so an inherited custom color works with tone classes too.</p>
+        <p>Rounding follows the shared <code>--tty-frame-radius</code> token. Scope overrides locally when other frames should stay unchanged.</p>
+        <div class="code-example"><button type="button" class="secondary" data-copy aria-label="Copy notice customization">Copy</button><pre><code>.release-note {
+  --tty-notice-color: var(--tty-accent);
+  --tty-frame-radius: .5rem;
+}</code></pre></div>
+      </section>
+
+      <section id="accessibility">
+        <h2>Accessibility</h2>
+        <p>Keep meaningful text labels; color alone must not carry the message. Name supplementary <code>aside</code> landmarks with <code>aria-labelledby</code> and choose heading levels for the surrounding document. Icons are optional and do not replace text.</p>
+        <p>Static notices need no live-region role. For application-driven updates, use <code>role="status"</code> for polite announcements or <code>role="alert"</code> only for urgent messages that must interrupt. The tone class does not create an announcement. Your application owns dynamic updates and any dismissal behavior; tty.css provides neither JavaScript nor dismiss controls.</p>
+      </section>
+
+      <nav class="docs-pager" aria-label="Documentation pages"><a href="timelines.html">← Timelines</a><a href="components.html">Native components →</a></nav>
+    </div>
+    <aside class="docs-toc"><nav aria-label="On this page"><p class="docs-nav-title">On this page</p><ul><li><a href="#usage">Usage</a></li><li><a href="#tones">Tones</a></li><li><a href="#treatments">Treatments</a></li><li><a href="#customization">Customization</a></li><li><a href="#accessibility">Accessibility</a></li></ul></nav></aside>
+  </main>
+  <footer><small>tty.css — semantic HTML with sharp edges.</small></footer>
+</body>
+</html>
