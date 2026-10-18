@@ -11,6 +11,10 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 - Action groups wrap when their contents exceed the available width, including inside narrow cards on wide screens.
 
+### Changed
+
+- Unordered lists use square bullets at every nesting level; ordered lists and markerless lists are unchanged.
+
 ### Added
 
 - Semantic `.notice` callouts with neutral, info, success, warning, and danger tones, composable `.outline` and `.strong` treatments, and an optional `--tty-notice-color` override; no JavaScript is required.
