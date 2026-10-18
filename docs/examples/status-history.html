@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="A classic incident history example built with tty.css and Alpine.js.">
+  <title>Incident history · Northstar Status</title>
+  <link rel="stylesheet" href="../../tty.css">
+  <link rel="stylesheet" href="../assets/examples.css">
+  <link rel="stylesheet" href="status-site.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@hackernoon/pixel-icon-library@1.1.0/fonts/iconfont.css">
+  <script src="../assets/palette-settings.js"></script>
+  <script src="status-site.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.16.3/dist/cdn.min.js"></script>
+</head>
+<body x-data="statusSite">
+  <a class="sr-only" href="#content">Skip to incident history</a>
+  <nav class="example-toolbar" aria-label="Example navigation"><a href="./">← All examples</a><span>Classic status site / History</span><a href="status-history.html" download>HTML source</a></nav>
+  <p class="example-note">Three-page status demo. All services, incidents, and dates are fictional sample data.</p>
+  <header class="status-shell">
+    <p class="status-brand"><strong>✦ Northstar</strong> / status</p>
+    <nav class="menu" aria-label="Status navigation">
+      <ul><li><a href="status.html">Current status</a></li><li><a href="status-history.html" aria-current="page">History</a></li></ul>
+    </nav>
+  </header>
+  <main id="content" class="status-shell">
+    <section class="status-intro">
+      <p><small>RELIABILITY, IN THE OPEN</small></p>
+      <h1><i class="hn hn-clock" aria-hidden="true"></i> Incident history</h1>
+      <p>Service interruptions, what happened, and how we recovered. All times are UTC.</p>
+    </section>
+    <section aria-labelledby="month-heading">
+      <form @submit.prevent>
+        <label for="history-month">Browse a month</label>
+        <select id="history-month" x-model="historyMonth" aria-controls="incident-list">
+          <option value="2026-10">October 2026</option>
+          <option value="2026-09">September 2026</option>
+        </select>
+      </form>
+      <nav class="group inline" aria-label="History months">
+        <button type="button" class="outline" @click="historyMonth='2026-09'" :disabled="historyMonth==='2026-09'">← Older month</button>
+        <button type="button" class="outline" @click="historyMonth='2026-10'" :disabled="historyMonth==='2026-10'" disabled>Newer month →</button>
+      </nav>
+      <h2 id="month-heading" x-text="monthLabel(historyMonth)">October 2026</h2>
+      <p class="status-meta" role="status" x-text="filteredIncidents.length + (filteredIncidents.length === 1 ? ' incident' : ' incidents') + ' · all resolved'">2 incidents · all resolved</p>
+      <div id="incident-list">
+        <template x-for="incident in filteredIncidents" :key="incident.id">
+          <article>
+            <header>
+              <p><time :datetime="incident.date" x-text="new Date(incident.date+'T12:00:00Z').toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric', timeZone:'UTC'})"></time></p>
+              <h3><a :href="'status-incident.html?id='+incident.id" x-text="incident.title"></a></h3>
+            </header>
+            <p><strong class="status-good"><i class="hn hn-check-circle" aria-hidden="true"></i> Resolved</strong> · <span x-text="incident.impact"></span></p>
+            <p x-text="incident.summary"></p>
+            <footer><p class="status-meta"><span x-text="incident.services.join(', ')"></span><span x-text="incident.duration"></span><a :href="'status-incident.html?id='+incident.id">Read incident <i class="hn hn-arrow-right" aria-hidden="true"></i></a></p></footer>
+          </article>
+        </template>
+      </div>
+      <noscript><p>Month browsing requires JavaScript. Read the <a href="status-incident.html">sample webhook incident</a>, or return to <a href="status.html">current status</a>.</p></noscript>
+    </section>
+    <p><a href="status.html">← Current status</a></p>
+  </main>
+  <footer class="status-shell">
+    <p><small>Northstar is fictional. This example does not monitor real services.</small></p>
+    <nav aria-label="Footer navigation"><ul><li><a href="./">All examples</a></li><li><a href="status-site.css" download>Example CSS</a></li><li><a href="status-site.js" download>Example JS</a></li></ul></nav>
+    <p><small>Icons from <a href="https://github.com/hackernoon/pixel-icon-library">Pixel Icon Library by HackerNoon</a> · <a href="https://pixeliconlibrary.com/license/">License</a>.</small></p>
+  </footer>
+</body>
+</html>

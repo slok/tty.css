@@ -290,6 +290,106 @@ h4 {
   margin-block: 0.25rem;
 }
 
+/* Optional chronological list; content and status colors stay author-owned. */
+:where(ol.timeline) {
+  list-style: none;
+  padding-block: 0;
+  padding-inline: 1.5rem 0;
+  border-inline-start: 2px solid var(--tty-border);
+}
+
+:where(ol.timeline > li) {
+  position: relative;
+  margin-block: 0;
+  padding-block: 0 1.5rem;
+  padding-inline-start: 0.5rem;
+}
+
+:where(ol.timeline > li:last-child) {
+  padding-block-end: 0;
+}
+
+:where(ol.timeline > li)::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: calc(-1.5rem - 0.325rem - 1px);
+  inset-block-start: 0.4rem;
+  width: 0.65rem;
+  height: 0.65rem;
+  border: 2px solid currentColor;
+  background: var(--tty-surface);
+  color: var(--tty-fg-muted);
+}
+
+:where(ol.timeline > li > :first-child) {
+  margin-block-start: 0;
+}
+
+:where(ol.timeline > li > :last-child) {
+  margin-block-end: 0;
+}
+
+/* Layout variants keep document order and fall back to vertical on mobile. */
+@media (min-width: 44rem) {
+  :where(ol.timeline.horizontal:not(.alternating)) {
+    display: flex;
+    padding-inline: 0;
+    border-inline-start: 0;
+  }
+
+  :where(ol.timeline.horizontal:not(.alternating) > li) {
+    flex: 1;
+    min-width: 0;
+    max-width: none;
+    padding-block: 1.5rem 0;
+    padding-inline: 0 1.5rem;
+    border-block-start: 2px solid var(--tty-border);
+    overflow-wrap: anywhere;
+  }
+
+  :where(ol.timeline.horizontal:not(.alternating) > li)::before {
+    inset-block-start: calc(-0.325rem - 1px);
+    inset-inline-start: 0;
+  }
+
+  :where(ol.timeline.alternating) {
+    position: relative;
+    padding-inline: 0;
+    border-inline-start: 0;
+  }
+
+  :where(ol.timeline.alternating)::before {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 50%;
+    border-inline-start: 2px solid var(--tty-border);
+  }
+
+  :where(ol.timeline.alternating > li) {
+    width: calc(50% - 1.5rem);
+    max-width: none;
+    padding-inline: 0;
+    text-align: end;
+    overflow-wrap: anywhere;
+  }
+
+  :where(ol.timeline.alternating > li)::before {
+    inset-inline-start: auto;
+    inset-inline-end: calc(-1.5rem - 0.325rem - 1px);
+  }
+
+  :where(ol.timeline.alternating > li:nth-of-type(even)) {
+    margin-inline-start: calc(50% + 1.5rem);
+    text-align: start;
+  }
+
+  :where(ol.timeline.alternating > li:nth-of-type(even))::before {
+    inset-inline-start: calc(-1.5rem - 0.325rem + 1px);
+    inset-inline-end: auto;
+  }
+}
+
 :where(dt) {
   font-weight: 700;
 }
@@ -1270,6 +1370,47 @@ h4 {
 }
 
 /* Components */
+/* Notices provide appearance only; applications own live announcements. */
+:where(.notice) {
+  --_tty-notice-color: var(--tty-notice-color, var(--tty-fg-muted));
+  margin-block: 0 1.25rem;
+  padding: 1rem 1.25rem;
+  border: var(--tty-border-width) solid var(--tty-border);
+  border-inline-start: 4px solid var(--_tty-notice-color);
+  border-radius: var(--tty-frame-radius);
+  background: var(--tty-surface);
+  background: color-mix(in srgb, var(--_tty-notice-color) 8%, var(--tty-surface));
+  color: var(--tty-fg);
+}
+
+:where(.notice.info) { --_tty-notice-color: var(--tty-notice-color, var(--tty-accent-hover)); }
+:where(.notice.success) { --_tty-notice-color: var(--tty-notice-color, var(--tty-success)); }
+:where(.notice.warning) { --_tty-notice-color: var(--tty-notice-color, var(--tty-warning)); }
+:where(.notice.danger) { --_tty-notice-color: var(--tty-notice-color, var(--tty-danger)); }
+
+.notice > :where(h1, h2, h3, h4, h5, h6) {
+  margin-block: 0 0.5rem;
+  font-family: var(--tty-font);
+  font-size: 1rem;
+  font-variant-caps: normal;
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.notice > :where(:first-child) { margin-block-start: 0; }
+.notice > :where(:last-child) { margin-block-end: 0; }
+
+:where(.notice.outline) {
+  border: var(--tty-border-width) solid var(--_tty-notice-color);
+  background: var(--tty-surface);
+}
+
+:where(.notice.strong) {
+  border: var(--tty-frame-width) solid var(--_tty-notice-color);
+  box-shadow: 0.25rem 0.25rem 0 var(--_tty-notice-color);
+}
+
 :where(article) {
   margin: 0 0 1.5rem;
   padding: 1.25rem;
