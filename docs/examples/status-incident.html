@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="A classic incident report and recovery timeline built with tty.css and Alpine.js.">
+  <title>Incident report · Northstar Status</title>
+  <link rel="stylesheet" href="../../tty.css">
+  <link rel="stylesheet" href="../assets/examples.css">
+  <link rel="stylesheet" href="status-site.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@hackernoon/pixel-icon-library@1.1.0/fonts/iconfont.css">
+  <script src="../assets/palette-settings.js"></script>
+  <script src="status-site.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.16.3/dist/cdn.min.js"></script>
+</head>
+<body x-data="statusSite">
+  <a class="sr-only" href="#content">Skip to incident report</a>
+  <nav class="example-toolbar" aria-label="Example navigation"><a href="./">← All examples</a><span>Classic status site / Incident</span><a href="status-incident.html" download>HTML source</a></nav>
+  <p class="example-note">Three-page status demo. All services, incidents, and dates are fictional sample data.</p>
+  <header class="status-shell">
+    <p class="status-brand"><strong>✦ Northstar</strong> / status</p>
+    <nav class="menu" aria-label="Status navigation">
+      <ul><li><a href="status.html">Current status</a></li><li><a href="status-history.html">History</a></li></ul>
+    </nav>
+  </header>
+  <main id="content" class="status-shell">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><ul><li><a href="status.html">Status</a></li><li><a href="status-history.html">History</a></li><li><span aria-current="page">Incident report</span></li></ul></nav>
+    <p class="status-warning" style="display: none" x-show="new URLSearchParams(location.search).has('id') &amp;&amp; !incidents.some(i => i.id === new URLSearchParams(location.search).get('id'))">That incident was not found. Showing the latest sample incident instead.</p>
+    <section class="status-intro" aria-labelledby="incident-title">
+      <p><strong class="status-good"><i class="hn hn-check-circle" aria-hidden="true"></i> Resolved</strong></p>
+      <h1 id="incident-title" x-text="selectedIncident.title">Delayed webhook delivery</h1>
+      <p x-text="selectedIncident.summary">A queue partition delayed webhook delivery. All events were delivered; none were lost.</p>
+      <dl>
+        <dt>Incident date</dt><dd><time :datetime="selectedIncident.date" x-text="new Date(selectedIncident.date+'T12:00:00Z').toLocaleDateString('en-US', {month:'long',day:'numeric',year:'numeric',timeZone:'UTC'})">October 15, 2026</time></dd>
+        <dt>Affected services</dt><dd x-text="selectedIncident.services.join(', ')">Webhooks</dd>
+        <dt>Impact</dt><dd x-text="selectedIncident.impact">Partial outage</dd>
+        <dt>Duration</dt><dd x-text="selectedIncident.duration">25 minutes</dd>
+      </dl>
+    </section>
+    <section aria-labelledby="updates-heading">
+      <h2 id="updates-heading"><i class="hn hn-clock" aria-hidden="true"></i> Incident updates</h2>
+      <p class="status-meta">Newest first · All times UTC</p>
+      <ol class="timeline" role="list">
+        <template x-for="update in selectedIncident.updates" :key="update.at">
+          <li>
+            <h3 :class="update.state === 'Resolved' ? 'status-good' : 'status-warning'" x-text="update.state"></h3>
+            <p x-text="update.body"></p>
+            <p><small><time :datetime="update.at" x-text="update.label"></time></small></p>
+          </li>
+        </template>
+      </ol>
+      <noscript><p>Showing the default sample incident; selecting other incidents requires JavaScript.</p><ol class="timeline" role="list"><li><h3>Resolved</h3><p>All queued events have been delivered. No events were lost.</p><time datetime="2026-10-15T18:56:00Z">Oct 15, 18:56 UTC</time></li><li><h3>Monitoring</h3><p>Delivery has recovered. We are monitoring the remaining queue.</p><time datetime="2026-10-15T18:53:00Z">Oct 15, 18:53 UTC</time></li><li><h3>Identified</h3><p>A queue partition is causing webhook delays. A mitigation is being applied.</p><time datetime="2026-10-15T18:40:00Z">Oct 15, 18:40 UTC</time></li><li><h3>Investigating</h3><p>We are investigating delayed webhook delivery.</p><time datetime="2026-10-15T18:31:00Z">Oct 15, 18:31 UTC</time></li></ol></noscript>
+    </section>
+    <nav class="group inline" aria-label="Incident navigation"><a :href="'status-history.html?month='+selectedIncident.date.slice(0,7)" href="status-history.html">← Incident history</a><a href="status.html">Current status →</a></nav>
+  </main>
+  <footer class="status-shell">
+    <p><small>Northstar is fictional. This example does not monitor real services.</small></p>
+    <nav aria-label="Footer navigation"><ul><li><a href="./">All examples</a></li><li><a href="status-site.css" download>Example CSS</a></li><li><a href="status-site.js" download>Example JS</a></li></ul></nav>
+    <p><small>Icons from <a href="https://github.com/hackernoon/pixel-icon-library">Pixel Icon Library by HackerNoon</a> · <a href="https://pixeliconlibrary.com/license/">License</a>.</small></p>
+  </footer>
+</body>
+</html>

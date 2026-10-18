@@ -1,0 +1,50 @@
+/* Northstar status example only; shared by its three pages. */
+.status-shell {
+  width: min(56rem, calc(100% - 2rem));
+  max-width: 56rem;
+  margin-inline: auto;
+  padding-inline: 0;
+}
+
+header.status-shell { padding-block: 2rem 1rem; }
+footer.status-shell { margin-top: 3rem; padding-block: 1rem 2rem; border-top: 1px solid var(--tty-border); }
+.status-brand { font-size: 1.2rem; }
+.status-intro { margin-block: 1rem 2rem; }
+.status-intro > p, .status-meta, .status-service-note { color: var(--tty-fg-muted); }
+.status-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1rem; font-size: 0.85rem; }
+.status-banner { padding: 1.25rem; margin-block: 1.5rem 2.5rem; border: 1px solid var(--tty-border); border-inline-start: 4px solid var(--tty-warning); background: color-mix(in srgb, var(--tty-warning) 8%, var(--tty-surface)); color: var(--tty-fg); }
+.status-banner h2 { margin: 0; font-size: 1.2rem; }
+.status-banner p { margin-block: 0.75rem 0; }
+.status-banner-ok { border-inline-start-color: var(--tty-success); background: color-mix(in srgb, var(--tty-success) 8%, var(--tty-surface)); }
+.status-banner-ok h2 { color: var(--tty-success); }
+.status-badge { display: inline-block; padding: 0.1rem 0.5rem; border: 1px solid currentColor; border-radius: 999px; font-size: 0.8rem; }
+.status-good { color: var(--tty-success); }
+.status-warning { color: var(--tty-warning); }
+.status-danger { color: var(--tty-danger); }
+.status-services { border-block: 1px solid var(--tty-border); }
+.status-service { margin: 0; padding-block: 1rem; }
+.status-service + .status-service { border-top: 1px solid var(--tty-border); }
+.status-service-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.5rem 1rem; }
+.status-service-heading h3 { margin: 0; font-size: 1rem; }
+.status-service-heading > span { font-size: 0.85rem; }
+.status-service .status-meta { margin-block: 0.5rem; }
+.status-service-note { margin-block: 0.5rem 0; font-size: 0.8rem; }
+.uptime-strip { display: grid; grid-template-columns: repeat(90, minmax(0, 1fr)); gap: 2px; height: 1.8rem; }
+.uptime-day { background: var(--tty-success); }
+.uptime-day-warning { background: var(--tty-warning); }
+.uptime-day-danger { background: var(--tty-danger); }
+.status-range { display: flex; justify-content: space-between; margin-block: 0.5rem; color: var(--tty-fg-muted); font-size: 0.75rem; }
+.status-legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; padding: 0; list-style: none; font-size: 0.8rem; }
+.status-legend li { display: flex; align-items: center; gap: 0.4rem; }
+.status-swatch { display: inline-block; width: 0.65rem; height: 0.85rem; }
+.status-swatch-good { background: var(--tty-success); }
+.status-swatch-warning { background: var(--tty-warning); }
+.status-swatch-danger { background: var(--tty-danger); }
+.status-swatch-maintenance { background: var(--tty-fg-muted); }
+.status-empty { padding: 1.5rem; border: 1px dashed var(--tty-border); color: var(--tty-fg-muted); }
+.status-shell [x-cloak] { display: none !important; }
+
+@media (max-width: 36rem) {
+  .uptime-strip { gap: 1px; }
+  .status-meta { gap: 0.4rem 0.75rem; }
+}
