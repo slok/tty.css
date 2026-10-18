@@ -108,7 +108,8 @@
 
         <section id="lists">
           <h2>Lists</h2>
-          <p id="timeline">Unordered and ordered lists retain familiar markers and compact item spacing. Description terms are bold, while descriptions use the muted foreground color. For chronological lists, see the <a href="timelines.html">timeline component</a>.</p>
+          <p id="timeline">Unordered lists use square bullets, including nested lists; ordered lists retain native numbering. Both use compact item spacing. Description terms are bold, while descriptions use the muted foreground color. For chronological lists, see the <a href="timelines.html">timeline component</a>.</p>
+          <div class="docs-preview"><ul><li>Production services<ul><li>API</li><li>Workers</li></ul></li><li>Development services</li></ul><ol><li>Build</li><li>Deploy</li></ol></div>
           <p>Add <code>.plain</code> to <code>ul</code> or <code>ol</code> to remove markers and padding only; list margins remain unchanged. Add <code>role="list"</code> to preserve list semantics in Safari/VoiceOver when markers are removed.</p>
           <div class="docs-preview"><ul class="plain" role="list"><li>Primary: healthy</li><li>Replica: healthy</li></ul><ol class="plain" role="list"><li>Build</li><li>Deploy</li></ol></div>
           <div class="code-example"><button type="button" class="secondary" data-copy>Copy</button><pre><code>&lt;ul class="plain" role="list"&gt;&lt;li&gt;Primary: healthy&lt;/li&gt;&lt;li&gt;Replica: healthy&lt;/li&gt;&lt;/ul&gt;
