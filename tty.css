@@ -998,6 +998,7 @@ h4 {
 
 :where(.group) {
   display: flex;
+  flex-wrap: wrap;
   align-items: stretch;
   gap: 0.65rem;
 }

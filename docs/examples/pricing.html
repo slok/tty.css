@@ -6,6 +6,8 @@
   <meta name="description" content="Fictional OrbitDB pricing: three plans, a working usage estimator, and answers to common billing questions. Built with tty.css.">
   <title>Pricing · OrbitDB</title>
   <link rel="stylesheet" href="../../tty.css">
+  <link rel="stylesheet" href="../assets/examples.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@hackernoon/pixel-icon-library@1.1.0/fonts/iconfont.css">
   <script src="../assets/palette-settings.js"></script>
   <script src="pricing.js" defer></script>
   <style>
@@ -45,15 +47,16 @@
 </head>
 <body>
   <a class="sr-only" href="#content">Skip to content</a>
+  <nav class="example-toolbar" aria-label="Example navigation"><a href="./">← All examples</a><span>Pricing calculator</span><a href="pricing.html" download>HTML source</a></nav>
+  <p class="example-note">Standalone pricing calculator demo. The estimator recalculates locally; OrbitDB and its plans are fictional.</p>
   <header>
     <nav class="container menu" aria-label="Main navigation">
-      <ul><li><a href="product-landing.html"><strong>◉ orbitdb</strong></a></li></ul>
+      <ul><li><a href="#content"><strong>◉ orbitdb</strong></a></li></ul>
       <ul>
-        <li><a href="product-landing.html#features">Platform</a></li>
         <li><a href="#plans" aria-current="page">Pricing</a></li>
         <li><a href="#calculator">Estimate</a></li>
         <li><a href="#questions">Questions</a></li>
-        <li><a href="#get-started" class="button">Try OrbitDB</a></li>
+        <li><a href="#calculator" class="button">Estimate usage</a></li>
       </ul>
     </nav>
   </header>
@@ -62,7 +65,7 @@
     <section id="plans" aria-label="Plans">
       <div class="grid plans">
         <article aria-labelledby="sandbox-title">
-          <h2 id="sandbox-title">◌ sandbox</h2>
+          <h2 id="sandbox-title"><i class="hn hn-code" aria-hidden="true"></i> sandbox</h2>
           <p>Every search feature, on every plan.</p>
           <div><h3>Infrastructure</h3><ul class="plain" role="list"><li>Shared regional cluster</li></ul></div>
           <div><h3>Access &amp; governance</h3><ul class="plain" role="list"><li>Encrypted storage</li><li>Scoped API credentials</li></ul></div>
@@ -70,7 +73,7 @@
           <div class="group inline plan-action"><a href="#get-started" class="button">Start building</a><p>$24/month<small>usage floor</small></p></div>
         </article>
         <article class="double-border muted" aria-labelledby="studio-title">
-          <h2 id="studio-title">◈ studio</h2>
+          <h2 id="studio-title"><i class="hn hn-users" aria-hidden="true"></i> studio</h2>
           <p>Every search feature, on every plan.</p>
           <div><h3>Infrastructure</h3><ul class="plain" role="list"><li>Shared regional cluster</li><li>Priority query capacity</li></ul></div>
           <div><h3>Access &amp; governance</h3><ul class="plain" role="list"><li>Encrypted storage</li><li>Scoped API credentials</li><li>Workspace sign-in policies</li><li>Change history</li><li>Event export <small>$48/mo</small></li><li>Network access rules</li></ul></div>
@@ -78,7 +81,7 @@
           <div class="group inline plan-action"><a href="#get-started" class="button secondary">Open a workspace</a><p>$180/month<small>usage floor</small></p></div>
         </article>
         <article class="double-border strong-shadow muted" aria-labelledby="dedicated-title">
-          <h2 id="dedicated-title">▣ dedicated</h2>
+          <h2 id="dedicated-title"><i class="hn hn-cloud" aria-hidden="true"></i> dedicated</h2>
           <p>Every search feature, on every plan.</p>
           <div><h3>Infrastructure</h3><ul class="plain" role="list"><li>Isolated regional cluster</li><li>Reserved query capacity</li><li>Your cloud account, if preferred</li></ul></div>
           <div><h3>Access &amp; governance</h3><ul class="plain" role="list"><li>Encrypted storage</li><li>Scoped API credentials</li><li>Workspace sign-in policies</li><li>Change history</li><li>Event export included</li><li>Network access rules</li><li>Private service endpoints</li><li>Customer-controlled keys</li></ul></div>
@@ -91,7 +94,7 @@
     <section id="calculator" aria-label="Usage estimator">
       <form id="usage-form">
         <fieldset>
-          <legend>Usage estimator</legend>
+          <legend><i class="hn hn-credit-card" aria-hidden="true"></i> Usage estimator</legend>
           <p><small>Illustrative monthly pricing. Decimal GB; no replication or index overhead. Not a quote.</small></p>
           <div class="grid">
             <div><label for="dimensions">Embedding width</label><select id="dimensions" name="dimensions"><option value="384">384 values</option><option value="768" selected>768 values</option><option value="1536">1,536 values</option><option value="3072">3,072 values</option></select></div>
@@ -126,7 +129,7 @@
 
     <section id="questions" aria-label="Billing questions">
       <article>
-        <header class="legend"><h2>Good to know</h2></header>
+        <header class="legend"><h2><i class="hn hn-info-circle" aria-hidden="true"></i> Good to know</h2></header>
         <details class="plain"><summary>How does the monthly usage floor work?</summary><p>Your usage counts toward the plan's minimum. A sandbox workspace with $18 of metered activity pays $24, not $42.</p></details>
         <details class="plain"><summary>Can I change plans as my project grows?</summary><p>Yes. Shared workspaces can move between sandbox and studio at the next billing boundary. Dedicated capacity is scheduled with your technical partner.</p></details>
         <details class="plain"><summary>What is a billable record?</summary><p>A record consists of a float32 embedding and its metadata. This example counts four bytes per embedding value plus the metadata size you select.</p></details>
@@ -136,17 +139,18 @@
         <details class="plain"><summary>Does the estimator include data transfer?</summary><p>No. The simplified estimator shows storage, ingestion, search requests, and collection fees. Network transfer and optional services would be listed separately in a real quote.</p></details>
         <details class="plain"><summary>How are dedicated workspaces priced?</summary><p>This example applies a 25% premium to metered usage and a $2,400 monthly floor for reserved infrastructure and operational support.</p></details>
         <details class="plain"><summary>Can I bring an existing search index?</summary><p>You can stream records into a new collection, validate relevance, and switch traffic when you are ready. Keep the previous system running during the transition.</p></details>
-        <details class="plain"><summary>Where can I try the product?</summary><p>OrbitDB is fictional. The links below lead to a local sample onboarding form and the tty.css documentation, not a real service.</p></details>
+        <details class="plain"><summary>Where can I try the product?</summary><p>OrbitDB is fictional. Try the usage estimator on this page; no account or purchase is created.</p></details>
       </article>
     </section>
   </main>
   <footer id="get-started">
     <div class="grid">
       <div><strong>◉ orbitdb</strong><p><small>A fictional search platform.<br>A real tty.css example.</small></p></div>
-      <div><strong>Explore</strong><ul class="plain" role="list"><li><a href="product-landing.html">Product overview</a></li><li><a href="product-landing.html#signup">Sample onboarding</a></li></ul></div>
-      <div><strong>Build your own</strong><ul class="plain" role="list"><li><a href="../reference/">Framework reference</a></li><li><a href="./">More examples</a></li><li><a href="pricing.html" download>Download HTML</a> · <a href="pricing.js" download>JS</a></li></ul></div>
+      <div><strong>Explore</strong><ul class="plain" role="list"><li><a href="#plans">Compare plans</a></li><li><a href="#calculator">Estimate usage</a></li></ul></div>
+      <div><strong>Build your own</strong><ul class="plain" role="list"><li><a href="../reference/">Framework reference</a></li><li><a href="./">All examples</a></li><li><a href="pricing.html" download>Download HTML</a> · <a href="pricing.js" download>JS</a></li></ul></div>
       <div><strong>About this page</strong><p><small>Original demo content; layout inspired by turbopuffer's pricing page. Native controls, framework styling, and a small vanilla JavaScript estimator.</small></p></div>
     </div>
+    <p><small><a href="https://github.com/hackernoon/pixel-icon-library">Pixel Icon Library by HackerNoon</a> · <a href="https://pixeliconlibrary.com/license/">License</a></small></p>
   </footer>
 </body>
 </html>

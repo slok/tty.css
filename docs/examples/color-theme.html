@@ -7,14 +7,18 @@
     <title>Monokai color theme · tty.css</title>
     <link rel="stylesheet" href="../../tty.css">
     <link rel="stylesheet" href="monokai-theme.css">
+    <link rel="stylesheet" href="../assets/examples.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@hackernoon/pixel-icon-library@1.1.0/fonts/iconfont.css">
     <script src="../assets/palette-settings.js"></script>
     <script defer src="../assets/docs.js"></script>
   </head>
   <body>
     <a class="sr-only" href="#content">Skip to content</a>
+    <nav class="example-toolbar" aria-label="Example navigation"><a href="./">← All examples</a><span>Color theme</span><a href="color-theme.html" download>HTML source</a></nav>
+    <p class="example-note">Standalone color theme demo. The theme toggle changes the palette; preview buttons and validation messages are visual samples.</p>
     <header>
       <nav class="menu" aria-label="Main navigation">
-        <ul><li><a href="./"><strong>▰ tty.css examples</strong></a></li></ul>
+        <ul><li><a href="#content"><strong>▰ Monokai workspace</strong></a></li></ul>
         <ul><li><button type="button" class="outline" data-theme-toggle>Theme: dark</button></li></ul>
       </nav>
     </header>
@@ -27,14 +31,14 @@
       </section>
       <section class="grid" aria-label="Themed components">
         <article>
-          <header><h2>Monokai workspace</h2></header>
+          <header><h2><i class="hn hn-folder" aria-hidden="true"></i> Monokai workspace</h2></header>
           <p>Page colors, the header band, and the dotted frame shadow all come from shared variables.</p>
           <p><mark>Variable-based styling</mark> keeps the visual language consistent.</p>
           <p><a href="../reference/colors.html">Read the Colors guide</a></p>
           <footer><div class="group"><button type="button">Primary preview</button><button type="button" class="secondary">Secondary preview</button></div></footer>
         </article>
         <article>
-          <header><h2>Native controls</h2></header>
+          <header><h2><i class="hn hn-cog" aria-hidden="true"></i> Native controls</h2></header>
           <label for="workspace">Workspace name</label>
           <input id="workspace" value="monokai-lab" autocomplete="off">
           <label for="region">Region</label>
@@ -48,22 +52,22 @@
         <div>
           <label for="valid-name">Valid name</label>
           <input id="valid-name" value="monokai-lab" aria-invalid="false" aria-describedby="name-success">
-          <small id="name-success">Workspace name is available.</small>
+          <small id="name-success"><i class="hn hn-check-circle" aria-hidden="true"></i> Workspace name is available.</small>
         </div>
         <div>
           <label for="invalid-name">Invalid name</label>
           <input id="invalid-name" value="already-taken" aria-invalid="true" aria-describedby="name-error">
-          <small id="name-error">Choose a different workspace name.</small>
+          <small id="name-error"><i class="hn hn-exclamation-triangle" aria-hidden="true"></i> Choose a different workspace name.</small>
         </div>
       </section>
       <section>
-        <h2>Two stylesheets, no component overrides</h2>
+        <h2><i class="hn hn-code" aria-hidden="true"></i> Two stylesheets, no component overrides</h2>
         <pre><code>&lt;link rel="stylesheet" href="tty.css"&gt;
 &lt;link rel="stylesheet" href="monokai-theme.css"&gt;</code></pre>
         <p><a href="monokai-theme.css">View palette CSS</a> · <a href="monokai-theme.css" download>Download palette</a> · <a href="color-theme.html" download>Download HTML</a></p>
         <p>Status colors are overridden too. Embedded input icons remain separate image tokens.</p>
       </section>
     </main>
-    <footer><small>Example-only palette. No changes to tty.css or its cascade.</small></footer>
+    <footer><small>Example-only palette. No changes to tty.css or its cascade.</small><p><small><a href="https://github.com/hackernoon/pixel-icon-library">Pixel Icon Library by HackerNoon</a> · <a href="https://pixeliconlibrary.com/license/">License</a></small></p></footer>
   </body>
 </html>

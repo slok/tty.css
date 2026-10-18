@@ -1,5 +1,88 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Realistic HTML, vanilla JavaScript, and Alpine.js examples built with tty.css."><title>Examples · tty.css</title><link rel="stylesheet" href="../../tty.css"><link rel="stylesheet" href="../assets/docs.css"><script src="../assets/palette-settings.js"></script></head><body><a class="sr-only" href="#content">Skip to content</a><header class="docs-topbar"><nav class="menu"><ul><li><a href="../"><strong>▰ tty.css</strong></a></li></ul><ul><li><a href="../reference/">Docs</a></li><li><a href="./" aria-current="page">Examples</a></li><li><a href="../../tty.css" download role="button">Download</a></li></ul></nav></header><main id="content"><section><h1>Examples</h1><p>Seven complete interfaces and a Monokai palette, built with tty.css. Three interfaces use HTML only, one adds vanilla JavaScript, and three add Alpine.js for behavior.</p></section>
-<section id="customization"><h2>Color customization</h2><p>Try generated palettes in the <a href="../reference/colors.html#playground">playground</a>, or full overrides below.</p><div class="example-grid"><article><header class="legend"><h3>Monokai palette</h3></header><div class="example-tags"><mark>CSS VARIABLES</mark><mark>HEX</mark></div><p>Monokai adapted for UI contrast, with a dark palette and a light companion.</p><footer><div class="group"><a href="color-theme.html" role="button">Preview</a><a href="monokai-theme.css" download class="outline" role="button">Download CSS</a></div></footer></article></div></section>
-<section id="html"><h2>HTML only</h2><p>Native browser behavior, no application JavaScript. A docs-only preference script applies your saved palette; tty.css itself needs no JavaScript.</p><div class="example-grid"><article><header class="legend"><h3>Vector product landing</h3></header><div class="example-tags"><mark>HTML</mark><mark>NO APP JS</mark></div><p>A developer product site with an architecture diagram, features, pricing, FAQ, and signup.</p><footer><div class="group"><a href="product-landing.html" role="button">Preview</a><a href="product-landing.html" download class="outline" role="button">Download source</a></div></footer></article><article><header class="legend"><h3>Authentication</h3></header><div class="example-tags"><mark>HTML</mark><mark>NO APP JS</mark></div><p>A focused sign-in flow with native validation, social alternatives, and security guidance.</p><footer><div class="group"><a href="auth.html" role="button">Preview</a><a href="auth.html" download class="outline" role="button">Download source</a></div></footer></article><article><header class="legend"><h3>Service status</h3></header><div class="example-tags"><mark>HTML</mark><mark>NO APP JS</mark></div><p>Current health, component status, uptime, incident history, and subscriptions.</p><footer><div class="group"><a href="status.html" role="button">Preview</a><a href="status.html" download class="outline" role="button">Download source</a></div></footer></article></div></section>
-<section id="vanilla"><h2>HTML + vanilla JavaScript</h2><p>A small application script adds behavior without an application library.</p><div class="example-grid"><article><header class="legend"><h3>OrbitDB pricing</h3></header><div class="example-tags"><mark>HTML</mark><mark>VANILLA JS</mark></div><p>A fictional database pricing page with native cards and FAQ, plus a small usage estimator.</p><footer><div class="group"><a href="pricing.html" role="button">Preview</a><a href="pricing.html" download class="outline" role="button">Download source</a><a href="pricing.js" download class="outline" role="button">Download JS</a></div></footer></article></div></section>
-<section id="alpine"><h2>HTML + Alpine.js</h2><p>Progressively interactive examples using pinned Alpine.js 3.16.3 and embedded application code. Alpine.js supplies behavior; the repository-root tty.css remains the only framework stylesheet.</p><div class="example-grid"><article><header class="legend"><h3>SaaS dashboard</h3></header><div class="example-tags"><mark>HTML</mark><mark>ALPINE</mark></div><p>Keyboard-accessible tabs, dynamic periods, customer filtering, metrics, and an account detail dialog.</p><footer><div class="group"><a href="dashboard.html" role="button">Preview</a><a href="dashboard.html" download class="outline" role="button">Download source</a></div></footer></article><article><header class="legend"><h3>Search console</h3></header><div class="example-tags"><mark>HTML</mark><mark>ALPINE</mark></div><p>A query builder with search modes, filters, simulated execution, and result states.</p><footer><div class="group"><a href="search-console.html" role="button">Preview</a><a href="search-console.html" download class="outline" role="button">Download source</a></div></footer></article><article><header class="legend"><h3>Task board</h3></header><div class="example-tags"><mark>HTML</mark><mark>ALPINE</mark></div><p>Filter, create, move, and persist tasks using native dialogs and localStorage.</p><footer><div class="group"><a href="task-board.html" role="button">Preview</a><a href="task-board.html" download class="outline" role="button">Download source</a></div></footer></article></div></section></main><footer><nav><ul><li><strong>▰ tty.css</strong></li></ul><ul><li><a href="../">Home</a></li><li><a href="../reference/">Docs</a></li></ul></nav></footer></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Standalone login, landing, pricing, admin, and other everyday interface examples built with tty.css.">
+  <title>Examples · tty.css</title>
+  <link rel="stylesheet" href="../../tty.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <link rel="stylesheet" href="../assets/examples.css">
+  <script src="../assets/palette-settings.js"></script>
+</head>
+<body>
+  <a class="sr-only" href="#content">Skip to content</a>
+  <header class="docs-topbar">
+    <nav class="menu" aria-label="Main navigation">
+      <ul><li><a href="../"><strong>▰ tty.css</strong></a></li></ul>
+      <ul><li><a href="../reference/">Docs</a></li><li><a href="./" aria-current="page">Examples</a></li><li><a class="button" href="../../tty.css" download>Download</a></li></ul>
+    </nav>
+  </header>
+  <main id="content">
+    <section aria-labelledby="examples-title">
+      <h1 id="examples-title">Everyday interfaces. Plain HTML.</h1>
+      <p>Explore common UI patterns built with tty.css. Each example is independent; tags show its features and technology.</p>
+      <div class="example-grid">
+        <article id="html" aria-labelledby="login-title">
+          <header><small>01 / ACCOUNT</small><h2 id="login-title">Login form</h2></header>
+          <ul class="plain example-tags" role="list" aria-label="Features"><li><mark>HTML only</mark></li><li><mark>Forms</mark></li><li><mark>Validation</mark></li><li><mark>Icons</mark></li></ul>
+          <p>A focused sign-in screen with labelled fields, a remember-me option, and native browser validation.</p>
+          <p class="example-detail">Layout demo · no authentication backend.</p>
+          <footer><nav aria-label="Login form actions"><a class="button" href="auth.html">Open example</a><a href="auth.html" download>HTML source</a></nav></footer>
+        </article>
+        <article aria-labelledby="landing-title">
+          <header><small>02 / MARKETING</small><h2 id="landing-title">Product landing</h2></header>
+          <ul class="plain example-tags" role="list" aria-label="Features"><li><mark>HTML only</mark></li><li><mark>Cards</mark></li><li><mark>FAQ</mark></li><li><mark>Icons</mark></li></ul>
+          <p>A product homepage with a hero, architecture diagram, feature grid, pricing, and a signup form.</p>
+          <p class="example-detail">Layout demo · signup is not connected.</p>
+          <footer><nav aria-label="Product landing actions"><a class="button" href="product-landing.html">Open example</a><a href="product-landing.html" download>HTML source</a></nav></footer>
+        </article>
+        <article id="vanilla" aria-labelledby="pricing-title">
+          <header><small>03 / BILLING</small><h2 id="pricing-title">Pricing calculator</h2></header>
+          <ul class="plain example-tags" role="list" aria-label="Features"><li><mark>Vanilla JS</mark></li><li><mark>Forms</mark></li><li><mark>Calculator</mark></li><li><mark>Icons</mark></li></ul>
+          <p>Compare plans and estimate usage with a working calculator, grouped controls, and accessible results.</p>
+          <p class="example-detail">Runs locally · no billing service.</p>
+          <footer><nav aria-label="Pricing calculator actions"><a class="button" href="pricing.html">Open example</a><a href="pricing.html" download>HTML source</a><a href="pricing.js" download>JavaScript</a></nav></footer>
+        </article>
+        <article id="alpine" aria-labelledby="admin-title">
+          <header><small>04 / ADMINISTRATION</small><h2 id="admin-title">Admin dashboard</h2></header>
+          <ul class="plain example-tags" role="list" aria-label="Features"><li><mark>Alpine.js</mark></li><li><mark>Tables</mark></li><li><mark>Tabs</mark></li><li><mark>Dialogs</mark></li><li><mark>Icons</mark></li></ul>
+          <p>A metrics dashboard with customer filtering, period controls, keyboard-accessible tabs, and account details.</p>
+          <p class="example-detail">Interactive demo · sample customer data.</p>
+          <footer><nav aria-label="Admin dashboard actions"><a class="button" href="dashboard.html">Open example</a><a href="dashboard.html" download>HTML source</a></nav></footer>
+        </article>
+        <article aria-labelledby="status-title">
+          <header><small>05 / OPERATIONS</small><h2 id="status-title">Service status</h2></header>
+          <ul class="plain example-tags" role="list" aria-label="Features"><li><mark>HTML only</mark></li><li><mark>Tables</mark></li><li><mark>Forms</mark></li><li><mark>Icons</mark></li></ul>
+          <p>A public status page with component health, uptime history, incident updates, and a subscription form.</p>
+          <p class="example-detail">Layout demo · no live monitoring or subscriptions.</p>
+          <footer><nav aria-label="Service status actions"><a class="button" href="status.html">Open example</a><a href="status.html" download>HTML source</a></nav></footer>
+        </article>
+        <article aria-labelledby="search-title">
+          <header><small>06 / SEARCH</small><h2 id="search-title">Search interface</h2></header>
+          <ul class="plain example-tags" role="list" aria-label="Features"><li><mark>Alpine.js</mark></li><li><mark>Forms</mark></li><li><mark>Filters</mark></li><li><mark>Icons</mark></li></ul>
+          <p>A query builder with search modes, filters, loading feedback, and result states.</p>
+          <p class="example-detail">Simulated search · no external search service.</p>
+          <footer><nav aria-label="Search interface actions"><a class="button" href="search-console.html">Open example</a><a href="search-console.html" download>HTML source</a></nav></footer>
+        </article>
+        <article aria-labelledby="tasks-title">
+          <header><small>07 / PRODUCTIVITY</small><h2 id="tasks-title">Task board</h2></header>
+          <ul class="plain example-tags" role="list" aria-label="Features"><li><mark>Alpine.js</mark></li><li><mark>Dialogs</mark></li><li><mark>Local storage</mark></li><li><mark>Icons</mark></li></ul>
+          <p>Create, filter, and move tasks across a release board with native dialogs and browser persistence.</p>
+          <p class="example-detail">Runs locally · tasks stay in this browser.</p>
+          <footer><nav aria-label="Task board actions"><a class="button" href="task-board.html">Open example</a><a href="task-board.html" download>HTML source</a></nav></footer>
+        </article>
+        <article id="customization" aria-labelledby="theme-title">
+          <header><small>08 / CUSTOMIZATION</small><h2 id="theme-title">Color theme</h2></header>
+          <ul class="plain example-tags" role="list" aria-label="Features"><li><mark>CSS variables</mark></li><li><mark>Light &amp; dark</mark></li><li><mark>Palette</mark></li><li><mark>Icons</mark></li></ul>
+          <p>A Monokai-inspired palette applied to common controls and cards, with a light companion theme.</p>
+          <p class="example-detail">Visual showcase · switch between themes.</p>
+          <footer><nav aria-label="Color theme actions"><a class="button" href="color-theme.html">Open example</a><a href="color-theme.html" download>HTML source</a><a href="monokai-theme.css" download>Theme CSS</a></nav></footer>
+        </article>
+      </div>
+    </section>
+    <p class="example-download-note">Source downloads need <a href="../../tty.css" download>tty.css</a> and the assets linked in their HTML. Alpine.js examples load a pinned version from a CDN.</p>
+  </main>
+  <footer><nav aria-label="Footer navigation"><ul><li><strong>▰ tty.css</strong></li></ul><ul><li><a href="../">Home</a></li><li><a href="../reference/">Docs</a></li></ul></nav><p><small>Some examples use <a href="https://github.com/hackernoon/pixel-icon-library">Pixel Icon Library by HackerNoon</a>, loaded via CDN. See their <a href="https://pixeliconlibrary.com/license/">license requirements</a>.</small></p></footer>
+</body>
+</html>

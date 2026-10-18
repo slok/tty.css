@@ -259,8 +259,8 @@ The class layer is intentionally small.
 | `.narrow` | Centered element capped at 32rem for focused flows |
 | `.reading` | Centered 56rem long-form article with readable typography |
 | `.grid` | Responsive auto-fitting grid; `--tty-grid-min` defaults to `17rem` |
-| `.group` | Spaced actions in a horizontal row; stacks on small screens |
-| `.group.inline` | Keeps a group on one line and spreads its items apart |
+| `.group` | Spaced actions that wrap when needed; stacks on small screens |
+| `.group.inline` | Keeps a horizontal layout on small screens and spreads items apart; wraps when needed |
 | `.overflow-auto` | Scroll container for wide tables or content |
 | `.legend` | Places a direct article header title over the card border |
 | `a.button` | Button presentation for a navigating link, preserving native link semantics |
