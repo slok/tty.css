@@ -82,6 +82,8 @@
       <section id="browser">
         <h2>Browser requirements</h2>
         <p>tty.css targets current evergreen browsers rather than a transpiled compatibility matrix. Its presentation relies on modern CSS including <code>:where()</code>, <code>:has()</code>, <code>color-mix()</code>, logical properties, individual transform properties, and native <code>dialog</code>. Older browsers may keep usable semantic HTML while losing layout or decoration, but that fallback is not guaranteed.</p>
+        <p>OKLCH is required. Chrome/Edge 111+, Firefox 113+, and Safari 15.4+ are the minimum versions for palette support, not a guarantee of all framework features. Browsers without OKLCH have no framework color fallback; some decorative <code>color-mix()</code> effects have simpler fallbacks.</p>
+        <p>The support target combines the CSS features used by tty.css with Pico CSS v2's Browserslist <code>defaults</code> philosophy: browsers with more than 0.5% global usage, the last two versions of major browsers, Firefox ESR, and browsers that are not officially dead. RTL layouts are out of scope and are not guaranteed.</p>
         <p>Test the browsers and assistive-technology combinations required by your product. Pay particular attention to native date and time controls, form validation, dialog focus, meter rendering, forced colors, printing, and mobile viewport behavior because these vary by engine and platform.</p>
       </section>
 
