@@ -7,6 +7,10 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 ## [Unreleased]
 
+### Fixed
+
+- Action groups wrap when their contents exceed the available width, including inside narrow cards on wide screens.
+
 ### Added
 
 - Opt-in `.textured` on native `progress[value]` for a continuous Dense SVG-mask fill over a muted track, with CSS `color` customization and optional `--tty-progress-pattern` / `--tty-progress-pattern-size` overrides. Default progress, meters, and indeterminate styling are unchanged; no framework JavaScript is required.

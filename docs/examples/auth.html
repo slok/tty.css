@@ -6,14 +6,18 @@
   <meta name="description" content="Sign in to fictional Relay Console.">
   <title>Sign in · Relay Console</title>
   <link rel="stylesheet" href="../../tty.css">
+  <link rel="stylesheet" href="../assets/examples.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@hackernoon/pixel-icon-library@1.1.0/fonts/iconfont.css">
   <script src="../assets/palette-settings.js"></script>
 </head>
 <body>
   <a class="sr-only" href="#login">Skip to login</a>
+  <nav class="example-toolbar" aria-label="Example navigation"><a href="./">← All examples</a><span>Login form</span><a href="auth.html" download>HTML source</a></nav>
+  <p class="example-note">Standalone login form demo. Browser validation works; no credentials are sent and account actions are disabled.</p>
   <header>
     <nav class="menu" aria-label="Primary navigation">
-      <ul><li><a href="./"><strong>◆ relay</strong></a></li></ul>
-      <ul><li><a href="../reference/">Help</a></li><li><a href="status.html">Status</a></li></ul>
+      <ul><li><a href="#login"><strong>◆ relay</strong></a></li></ul>
+      <ul><li><a href="#security">Security and privacy</a></li></ul>
     </nav>
   </header>
   <main id="login" class="narrow">
@@ -21,26 +25,26 @@
       <article>
         <header class="legend"><h1>Sign in</h1></header>
         <p>Continue to Relay Console to manage deployments and API keys.</p>
-        <form action="#login">
+        <form action="#login" onsubmit="event.preventDefault()">
           <label for="email">Work email</label>
           <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@company.com">
           <label for="password">Password</label>
           <input id="password" name="password" type="password" required minlength="8" autocomplete="current-password">
-          <div class="grid">
+          <div class="group inline">
             <label><input type="checkbox" name="remember"> Keep me signed in</label>
-            <a href="mailto:support@example.com?subject=Password%20recovery">Forgot password?</a>
+            <button type="button" class="secondary" disabled>Forgot password?</button>
           </div>
-          <button type="submit">Sign in →</button>
+          <button type="submit">Sign in <i class="hn hn-arrow-right" aria-hidden="true"></i></button>
         </form>
         <hr>
-        <p class="group">
-          <a href="https://github.com/login" role="button" class="secondary">Continue with GitHub</a>
-          <a href="https://accounts.google.com/" role="button" class="secondary">Continue with Google</a>
+        <p class="group" style="justify-content: center">
+          <button type="button" class="secondary" disabled><i class="hn hn-github" aria-hidden="true"></i> Continue with GitHub</button>
+          <button type="button" class="secondary" disabled><i class="hn hn-google" aria-hidden="true"></i> Continue with Google</button>
         </p>
-        <footer>New to Relay? <a href="mailto:sales@example.com?subject=Create%20a%20Relay%20account">Create an account</a></footer>
+        <footer>New to Relay? Account creation is unavailable in this demo.</footer>
       </article>
-      <details>
-        <summary>Security and privacy</summary>
+      <details id="security">
+        <summary><i class="hn hn-lock-alt" aria-hidden="true"></i> Security and privacy</summary>
         <p>Relay supports passkeys, SSO, enforced MFA, and audit logs. We never sell or use account data for advertising.</p>
       </details>
     </section>
@@ -48,8 +52,9 @@
   <footer>
     <nav aria-label="Footer navigation">
       <ul><li><small>© 2026 Relay Systems</small></li></ul>
-      <ul><li><a href="./">Examples</a></li><li><a href="../reference/">tty.css docs</a></li></ul>
+      <ul><li><a href="./">All examples</a></li><li><a href="../reference/">tty.css docs</a></li></ul>
     </nav>
+    <p><small>Icons from <a href="https://github.com/hackernoon/pixel-icon-library">Pixel Icon Library by HackerNoon</a> · <a href="https://pixeliconlibrary.com/license/">License</a>.</small></p>
   </footer>
 </body>
 </html>
