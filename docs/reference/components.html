@@ -54,6 +54,11 @@
 &lt;/fieldset&gt;</code></pre></div>
       </section>
 
+      <section id="icons">
+        <h2>Icons</h2>
+        <p>tty.css does not include an icon library. For a matching pixel style, try <a href="https://github.com/hackernoon/pixel-icon-library">Pixel Icon Library by HackerNoon</a>. Follow their <a href="https://pixeliconlibrary.com/usage/">usage guide</a> and <a href="https://pixeliconlibrary.com/license/">license requirements</a>.</p>
+      </section>
+
       <section id="loading">
         <h2>Busy and loading states</h2>
         <p><code>aria-busy="true"</code> exposes a busy region or control and adds the tty.css spinner to non-form elements. Primary, secondary, contrast, and outline buttons keep their variant styling.</p>
@@ -80,6 +85,17 @@
 
 &lt;label for="cache-meter"&gt;Cache utilization&lt;/label&gt;
 &lt;meter id="cache-meter" min="0" max="100" low="35" high="80" optimum="60" value="62"&gt;62%&lt;/meter&gt;</code></pre></div>
+        <h3>Textured progress</h3>
+        <p>Add <code>class="textured"</code> to a native <code>progress</code> with <code>value</code> for a continuous Dense SVG-mask fill over a muted <code>--tty-border</code> track. The bar is <code>1rem</code> high with no outline, frame, or box shadow. Its fill uses <code>currentColor</code>; customize it with CSS <code>color</code>, not a role.</p>
+        <p>By default, the fill follows text color: black in the default light theme, light in the dark theme. The accent-colored example below explicitly overrides <code>color</code>.</p>
+        <div class="docs-preview"><label for="textured-progress-default">Default — inherited text color</label><progress class="textured" id="textured-progress-default" value="68" max="100">68%</progress><label for="textured-progress">Custom — theme accent color</label><progress class="textured" id="textured-progress" value="68" max="100" style="color: var(--tty-accent)">68%</progress></div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;label for="textured-progress-default"&gt;Default — inherited text color&lt;/label&gt;
+&lt;progress class="textured" id="textured-progress-default" value="68" max="100"&gt;68%&lt;/progress&gt;
+
+&lt;label for="textured-progress"&gt;Custom — theme accent color&lt;/label&gt;
+&lt;progress class="textured" id="textured-progress" value="68" max="100"
+  style="color: var(--tty-accent)"&gt;68%&lt;/progress&gt;</code></pre></div>
+        <p>Optional <a href="customization.html#shape">progress pattern tokens</a> change the mask and tile size independently of frame shadows. Without <code>value</code>, <code>progress.textured</code> keeps the existing indeterminate style. Ordinary progress and meters are unchanged, and no framework JavaScript is needed. In forced-colors mode, the native fallback uses no mask and a <code>Highlight</code> fill.</p>
         <p>Fallback text is useful where the elements are unsupported but is not a visible numeric label in modern browsers. Show a separate text value when the exact number matters.</p>
       </section>
 
@@ -159,7 +175,7 @@ document.querySelectorAll("dialog").forEach((dialog) =&gt; {
 
       <nav class="docs-pager" aria-label="Documentation pages"><a href="tabs.html">← Tabs</a><a href="customization.html">Customization →</a></nav>
     </div>
-    <aside class="docs-toc"><nav aria-label="On this page"><p class="docs-nav-title">On this page</p><ul><li><a href="#details">Details</a></li><li><a href="#loading">Loading</a></li><li><a href="#progress">Progress &amp; meter</a></li><li><a href="#tooltips">Tooltips</a></li><li><a href="#dialogs">Dialogs</a></li></ul></nav></aside>
+    <aside class="docs-toc"><nav aria-label="On this page"><p class="docs-nav-title">On this page</p><ul><li><a href="#details">Details</a></li><li><a href="#icons">Icons</a></li><li><a href="#loading">Loading</a></li><li><a href="#progress">Progress &amp; meter</a></li><li><a href="#tooltips">Tooltips</a></li><li><a href="#dialogs">Dialogs</a></li></ul></nav></aside>
   </main>
   <footer><small>tty.css — semantic HTML with sharp edges.</small></footer>
 </body>

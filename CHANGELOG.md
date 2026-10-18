@@ -9,6 +9,7 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 ### Added
 
+- Opt-in `.textured` on native `progress[value]` for a continuous Dense SVG-mask fill over a muted track, with CSS `color` customization and optional `--tty-progress-pattern` / `--tty-progress-pattern-size` overrides. Default progress, meters, and indeterminate styling are unchanged; no framework JavaScript is required.
 - `.plain` for markerless, unpadded lists (margins preserved) and opt-in borderless, transparent non-dropdown disclosures (padding and chevron preserved); ordinary disclosure defaults are unchanged.
 - `a.button` for button-styled navigation with native link semantics; existing `a[role="button"]` styling remains supported.
 - `--tty-grid-min` (default `17rem`) controls `.grid` minimum column width, with local overrides.

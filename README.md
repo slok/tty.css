@@ -269,6 +269,7 @@ The class layer is intentionally small.
 | `.muted` | Muted surface background |
 | `.flat` | No decorative shadow; border remains |
 | `.plain` | Removes list markers/padding or opts a non-dropdown disclosure into a borderless, transparent surface |
+| `progress.textured` | Opt-in Dense SVG-mask fill for native determinate progress; customize with CSS `color` |
 | `.tabs` | Connected ARIA tab row and framed panels; behavior supplied by application code |
 | `.dropdown` | Turns a native `details` element into an overlay menu |
 | `nav.menu` | Opt-in indicators for top-level plain navigation links |

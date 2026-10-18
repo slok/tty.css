@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Progress texture test · tty.css</title>
+  <link rel="stylesheet" href="../../tty.css">
+  <style>
+    /* Comparison-page layout only; both progress styles come from tty.css. */
+    main { max-width: 56rem; }
+    .samples { display: grid; gap: 1.5rem; }
+    .samples > div { min-width: 0; }
+    .samples progress { display: block; margin-block: 0.5rem 1rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Progress texture test</h1>
+    <p>Compare the existing style with a continuous textured fill. Both are native, labelled <code>progress</code> elements; framework defaults are unchanged.</p>
+    <div class="group inline"><label for="amount">Completion: <output id="amount-value" for="amount">92%</output></label><button type="button" id="theme">Switch theme</button></div>
+    <input id="amount" type="range" min="0" max="100" value="92">
+    <div class="samples">
+      <div><label for="current">Current framework style</label><progress id="current" value="92" max="100">92%</progress></div>
+      <div><label for="textured">Continuous textured fill</label><progress id="textured" class="textured" value="92" max="100">92%</progress><small>The completed portion uses the Dense shadow texture over a muted track, without segments or gaps.</small></div>
+    </div>
+    <p><small>Preview covers determinate progress only. The small script drives the comparison and theme switch; it is not framework code.</small></p>
+    <p><a href="./">Back to examples</a></p>
+  </main>
+  <script>
+    const amount = document.querySelector('#amount');
+    function render() {
+      const value = Number(amount.value);
+      document.querySelector('#amount-value').textContent = `${value}%`;
+      amount.setAttribute('aria-valuetext', `${value}%`);
+      for (const progress of document.querySelectorAll('progress')) {
+        progress.value = value;
+        progress.textContent = `${value}%`;
+      }
+    }
+    amount.addEventListener('input', render);
+    document.querySelector('#theme').addEventListener('click', () => {
+      const root = document.documentElement;
+      root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    });
+    render();
+  </script>
+</body>
+</html>
