@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Navigation bars, current links, breadcrumbs, dropdown variants, and actions in tty.css.">
+  <meta name="description" content="Navigation bars, breadcrumbs, numbered and cursor-based pagination, dropdown variants, and actions in tty.css.">
   <title>Navigation · tty.css</title>
   <link rel="stylesheet" href="../../tty.css">
   <link rel="stylesheet" href="../assets/docs.css">
@@ -55,6 +55,44 @@
     &lt;/ul&gt;
   &lt;/nav&gt;
 &lt;/div&gt;</code></pre></div>
+      </section>
+      <section id="pagination">
+        <h2>Pagination</h2>
+        <p>Add <code>.pagination</code> to a labelled <code>nav</code> for links that share the framework’s secondary button styling, including borders, offset shadows, hover, and pressed states, and wrap within their container. No <code>.button</code> class is needed on individual links. Use direct links or a direct <code>ul</code> or <code>ol</code>; numbered pages are optional. Do not add <code>.menu</code> or button roles. URLs, cursor values, page counts, and available destinations belong to your application; tty.css supplies styling only.</p>
+        <h3>Numbered pages</h3>
+        <p>Use <code>aria-current="page"</code> on the current page link or a non-interactive <code>span</code>. The current page uses the primary button fill and pressed appearance, with an underline that identifies it without color. Unavailable spans share the disabled button treatment; ellipses and result summaries stay plain text. Give numeric links descriptive accessible names.</p>
+        <div class="docs-preview"><nav class="pagination" aria-label="Search result pages"><ul><li><a href="?page=1#pagination" rel="prev">Previous</a></li><li><a href="?page=1#pagination" aria-label="Page 1">1</a></li><li><a href="?page=2#pagination" aria-label="Page 2" aria-current="page">2</a></li><li><a href="?page=3#pagination" aria-label="Page 3">3</a></li><li><span aria-label="More pages">…</span></li><li><a href="?page=20#pagination" aria-label="Page 20">20</a></li><li><a href="?page=3#pagination" rel="next">Next</a></li></ul><small>Showing 21–40 of 400</small></nav></div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;nav class="pagination" aria-label="Search result pages"&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="?page=1" rel="prev"&gt;Previous&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="?page=1" aria-label="Page 1"&gt;1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="?page=2" aria-label="Page 2" aria-current="page"&gt;2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="?page=3" aria-label="Page 3"&gt;3&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span aria-label="More pages"&gt;…&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="?page=20" aria-label="Page 20"&gt;20&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="?page=3" rel="next"&gt;Next&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;small&gt;Showing 21–40 of 400&lt;/small&gt;
+&lt;/nav&gt;</code></pre></div>
+        <h3>Cursor-based pagination</h3>
+        <p>Previous and next links work without page numbers, a current-page marker, or a known total. Use the opaque cursors returned by your application in real URLs. The optional result summary is ordinary text, not an automatic live announcement.</p>
+        <div class="docs-preview"><nav class="pagination" aria-label="Event batches"><a href="?before=evt_021#pagination" rel="prev">Previous</a><a href="?after=evt_040#pagination" rel="next">Next</a><small>Showing 20 events</small></nav></div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;nav class="pagination" aria-label="Event batches"&gt;
+  &lt;a href="?before=evt_021" rel="prev"&gt;Previous&lt;/a&gt;
+  &lt;a href="?after=evt_040" rel="next"&gt;Next&lt;/a&gt;
+  &lt;small&gt;Showing 20 events&lt;/small&gt;
+&lt;/nav&gt;</code></pre></div>
+        <h3>Boundaries and sequential content</h3>
+        <p>Omit an unavailable destination, or replace its link with <code>&lt;span aria-disabled="true"&gt;</code>. A span has no link behavior and is not in the Tab order. Do not use <code>disabled</code> on links, fake URLs, or <code>aria-disabled</code> alone on a working link. Sequential content can use descriptive labels instead of page numbers.</p>
+        <div class="docs-preview"><nav class="pagination" aria-label="Post archives"><span aria-disabled="true">Newer posts</span><a href="?before=post_040#pagination" rel="next">Older posts →</a></nav></div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;nav class="pagination" aria-label="Post archives"&gt;
+  &lt;span aria-disabled="true"&gt;Newer posts&lt;/span&gt;
+  &lt;a href="?before=post_040" rel="next"&gt;Older posts →&lt;/a&gt;
+&lt;/nav&gt;</code></pre></div>
+        <p>These previews demonstrate markup only; their query strings do not change the sample results. Real links retain normal Tab and Enter behavior, bookmarking, and opening in another tab. Icon-only links need an accessible name. If your application replaces results without navigation, it also owns focus management and result announcements.</p>
+        <h3>Load more</h3>
+        <p>Appending results is an action, not a destination. Use a regular button outside a pagination navigation landmark, and supply application code to fetch and append results, manage busy and unavailable states, and announce updates. No pagination-specific class is needed.</p>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;button type="button"&gt;Load more results&lt;/button&gt;</code></pre></div>
       </section>
       <section id="link-dropdown">
         <h2>Link dropdown</h2>
@@ -190,7 +228,7 @@
       </section>
       <nav class="docs-pager" aria-label="Documentation pagination"><a href="cards.html">&larr; Cards</a><a href="tabs.html">Tabs &rarr;</a></nav>
     </div>
-    <aside class="docs-toc"><nav aria-label="Table of contents"><p class="docs-nav-title">On this page</p><ul><li><a href="#basic">Basic navigation</a></li><li><a href="#breadcrumbs">Breadcrumbs</a></li><li><a href="#link-dropdown">Link dropdown</a></li><li><a href="#checkbox-dropdown">Checkbox dropdown</a></li><li><a href="#button-dropdown">Button dropdown</a></li><li><a href="#dropdown-variants">Button variants</a></li><li><a href="#validation">Validation</a></li><li><a href="#nav-dropdown">Navigation dropdown</a></li><li><a href="#actions">Actions</a></li><li><a href="#behavior">Behavior</a></li></ul></nav></aside>
+    <aside class="docs-toc"><nav aria-label="Table of contents"><p class="docs-nav-title">On this page</p><ul><li><a href="#basic">Basic navigation</a></li><li><a href="#breadcrumbs">Breadcrumbs</a></li><li><a href="#pagination">Pagination</a></li><li><a href="#link-dropdown">Link dropdown</a></li><li><a href="#checkbox-dropdown">Checkbox dropdown</a></li><li><a href="#button-dropdown">Button dropdown</a></li><li><a href="#dropdown-variants">Button variants</a></li><li><a href="#validation">Validation</a></li><li><a href="#nav-dropdown">Navigation dropdown</a></li><li><a href="#actions">Actions</a></li><li><a href="#behavior">Behavior</a></li></ul></nav></aside>
   </main>
   <footer><small>tty.css — semantic HTML with sharp edges.</small></footer>
 </body>

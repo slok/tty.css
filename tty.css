@@ -618,9 +618,34 @@ h4 {
   border-inline-start: var(--tty-border-width) dashed var(--tty-fg-muted);
 }
 
+/* Pagination is presentation only; URLs and pagination models are author-owned. */
+:where(nav.pagination, nav.pagination > ul, nav.pagination > ol) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+:where(nav.pagination > ul, nav.pagination > ol) {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+:where(nav.pagination) {
+  font-variant-numeric: tabular-nums;
+}
+
+:where(nav.pagination > small) {
+  color: var(--tty-fg-muted);
+}
+
 /* Buttons */
 :where(button, input[type="submit"], input[type="button"], input[type="reset"],
-  a:is([role="button"], .button)) {
+  a:is([role="button"], .button),
+  nav.pagination > :is(a, span[aria-current="page"], span[aria-disabled="true"]),
+  nav.pagination > :is(ul, ol) > li > :is(a, span[aria-current="page"], span[aria-disabled="true"])) {
   display: inline-flex;
   min-height: var(--tty-control-height);
   align-items: center;
@@ -644,25 +669,33 @@ h4 {
 }
 
 :where(button, input[type="submit"], input[type="button"], input[type="reset"],
-  a:is([role="button"], .button)):hover {
+  a:is([role="button"], .button),
+  nav.pagination > a, nav.pagination > :is(ul, ol) > li > a):hover {
   background: var(--tty-accent-hover);
   color: var(--tty-accent-fg);
 }
 
 :where(button, input[type="submit"], input[type="button"], input[type="reset"],
-  a:is([role="button"], .button)):active {
+  a:is([role="button"], .button),
+  nav.pagination > a, nav.pagination > :is(ul, ol) > li > a):active,
+:where(nav.pagination > [aria-current="page"],
+  nav.pagination > :is(ul, ol) > li > [aria-current="page"]) {
   box-shadow: none;
   translate: var(--tty-control-shadow-size) var(--tty-control-shadow-size);
 }
 
 :where(button, input[type="submit"], input[type="button"], input[type="reset"],
-  a:is([role="button"], .button)).secondary {
+  a:is([role="button"], .button)).secondary,
+:where(nav.pagination > :is(a:not([aria-current="page"]), span[aria-disabled="true"]),
+  nav.pagination > :is(ul, ol) > li > :is(a:not([aria-current="page"]), span[aria-disabled="true"])) {
   background: var(--tty-surface-muted);
   color: var(--tty-fg);
 }
 
 :where(button, input[type="submit"], input[type="button"], input[type="reset"],
-  a:is([role="button"], .button)).secondary:hover {
+  a:is([role="button"], .button)).secondary:hover,
+:where(nav.pagination > a:not([aria-current="page"]),
+  nav.pagination > :is(ul, ol) > li > a:not([aria-current="page"])):hover {
   background: color-mix(in srgb, var(--tty-surface-muted) 88%, var(--tty-fg));
   color: var(--tty-fg);
 }
@@ -693,11 +726,31 @@ h4 {
 }
 
 :where(button, input[type="submit"], input[type="button"], input[type="reset"]):disabled,
-:where(a:is([role="button"], .button)[aria-disabled="true"]) {
+:where(a:is([role="button"], .button)[aria-disabled="true"],
+  nav.pagination > span[aria-disabled="true"],
+  nav.pagination > :is(ul, ol) > li > span[aria-disabled="true"]) {
   box-shadow: none;
   cursor: not-allowed;
   opacity: 0.5;
   pointer-events: none;
+}
+
+/* Pagination only adds sizing and wrapping to the shared button appearance. */
+:where(nav.pagination > [aria-current="page"],
+  nav.pagination > :is(ul, ol) > li > [aria-current="page"]) {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+:where(nav.pagination > :is(a, span),
+  nav.pagination > :is(ul, ol) > li > :is(a, span)) {
+  min-inline-size: var(--tty-control-height);
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+:where(nav.pagination > span, nav.pagination > :is(ul, ol) > li > span) {
+  cursor: default;
 }
 
 /* Loading */
