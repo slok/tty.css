@@ -771,28 +771,30 @@ h4 {
 
 /* Loading */
 @keyframes tty-busy {
-  0%,
-  100% { content: "⠋"; }
-  10% { content: "⠙"; }
-  20% { content: "⠹"; }
-  30% { content: "⠸"; }
-  40% { content: "⠼"; }
-  50% { content: "⠴"; }
-  60% { content: "⠦"; }
-  70% { content: "⠧"; }
-  80% { content: "⠇"; }
-  90% { content: "⠏"; }
+  0% { transform: rotate(0turn); }
+  20%, 25% { transform: rotate(0.25turn); }
+  45%, 50% { transform: rotate(0.5turn); }
+  70%, 75% { transform: rotate(0.75turn); }
+  95%, 100% { transform: rotate(1turn); }
 }
 
 :where([aria-busy="true"]:not(input, select, textarea))::before {
+  /* Five CSS rectangles draw a square outline and solid center. The inset
+     leaves room for the rotating corners within the fixed 1em footprint. */
   display: inline-block;
+  flex: 0 0 auto;
   width: 1em;
+  height: 1em;
   margin-inline-end: 0.55em;
-  content: "⠋";
-  font: 700 1em/1 var(--tty-font);
-  text-align: center;
-  vertical-align: -0.05em;
-  animation: tty-busy 800ms linear infinite;
+  content: "";
+  background:
+    linear-gradient(currentColor, currentColor) center / 0.2em 0.2em no-repeat,
+    linear-gradient(currentColor, currentColor) center 0.15em / 0.7em 0.1em no-repeat,
+    linear-gradient(currentColor, currentColor) center calc(100% - 0.15em) / 0.7em 0.1em no-repeat,
+    linear-gradient(currentColor, currentColor) 0.15em center / 0.1em 0.7em no-repeat,
+    linear-gradient(currentColor, currentColor) calc(100% - 0.15em) center / 0.1em 0.7em no-repeat;
+  vertical-align: -0.125em;
+  animation: tty-busy 2.4s ease-in-out infinite;
 }
 
 :where(button, input[type="submit"], input[type="button"], input[type="reset"],
@@ -2416,6 +2418,19 @@ article.reading h2 {
 }
 
 @media (forced-colors: active) {
+  :where([aria-busy="true"]:not(input, select, textarea))::before {
+    /* Keep the CSS shape, using a visible system text color. */
+    color: CanvasText;
+    forced-color-adjust: none;
+  }
+
+  @supports (forced-color-adjust: preserve-parent-color) {
+    :where([aria-busy="true"]:not(input, select, textarea))::before {
+      color: inherit;
+      forced-color-adjust: preserve-parent-color;
+    }
+  }
+
   :where(progress.textured[value]) {
     background: Canvas;
   }
