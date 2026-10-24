@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <title>tty.css</title>
+  <style>
+    :root { color: #0f172a; }
+    @media (prefers-color-scheme: dark) {
+      :root { color: #f8fafc; }
+    }
+  </style>
+  <defs>
+    <pattern id="shadow" width="4" height="4" patternUnits="userSpaceOnUse">
+      <path d="M0 0h1v1.5H0zM2 2h1v1.5H2z" fill="currentColor"/>
+    </pattern>
+  </defs>
+  <path d="M26 9h5v22H9v-5h17Z" fill="url(#shadow)"/>
+  <rect x="3" y="3" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"/>
+</svg>

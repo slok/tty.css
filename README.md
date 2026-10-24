@@ -1,4 +1,4 @@
-# tty.css
+<h1><img src="docs/assets/logo.svg" width="32" height="32" alt=""> tty.css</h1>
 
 A small, class-light CSS framework for semantic HTML. Monospace text, sharp borders,
 and textured shadows. **One CSS file. No framework JavaScript.**
