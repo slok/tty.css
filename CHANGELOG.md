@@ -17,6 +17,7 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 ### Added
 
+- Square `.badge` labels with neutral, info, success, warning, and danger tones using the existing notice palette, wrapping long text, and theme-aware foregrounds; no JavaScript is required.
 - Opt-in `nav.pagination` styling for numbered pages, cursor-based links, and sequential content navigation, sharing existing button appearance and interaction rules without duplicated styling. Includes wrapping layouts, current-page and unavailable states, and optional result summaries. Pagination logic stays application-owned; no JavaScript is required.
 - Semantic `.notice` callouts with neutral, info, success, warning, and danger tones, composable `.outline` and `.strong` treatments, and an optional `--tty-notice-color` override; no JavaScript is required.
 - Optional `ol.timeline` styling for chronological lists, with a vertical line, square markers, and item spacing. Opt-in `.horizontal` and `.alternating` variants apply above a 44rem viewport and fall back to vertical on smaller screens. Native list semantics and author-defined content are preserved; no JavaScript is required.
