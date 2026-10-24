@@ -1427,6 +1427,29 @@ h4 {
 }
 
 /* Components */
+/* Compact, non-interactive labels; tone colors match notices. */
+:where(.badge) {
+  --_tty-badge-color: var(--tty-fg-muted);
+  display: inline-block;
+  max-inline-size: 100%;
+  padding: 0.12em 0.45em;
+  border: var(--tty-border-width) solid var(--_tty-badge-color);
+  border-radius: 0;
+  background: var(--tty-surface);
+  background: color-mix(in srgb, var(--_tty-badge-color) 8%, var(--tty-surface));
+  color: var(--tty-fg);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.4;
+  vertical-align: baseline;
+  overflow-wrap: anywhere;
+}
+
+:where(.badge.info) { --_tty-badge-color: var(--tty-accent-hover); }
+:where(.badge.success) { --_tty-badge-color: var(--tty-success); }
+:where(.badge.warning) { --_tty-badge-color: var(--tty-warning); }
+:where(.badge.danger) { --_tty-badge-color: var(--tty-danger); }
+
 /* Notices provide appearance only; applications own live announcements. */
 :where(.notice) {
   --_tty-notice-color: var(--tty-notice-color, var(--tty-fg-muted));
