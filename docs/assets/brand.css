@@ -16,3 +16,19 @@
   -webkit-mask: url("logo.svg") center / contain no-repeat;
   mask: url("logo.svg") center / contain no-repeat;
 }
+
+.tty-github {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  min-height: 2rem;
+  padding: 0.25rem;
+  vertical-align: middle;
+}
+
+.tty-github svg {
+  flex: 0 0 auto;
+  width: 1.5rem;
+  height: 1.5rem;
+}
