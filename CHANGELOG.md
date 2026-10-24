@@ -21,6 +21,7 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 ### Added
 
+- A square-and-textured-shadow SVG logo in the docs branding, site favicons, and README heading, with light/dark standalone colors and inherited-color site presentation.
 - A compact docs-bar theme picker using the framework's native disclosure dropdown and an accessible appearance icon button cycling Light, Dark, and Auto, with persistent preferences and a single preset catalog shared with the Colors playground. Preset changes, custom slider values, reset, cross-tab updates, and back/forward restoration stay synchronized. The picker supports selection, Escape, focus-out, and outside-pointer dismissal. Appearance icons are locally served Pixel Icon Library SVGs by HackerNoon, with attribution and the upstream license preserved; the framework still requires no JavaScript or icons.
 - Square `.badge` labels with neutral, info, success, warning, and danger tones using the existing notice palette, wrapping long text, and theme-aware foregrounds; no JavaScript is required.
 - Opt-in `nav.pagination` styling for numbered pages, cursor-based links, and sequential content navigation, sharing existing button appearance and interaction rules without duplicated styling. Includes wrapping layouts, current-page and unavailable states, and optional result summaries. Pagination logic stays application-owned; no JavaScript is required.
