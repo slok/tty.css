@@ -96,6 +96,30 @@
         <section id="landmarks">
           <h2>Document landmarks</h2>
           <p>Direct <code>body</code> children <code>header</code>, <code>main</code>, and <code>footer</code> share a centered viewport. Its width is the smaller of the available width minus 2rem and <code>--tty-container</code>, which defaults to 72rem. Each landmark also receives its own vertical spacing, and the footer gets a top border.</p>
+          <div class="docs-preview">
+            <iframe class="docs-document-preview" title="Document landmarks preview" srcdoc='<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../tty.css">
+    <title>Deployment console</title>
+  </head>
+  <body>
+    <header>
+      <nav class="menu" aria-label="Primary navigation">
+        <a href="../examples/dashboard.html">Console</a>
+        <a href="../examples/status.html">Status</a>
+      </nav>
+    </header>
+    <main>
+      <h1>Deployment console</h1>
+      <p>Choose a service to continue.</p>
+    </main>
+    <footer><small>Console version 1.0</small></footer>
+  </body>
+</html>'></iframe>
+          </div>
           <div class="code-example">
             <button type="button" class="secondary" data-copy aria-label="Copy document landmark example">Copy</button>
             <pre><code>&lt;body&gt;

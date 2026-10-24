@@ -198,6 +198,7 @@
         <p>Changing a dimension can affect many components at once. Keep border widths non-negative, preserve usable target sizes, and check narrow layouts before shipping.</p>
         <p><code>--tty-spinner-size</code> is an optional override, resolved on the spinner pseudo-element with a <code>2em</code> fallback rather than a root declaration. Set a positive CSS length on <code>:root</code>, a wrapper, or a busy element; see the <a href="loading.html#spinner-size">spinner size examples</a>. Large spinners may increase line and button height.</p>
         <p>Set <code>--tty-grid-min</code> on an individual grid for a local override; see the <a href="layout.html#grid">live grid example</a>.</p>
+        <div class="docs-preview"><div class="grid" style="--tty-grid-min: 14rem"><article><h3>Primary</h3><p>Healthy</p></article><article><h3>Replica</h3><p>Healthy</p></article></div></div>
         <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;div class="grid" style="--tty-grid-min: 14rem"&gt;
   &lt;article&gt;&lt;h3&gt;Primary&lt;/h3&gt;&lt;p&gt;Healthy&lt;/p&gt;&lt;/article&gt;
   &lt;article&gt;&lt;h3&gt;Replica&lt;/h3&gt;&lt;p&gt;Healthy&lt;/p&gt;&lt;/article&gt;

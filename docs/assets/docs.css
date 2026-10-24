@@ -215,6 +215,19 @@
   margin-bottom: 0;
 }
 
+/* Full-document examples need their own body for root-level layout rules. */
+.docs-preview:has(> .docs-document-preview) {
+  padding: 0;
+}
+
+.docs-document-preview {
+  display: block;
+  width: 100%;
+  height: 26rem;
+  border: 0;
+  color-scheme: light;
+}
+
 .docs-palette-controls {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
