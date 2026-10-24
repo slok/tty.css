@@ -9,6 +9,7 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 ### Fixed
 
+- Replace the loading indicator's font-dependent Braille characters with a CSS-only outlined square and solid center, animated in quarter-turns with short pauses. Busy regions and button variants keep a consistent spinner across fonts, with a static reduced-motion state and system-colored forced-colors presentation; no SVGs or framework JavaScript are required.
 - Scope documentation heading sizes to page and section headings so typography, card, notice, and dialog examples retain the framework's own heading styles.
 - Action groups wrap when their contents exceed the available width, including inside narrow cards on wide screens.
 

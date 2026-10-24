@@ -75,7 +75,7 @@
 
       <section id="loading">
         <h2>Busy and loading states</h2>
-        <p><code>aria-busy="true"</code> exposes a busy region or control and adds the tty.css spinner to non-form elements. Primary, secondary, contrast, and outline buttons keep their variant styling.</p>
+        <p><code>aria-busy="true"</code> exposes a busy region or control and adds an outlined square spinner with a solid center to non-form elements. It turns in quarter-turns with short pauses, using only CSS and the current text color—no SVGs, font characters, or framework JavaScript. Primary, secondary, contrast, and outline buttons keep their variant styling.</p>
         <div class="docs-preview"><p aria-busy="true">Indexing documents</p><p class="group"><button type="button" aria-busy="true" disabled>Deploying</button><button type="button" class="secondary" aria-busy="true" disabled>Synchronizing</button><button type="button" class="contrast" aria-busy="true" disabled>Scanning</button><button type="button" class="outline" aria-busy="true" disabled>Refreshing</button></p></div>
         <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;p aria-busy="true"&gt;Indexing documents&lt;/p&gt;
 &lt;p class="group"&gt;
@@ -84,7 +84,7 @@
   &lt;button type="button" class="contrast" aria-busy="true" disabled&gt;Scanning&lt;/button&gt;
   &lt;button type="button" class="outline" aria-busy="true" disabled&gt;Refreshing&lt;/button&gt;
 &lt;/p&gt;</code></pre></div>
-        <ul><li>Set the attribute only while work is pending, then remove it or set it to <code>false</code>.</li><li><code>aria-busy</code> does not prevent activation. Use native <code>disabled</code> while a form control must be unavailable, then remove both attributes when the operation completes.</li><li>A busy state does not guarantee that status text is announced. Put changing status in a suitable live region when users need asynchronous updates.</li><li>The spinner is generated content and collapses to one frame under reduced motion. Keep a meaningful text label.</li></ul>
+        <ul><li>Set the attribute only while work is pending, then remove it or set it to <code>false</code>.</li><li><code>aria-busy</code> does not prevent activation. Use native <code>disabled</code> while a form control must be unavailable, then remove both attributes when the operation completes.</li><li>A busy state does not guarantee that status text is announced. Put changing status in a suitable live region when users need asynchronous updates.</li><li>The spinner is decorative generated content with no text glyph to announce. It stays visible as a static square under reduced motion and follows system text colors in forced-colors mode. Keep a meaningful text label.</li></ul>
       </section>
 
       <nav class="docs-pager" aria-label="Documentation pages"><a href="inputs.html">← Inputs</a><a href="navigation.html">Navigation →</a></nav>
