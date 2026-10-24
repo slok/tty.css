@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Text, search, date/time, file, and color inputs that preserve native browser behavior.">
+  <title>Inputs · tty.css</title>
+  <link rel="stylesheet" href="../../tty.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script src="../assets/palette-settings.js"></script>
+  <script defer src="../assets/docs.js"></script>
+</head>
+<body class="docs-page">
+  <a class="sr-only" href="#content">Skip to content</a>
+  <header class="docs-topbar"><nav class="menu" aria-label="Main navigation"><ul><li><a href="../"><strong>▰ tty.css</strong></a></li><li><small>main</small></li></ul><ul><li><a href="./" aria-current="page">Docs</a></li><li><a href="../examples/">Examples</a></li><li><a href="../../tty.css" download>Download</a></li><li class="docs-settings"><details class="dropdown" data-palette-picker hidden><summary aria-label="Theme: Default. Choose theme"><span data-palette-label>Default</span></summary><ul aria-label="Themes"></ul></details><button type="button" class="outline" data-theme-toggle data-appearance-icon disabled aria-label="Appearance: light. Switch to dark" title="Appearance: light. Switch to dark"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><use href="../assets/icons/pixel.svg#brightness-high"></use></svg></button></li></ul></nav></header>
+  <main class="docs-shell">
+    <aside class="docs-sidebar">
+      <details class="docs-navigation" data-docs-navigation open>
+        <summary>Documentation</summary>
+        <nav aria-label="Documentation">
+          <p class="docs-nav-title">Getting started</p>
+          <ul>
+            <li><a href="./">Quick start</a></li>
+            <li><a href="themes.html">Themes</a></li>
+          </ul>
+          <p class="docs-nav-title">Guides</p>
+          <ul>
+            <li><a href="layout.html">Layout &amp; composition</a></li>
+            <li><a href="typography.html">Typography &amp; links</a></li>
+            <li><a href="forms.html">Forms &amp; validation</a></li>
+          </ul>
+          <p class="docs-nav-title">Components</p>
+          <ul>
+            <li><a href="badges.html">Badges</a></li>
+            <li><a href="breadcrumbs.html">Breadcrumbs</a></li>
+            <li><a href="buttons.html">Buttons</a></li>
+            <li><a href="cards.html">Cards</a></li>
+            <li><a href="checkboxes.html">Checkboxes</a></li>
+            <li><a href="code-blocks.html">Code blocks</a></li>
+            <li><a href="control-groups.html">Control groups</a></li>
+            <li><a href="dialogs.html">Dialogs</a></li>
+            <li><a href="disclosures.html">Disclosures</a></li>
+            <li><a href="dropdowns.html">Dropdowns</a></li>
+            <li><a href="fieldsets.html">Fieldsets</a></li>
+            <li><a href="inputs.html" aria-current="page">Inputs</a></li>
+            <li><a href="loading.html">Loading states</a></li>
+            <li><a href="navigation.html">Navigation</a></li>
+            <li><a href="notices.html">Notices</a></li>
+            <li><a href="pagination.html">Pagination</a></li>
+            <li><a href="progress.html">Progress &amp; meters</a></li>
+            <li><a href="radios.html">Radio buttons</a></li>
+            <li><a href="selects.html">Selects</a></li>
+            <li><a href="sliders.html">Sliders</a></li>
+            <li><a href="switches.html">Switches</a></li>
+            <li><a href="tables.html">Tables</a></li>
+            <li><a href="tabs.html">Tabs</a></li>
+            <li><a href="textareas.html">Textareas</a></li>
+            <li><a href="timelines.html">Timelines</a></li>
+            <li><a href="tooltips.html">Tooltips</a></li>
+          </ul>
+          <p class="docs-nav-title">Customize</p>
+          <ul>
+            <li><a href="colors.html">Colors</a></li>
+            <li><a href="customization.html">CSS variables</a></li>
+            <li><a href="accessibility.html">Accessibility</a></li>
+            <li><a href="pico-comparison.html">Pico comparison</a></li>
+          </ul>
+        </nav>
+      </details>
+    </aside>
+    <div class="docs-content" id="content">
+      <header><p>Components</p><h1>Inputs</h1><p>Text, search, date/time, file, and color inputs that preserve native browser behavior.</p></header>
+
+      <section id="textual-inputs">
+        <h2>Textual input types</h2>
+        <p>Choose the type that describes the expected data. Browsers may provide specialized keyboards, autofill, parsing, and constraint validation for <code>email</code>, <code>password</code>, <code>tel</code>, <code>url</code>, and <code>number</code>. These hints improve entry but do not replace server-side validation.</p>
+        <div class="docs-preview">
+          <div class="grid">
+            <div>
+              <label for="input-text">Text</label>
+              <input id="input-text" name="display-name" type="text" autocomplete="name" value="Ada Operator">
+            </div>
+            <div>
+              <label for="input-email">Email</label>
+              <input id="input-email" name="email" type="email" autocomplete="email" placeholder="ops@example.com">
+            </div>
+            <div>
+              <label for="input-password">Password</label>
+              <input id="input-password" name="password" type="password" autocomplete="current-password" value="terminal-passphrase">
+            </div>
+            <div>
+              <label for="input-tel">Telephone</label>
+              <input id="input-tel" name="telephone" type="tel" autocomplete="tel" placeholder="+353 1 555 0100">
+            </div>
+            <div>
+              <label for="input-url">URL</label>
+              <input id="input-url" name="endpoint" type="url" inputmode="url" placeholder="https://api.example.com">
+            </div>
+            <div>
+              <label for="input-number">Replica count</label>
+              <input id="input-number" name="replicas" type="number" min="1" max="12" step="1" value="3">
+            </div>
+          </div>
+        </div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;div class="grid"&gt;
+  &lt;div&gt;
+    &lt;label for="input-text"&gt;Text&lt;/label&gt;
+    &lt;input id="input-text" name="display-name" type="text" autocomplete="name" value="Ada Operator"&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label for="input-email"&gt;Email&lt;/label&gt;
+    &lt;input id="input-email" name="email" type="email" autocomplete="email" placeholder="ops@example.com"&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label for="input-password"&gt;Password&lt;/label&gt;
+    &lt;input id="input-password" name="password" type="password" autocomplete="current-password" value="terminal-passphrase"&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label for="input-tel"&gt;Telephone&lt;/label&gt;
+    &lt;input id="input-tel" name="telephone" type="tel" autocomplete="tel" placeholder="+353 1 555 0100"&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label for="input-url"&gt;URL&lt;/label&gt;
+    &lt;input id="input-url" name="endpoint" type="url" inputmode="url" placeholder="https://api.example.com"&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label for="input-number"&gt;Replica count&lt;/label&gt;
+    &lt;input id="input-number" name="replicas" type="number" min="1" max="12" step="1" value="3"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+      </section>
+
+<section id="search">
+        <h2>Search</h2>
+        <p>A standalone <code>type="search"</code> control receives the search icon and keeps its browser-native clear behavior where available. Use a labelled <code>form role="search"</code> for a search landmark. To create the joined control, the field and action must be direct children of the element with <code>role="search"</code>; an intervening wrapper breaks the joined-child styling.</p>
+        <h3>Standalone</h3>
+        <div class="docs-preview">
+          <label for="standalone-search">Search documentation</label>
+          <input id="standalone-search" name="documentation-query" type="search" placeholder="Forms, tables, navigation">
+        </div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;label for="standalone-search"&gt;Search documentation&lt;/label&gt;
+&lt;input id="standalone-search" name="documentation-query" type="search" placeholder="Forms, tables, navigation"&gt;</code></pre></div>
+
+        <h3>Joined search</h3>
+        <div class="docs-preview">
+          <form role="search" aria-label="Namespace search">
+            <input name="namespace-query" type="search" placeholder="Search namespaces" aria-label="Search namespaces">
+            <button type="submit">Search</button>
+          </form>
+        </div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;form role="search" aria-label="Namespace search"&gt;
+  &lt;input name="namespace-query" type="search" placeholder="Search namespaces" aria-label="Search namespaces"&gt;
+  &lt;button type="submit"&gt;Search&lt;/button&gt;
+&lt;/form&gt;</code></pre></div>
+      </section>
+
+<section id="date-time">
+        <h2>Date and time</h2>
+        <p>Date and time controls retain the browser’s native picker, keyboard behavior, localized display, and validation. Submitted values use standardized machine-readable formats. <code>datetime-local</code> represents local wall-clock time and carries no time-zone offset.</p>
+        <p>Picker UI and support vary by browser and operating system; unsupported types degrade to text inputs. The browser may position or omit its own picker indicator differently, and Firefox intentionally keeps its native presentation.</p>
+        <div class="docs-preview">
+          <div class="grid">
+            <div>
+              <label for="schedule-date">Date</label>
+              <input id="schedule-date" name="date" type="date" value="2026-08-31">
+            </div>
+            <div>
+              <label for="schedule-datetime">Date and time</label>
+              <input id="schedule-datetime" name="datetime" type="datetime-local" value="2026-08-31T14:30">
+            </div>
+            <div>
+              <label for="schedule-month">Month</label>
+              <input id="schedule-month" name="month" type="month" value="2026-08">
+            </div>
+            <div>
+              <label for="schedule-week">Week</label>
+              <input id="schedule-week" name="week" type="week" value="2026-W36">
+            </div>
+            <div>
+              <label for="schedule-time">Time</label>
+              <input id="schedule-time" name="time" type="time" value="14:30">
+            </div>
+          </div>
+        </div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;div class="grid"&gt;
+  &lt;div&gt;
+    &lt;label for="schedule-date"&gt;Date&lt;/label&gt;
+    &lt;input id="schedule-date" name="date" type="date" value="2026-08-31"&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label for="schedule-datetime"&gt;Date and time&lt;/label&gt;
+    &lt;input id="schedule-datetime" name="datetime" type="datetime-local" value="2026-08-31T14:30"&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label for="schedule-month"&gt;Month&lt;/label&gt;
+    &lt;input id="schedule-month" name="month" type="month" value="2026-08"&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label for="schedule-week"&gt;Week&lt;/label&gt;
+    &lt;input id="schedule-week" name="week" type="week" value="2026-W36"&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label for="schedule-time"&gt;Time&lt;/label&gt;
+    &lt;input id="schedule-time" name="time" type="time" value="14:30"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+      </section>
+
+<section id="file-color">
+        <h2>File and color inputs</h2>
+        <p>These controls keep browser-native interaction and accessibility while tty.css styles the exposed parts. Their internal widgets, dialogs, selected-file text, and color pickers differ across browsers and operating systems. Always provide a label.</p>
+        <div class="docs-preview"><label for="schema-file">Schema file</label>
+          <input id="schema-file" name="schema" type="file" accept=".json,application/json">
+
+          <label for="label-color">Label color</label>
+          <input id="label-color" name="label-color" type="color" value="#ff9d46"></div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;label for="schema-file"&gt;Schema file&lt;/label&gt;
+          &lt;input id="schema-file" name="schema" type="file" accept=".json,application/json"&gt;
+
+          &lt;label for="label-color"&gt;Label color&lt;/label&gt;
+          &lt;input id="label-color" name="label-color" type="color" value="#ff9d46"&gt;</code></pre></div>
+      </section>
+
+<section id="states">
+        <h2>States, labels, and validation</h2>
+        <p>Give every input a visible label and choose its type for the expected data. See the <a href="forms.html#basics">form composition guide</a> for labels and helpers, <a href="forms.html#states">common states</a> for disabled and read-only behavior, and <a href="forms.html#validation">validation</a> for errors.</p>
+      </section>
+
+      <nav class="docs-pager" aria-label="Documentation pages"><a href="fieldsets.html">← Fieldsets</a><a href="loading.html">Loading states →</a></nav>
+    </div>
+    <aside class="docs-toc"><nav aria-label="On this page"><p class="docs-nav-title">On this page</p><ul><li><a href="#textual-inputs">Textual input types</a></li><li><a href="#search">Search</a></li><li><a href="#date-time">Date and time</a></li><li><a href="#file-color">File and color inputs</a></li><li><a href="#states">States, labels, and validation</a></li></ul></nav></aside>
+  </main>
+  <footer><small>tty.css — semantic HTML with sharp edges. Icons from <a href="https://pixeliconlibrary.com/">Pixel Icon Library by HackerNoon</a>.</small></footer>
+</body>
+</html>

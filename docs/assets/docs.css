@@ -1,6 +1,9 @@
 /* Documentation-site styles. These are not part of the tty.css framework. */
 
 .docs-topbar {
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
   position: sticky;
   z-index: 20;
   top: 0;
@@ -10,15 +13,83 @@
   backdrop-filter: blur(0.6rem);
 }
 
-.docs-topbar nav > ul:first-child strong {
+.docs-topbar > nav,
+.docs-shell {
+  width: min(100% - 2rem, 90rem);
+  margin-inline: auto;
+}
+
+.docs-topbar > nav,
+.docs-topbar > nav > ul {
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.docs-topbar > nav > ul:first-child {
+  flex: 0 0 auto;
+}
+
+.docs-topbar > nav > ul:last-child {
+  margin-inline-start: auto;
+  justify-content: flex-end;
+}
+
+.docs-topbar > nav > ul:first-child strong {
   white-space: nowrap;
+}
+
+.docs-topbar > nav > ul:first-child a {
+  padding-inline: 0;
+}
+
+.docs-settings {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+}
+
+.docs-settings [data-palette-picker][hidden],
+.docs-settings [data-palette-custom][hidden] {
+  display: none;
+}
+
+.docs-settings .dropdown > summary {
+  min-width: 10rem;
+  min-height: 2rem;
+  margin: 0;
+  padding: 0.3rem 0.5rem;
+  border: var(--tty-border-width) solid var(--tty-border-strong);
+  border-radius: var(--tty-radius);
+  background: var(--tty-surface);
+  font-size: 0.75rem;
+}
+
+.docs-settings .dropdown > ul {
+  font-size: 0.8rem;
+}
+
+.docs-settings [aria-pressed="true"] {
+  background: var(--tty-surface-muted);
+  font-weight: 700;
+}
+
+.docs-settings [data-palette-custom] > span {
+  display: block;
+  padding: 0.5rem 0.65rem;
+  color: var(--tty-fg-muted);
+}
+
+.docs-settings [data-appearance-icon] {
+  width: 2rem;
+  min-height: 2rem;
+  padding: 0.35rem;
 }
 
 .docs-shell {
   display: grid;
   grid-template-columns: 15rem minmax(0, 1fr) 12rem;
   gap: clamp(1.5rem, 4vw, 3rem);
-  width: min(100% - 2rem, 90rem);
   max-width: none;
   padding-block: 1.75rem 3.5rem;
 }
@@ -65,6 +136,10 @@
   letter-spacing: 0.08em;
 }
 
+.docs-navigation > summary {
+  display: none;
+}
+
 .docs-sidebar ul,
 .docs-toc ul {
   margin: 0 0 1rem;
@@ -84,6 +159,8 @@
   color: var(--tty-fg-muted);
   font-size: 0.85rem;
   text-decoration: none;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .docs-sidebar a:hover,
@@ -110,15 +187,15 @@
   letter-spacing: 0.08em;
 }
 
-.docs-content > header h1 {
+.docs-content > header > h1 {
   font-size: clamp(1.75rem, 2.25vw, 2rem);
 }
 
-.docs-content h2 {
+.docs-content > section > h2 {
   font-size: clamp(1.3rem, 2vw, 1.5rem);
 }
 
-.docs-content h3 {
+.docs-content > section > h3 {
   font-size: 1.05rem;
 }
 
@@ -261,6 +338,12 @@
     position: static;
   }
 
+  .docs-topbar > nav > ul:last-child {
+    width: 100%;
+    margin-inline-start: 0;
+    justify-content: flex-start;
+  }
+
   .docs-shell {
     display: block;
   }
@@ -271,6 +354,10 @@
     margin-bottom: 2.5rem;
     padding-bottom: 1rem;
     border-bottom: var(--tty-border-width) solid var(--tty-border);
+  }
+
+  .docs-navigation > summary {
+    display: flex;
   }
 
   .docs-preview {

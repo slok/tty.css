@@ -52,7 +52,7 @@ Or download [`tty.css`](tty.css) and link it locally:
 </html>
 ```
 
-See the docs for [components](https://slok.github.io/tty.css/docs/reference/components.html),
+See the [documentation](https://slok.github.io/tty.css/docs/reference/) for individual components,
 [layouts](https://slok.github.io/tty.css/docs/reference/layout.html),
 [themes](https://slok.github.io/tty.css/docs/reference/themes.html), and
 [accessibility and browser requirements](https://slok.github.io/tty.css/docs/reference/accessibility.html).

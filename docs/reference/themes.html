@@ -23,37 +23,55 @@
           <li><a href="./" aria-current="page">Docs</a></li>
           <li><a href="../examples/">Examples</a></li>
           <li><a href="../../tty.css" download>Download</a></li>
-          <li><button type="button" class="outline" data-theme-toggle aria-label="Current theme: light. Change theme">Theme: light</button></li>
+          <li class="docs-settings"><details class="dropdown" data-palette-picker hidden><summary aria-label="Theme: Default. Choose theme"><span data-palette-label>Default</span></summary><ul aria-label="Themes"></ul></details><button type="button" class="outline" data-theme-toggle data-appearance-icon disabled aria-label="Appearance: light. Switch to dark" title="Appearance: light. Switch to dark"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><use href="../assets/icons/pixel.svg#brightness-high"></use></svg></button></li>
         </ul>
       </nav>
     </header>
 
     <main class="docs-shell">
       <aside class="docs-sidebar">
-        <nav aria-label="Documentation navigation">
+      <details class="docs-navigation" data-docs-navigation open>
+        <summary>Documentation</summary>
+        <nav aria-label="Documentation">
           <p class="docs-nav-title">Getting started</p>
           <ul>
             <li><a href="./">Quick start</a></li>
             <li><a href="themes.html" aria-current="page">Themes</a></li>
           </ul>
-          <p class="docs-nav-title">Layout</p>
-          <ul><li><a href="layout.html">Landmarks, containers &amp; grid</a></li></ul>
-          <p class="docs-nav-title">Content</p>
+          <p class="docs-nav-title">Guides</p>
           <ul>
-            <li><a href="typography.html">Typography</a></li>
-            <li><a href="buttons-links.html">Buttons &amp; links</a></li>
-            <li><a href="tables-code.html">Tables &amp; code</a></li>
+            <li><a href="layout.html">Layout &amp; composition</a></li>
+            <li><a href="typography.html">Typography &amp; links</a></li>
+            <li><a href="forms.html">Forms &amp; validation</a></li>
           </ul>
-          <p class="docs-nav-title">Forms</p>
-          <ul><li><a href="forms.html">Form elements</a></li></ul>
           <p class="docs-nav-title">Components</p>
           <ul>
+            <li><a href="badges.html">Badges</a></li>
+            <li><a href="breadcrumbs.html">Breadcrumbs</a></li>
+            <li><a href="buttons.html">Buttons</a></li>
             <li><a href="cards.html">Cards</a></li>
+            <li><a href="checkboxes.html">Checkboxes</a></li>
+            <li><a href="code-blocks.html">Code blocks</a></li>
+            <li><a href="control-groups.html">Control groups</a></li>
+            <li><a href="dialogs.html">Dialogs</a></li>
+            <li><a href="disclosures.html">Disclosures</a></li>
+            <li><a href="dropdowns.html">Dropdowns</a></li>
+            <li><a href="fieldsets.html">Fieldsets</a></li>
+            <li><a href="inputs.html">Inputs</a></li>
+            <li><a href="loading.html">Loading states</a></li>
             <li><a href="navigation.html">Navigation</a></li>
-            <li><a href="tabs.html">Tabs</a></li>
-            <li><a href="timelines.html">Timelines</a></li>
             <li><a href="notices.html">Notices</a></li>
-            <li><a href="components.html">Native components</a></li>
+            <li><a href="pagination.html">Pagination</a></li>
+            <li><a href="progress.html">Progress &amp; meters</a></li>
+            <li><a href="radios.html">Radio buttons</a></li>
+            <li><a href="selects.html">Selects</a></li>
+            <li><a href="sliders.html">Sliders</a></li>
+            <li><a href="switches.html">Switches</a></li>
+            <li><a href="tables.html">Tables</a></li>
+            <li><a href="tabs.html">Tabs</a></li>
+            <li><a href="textareas.html">Textareas</a></li>
+            <li><a href="timelines.html">Timelines</a></li>
+            <li><a href="tooltips.html">Tooltips</a></li>
           </ul>
           <p class="docs-nav-title">Customize</p>
           <ul>
@@ -63,7 +81,8 @@
             <li><a href="pico-comparison.html">Pico comparison</a></li>
           </ul>
         </nav>
-      </aside>
+      </details>
+    </aside>
 
       <div class="docs-content" id="content">
         <header>
@@ -76,7 +95,8 @@
           <h2>Theme behavior</h2>
           <p>Without a <code>data-theme</code> attribute, the <code>:root</code> light palette applies. The dark palette applies only to <code>data-theme="dark"</code>. Automatic mode starts from the light palette and switches to dark inside <code>prefers-color-scheme: dark</code>.</p>
           <p>Each mode also sets the browser-facing <code>color-scheme</code> property, so compatible native controls use the corresponding light or dark appearance.</p>
-          <p>Theme selection changes the mode, not the palette design. Use the <a href="colors.html#playground">palette playground</a> for generated colors or the <a href="colors.html">Colors guide</a> for direct overrides and contrast checks. The <a href="customization.html#palette-parameters">CSS variables reference</a> lists the parameters and exact color formulas.</p>
+          <p>The docs bar separates the theme selector (a named palette such as Default or Sakura) from the appearance icon button (cycles Light, Dark, or Auto, applied through <code>data-theme</code>). The icon shows a sun, moon, or laptop for the system setting; its accessible name and tooltip identify the current appearance and the next choice. Both choices are saved across docs and examples. These controls are docs-only JavaScript; the framework itself still needs none.</p>
+          <p>Use Theme in the bar to try the shared presets, or the <a href="colors.html#playground">palette playground</a> to adjust their parameters. The <a href="colors.html">Colors guide</a> explains direct overrides and contrast checks; the <a href="customization.html#palette-parameters">CSS variables reference</a> lists the parameters and exact color formulas.</p>
           <p>The <a href="../examples/color-theme.html">Monokai example</a> demonstrates full color overrides with a dark palette and a light companion.</p>
         </section>
 
@@ -143,10 +163,7 @@
           <p>The theme switcher in these documentation pages is progressive enhancement. The palettes themselves remain CSS-only.</p>
         </section>
 
-        <nav class="docs-pager" aria-label="Documentation page navigation">
-          <a href="./">← Quick start</a>
-          <a href="layout.html">Layout →</a>
-        </nav>
+        <nav class="docs-pager" aria-label="Documentation pages"><a href="./">← Quick start</a><a href="layout.html">Layout &amp; composition →</a></nav>
       </div>
 
       <aside class="docs-toc">
@@ -163,6 +180,6 @@
       </aside>
     </main>
 
-    <footer><small>tty.css — semantic HTML with sharp edges.</small></footer>
+    <footer><small>tty.css — semantic HTML with sharp edges. Icons from <a href="https://pixeliconlibrary.com/">Pixel Icon Library by HackerNoon</a>.</small></footer>
   </body>
 </html>

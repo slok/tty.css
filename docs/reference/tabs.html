@@ -15,9 +15,62 @@
 </head>
 <body class="docs-page">
   <a class="sr-only" href="#content">Skip to content</a>
-  <header class="docs-topbar"><nav class="menu" aria-label="Main navigation"><ul><li><a href="../"><strong>▰ tty.css</strong></a></li><li><small>main</small></li></ul><ul><li><a href="./" aria-current="page">Docs</a></li><li><a href="../examples/">Examples</a></li><li><a href="../../tty.css" download>Download</a></li><li><button type="button" class="outline" data-theme-toggle>Theme: light</button></li></ul></nav></header>
+  <header class="docs-topbar"><nav class="menu" aria-label="Main navigation"><ul><li><a href="../"><strong>▰ tty.css</strong></a></li><li><small>main</small></li></ul><ul><li><a href="./" aria-current="page">Docs</a></li><li><a href="../examples/">Examples</a></li><li><a href="../../tty.css" download>Download</a></li><li class="docs-settings"><details class="dropdown" data-palette-picker hidden><summary aria-label="Theme: Default. Choose theme"><span data-palette-label>Default</span></summary><ul aria-label="Themes"></ul></details><button type="button" class="outline" data-theme-toggle data-appearance-icon disabled aria-label="Appearance: light. Switch to dark" title="Appearance: light. Switch to dark"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><use href="../assets/icons/pixel.svg#brightness-high"></use></svg></button></li></ul></nav></header>
   <main class="docs-shell">
-    <aside class="docs-sidebar"><nav aria-label="Documentation sidebar"><p class="docs-nav-title">Getting started</p><ul><li><a href="./">Quick start</a></li><li><a href="themes.html">Themes</a></li></ul><p class="docs-nav-title">Layout</p><ul><li><a href="layout.html">Landmarks, containers &amp; grid</a></li></ul><p class="docs-nav-title">Content</p><ul><li><a href="typography.html">Typography</a></li><li><a href="buttons-links.html">Buttons &amp; links</a></li><li><a href="tables-code.html">Tables &amp; code</a></li></ul><p class="docs-nav-title">Forms</p><ul><li><a href="forms.html">Form elements</a></li></ul><p class="docs-nav-title">Components</p><ul><li><a href="cards.html">Cards</a></li><li><a href="navigation.html">Navigation</a></li><li><a href="tabs.html" aria-current="page">Tabs</a></li><li><a href="timelines.html">Timelines</a></li><li><a href="notices.html">Notices</a></li><li><a href="components.html">Native components</a></li></ul><p class="docs-nav-title">Customize</p><ul><li><a href="colors.html">Colors</a></li><li><a href="customization.html">CSS variables</a></li><li><a href="accessibility.html">Accessibility</a></li><li><a href="pico-comparison.html">Pico comparison</a></li></ul></nav></aside>
+    <aside class="docs-sidebar">
+      <details class="docs-navigation" data-docs-navigation open>
+        <summary>Documentation</summary>
+        <nav aria-label="Documentation">
+          <p class="docs-nav-title">Getting started</p>
+          <ul>
+            <li><a href="./">Quick start</a></li>
+            <li><a href="themes.html">Themes</a></li>
+          </ul>
+          <p class="docs-nav-title">Guides</p>
+          <ul>
+            <li><a href="layout.html">Layout &amp; composition</a></li>
+            <li><a href="typography.html">Typography &amp; links</a></li>
+            <li><a href="forms.html">Forms &amp; validation</a></li>
+          </ul>
+          <p class="docs-nav-title">Components</p>
+          <ul>
+            <li><a href="badges.html">Badges</a></li>
+            <li><a href="breadcrumbs.html">Breadcrumbs</a></li>
+            <li><a href="buttons.html">Buttons</a></li>
+            <li><a href="cards.html">Cards</a></li>
+            <li><a href="checkboxes.html">Checkboxes</a></li>
+            <li><a href="code-blocks.html">Code blocks</a></li>
+            <li><a href="control-groups.html">Control groups</a></li>
+            <li><a href="dialogs.html">Dialogs</a></li>
+            <li><a href="disclosures.html">Disclosures</a></li>
+            <li><a href="dropdowns.html">Dropdowns</a></li>
+            <li><a href="fieldsets.html">Fieldsets</a></li>
+            <li><a href="inputs.html">Inputs</a></li>
+            <li><a href="loading.html">Loading states</a></li>
+            <li><a href="navigation.html">Navigation</a></li>
+            <li><a href="notices.html">Notices</a></li>
+            <li><a href="pagination.html">Pagination</a></li>
+            <li><a href="progress.html">Progress &amp; meters</a></li>
+            <li><a href="radios.html">Radio buttons</a></li>
+            <li><a href="selects.html">Selects</a></li>
+            <li><a href="sliders.html">Sliders</a></li>
+            <li><a href="switches.html">Switches</a></li>
+            <li><a href="tables.html">Tables</a></li>
+            <li><a href="tabs.html" aria-current="page">Tabs</a></li>
+            <li><a href="textareas.html">Textareas</a></li>
+            <li><a href="timelines.html">Timelines</a></li>
+            <li><a href="tooltips.html">Tooltips</a></li>
+          </ul>
+          <p class="docs-nav-title">Customize</p>
+          <ul>
+            <li><a href="colors.html">Colors</a></li>
+            <li><a href="customization.html">CSS variables</a></li>
+            <li><a href="accessibility.html">Accessibility</a></li>
+            <li><a href="pico-comparison.html">Pico comparison</a></li>
+          </ul>
+        </nav>
+      </details>
+    </aside>
     <div class="docs-content" id="content">
       <header><p>Components</p><h1>Tabs</h1><p>tty.css styles horizontal tabs and panels. Your application supplies the interaction.</p></header>
       <section id="usage">
@@ -96,10 +149,10 @@
   &lt;!-- Keep the same connected tablist and panel markup shown above. --&gt;
 &lt;/div&gt;</code></pre></div>
       </section>
-      <nav class="docs-pager" aria-label="Documentation pagination"><a href="navigation.html">&larr; Navigation</a><a href="timelines.html">Timelines &rarr;</a></nav>
+      <nav class="docs-pager" aria-label="Documentation pages"><a href="tables.html">← Tables</a><a href="textareas.html">Textareas →</a></nav>
     </div>
     <aside class="docs-toc"><nav aria-label="Table of contents"><p class="docs-nav-title">On this page</p><ul><li><a href="#usage">Usage</a></li><li><a href="#examples">Examples</a></li><li><a href="#frame-treatments">Frame treatments</a></li></ul></nav></aside>
   </main>
-  <footer><small>tty.css — semantic HTML with sharp edges.</small></footer>
+  <footer><small>tty.css — semantic HTML with sharp edges. Icons from <a href="https://pixeliconlibrary.com/">Pixel Icon Library by HackerNoon</a>.</small></footer>
 </body>
 </html>
