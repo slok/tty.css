@@ -780,9 +780,10 @@ h4 {
 
 :where([aria-busy="true"]:not(input, select, textarea))::before {
   /* Five CSS rectangles draw a square outline and solid center. The inset
-     leaves room for the rotating corners within the fixed 1em footprint. */
+     keeps rotating corners inside the chosen footprint. */
   display: inline-block;
   flex: 0 0 auto;
+  font-size: var(--tty-spinner-size, 2em);
   width: 1em;
   height: 1em;
   margin-inline-end: 0.55em;
@@ -793,7 +794,7 @@ h4 {
     linear-gradient(currentColor, currentColor) center calc(100% - 0.15em) / 0.7em 0.1em no-repeat,
     linear-gradient(currentColor, currentColor) 0.15em center / 0.1em 0.7em no-repeat,
     linear-gradient(currentColor, currentColor) calc(100% - 0.15em) center / 0.1em 0.7em no-repeat;
-  vertical-align: -0.125em;
+  vertical-align: middle;
   animation: tty-busy 2.4s ease-in-out infinite;
 }
 

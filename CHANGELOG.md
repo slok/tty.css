@@ -15,6 +15,7 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 ### Changed
 
+- Increase the busy spinner's default footprint to `2em` and add an inherited `--tty-spinner-size` override for global or per-element customization, without size classes or label font changes. Loading documentation includes multiple size examples.
 - Align the docs bar with the wider documentation grid, extend its background and divider across the viewport, and wrap the menu and theme controls cleanly on narrow screens.
 - Reorganize documentation into an alphabetical Components section with individual pages for each component. Split grouped native components, navigation patterns, controls, buttons, tables, and code; keep conceptual form and typography guides separate. Remove the old aggregate pages without redirects, update internal links and page navigation, and collapse the documentation sidebar on small screens when JavaScript is available.
 - Generate success, warning, and danger colors from recognizable green, amber, and red OKLCH bases, with bounded theme-dependent chroma and a support-guarded 25% equal-lightness accent tint. Muted and zero-chroma accent palettes keep colored statuses; dark/auto-dark and print select suitable lightness. Shared tokens update badges, notices, validation, inserted/deleted text, and meters while preserving direct theme overrides. The palette playground now previews status colors.

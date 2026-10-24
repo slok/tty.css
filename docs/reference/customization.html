@@ -193,8 +193,10 @@
           <tr><th scope="row"><code>--tty-progress-pattern-size</code></th><td><code>4px 4px</code></td><td>Textured progress mask tile size</td></tr>
           <tr><th scope="row"><code>--tty-control-shadow-size</code></th><td><code>0.125rem</code></td><td>Button and form-control shadow offset</td></tr>
           <tr><th scope="row"><code>--tty-control-height</code></th><td><code>2.5rem</code></td><td>Minimum height of buttons and single-line controls</td></tr>
+          <tr><th scope="row"><code>--tty-spinner-size</code></th><td><code>2em</code></td><td>Busy spinner footprint relative to the host's text size; inherited or per-element overrides scale the CSS shape without resizing its label</td></tr>
         </tbody></table></div>
         <p>Changing a dimension can affect many components at once. Keep border widths non-negative, preserve usable target sizes, and check narrow layouts before shipping.</p>
+        <p><code>--tty-spinner-size</code> is an optional override, resolved on the spinner pseudo-element with a <code>2em</code> fallback rather than a root declaration. Set a positive CSS length on <code>:root</code>, a wrapper, or a busy element; see the <a href="loading.html#spinner-size">spinner size examples</a>. Large spinners may increase line and button height.</p>
         <p>Set <code>--tty-grid-min</code> on an individual grid for a local override; see the <a href="layout.html#grid">live grid example</a>.</p>
         <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;div class="grid" style="--tty-grid-min: 14rem"&gt;
   &lt;article&gt;&lt;h3&gt;Primary&lt;/h3&gt;&lt;p&gt;Healthy&lt;/p&gt;&lt;/article&gt;
