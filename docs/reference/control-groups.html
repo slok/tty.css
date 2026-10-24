@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Spaced visual actions and connected, named semantic control groups.">
+  <title>Control groups · tty.css</title>
+  <link rel="stylesheet" href="../../tty.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script src="../assets/palette-settings.js"></script>
+  <script defer src="../assets/docs.js"></script>
+</head>
+<body class="docs-page">
+  <a class="sr-only" href="#content">Skip to content</a>
+  <header class="docs-topbar"><nav class="menu" aria-label="Main navigation"><ul><li><a href="../"><strong>▰ tty.css</strong></a></li><li><small>main</small></li></ul><ul><li><a href="./" aria-current="page">Docs</a></li><li><a href="../examples/">Examples</a></li><li><a href="../../tty.css" download>Download</a></li><li class="docs-settings"><details class="dropdown" data-palette-picker hidden><summary aria-label="Theme: Default. Choose theme"><span data-palette-label>Default</span></summary><ul aria-label="Themes"></ul></details><button type="button" class="outline" data-theme-toggle data-appearance-icon disabled aria-label="Appearance: light. Switch to dark" title="Appearance: light. Switch to dark"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><use href="../assets/icons/pixel.svg#brightness-high"></use></svg></button></li></ul></nav></header>
+  <main class="docs-shell">
+    <aside class="docs-sidebar">
+      <details class="docs-navigation" data-docs-navigation open>
+        <summary>Documentation</summary>
+        <nav aria-label="Documentation">
+          <p class="docs-nav-title">Getting started</p>
+          <ul>
+            <li><a href="./">Quick start</a></li>
+            <li><a href="themes.html">Themes</a></li>
+          </ul>
+          <p class="docs-nav-title">Guides</p>
+          <ul>
+            <li><a href="layout.html">Layout &amp; composition</a></li>
+            <li><a href="typography.html">Typography &amp; links</a></li>
+            <li><a href="forms.html">Forms &amp; validation</a></li>
+          </ul>
+          <p class="docs-nav-title">Components</p>
+          <ul>
+            <li><a href="badges.html">Badges</a></li>
+            <li><a href="breadcrumbs.html">Breadcrumbs</a></li>
+            <li><a href="buttons.html">Buttons</a></li>
+            <li><a href="cards.html">Cards</a></li>
+            <li><a href="checkboxes.html">Checkboxes</a></li>
+            <li><a href="code-blocks.html">Code blocks</a></li>
+            <li><a href="control-groups.html" aria-current="page">Control groups</a></li>
+            <li><a href="dialogs.html">Dialogs</a></li>
+            <li><a href="disclosures.html">Disclosures</a></li>
+            <li><a href="dropdowns.html">Dropdowns</a></li>
+            <li><a href="fieldsets.html">Fieldsets</a></li>
+            <li><a href="inputs.html">Inputs</a></li>
+            <li><a href="loading.html">Loading states</a></li>
+            <li><a href="navigation.html">Navigation</a></li>
+            <li><a href="notices.html">Notices</a></li>
+            <li><a href="pagination.html">Pagination</a></li>
+            <li><a href="progress.html">Progress &amp; meters</a></li>
+            <li><a href="radios.html">Radio buttons</a></li>
+            <li><a href="selects.html">Selects</a></li>
+            <li><a href="sliders.html">Sliders</a></li>
+            <li><a href="switches.html">Switches</a></li>
+            <li><a href="tables.html">Tables</a></li>
+            <li><a href="tabs.html">Tabs</a></li>
+            <li><a href="textareas.html">Textareas</a></li>
+            <li><a href="timelines.html">Timelines</a></li>
+            <li><a href="tooltips.html">Tooltips</a></li>
+          </ul>
+          <p class="docs-nav-title">Customize</p>
+          <ul>
+            <li><a href="colors.html">Colors</a></li>
+            <li><a href="customization.html">CSS variables</a></li>
+            <li><a href="accessibility.html">Accessibility</a></li>
+            <li><a href="pico-comparison.html">Pico comparison</a></li>
+          </ul>
+        </nav>
+      </details>
+    </aside>
+    <div class="docs-content" id="content">
+      <header><p>Components</p><h1>Control groups</h1><p>Spaced visual actions and connected, named semantic control groups.</p></header>
+
+      <section id="groups">
+        <h2>Control groups</h2>
+        <p><code>.group</code> is a spaced visual action layout that adds no accessibility semantics and stacks on narrow screens. Use it when nearby actions do not need a group announced. <code>role="group"</code> creates a connected semantic control group with collapsed borders and no button shadows; it stacks as a connected vertical group on narrow screens. Give a semantic group an accessible name with <code>aria-labelledby</code> or <code>aria-label</code>. Both layouts act on their direct children.</p>
+        <h3>Visual <code>.group</code></h3>
+        <div class="docs-preview">
+          <div class="group">
+            <button type="button">Deploy</button>
+            <button type="button" class="secondary">Save draft</button>
+            <button type="button" class="outline">Cancel</button>
+          </div>
+        </div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;div class="group"&gt;
+  &lt;button type="button"&gt;Deploy&lt;/button&gt;
+  &lt;button type="button" class="secondary"&gt;Save draft&lt;/button&gt;
+  &lt;button type="button" class="outline"&gt;Cancel&lt;/button&gt;
+&lt;/div&gt;</code></pre></div>
+
+        <h3>Semantic <code>role="group"</code></h3>
+        <div class="docs-preview">
+          <p id="log-window-label">Log window</p>
+          <div role="group" aria-labelledby="log-window-label">
+            <button type="button" aria-pressed="true">15 minutes</button>
+            <button type="button" aria-pressed="false" class="secondary">1 hour</button>
+            <button type="button" aria-pressed="false" class="secondary">24 hours</button>
+          </div>
+        </div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;p id="log-window-label"&gt;Log window&lt;/p&gt;
+&lt;div role="group" aria-labelledby="log-window-label"&gt;
+  &lt;button type="button" aria-pressed="true"&gt;15 minutes&lt;/button&gt;
+  &lt;button type="button" aria-pressed="false" class="secondary"&gt;1 hour&lt;/button&gt;
+  &lt;button type="button" aria-pressed="false" class="secondary"&gt;24 hours&lt;/button&gt;
+&lt;/div&gt;</code></pre></div>
+      </section>
+
+<section id="button-groups">
+        <h2>Button groups</h2>
+        <p>Use <code>.group</code> to lay out separate actions with space between them; each button keeps its normal shadow. Use <code>role="group"</code> for connected semantic controls: adjacent borders collapse and individual button shadows are removed. Every semantic group requires an accessible name from <code>aria-label</code> or <code>aria-labelledby</code>. On narrow screens, its controls stack vertically while remaining connected.</p>
+        <div class="docs-preview"><div role="group" aria-label="Deployment actions"><button type="button">Deploy</button><button type="button" class="secondary">Preview</button><button type="button" class="outline">Cancel</button></div></div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;div role="group" aria-label="Deployment actions"&gt;
+  &lt;button type="button"&gt;Deploy&lt;/button&gt;
+  &lt;button type="button" class="secondary"&gt;Preview&lt;/button&gt;
+  &lt;button type="button" class="outline"&gt;Cancel&lt;/button&gt;
+&lt;/div&gt;</code></pre></div>
+      </section>
+
+      <nav class="docs-pager" aria-label="Documentation pages"><a href="code-blocks.html">← Code blocks</a><a href="dialogs.html">Dialogs →</a></nav>
+    </div>
+    <aside class="docs-toc"><nav aria-label="On this page"><p class="docs-nav-title">On this page</p><ul><li><a href="#groups">Control groups</a></li><li><a href="#button-groups">Button groups</a></li></ul></nav></aside>
+  </main>
+  <footer><small>tty.css — semantic HTML with sharp edges. Icons from <a href="https://pixeliconlibrary.com/">Pixel Icon Library by HackerNoon</a>.</small></footer>
+</body>
+</html>

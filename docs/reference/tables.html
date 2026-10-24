@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Accessible tables, table variants, inline code, keyboard input, and code blocks in tty.css.">
-  <title>Tables &amp; code · tty.css</title>
+  <meta name="description" content="Accessible data tables, scroll regions, and composable appearance variants.">
+  <title>Tables · tty.css</title>
   <link rel="stylesheet" href="../../tty.css">
   <link rel="stylesheet" href="../assets/docs.css">
   <script src="../assets/palette-settings.js"></script>
@@ -12,11 +12,65 @@
 </head>
 <body class="docs-page">
   <a class="sr-only" href="#content">Skip to content</a>
-  <header class="docs-topbar"><nav class="menu" aria-label="Main navigation"><ul><li><a href="../"><strong>▰ tty.css</strong></a></li><li><small>main</small></li></ul><ul><li><a href="./" aria-current="page">Docs</a></li><li><a href="../examples/">Examples</a></li><li><a href="../../tty.css" download>Download</a></li><li><button type="button" class="outline" data-theme-toggle>Theme: light</button></li></ul></nav></header>
+  <header class="docs-topbar"><nav class="menu" aria-label="Main navigation"><ul><li><a href="../"><strong>▰ tty.css</strong></a></li><li><small>main</small></li></ul><ul><li><a href="./" aria-current="page">Docs</a></li><li><a href="../examples/">Examples</a></li><li><a href="../../tty.css" download>Download</a></li><li class="docs-settings"><details class="dropdown" data-palette-picker hidden><summary aria-label="Theme: Default. Choose theme"><span data-palette-label>Default</span></summary><ul aria-label="Themes"></ul></details><button type="button" class="outline" data-theme-toggle data-appearance-icon disabled aria-label="Appearance: light. Switch to dark" title="Appearance: light. Switch to dark"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><use href="../assets/icons/pixel.svg#brightness-high"></use></svg></button></li></ul></nav></header>
   <main class="docs-shell">
-    <aside class="docs-sidebar"><nav aria-label="Documentation sidebar"><p class="docs-nav-title">Getting started</p><ul><li><a href="./">Quick start</a></li><li><a href="themes.html">Themes</a></li></ul><p class="docs-nav-title">Layout</p><ul><li><a href="layout.html">Landmarks, containers &amp; grid</a></li></ul><p class="docs-nav-title">Content</p><ul><li><a href="typography.html">Typography</a></li><li><a href="buttons-links.html">Buttons &amp; links</a></li><li><a href="tables-code.html" aria-current="page">Tables &amp; code</a></li></ul><p class="docs-nav-title">Forms</p><ul><li><a href="forms.html">Form elements</a></li></ul><p class="docs-nav-title">Components</p><ul><li><a href="cards.html">Cards</a></li><li><a href="navigation.html">Navigation</a></li><li><a href="tabs.html">Tabs</a></li><li><a href="timelines.html">Timelines</a></li><li><a href="notices.html">Notices</a></li><li><a href="components.html">Native components</a></li></ul><p class="docs-nav-title">Customize</p><ul><li><a href="colors.html">Colors</a></li><li><a href="customization.html">CSS variables</a></li><li><a href="accessibility.html">Accessibility</a></li><li><a href="pico-comparison.html">Pico comparison</a></li></ul></nav></aside>
+    <aside class="docs-sidebar">
+      <details class="docs-navigation" data-docs-navigation open>
+        <summary>Documentation</summary>
+        <nav aria-label="Documentation">
+          <p class="docs-nav-title">Getting started</p>
+          <ul>
+            <li><a href="./">Quick start</a></li>
+            <li><a href="themes.html">Themes</a></li>
+          </ul>
+          <p class="docs-nav-title">Guides</p>
+          <ul>
+            <li><a href="layout.html">Layout &amp; composition</a></li>
+            <li><a href="typography.html">Typography &amp; links</a></li>
+            <li><a href="forms.html">Forms &amp; validation</a></li>
+          </ul>
+          <p class="docs-nav-title">Components</p>
+          <ul>
+            <li><a href="badges.html">Badges</a></li>
+            <li><a href="breadcrumbs.html">Breadcrumbs</a></li>
+            <li><a href="buttons.html">Buttons</a></li>
+            <li><a href="cards.html">Cards</a></li>
+            <li><a href="checkboxes.html">Checkboxes</a></li>
+            <li><a href="code-blocks.html">Code blocks</a></li>
+            <li><a href="control-groups.html">Control groups</a></li>
+            <li><a href="dialogs.html">Dialogs</a></li>
+            <li><a href="disclosures.html">Disclosures</a></li>
+            <li><a href="dropdowns.html">Dropdowns</a></li>
+            <li><a href="fieldsets.html">Fieldsets</a></li>
+            <li><a href="inputs.html">Inputs</a></li>
+            <li><a href="loading.html">Loading states</a></li>
+            <li><a href="navigation.html">Navigation</a></li>
+            <li><a href="notices.html">Notices</a></li>
+            <li><a href="pagination.html">Pagination</a></li>
+            <li><a href="progress.html">Progress &amp; meters</a></li>
+            <li><a href="radios.html">Radio buttons</a></li>
+            <li><a href="selects.html">Selects</a></li>
+            <li><a href="sliders.html">Sliders</a></li>
+            <li><a href="switches.html">Switches</a></li>
+            <li><a href="tables.html" aria-current="page">Tables</a></li>
+            <li><a href="tabs.html">Tabs</a></li>
+            <li><a href="textareas.html">Textareas</a></li>
+            <li><a href="timelines.html">Timelines</a></li>
+            <li><a href="tooltips.html">Tooltips</a></li>
+          </ul>
+          <p class="docs-nav-title">Customize</p>
+          <ul>
+            <li><a href="colors.html">Colors</a></li>
+            <li><a href="customization.html">CSS variables</a></li>
+            <li><a href="accessibility.html">Accessibility</a></li>
+            <li><a href="pico-comparison.html">Pico comparison</a></li>
+          </ul>
+        </nav>
+      </details>
+    </aside>
     <div class="docs-content" id="content">
-      <header><p>Content</p><h1>Tables &amp; code</h1><p>Tables keep technical data dense and legible. Code, keyboard input, and preformatted blocks use the shared monospace system.</p></header>
+      <header><p>Components</p><h1>Tables</h1><p>Accessible data tables, scroll regions, and composable appearance variants.</p></header>
+
       <section id="tables">
         <h2>Accessible tables</h2>
         <p>Use a <code>caption</code> for the table's purpose, <code>scope="col"</code> for column headers, and <code>scope="row"</code> for row headers. Wrap wide tables in <code>.overflow-auto</code>; a focusable, labelled wrapper lets keyboard users reach and identify the scroll region.</p>
@@ -40,7 +94,8 @@
   &lt;/table&gt;
 &lt;/div&gt;</code></pre></div>
       </section>
-      <section id="variants">
+
+<section id="variants">
         <h2>Table variants</h2>
         <p>Variants are opt-in and composable. <code>.striped</code> alternates body rows, <code>.hoverable</code> highlights the pointed row, <code>.bordered</code> adds vertical cell rules, and <code>.compact</code> reduces padding and type size. Hover is visual feedback only, so do not use it as the sole indication of selection or status.</p>
         <div class="docs-preview"><div class="overflow-auto" tabindex="0" role="region" aria-label="Table variant examples"><table class="striped"><caption>Striped nodes</caption><thead><tr><th scope="col">Node</th><th scope="col">Region</th></tr></thead><tbody><tr><th scope="row">edge-01</th><td>us-east</td></tr><tr><th scope="row">edge-02</th><td>eu-west</td></tr></tbody></table><table class="hoverable"><caption>Hoverable jobs</caption><thead><tr><th scope="col">Job</th><th scope="col">State</th></tr></thead><tbody><tr><th scope="row">backup</th><td>Running</td></tr><tr><th scope="row">reindex</th><td>Queued</td></tr></tbody></table><table class="bordered"><caption>Bordered limits</caption><thead><tr><th scope="col">Resource</th><th scope="col">Limit</th></tr></thead><tbody><tr><th scope="row">Indexes</th><td>24</td></tr><tr><th scope="row">Replicas</th><td>3</td></tr></tbody></table><table class="compact"><caption>Compact settings</caption><thead><tr><th scope="col">Key</th><th scope="col">Value</th></tr></thead><tbody><tr><th scope="row">shards</th><td>12</td></tr><tr><th scope="row">refresh</th><td>30 s</td></tr></tbody></table></div></div>
@@ -67,7 +122,8 @@
   &lt;/table&gt;
 &lt;/div&gt;</code></pre></div>
       </section>
-      <section id="composing">
+
+<section id="composing">
         <h2>Compose variants</h2>
         <p>Place multiple variant classes on the same table when their effects are useful together.</p>
         <div class="docs-preview"><div class="overflow-auto" tabindex="0" role="region" aria-label="Compact striped deployment table"><table class="striped hoverable bordered compact"><caption>Recent deployments</caption><thead><tr><th scope="col">Revision</th><th scope="col">Region</th><th scope="col">Result</th></tr></thead><tbody><tr><th scope="row">r184</th><td>us-east</td><td>Passed</td></tr><tr><th scope="row">r183</th><td>eu-west</td><td>Passed</td></tr></tbody></table></div></div>
@@ -79,38 +135,11 @@
   &lt;/table&gt;
 &lt;/div&gt;</code></pre></div>
       </section>
-      <section id="inline">
-        <h2>Inline code and keyboard input</h2>
-        <p>Use <code>code</code> for identifiers and fragments, <code>kbd</code> for user input, and <code>samp</code> for program output.</p>
-        <div class="docs-preview"><p>Set <code>data-theme="dark"</code>, press <kbd>Command</kbd> + <kbd>K</kbd>, and expect <samp>Theme updated</samp>.</p></div>
-        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;p&gt;Set &lt;code&gt;data-theme="dark"&lt;/code&gt;, press &lt;kbd&gt;Command&lt;/kbd&gt; + &lt;kbd&gt;K&lt;/kbd&gt;, and expect &lt;samp&gt;Theme updated&lt;/samp&gt;.&lt;/p&gt;</code></pre></div>
-      </section>
-      <section id="blocks">
-        <h2>Code blocks</h2>
-        <p>Wrap complete preformatted fragments in <code>pre &gt; code</code>. Horizontal overflow remains scrollable and whitespace is preserved.</p>
-        <div class="docs-preview"><pre><code>const query = {
-  rankBy: ["vector", "ANN", embedding],
-  topK: 10,
-};</code></pre></div>
-        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;pre&gt;&lt;code&gt;const query = {
-  rankBy: ["vector", "ANN", embedding],
-  topK: 10,
-};&lt;/code&gt;&lt;/pre&gt;</code></pre></div>
-      </section>
-      <section id="ascii">
-        <h2>ASCII diagrams</h2>
-        <p>Preformatted text also suits text diagrams. Add an accessible name when the surrounding prose does not explain the diagram.</p>
-        <div class="docs-preview"><pre role="img" aria-label="Request flow from client to cache and storage"><code>client --API--&gt; cache --&gt; object storage
-                    |
-                    +---&gt; search index</code></pre></div>
-        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;pre role="img" aria-label="Request flow from client to cache and storage"&gt;&lt;code&gt;client --API--&amp;gt; cache --&amp;gt; object storage
-                    |
-                    +---&amp;gt; search index&lt;/code&gt;&lt;/pre&gt;</code></pre></div>
-      </section>
-      <nav class="docs-pager" aria-label="Documentation pagination"><a href="buttons-links.html">&larr; Buttons &amp; links</a><a href="forms.html">Forms &rarr;</a></nav>
+
+      <nav class="docs-pager" aria-label="Documentation pages"><a href="switches.html">← Switches</a><a href="tabs.html">Tabs →</a></nav>
     </div>
-    <aside class="docs-toc"><nav aria-label="Table of contents"><p class="docs-nav-title">On this page</p><ul><li><a href="#tables">Accessible tables</a></li><li><a href="#variants">Table variants</a></li><li><a href="#composing">Compose variants</a></li><li><a href="#inline">Inline code</a></li><li><a href="#blocks">Code blocks</a></li><li><a href="#ascii">ASCII diagrams</a></li></ul></nav></aside>
+    <aside class="docs-toc"><nav aria-label="On this page"><p class="docs-nav-title">On this page</p><ul><li><a href="#tables">Accessible tables</a></li><li><a href="#variants">Table variants</a></li><li><a href="#composing">Compose variants</a></li></ul></nav></aside>
   </main>
-  <footer><small>tty.css — semantic HTML with sharp edges.</small></footer>
+  <footer><small>tty.css — semantic HTML with sharp edges. Icons from <a href="https://pixeliconlibrary.com/">Pixel Icon Library by HackerNoon</a>.</small></footer>
 </body>
 </html>
