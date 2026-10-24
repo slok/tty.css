@@ -79,6 +79,9 @@
           <article>
             <header><h3>Live preview</h3></header>
             <p><mark>Accent</mark> · <a href="#palette-warning">Link</a> · <small>Muted text</small></p>
+            <p><span class="badge success">Healthy</span> <span class="badge warning">Pending</span> <span class="badge danger">Failed</span></p>
+            <p><span style="color: var(--tty-success)">Success text</span> · <span style="color: var(--tty-warning)">Warning text</span> · <span style="color: var(--tty-danger)">Error text</span></p>
+            <p class="notice warning">Warning: maintenance starts soon. Save your work.</p>
             <div class="group"><button type="button">Primary preview</button><button type="button" class="secondary">Secondary preview</button><button type="button" class="contrast">Contrast preview</button></div>
           </article>
           <p>Load this CSS after tty.css; it works across all three modes.</p>
@@ -96,7 +99,9 @@
       <section id="oklch">
         <h2>How the parameters work</h2>
         <p>OKLCH separates lightness, chroma, and hue. <strong>Hue</strong> chooses the color; <strong>chroma</strong> sets its intensity. tty.css chooses lightness for each role and mode, making related shades easier to create.</p>
-        <p>Accent parameters control buttons, links, selection, and general focus. Neutral parameters control surfaces, text, borders, code, and control focus. Status colors and SVG icons remain independent.</p>
+        <p>Accent parameters control buttons, links, selection, and general focus. Neutral parameters control surfaces, text, borders, code, and control focus. SVG icons remain independent.</p>
+        <p>Status colors start from green, amber, and red bases. Accent chroma adjusts their intensity within bounds, and browsers with <code>color-mix()</code> add a 25% equal-lightness accent tint in OKLab. This shifts their shade toward the palette without replacing their semantic hues. Light and dark modes choose contrasting lightness values. Slate and zero-chroma accent palettes retain colored statuses instead of turning them gray; meaningful labels must still carry the status.</p>
+        <p>The same generated <code>--tty-success</code>, <code>--tty-warning</code>, and <code>--tty-danger</code> tokens style badges, notices, validation, inserted/deleted text, and meters. Override these tokens directly for a fully custom status palette, including deliberately monochrome statuses. See the <a href="customization.html#colors">status bases and formulas</a>.</p>
         <p id="fallbacks">High chroma may exceed your display's gamut, so the browser maps colors to what it can show.</p>
         <p id="testing">See <a href="customization.html#palette-parameters">parameter defaults</a>, <a href="customization.html#colors">all color tokens</a>, and <a href="accessibility.html">accessibility guidance</a>.</p>
       </section>
