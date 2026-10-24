@@ -13,6 +13,7 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 ### Changed
 
+- Generate success, warning, and danger colors from recognizable green, amber, and red OKLCH bases, with bounded theme-dependent chroma and a support-guarded 25% equal-lightness accent tint. Muted and zero-chroma accent palettes keep colored statuses; dark/auto-dark and print select suitable lightness. Shared tokens update badges, notices, validation, inserted/deleted text, and meters while preserving direct theme overrides. The palette playground now previews status colors.
 - Unordered lists use square bullets at every nesting level; ordered lists and markerless lists are unchanged.
 
 ### Added
@@ -51,7 +52,7 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - Structured `dialog > article` layouts show the default Standard shadow outside the scrolling article, not only the strong-shadow variant.
 - Square article, fieldset, dialog, and exposed tab-frame corners through `--tty-frame-radius: 0`, independently of the existing control radius. Inputs, buttons, and joined search controls retain their previous rounding.
 - Namespace public custom properties with the project-specific `--tty-*` prefix.
-- Require OKLCH support (Chrome/Edge 111+, Firefox 113+, Safari 15.4+) and derive color roles from accent and neutral parameters without support guards or generated-role hex fallbacks. Internal mode-specific lightness and chroma factors and direct semantic token overrides remain unchanged; status hex colors, Monokai direct hex overrides, print hex colors, and SVG icon image tokens remain independent.
+- Require OKLCH support (Chrome/Edge 111+, Firefox 113+, Safari 15.4+) and derive accent and neutral color roles from palette parameters without support guards or generated-role hex fallbacks. Internal mode-specific lightness and chroma factors and direct semantic token overrides remain unchanged; Monokai direct hex overrides, print hex colors, and SVG icon image tokens remain independent.
 
 ### Removed
 

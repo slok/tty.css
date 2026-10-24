@@ -6,10 +6,6 @@
     Consolas, "Liberation Mono", "Courier New", monospace;
   --tty-font-display: var(--tty-font);
 
-  --tty-success: #15803d;
-  --tty-warning: #b45309;
-  --tty-danger: #c83232;
-
   --tty-container: 72rem;
   --tty-reading-width: 72ch;
   --tty-radius: 0.2rem;
@@ -30,9 +26,6 @@
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --tty-success: #4ade80;
-  --tty-warning: #fbbf24;
-  --tty-danger: #fb7185;
   --tty-icon-search: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23aab7c8' stroke-width='2' stroke-linecap='square'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-4-4'/%3E%3C/svg%3E");
   --tty-icon-date: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23aab7c8' stroke-width='2' stroke-linecap='square' stroke-linejoin='miter'%3E%3Cpath d='M4 6h16v14H4zM8 3v6M16 3v6M4 10h16M8 14h2M14 14h2M8 17h2M14 17h2'/%3E%3C/svg%3E");
   --tty-icon-time: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23aab7c8' stroke-width='2' stroke-linecap='square' stroke-linejoin='miter'%3E%3Cpath d='M4 4h16v16H4zM12 8v5l4 2'/%3E%3C/svg%3E");
@@ -42,9 +35,6 @@
 @media (prefers-color-scheme: dark) {
   :root[data-theme="auto"] {
     color-scheme: dark;
-    --tty-success: #4ade80;
-    --tty-warning: #fbbf24;
-    --tty-danger: #fb7185;
     --tty-icon-search: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23aab7c8' stroke-width='2' stroke-linecap='square'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-4-4'/%3E%3C/svg%3E");
     --tty-icon-date: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23aab7c8' stroke-width='2' stroke-linecap='square' stroke-linejoin='miter'%3E%3Cpath d='M4 6h16v14H4zM8 3v6M16 3v6M4 10h16M8 14h2M14 14h2M8 17h2M14 17h2'/%3E%3C/svg%3E");
     --tty-icon-time: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23aab7c8' stroke-width='2' stroke-linecap='square' stroke-linejoin='miter'%3E%3Cpath d='M4 4h16v16H4zM12 8v5l4 2'/%3E%3C/svg%3E");
@@ -59,6 +49,14 @@
   --tty-accent-chroma: 0.125;
   --tty-neutral-hue: 260;
   --tty-neutral-chroma: 0.025;
+
+  /* Semantic hues stay recognizable, even with a zero-chroma accent. */
+  --_tty-status-l: 50%;
+  --_tty-status-c: clamp(0.1, calc(0.1 + var(--tty-accent-chroma) * 0.45), 0.18);
+  --_tty-status-tint: oklch(var(--_tty-status-l) clamp(0, calc(var(--tty-accent-chroma) * 1.5), var(--_tty-status-c)) var(--tty-accent-hue));
+  --_tty-success: oklch(var(--_tty-status-l) var(--_tty-status-c) 150);
+  --_tty-warning: oklch(var(--_tty-status-l) var(--_tty-status-c) 75);
+  --_tty-danger: oklch(var(--_tty-status-l) var(--_tty-status-c) 25);
 
   --_tty-bg-c: 0.2;
   --_tty-surface-c: 0;
@@ -84,6 +82,7 @@
 }
 
 :root[data-theme="dark"] {
+  --_tty-status-l: 80%;
   --_tty-bg-c: 1.2;
   --_tty-surface-c: 1.2;
   --_tty-surface-muted-c: 1.6;
@@ -109,6 +108,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root[data-theme="auto"] {
+    --_tty-status-l: 80%;
     --_tty-bg-c: 1.2;
     --_tty-surface-c: 1.2;
     --_tty-surface-muted-c: 1.6;
@@ -131,6 +131,9 @@
     --_tty-control-focus-l: 85%;
     --_tty-control-shadow-l: 43%;
     /* Keep auto-light at :root specificity for existing overrides. */
+    --tty-success: var(--_tty-success);
+    --tty-warning: var(--_tty-warning);
+    --tty-danger: var(--_tty-danger);
     --tty-bg: oklch(var(--_tty-bg-l) calc(var(--tty-neutral-chroma) * var(--_tty-bg-c)) var(--tty-neutral-hue));
     --tty-surface: oklch(var(--_tty-surface-l) calc(var(--tty-neutral-chroma) * var(--_tty-surface-c)) var(--tty-neutral-hue));
     --tty-surface-muted: oklch(var(--_tty-surface-muted-l) calc(var(--tty-neutral-chroma) * var(--_tty-surface-muted-c)) var(--tty-neutral-hue));
@@ -154,6 +157,9 @@
 }
 
 :root, :root[data-theme="dark"] {
+  --tty-success: var(--_tty-success);
+  --tty-warning: var(--_tty-warning);
+  --tty-danger: var(--_tty-danger);
   --tty-bg: oklch(var(--_tty-bg-l) calc(var(--tty-neutral-chroma) * var(--_tty-bg-c)) var(--tty-neutral-hue));
   --tty-surface: oklch(var(--_tty-surface-l) calc(var(--tty-neutral-chroma) * var(--_tty-surface-c)) var(--tty-neutral-hue));
   --tty-surface-muted: oklch(var(--_tty-surface-muted-l) calc(var(--tty-neutral-chroma) * var(--_tty-surface-muted-c)) var(--tty-neutral-hue));
@@ -173,6 +179,16 @@
   --tty-focus: oklch(var(--_tty-focus-l) var(--tty-accent-chroma) var(--tty-accent-hue));
   --tty-control-focus: oklch(var(--_tty-control-focus-l) var(--tty-neutral-chroma) var(--tty-neutral-hue));
   --tty-control-shadow: oklch(var(--_tty-control-shadow-l) var(--tty-neutral-chroma) var(--tty-neutral-hue));
+}
+
+/* An equal-lightness accent tint harmonizes statuses without washing out hues.
+   Keep the OKLCH bases above on browsers without color-mix(). */
+@supports (color: color-mix(in oklab, black, white)) {
+  :root {
+    --_tty-success: color-mix(in oklab, oklch(var(--_tty-status-l) var(--_tty-status-c) 150) 75%, var(--_tty-status-tint));
+    --_tty-warning: color-mix(in oklab, oklch(var(--_tty-status-l) var(--_tty-status-c) 75) 75%, var(--_tty-status-tint));
+    --_tty-danger: color-mix(in oklab, oklch(var(--_tty-status-l) var(--_tty-status-c) 25) 75%, var(--_tty-status-tint));
+  }
 }
 
 *,
@@ -2473,6 +2489,7 @@ article.reading h2 {
 
 @media print {
   :root, :root[data-theme="dark"], :root[data-theme="auto"] {
+    --_tty-status-l: 50%;
     --tty-bg: #fff;
     --tty-surface: #fff;
     --tty-surface-muted: #fff;

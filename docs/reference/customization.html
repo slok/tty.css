@@ -54,24 +54,25 @@
 
       <section id="colors">
         <h2>Color tokens</h2>
-        <p>tty.css requires OKLCH. The 19 generated semantic roles use the <a href="#color-formulas">parameter-derived formulas below</a>, with no support guard or hex fallback. Direct semantic overrides may use any CSS color format supported by your target browsers. Status tokens remain independent mode-specific hex colors:</p>
-        <div class="overflow-auto" tabindex="0" aria-label="Status color defaults"><table><thead><tr><th scope="col">Token</th><th scope="col">Light default</th><th scope="col">Dark and auto-dark default</th><th scope="col">Used for</th></tr></thead><tbody>
-          <tr><th scope="row"><code>--tty-success</code></th><td><code>#15803d</code></td><td><code>#4ade80</code></td><td>Valid states and optimum meters</td></tr>
-          <tr><th scope="row"><code>--tty-warning</code></th><td><code>#b45309</code></td><td><code>#fbbf24</code></td><td>Suboptimum meters</td></tr>
-          <tr><th scope="row"><code>--tty-danger</code></th><td><code>#c83232</code></td><td><code>#fb7185</code></td><td>Invalid states, deletion, and poor meters</td></tr>
+        <p>tty.css requires OKLCH. The generated semantic roles use the <a href="#color-formulas">parameter-derived formulas below</a>, without hex fallbacks. Direct semantic overrides may use any CSS color format supported by your target browsers. Status colors have green, amber, and red bases; with the default palette, these bases are:</p>
+        <div class="overflow-auto" tabindex="0" aria-label="Status color bases before accent tint"><table><thead><tr><th scope="col">Token</th><th scope="col">Light base</th><th scope="col">Dark and auto-dark base</th><th scope="col">Used for</th></tr></thead><tbody>
+          <tr><th scope="row"><code>--tty-success</code></th><td><code>oklch(50% 0.15625 150)</code></td><td><code>oklch(80% 0.15625 150)</code></td><td>Success badges/notices, valid states, inserted text, and optimum meters</td></tr>
+          <tr><th scope="row"><code>--tty-warning</code></th><td><code>oklch(50% 0.15625 75)</code></td><td><code>oklch(80% 0.15625 75)</code></td><td>Warning badges/notices and suboptimum meters</td></tr>
+          <tr><th scope="row"><code>--tty-danger</code></th><td><code>oklch(50% 0.15625 25)</code></td><td><code>oklch(80% 0.15625 25)</code></td><td>Danger badges/notices, invalid states, deletion, and poor meters</td></tr>
         </tbody></table></div>
+        <p>Browsers with <code>color-mix()</code> harmonize each base with a 25% accent-hue tint in OKLab at the same lightness. Other OKLCH-capable browsers keep the generated base. Public status overrides use the same mode selectors as other semantic tokens; full overrides such as Monokai remain authoritative.</p>
       </section>
 
       <section id="palette-parameters">
         <h2>Public palette parameters</h2>
         <p>These defaults apply across all modes. Override them on <code>:root</code> after tty.css; no support guard is needed. Direct semantic token overrides remain supported and can be mixed with parameters.</p>
         <div class="overflow-auto" tabindex="0" aria-label="Palette parameter defaults"><table><thead><tr><th scope="col">Parameter</th><th scope="col">Default (all modes)</th><th scope="col">Role mapping</th></tr></thead><tbody>
-          <tr><th scope="row"><code>--tty-accent-hue</code></th><td><code>65</code></td><td>Hue of accents, links, general focus, and selection</td></tr>
-          <tr><th scope="row"><code>--tty-accent-chroma</code></th><td><code>0.125</code></td><td>Chroma of those accent roles, with role-specific factors</td></tr>
+          <tr><th scope="row"><code>--tty-accent-hue</code></th><td><code>65</code></td><td>Hue of accents, links, general focus, and selection; a bounded tint for statuses</td></tr>
+          <tr><th scope="row"><code>--tty-accent-chroma</code></th><td><code>0.125</code></td><td>Chroma of accent roles, with role-specific factors; bounded intensity and tint for statuses</td></tr>
           <tr><th scope="row"><code>--tty-neutral-hue</code></th><td><code>260</code></td><td>Hue of canvas, surfaces, text, borders, code, control focus, and shadows</td></tr>
           <tr><th scope="row"><code>--tty-neutral-chroma</code></th><td><code>0.025</code></td><td>Chroma of those neutral roles, with role/mode-specific factors</td></tr>
         </tbody></table></div>
-        <p>Status colors and SVG icon images are independent of these parameters. Arbitrary hue/chroma choices are not guaranteed accessible; test each mode and state. See the <a href="colors.html">Colors guide</a> for parameter-only, direct, and mixed palettes.</p>
+        <p>Status hues stay recognizable even with zero accent chroma; SVG icon images remain independent of the parameters. Arbitrary hue/chroma choices are not guaranteed accessible; test each mode and state. See the <a href="colors.html">Colors guide</a> for parameter-only, direct, and mixed palettes.</p>
       </section>
 
       <section id="color-formulas">
@@ -99,7 +100,9 @@
           <tr><th scope="row"><code>--tty-control-focus</code></th><td>37% / 85%</td><td>N / N</td><td>neutral hue</td></tr>
           <tr><th scope="row"><code>--tty-control-shadow</code></th><td>55% / 43%</td><td>N / N</td><td>neutral hue</td></tr>
         </tbody></table></div>
-        <p><code>--tty-success</code>, <code>--tty-warning</code>, and <code>--tty-danger</code> have no derived formula: use their mode-specific hex defaults in the color table above.</p>
+        <h3>Status formulas</h3>
+        <p>The status bases use <strong>L</strong> = 50% in light and print, or 80% in dark/auto-dark; <strong>C</strong> = <code>clamp(0.1, 0.1 + A × 0.45, 0.18)</code>; and fixed hues of 150 (success), 75 (warning), and 25 (danger). The chroma floor keeps muted and zero-chroma accent themes from washing out status colors.</p>
+        <p>Where <code>color-mix()</code> is supported, each effective status is <code>color-mix(in oklab, base 75%, tint)</code>. The tint uses the same status lightness, <code>clamp(0, A × 1.5, C)</code> chroma, and the accent hue. Capping tint chroma bounds its hue influence. A zero-chroma accent adds an achromatic tint, not a new hue. Override public status tokens rather than these internal calculations when your palette needs different semantics.</p>
       </section>
 
       <section id="typography">
