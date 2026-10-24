@@ -87,9 +87,22 @@
         <ul><li>Set the attribute only while work is pending, then remove it or set it to <code>false</code>.</li><li><code>aria-busy</code> does not prevent activation. Use native <code>disabled</code> while a form control must be unavailable, then remove both attributes when the operation completes.</li><li>A busy state does not guarantee that status text is announced. Put changing status in a suitable live region when users need asynchronous updates.</li><li>The spinner is decorative generated content with no text glyph to announce. It stays visible as a static square under reduced motion and follows system text colors in forced-colors mode. Keep a meaningful text label.</li></ul>
       </section>
 
+      <section id="spinner-size">
+        <h2>Spinner size</h2>
+        <p>The spinner defaults to <code>2em</code>, relative to the busy element's text size. Set <code>--tty-spinner-size</code> globally or on an individual element to change it; no size classes are needed. The outline and center scale together without changing the label's font size. Larger indicators can increase line or button height.</p>
+        <div class="docs-preview"><div class="grid" style="--tty-grid-min: 12rem"><p aria-busy="true" style="--tty-spinner-size: 1em">Custom: 1em</p><p aria-busy="true">Default: 2em</p><p aria-busy="true" style="--tty-spinner-size: 3em">Custom: 3em</p></div></div>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>&lt;p aria-busy="true" style="--tty-spinner-size: 1em"&gt;Custom: 1em&lt;/p&gt;
+&lt;p aria-busy="true"&gt;Default: 2em&lt;/p&gt;
+&lt;p aria-busy="true" style="--tty-spinner-size: 3em"&gt;Custom: 3em&lt;/p&gt;</code></pre></div>
+        <p>An inherited override applies to busy descendants too. Set this in your stylesheet after tty.css:</p>
+        <div class="code-example"><button class="secondary" type="button" data-copy>Copy</button><pre><code>:root {
+  --tty-spinner-size: 1.5em;
+}</code></pre></div>
+      </section>
+
       <nav class="docs-pager" aria-label="Documentation pages"><a href="inputs.html">← Inputs</a><a href="navigation.html">Navigation →</a></nav>
     </div>
-    <aside class="docs-toc"><nav aria-label="On this page"><p class="docs-nav-title">On this page</p><ul><li><a href="#loading">Busy and loading states</a></li></ul></nav></aside>
+    <aside class="docs-toc"><nav aria-label="On this page"><p class="docs-nav-title">On this page</p><ul><li><a href="#loading">Busy and loading states</a></li><li><a href="#spinner-size">Spinner size</a></li></ul></nav></aside>
   </main>
   <footer><small>tty.css — semantic HTML with sharp edges. Icons from <a href="https://pixeliconlibrary.com/">Pixel Icon Library by HackerNoon</a>.</small></footer>
 </body>
